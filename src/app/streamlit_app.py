@@ -339,10 +339,13 @@ header[data-testid="stHeader"] { background: transparent !important; }
     color: var(--ink) !important;
     font-family: var(--mono) !important;
 }
-[data-testid="stExpander"] summary span {
+[data-testid="stExpander"] summary span:not([data-testid="stIconMaterial"]) {
     color: var(--ink) !important;
     font-family: var(--mono) !important;
     letter-spacing: 0.08em !important;
+}
+[data-testid="stExpander"] summary [data-testid="stIconMaterial"] {
+    color: var(--ink-60) !important;
 }
 
 /* Slider styling */
