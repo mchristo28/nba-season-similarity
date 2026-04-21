@@ -4,6 +4,8 @@ A player similarity engine that finds the closest historical match for any NBA p
 
 Built on 11,400+ player-seasons from 2,350+ players spanning 2003-04 through 2025-26, using 190 features across 11 matchable dimensions.
 
+**Try it live:** [nba-season-similarity.streamlit.app](https://nba-season-similarity.streamlit.app)
+
 ## Screenshots
 
 **Search for a player and see the most similar seasons ranked by similarity score:**
