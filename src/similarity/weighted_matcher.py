@@ -139,22 +139,29 @@ class WeightedMatcher:
             zip(career_features["PLAYER_ID"], career_features["PLAYER_NAME"])
         )
 
-        # Fit a scaler for each feature group
+        # Fit scalers and batch-transform all rows at once per group
         self.scalers = {}
+        scaled_arrays: dict[str, np.ndarray] = {}
         for group_name, group_info in self.FEATURE_GROUPS.items():
             feature_cols = [c for c in group_info["features"] if c in career_features.columns]
             if not feature_cols:
                 continue
 
             scaler = StandardScaler()
-            data = career_features[feature_cols].fillna(0)
-            scaler.fit(data)
+            data = career_features[feature_cols].fillna(0).to_numpy(dtype=float)
+            scaled_arrays[group_name] = scaler.fit_transform(data)
             self.scalers[group_name] = {
                 "scaler": scaler,
                 "columns": feature_cols,
             }
 
-        # Build feature vectors for each player
+        # Extract index columns as arrays for fast iteration
+        player_ids = career_features["PLAYER_ID"].to_numpy()
+        career_years = career_features["CAREER_YEAR"].to_numpy(dtype=int)
+        ages = career_features["AGE"].to_numpy(dtype=float)
+        pts = career_features["PTS"].to_numpy(dtype=float)
+
+        # Build feature vectors by distributing pre-scaled rows into dicts
         self._features_by_year = {}
         self._features_by_age = {}
         self._player_years = {}
@@ -162,40 +169,36 @@ class WeightedMatcher:
         self._pts_by_year = {}
         self._pts_by_age = {}
 
-        for player_id in career_features["PLAYER_ID"].unique():
-            player_data = career_features[
-                career_features["PLAYER_ID"] == player_id
-            ].sort_values("CAREER_YEAR")
+        group_names = list(scaled_arrays.keys())
 
-            self._features_by_year[player_id] = {}
-            self._features_by_age[player_id] = {}
-            self._player_years[player_id] = set()
-            self._player_ages[player_id] = set()
-            self._pts_by_year[player_id] = {}
-            self._pts_by_age[player_id] = {}
+        for i in range(len(career_features)):
+            pid = int(player_ids[i])
+            cy = int(career_years[i])
+            age = int(ages[i]) if not np.isnan(ages[i]) else None
+            p = float(pts[i]) if not np.isnan(pts[i]) else 0.0
 
-            for _, row in player_data.iterrows():
-                career_year = int(row["CAREER_YEAR"])
-                age = int(row["AGE"]) if pd.notna(row.get("AGE")) else None
-                pts = float(row["PTS"]) if pd.notna(row.get("PTS")) else 0.0
+            # Build group vectors from pre-scaled arrays
+            group_vectors = {g: scaled_arrays[g][i] for g in group_names}
 
-                # Build scaled feature vector for each group
-                group_vectors = {}
-                for group_name, scaler_info in self.scalers.items():
-                    feature_vals = np.nan_to_num(row[scaler_info["columns"]].to_numpy(dtype=float)).reshape(1, -1)
-                    scaled = scaler_info["scaler"].transform(feature_vals)[0]
-                    group_vectors[group_name] = scaled
+            # Initialize dicts for new players
+            if pid not in self._features_by_year:
+                self._features_by_year[pid] = {}
+                self._features_by_age[pid] = {}
+                self._player_years[pid] = set()
+                self._player_ages[pid] = set()
+                self._pts_by_year[pid] = {}
+                self._pts_by_age[pid] = {}
 
-                # Store by career year
-                self._features_by_year[player_id][career_year] = group_vectors
-                self._player_years[player_id].add(career_year)
-                self._pts_by_year[player_id][career_year] = pts
+            # Store by career year
+            self._features_by_year[pid][cy] = group_vectors
+            self._player_years[pid].add(cy)
+            self._pts_by_year[pid][cy] = p
 
-                # Store by age
-                if age is not None:
-                    self._features_by_age[player_id][age] = group_vectors
-                    self._player_ages[player_id].add(age)
-                    self._pts_by_age[player_id][age] = pts
+            # Store by age
+            if age is not None:
+                self._features_by_age[pid][age] = group_vectors
+                self._player_ages[pid].add(age)
+                self._pts_by_age[pid][age] = p
 
         print(f"Fitted matcher with {len(self._features_by_year)} players, {len(self.scalers)} feature groups")
 
