@@ -342,7 +342,7 @@ header[data-testid="stHeader"] { background: transparent !important; }
 [data-testid="stExpander"] summary span {
     color: var(--ink) !important;
     font-family: var(--mono) !important;
-    letter-spacing: 0.2em !important;
+    letter-spacing: 0.08em !important;
 }
 
 /* Slider styling */
