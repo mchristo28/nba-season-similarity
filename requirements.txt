@@ -1,0 +1,9 @@
+nba_api
+pandas
+numpy
+scikit-learn
+streamlit
+beautifulsoup4
+requests
+lxml
+pyarrow

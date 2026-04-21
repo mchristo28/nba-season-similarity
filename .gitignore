@@ -1,0 +1,43 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+venv/
+ENV/
+env/
+*.egg-info/
+dist/
+build/
+
+# Data - raw and processed excluded (large, regenerable)
+data/raw/
+data/processed/
+data/cache.db
+*.sqlite
+
+# Feature data is included (small, makes repo immediately usable)
+# data/features/ is NOT ignored
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Claude
+.claude/

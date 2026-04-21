@@ -1,0 +1,41 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "bball-comparison"
+version = "0.1.0"
+description = "NBA Player Comparison Engine - find similar players based on stats, trajectories, and team composition"
+readme = "CLAUDE.md"
+requires-python = ">=3.10"
+dependencies = [
+    "nba_api",
+    "pandas",
+    "numpy",
+    "scikit-learn",
+    "streamlit",
+    "beautifulsoup4",
+    "requests",
+    "lxml",
+    "pyarrow",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "pytest-cov",
+    "black",
+    "ruff",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["src*"]
+
+[tool.black]
+line-length = 100
+target-version = ["py310"]
+
+[tool.ruff]
+line-length = 100
+select = ["E", "F", "I", "W"]
