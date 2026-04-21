@@ -12,7 +12,7 @@ Built on 11,400+ player-seasons from 2,350+ players spanning 2003-04 through 202
 
 **Drill into any match with similarity breakdowns and radar profile overlays:**
 
-![Similarity bars and radar chart comparison](screenshots/screenshot_charts.png)
+![Similarity bars and radar chart comparison](screenshots/screenshot_comparison.png)
 
 ## Features
 
