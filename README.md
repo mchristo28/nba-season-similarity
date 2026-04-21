@@ -1,10 +1,10 @@
 # nba-season-similarity
 
-A player similarity engine that finds the closest historical match for any NBA player-season. Select a player and season, adjust what dimensions matter most to you, and see which player-seasons across NBA history look most like the one you picked -- across scoring, shot profile, playmaking, defense, and more.
+Who had a season most like Shai Gilgeous-Alexander's 2024-25? According to 190 features across scoring, shot creation, playmaking, defense, and more, the closest matches are Jaylen Brown's 2025-26, De'Aaron Fox's 2020-21, and Ja Morant's 2022-23. This tool finds those answers.
 
-Built on 11,400+ player-seasons from 2,350+ players spanning 2003-04 through 2025-26, using 190 features across 11 matchable dimensions.
+Pick any player-season from 2003-04 through 2025-26, adjust which dimensions matter most, and see the most similar seasons in NBA history -- ranked, visualized, and broken down stat by stat.
 
-**Try it live:** [nba-season-similarity.streamlit.app](https://nba-season-similarity.streamlit.app)
+[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://nba-season-similarity.streamlit.app)
 
 ## Screenshots
 
@@ -21,10 +21,10 @@ Built on 11,400+ player-seasons from 2,350+ players spanning 2003-04 through 202
 - **190 features per player-season** spanning box score stats, tracking data, hustle stats, shooting zones, and team composition metrics
 - **11 matchable dimensions**: scoring volume, efficiency, shot profile, shot creation, drives, playmaking, ball handling, rebounding, defense, usage, physical
 - **Adjustable weights**: slider controls to emphasize what matters -- crank up "drives" to find players who attack the basket similarly, or boost "shot profile" to match shooting location distributions
-- **Single-season granularity**: compare individual seasons, not career averages -- "who had a season most like SGA's 2025-26?"
+- **Single-season granularity**: compare individual seasons, not career averages
 - **Composition stats**: player production expressed as share of team totals (e.g., "25% of team assists"), making stats comparable across eras and team contexts
 - **Side-by-side comparison**: color-coded stat tables (green/yellow/red for similarity), radar chart overlays, and per-dimension similarity scores
-- **Award context**: season awards displayed inline so you can see which comparisons were All-Star or All-NBA caliber
+- **11,400+ player-seasons** from 2,350+ players, 2003-04 through 2025-26
 
 ## How it works
 
@@ -83,4 +83,3 @@ data/
 - **Tracking data availability varies**: Some tracking stats (e.g., drives, contested shots) started in different seasons. Missing values are filled with 0, which can slightly disadvantage early-2000s seasons in those dimensions.
 - **No playoff data**: Comparisons are regular season only.
 - **Single-season focus**: The tool compares individual seasons, not full careers. Career trajectory matching is partially built (`trajectory_matcher.py`) but not yet exposed in the UI.
-- **No tests**: The `tests/` directory exists but doesn't have coverage yet.
