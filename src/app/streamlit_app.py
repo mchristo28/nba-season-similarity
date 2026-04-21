@@ -142,7 +142,7 @@ def score_color_hex(s: float) -> str:
 
 def _clean(html: str) -> str:
     """Strip leading whitespace from HTML lines to prevent Markdown code-block interpretation."""
-    return re.sub(r"\n[ \t]+", "\n", html)
+    return re.sub(r"\n[ \t]{4,}", "\n", html)
 
 
 def score_label(s: float) -> str:
@@ -1120,9 +1120,9 @@ def render_similarity_bars(group_distances: dict) -> str:
 
 
 def render_radar_svg(anchor_row, compare_row, anchor_label: str, compare_label: str) -> str:
-    size = 360
+    size = 440
     cx, cy = size / 2, size / 2
-    r = 130
+    r = 140
     N = len(DIMENSIONS)
 
     def point(val, i):
@@ -1342,9 +1342,6 @@ def main():
     col_anchor, col_editor = st.columns([1.2, 0.9], gap="large")
 
     with col_anchor:
-        # Anchor card
-        st.markdown('<div class="anchor-card"><div class="anchor-label">THE QUERY</div>', unsafe_allow_html=True)
-
         col_portrait, col_meta = st.columns([1, 2])
 
         with col_portrait:
@@ -1398,8 +1395,6 @@ def main():
         # Awards
         award_pills = get_awards_pills(player_id, anchor_season["SEASON"], cached_awards)
         render_awards(award_pills)
-
-        st.markdown('</div>', unsafe_allow_html=True)  # close anchor-card
 
     with col_editor:
         # Editor's note
