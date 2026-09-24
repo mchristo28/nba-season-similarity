@@ -9,6 +9,7 @@ import argparse
 import pandas as pd
 
 from .cache_manager import CacheManager
+from .merge_stats import merge_player_measurements
 from .nba_api_client import NBAApiClient
 
 
@@ -21,14 +22,15 @@ class DataLoader:
     - Rate limiting via underlying clients
     """
 
-    def __init__(self, cache_dir: str = "data"):
+    def __init__(self, cache_dir: str = "data", refresh: bool = False):
+        self.refresh = refresh
         self.cache = CacheManager(cache_dir)
         self.client = NBAApiClient()
 
     def get_player_career(self, player_id: int) -> pd.DataFrame:
         """Load player's career stats (from cache or API)."""
         cached = self.cache.get_player_stats(player_id)
-        if cached is not None:
+        if cached is not None and not self.refresh:
             return cached
 
         data = self.client.get_player_career_stats(player_id)
@@ -38,7 +40,7 @@ class DataLoader:
     def get_player_info(self, player_id: int) -> pd.DataFrame:
         """Load player metadata (from cache or API)."""
         cached = self.cache.get_player_info(player_id)
-        if cached is not None:
+        if cached is not None and not self.refresh:
             return cached
 
         data = self.client.get_player_info(player_id)
@@ -49,7 +51,7 @@ class DataLoader:
         """Load league-wide player stats for a season."""
         key = f"league_stats_{season}"
         cached = self.cache.get(key)
-        if cached is not None:
+        if cached is not None and not self.refresh:
             return cached
 
         data = self.client.get_league_player_stats(season)
@@ -60,7 +62,7 @@ class DataLoader:
         """Load tracking stats for a season (drives, catch-shoot, pull-up, passing, possessions)."""
         key = f"tracking_stats_{season}"
         cached = self.cache.get(key)
-        if cached is not None:
+        if cached is not None and not self.refresh:
             return cached
 
         data = self.client.get_all_tracking_stats(season)
@@ -72,7 +74,7 @@ class DataLoader:
         """Load scoring stats for a season (assisted/unassisted breakdown)."""
         key = f"scoring_stats_{season}"
         cached = self.cache.get(key)
-        if cached is not None:
+        if cached is not None and not self.refresh:
             return cached
 
         data = self.client.get_league_scoring_stats(season)
@@ -89,24 +91,13 @@ class DataLoader:
 
         merged = league.copy()
 
-        # Merge tracking stats
-        tracking = self.get_tracking_stats(season)
-        if tracking is not None and not tracking.empty:
-            merged = merged.merge(
-                tracking.drop(columns=['PLAYER_NAME'], errors='ignore'),
-                on='PLAYER_ID',
-                how='left'
-            )
-
-        # Merge scoring stats (assisted/unassisted)
+        merged = merge_player_measurements(merged, self.get_tracking_stats(season))
         scoring = self.get_scoring_stats(season)
-        if scoring is not None and not scoring.empty:
-            # Only keep the assisted/unassisted columns
-            scoring_cols = ['PLAYER_ID', 'PCT_AST_2PM', 'PCT_UAST_2PM',
-                           'PCT_AST_3PM', 'PCT_UAST_3PM', 'PCT_AST_FGM', 'PCT_UAST_FGM']
-            scoring_cols = [c for c in scoring_cols if c in scoring.columns]
-            scoring_subset = scoring[scoring_cols]
-            merged = merged.merge(scoring_subset, on='PLAYER_ID', how='left')
+        if not scoring.empty:
+            columns = [
+                c for c in scoring if c == "PLAYER_ID" or c.startswith(("PCT_AST_", "PCT_UAST_"))
+            ]
+            merged = merge_player_measurements(merged, scoring[columns])
 
         return merged
 
@@ -114,7 +105,7 @@ class DataLoader:
         """Load all season stats for a team."""
         key = f"team_{team_id}_all_seasons"
         cached = self.cache.get(key)
-        if cached is not None:
+        if cached is not None and not self.refresh:
             return cached
 
         data = self.client.get_team_season_stats(team_id)
@@ -146,7 +137,7 @@ class DataLoader:
         """
         for i, season in enumerate(seasons):
             if verbose:
-                print(f"[{i+1}/{len(seasons)}] Fetching {season} league stats...")
+                print(f"[{i + 1}/{len(seasons)}] Fetching {season} league stats...")
             self.get_league_stats(season)
         if verbose:
             print("Done fetching league stats.")
@@ -161,7 +152,7 @@ class DataLoader:
         total = len(player_ids)
         for i, pid in enumerate(player_ids):
             if verbose and (i % 50 == 0 or i == total - 1):
-                print(f"[{i+1}/{total}] Fetching player {pid}...")
+                print(f"[{i + 1}/{total}] Fetching player {pid}...")
 
             # Skip if already cached
             if not self.cache.has_player_stats(pid):
@@ -186,7 +177,7 @@ class DataLoader:
         teams = self.client.get_all_teams()
         for i, team in enumerate(teams):
             if verbose:
-                print(f"[{i+1}/{len(teams)}] Fetching {team['full_name']}...")
+                print(f"[{i + 1}/{len(teams)}] Fetching {team['full_name']}...")
             self.get_team_stats(team["id"])
         if verbose:
             print("Done fetching team stats.")
@@ -210,7 +201,7 @@ class DataLoader:
             verbose: Print progress
         """
         # Build season strings
-        seasons = [f"{y}-{str(y+1)[-2:]}" for y in range(start_year, end_year + 1)]
+        seasons = [f"{y}-{str(y + 1)[-2:]}" for y in range(start_year, end_year + 1)]
 
         if verbose:
             print(f"=== Full data pull: {seasons[0]} to {seasons[-1]} ===\n")

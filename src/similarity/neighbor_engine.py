@@ -18,11 +18,21 @@ class NeighborEngine:
     # Default feature columns for similarity matching
     DEFAULT_FEATURES = [
         # Volume stats (per season averages)
-        "PTS", "AST", "REB", "STL", "BLK",
+        "PTS",
+        "AST",
+        "REB",
+        "STL",
+        "BLK",
         # Efficiency
-        "fg_pct", "fg3_pct", "ft_pct", "ts_pct",
+        "fg_pct",
+        "fg3_pct",
+        "ft_pct",
+        "ts_pct",
         # Composition (role on team)
-        "pts_share", "ast_share", "reb_share", "min_share",
+        "pts_share",
+        "ast_share",
+        "reb_share",
+        "min_share",
     ]
 
     # Feature groups for toggleable dimensions
@@ -93,6 +103,7 @@ class NeighborEngine:
             self.scaler = StandardScaler()
             feature_matrix = self.scaler.fit_transform(features)
         else:
+            self.scaler = None
             feature_matrix = features.values
 
         # Store player info
@@ -102,9 +113,7 @@ class NeighborEngine:
 
         self.fit(feature_matrix, player_ids)
 
-    def find_similar(
-        self, player_id: int, n: int | None = None
-    ) -> list[tuple[int, str, float]]:
+    def find_similar(self, player_id: int, n: int | None = None) -> list[tuple[int, str, float]]:
         """Find N most similar players to a given player.
 
         Args:

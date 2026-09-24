@@ -14,13 +14,19 @@ from pathlib import Path
 
 import pandas as pd
 from nba_api.stats.endpoints import (
-    LeagueDashPlayerStats,
+    CommonAllPlayers,
+    LeagueDashPlayerBioStats,
     LeagueDashPlayerShotLocations,
+    LeagueDashPlayerStats,
+    LeagueDashTeamStats,
     LeagueHustleStatsPlayer,
     PlayerEstimatedMetrics,
-    LeagueDashPlayerBioStats,
-    CommonAllPlayers,
 )
+
+from src.data.data_loader import DataLoader
+from src.data.merge_stats import merge_player_measurements
+from src.features.registry import FEATURE_GROUPS
+from src.features.transforms import add_career_year, efficiency_stats, team_shares
 
 # Rate limiting
 API_DELAY = 0.6
@@ -29,42 +35,7 @@ API_DELAY = 0.6
 class ComprehensiveStatsPipeline:
     """Pull comprehensive stats from multiple NBA API endpoints."""
 
-    # Feature group definitions - what stats belong to each group
-    FEATURE_GROUPS = {
-        "physical": [
-            "height_inches", "weight",
-        ],
-        "scoring_volume": [
-            "PTS", "FGA", "FG3A", "FTA", "MIN",
-            "pts_share", "fga_share", "min_share",
-        ],
-        "scoring_efficiency": [
-            "ts_pct", "efg_pct", "fg_pct", "fg3_pct", "ft_pct",
-        ],
-        "shot_profile": [
-            "pct_fga_restricted", "pct_fga_paint", "pct_fga_midrange",
-            "pct_fga_corner3", "pct_fga_above_break3",
-            "fg_pct_restricted", "fg_pct_paint", "fg_pct_midrange",
-            "fg_pct_corner3", "fg_pct_above_break3",
-        ],
-        "playmaking": [
-            "AST", "TOV", "ast_share", "tov_share",
-            "ast_ratio", "tov_pct",
-        ],
-        "rebounding": [
-            "REB", "OREB", "DREB", "reb_share", "oreb_share", "dreb_share",
-            "oreb_pct", "dreb_pct",
-        ],
-        "defense": [
-            "STL", "BLK", "stl_share", "blk_share",
-            "contested_shots", "contested_shots_2pt", "contested_shots_3pt",
-            "deflections", "charges_drawn", "loose_balls_recovered",
-        ],
-        "overall_impact": [
-            "e_off_rating", "e_def_rating", "e_net_rating",
-            "e_usg_pct", "e_pace",
-        ],
-    }
+    FEATURE_GROUPS = FEATURE_GROUPS
 
     def __init__(self, data_dir: str = "data"):
         self.data_dir = Path(data_dir)
@@ -107,8 +78,13 @@ class ComprehensiveStatsPipeline:
             # Flatten multi-level columns
             if isinstance(df.columns, pd.MultiIndex):
                 df.columns = [
-                    f"{zone}_{stat}".lower().replace(" ", "_").replace("(", "").replace(")", "").replace("-", "_")
-                    if zone else stat
+                    f"{zone}_{stat}".lower()
+                    .replace(" ", "_")
+                    .replace("(", "")
+                    .replace(")", "")
+                    .replace("-", "_")
+                    if zone
+                    else stat
                     for zone, stat in df.columns
                 ]
 
@@ -172,9 +148,23 @@ class ComprehensiveStatsPipeline:
                 df["weight"] = pd.to_numeric(df["PLAYER_WEIGHT"], errors="coerce")
 
             # Keep useful columns
-            cols_to_keep = ["PLAYER_ID", "SEASON", "height_inches", "weight",
-                           "COLLEGE", "COUNTRY", "DRAFT_YEAR", "DRAFT_ROUND", "DRAFT_NUMBER",
-                           "NET_RATING", "OREB_PCT", "DREB_PCT", "USG_PCT", "TS_PCT", "AST_PCT"]
+            cols_to_keep = [
+                "PLAYER_ID",
+                "SEASON",
+                "height_inches",
+                "weight",
+                "COLLEGE",
+                "COUNTRY",
+                "DRAFT_YEAR",
+                "DRAFT_ROUND",
+                "DRAFT_NUMBER",
+                "NET_RATING",
+                "OREB_PCT",
+                "DREB_PCT",
+                "USG_PCT",
+                "TS_PCT",
+                "AST_PCT",
+            ]
             df = df[[c for c in cols_to_keep if c in df.columns]]
 
             # Rename to lowercase
@@ -192,8 +182,12 @@ class ComprehensiveStatsPipeline:
         players = CommonAllPlayers(is_only_current_season=0)
         df = players.get_data_frames()[0]
         return df[["PERSON_ID", "DISPLAY_FIRST_LAST", "FROM_YEAR", "TO_YEAR"]].rename(
-            columns={"PERSON_ID": "player_id", "DISPLAY_FIRST_LAST": "player_name",
-                     "FROM_YEAR": "from_year", "TO_YEAR": "to_year"}
+            columns={
+                "PERSON_ID": "player_id",
+                "DISPLAY_FIRST_LAST": "player_name",
+                "FROM_YEAR": "from_year",
+                "TO_YEAR": "to_year",
+            }
         )
 
     def fetch_season_data(self, season: str) -> pd.DataFrame:
@@ -211,78 +205,23 @@ class ComprehensiveStatsPipeline:
             print(f"  No basic stats for {season}, skipping")
             return pd.DataFrame()
 
+        # Tracking uses explicit season totals; build_features converts them once.
+        loader = DataLoader(str(self.data_dir), refresh=True)
+        tracking = loader.get_tracking_stats(season) if int(season[:4]) >= 2013 else pd.DataFrame()
+        scoring = loader.get_scoring_stats(season)
+
         # Start with basic stats
         df = basic.copy()
 
-        # Merge shot locations
-        if not shots.empty:
-            shot_cols = [c for c in shots.columns if c not in df.columns or c in ["PLAYER_ID", "player_id"]]
-            id_col = "PLAYER_ID" if "PLAYER_ID" in shots.columns else "player_id"
-            if id_col in shots.columns:
-                df = df.merge(
-                    shots[shot_cols],
-                    left_on="PLAYER_ID",
-                    right_on=id_col,
-                    how="left"
-                )
-
-        # Merge hustle stats
-        if not hustle.empty:
-            hustle_cols = [c for c in hustle.columns if c not in [x.lower() for x in df.columns] or c == "player_id"]
-            if "player_id" in hustle.columns:
-                df = df.merge(
-                    hustle[hustle_cols],
-                    left_on="PLAYER_ID",
-                    right_on="player_id",
-                    how="left"
-                )
-
-        # Merge advanced metrics
-        if not advanced.empty:
-            adv_cols = [c for c in advanced.columns if c not in [x.lower() for x in df.columns] or c == "player_id"]
-            if "player_id" in advanced.columns:
-                df = df.merge(
-                    advanced[adv_cols],
-                    left_on="PLAYER_ID",
-                    right_on="player_id",
-                    how="left"
-                )
-
-        # Merge bio stats (height, weight, etc.)
-        if not bio.empty:
-            bio_cols = [c for c in bio.columns if c not in df.columns or c == "PLAYER_ID"]
-            if "PLAYER_ID" in bio.columns:
-                df = df.merge(
-                    bio[bio_cols],
-                    on="PLAYER_ID",
-                    how="left"
-                )
+        for extra in (shots, hustle, advanced, bio, tracking, scoring):
+            df = merge_player_measurements(df, extra)
 
         print(f"  Merged {len(df)} players with {len(df.columns)} columns")
         return df
 
     def compute_derived_stats(self, df: pd.DataFrame) -> pd.DataFrame:
         """Compute derived statistics."""
-        result = df.copy()
-
-        # Efficiency stats
-        if "FGM" in result.columns and "FGA" in result.columns:
-            result["fg_pct"] = result["FGM"] / result["FGA"].replace(0, 1)
-
-        if "FG3M" in result.columns and "FG3A" in result.columns:
-            result["fg3_pct"] = result["FG3M"] / result["FG3A"].replace(0, 1)
-
-        if "FTM" in result.columns and "FTA" in result.columns:
-            result["ft_pct"] = result["FTM"] / result["FTA"].replace(0, 1)
-
-        # True shooting
-        if all(c in result.columns for c in ["PTS", "FGA", "FTA"]):
-            tsa = result["FGA"] + 0.44 * result["FTA"]
-            result["ts_pct"] = result["PTS"] / (2 * tsa.replace(0, 1))
-
-        # Effective FG%
-        if all(c in result.columns for c in ["FGM", "FG3M", "FGA"]):
-            result["efg_pct"] = (result["FGM"] + 0.5 * result["FG3M"]) / result["FGA"].replace(0, 1)
+        result = efficiency_stats(df)
 
         # Shot distribution percentages
         total_fga_col = "FGA"
@@ -303,7 +242,9 @@ class ComprehensiveStatsPipeline:
 
             # Corner 3 = left + right
             if "left_corner_3_fga" in result.columns and "right_corner_3_fga" in result.columns:
-                corner3_fga = result["left_corner_3_fga"].fillna(0) + result["right_corner_3_fga"].fillna(0)
+                corner3_fga = result["left_corner_3_fga"].fillna(0) + result[
+                    "right_corner_3_fga"
+                ].fillna(0)
                 result["pct_fga_corner3"] = corner3_fga / total_fga
 
             # Shot zone FG%
@@ -318,57 +259,44 @@ class ComprehensiveStatsPipeline:
                     result[dest_col] = result[src_col]
 
             # Corner 3 FG% (weighted average)
-            if all(c in result.columns for c in ["left_corner_3_fgm", "left_corner_3_fga",
-                                                   "right_corner_3_fgm", "right_corner_3_fga"]):
-                corner_fgm = result["left_corner_3_fgm"].fillna(0) + result["right_corner_3_fgm"].fillna(0)
-                corner_fga = result["left_corner_3_fga"].fillna(0) + result["right_corner_3_fga"].fillna(0)
+            if all(
+                c in result.columns
+                for c in [
+                    "left_corner_3_fgm",
+                    "left_corner_3_fga",
+                    "right_corner_3_fgm",
+                    "right_corner_3_fga",
+                ]
+            ):
+                corner_fgm = result["left_corner_3_fgm"].fillna(0) + result[
+                    "right_corner_3_fgm"
+                ].fillna(0)
+                corner_fga = result["left_corner_3_fga"].fillna(0) + result[
+                    "right_corner_3_fga"
+                ].fillna(0)
                 result["fg_pct_corner3"] = corner_fgm / corner_fga.replace(0, 1)
 
         return result
 
-    def compute_team_shares(self, df: pd.DataFrame) -> pd.DataFrame:
-        """Compute player's share of team stats."""
-        result = df.copy()
+    def fetch_team_stats(self, season: str) -> pd.DataFrame:
+        """Actual team totals, cached separately from player aggregates."""
+        path = self.raw_dir / f"team_totals_{season}.parquet"
+        time.sleep(API_DELAY)
+        frame = LeagueDashTeamStats(season=season, per_mode_detailed="Totals").get_data_frames()[0]
+        frame["SEASON"] = season
+        frame.to_parquet(path, index=False)
+        return frame
 
-        share_stats = ["PTS", "AST", "REB", "OREB", "DREB", "STL", "BLK", "TOV", "FGA", "FG3A", "FTA", "MIN"]
-
-        for stat in share_stats:
-            if stat in result.columns and "TEAM_ID" in result.columns:
-                team_totals = result.groupby(["TEAM_ID", "SEASON"])[stat].transform("sum")
-                result[f"{stat.lower()}_share"] = result[stat] / team_totals.replace(0, 1)
-
-        return result
+    def compute_team_shares(self, df: pd.DataFrame, teams=None) -> pd.DataFrame:
+        if teams is None:
+            teams = pd.concat(
+                [self.fetch_team_stats(s) for s in df.SEASON.unique()], ignore_index=True
+            )
+        return team_shares(df, teams)
 
     def add_career_year(self, df: pd.DataFrame, player_info: pd.DataFrame) -> pd.DataFrame:
-        """Add career year based on rookie season."""
-        result = df.copy()
-
-        # Create rookie year lookup - ensure values are integers
-        rookie_years = {}
-        for _, row in player_info.iterrows():
-            pid = row["player_id"]
-            from_year = row["from_year"]
-            if pd.notna(from_year):
-                try:
-                    rookie_years[pid] = int(from_year)
-                except (ValueError, TypeError):
-                    pass
-
-        # Extract season start year
-        result["_season_year"] = result["SEASON"].str[:4].astype(int)
-
-        # Calculate career year
-        def calc_career_year(row):
-            season_year = row["_season_year"]
-            player_id = row["PLAYER_ID"]
-            rookie_year = rookie_years.get(player_id, season_year)
-            return season_year - rookie_year + 1
-
-        result["CAREER_YEAR"] = result.apply(calc_career_year, axis=1)
-        result.loc[result["CAREER_YEAR"] < 1, "CAREER_YEAR"] = 1
-
-        result = result.drop(columns=["_season_year"])
-        return result
+        years = pd.to_numeric(player_info.set_index("player_id").from_year, errors="coerce")
+        return add_career_year(df, years.dropna().to_dict())
 
     def pull_all_seasons(
         self,
@@ -380,7 +308,7 @@ class ComprehensiveStatsPipeline:
         # Generate season list
         start_year = int(start_season[:4])
         end_year = int(end_season[:4])
-        seasons = [f"{y}-{str(y+1)[-2:]}" for y in range(start_year, end_year + 1)]
+        seasons = [f"{y}-{str(y + 1)[-2:]}" for y in range(start_year, end_year + 1)]
 
         print(f"Pulling data for {len(seasons)} seasons: {seasons[0]} to {seasons[-1]}")
 
@@ -395,7 +323,12 @@ class ComprehensiveStatsPipeline:
                     all_data.append(season_data)
             except Exception as e:
                 print(f"  Error with {season}: {e}")
-                continue
+                raise
+
+        if len(all_data) != len(seasons):
+            raise ValueError(
+                "Some requested seasons could not be fetched; refusing partial rebuild"
+            )
 
         if not all_data:
             print("No data fetched!")
@@ -417,7 +350,9 @@ class ComprehensiveStatsPipeline:
         print("Adding career years...")
         df = self.add_career_year(df, player_info)
 
-        print(f"\nFinal dataset: {len(df)} player-seasons, {df['PLAYER_ID'].nunique()} unique players")
+        print(
+            f"\nFinal dataset: {len(df)} player-seasons, {df['PLAYER_ID'].nunique()} unique players"
+        )
         print(f"Seasons: {sorted(df['SEASON'].unique())}")
         print(f"Columns: {len(df.columns)}")
 

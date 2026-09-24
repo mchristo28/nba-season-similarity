@@ -72,9 +72,7 @@ class CacheManager:
     def has(self, key: str) -> bool:
         """Check if data exists in cache."""
         with sqlite3.connect(self.db_path) as conn:
-            result = conn.execute(
-                "SELECT 1 FROM cache_entries WHERE key = ?", (key,)
-            ).fetchone()
+            result = conn.execute("SELECT 1 FROM cache_entries WHERE key = ?", (key,)).fetchone()
             return result is not None
 
     def get(self, key: str) -> pd.DataFrame | None:

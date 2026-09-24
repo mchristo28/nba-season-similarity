@@ -11,7 +11,7 @@ import pandas as pd
 from sklearn.preprocessing import StandardScaler
 
 
-class TrajectoryMatcher:
+class AlignedTrajectoryMatcher:
     """Match players by career trajectory patterns.
 
     Compares year-by-year development:
@@ -23,9 +23,20 @@ class TrajectoryMatcher:
 
     # Features to use for similarity (per-game stats + composition)
     FEATURE_COLS = [
-        "PTS", "AST", "REB", "STL", "BLK", "MIN",
-        "fg_pct", "fg3_pct", "ft_pct", "ts_pct",
-        "pts_share", "ast_share", "reb_share", "min_share",
+        "PTS",
+        "AST",
+        "REB",
+        "STL",
+        "BLK",
+        "MIN",
+        "fg_pct",
+        "fg3_pct",
+        "ft_pct",
+        "ts_pct",
+        "pts_share",
+        "ast_share",
+        "reb_share",
+        "min_share",
     ]
 
     def __init__(self):
@@ -50,16 +61,18 @@ class TrajectoryMatcher:
         self.career_features = career_features.copy()
 
         # Store player names
-        self.player_names = dict(
-            zip(career_features["PLAYER_ID"], career_features["PLAYER_NAME"])
-        )
+        self.player_names = dict(zip(career_features["PLAYER_ID"], career_features["PLAYER_NAME"]))
 
         # Get feature columns that exist
-        feature_cols = [c for c in self.FEATURE_COLS if c in career_features.columns]
+        feature_cols = [
+            c
+            for c in self.FEATURE_COLS
+            if c in career_features.columns and career_features[c].notna().any()
+        ]
 
         # Fit scaler on all data
-        all_features = career_features[feature_cols].fillna(0)
-        self.scaler.fit(all_features)
+        all_features = career_features[feature_cols]
+        self.scaler.fit(all_features.to_numpy(dtype=float))
 
         # Build scaled feature vectors for each player, indexed by both career year and age
         self._features_by_year = {}
@@ -68,9 +81,9 @@ class TrajectoryMatcher:
         self._player_ages = {}
 
         for player_id in career_features["PLAYER_ID"].unique():
-            player_data = career_features[
-                career_features["PLAYER_ID"] == player_id
-            ].sort_values("CAREER_YEAR")
+            player_data = career_features[career_features["PLAYER_ID"] == player_id].sort_values(
+                "CAREER_YEAR"
+            )
 
             self._features_by_year[player_id] = {}
             self._features_by_age[player_id] = {}
@@ -81,7 +94,7 @@ class TrajectoryMatcher:
                 career_year = int(row["CAREER_YEAR"])
                 age = int(row["AGE"]) if pd.notna(row.get("AGE")) else None
 
-                features = row[feature_cols].fillna(0).values.reshape(1, -1)
+                features = row[feature_cols].to_numpy(dtype=float).reshape(1, -1)
                 scaled = self.scaler.transform(features)[0]
 
                 # Index by career year
@@ -149,14 +162,15 @@ class TrajectoryMatcher:
             return float("inf"), 0
 
         # Compute distance for each common key and average
-        total_distance = 0.0
+        distances = []
         for key in common_keys:
             vec1 = features[player_id_1][key]
             vec2 = features[player_id_2][key]
-            dist = np.linalg.norm(vec1 - vec2)
-            total_distance += dist
-
-        return total_distance / len(common_keys), len(common_keys)
+            diff = vec1 - vec2
+            valid = np.isfinite(diff)
+            if valid.any():
+                distances.append(float(np.sqrt(np.mean(diff[valid] ** 2))))
+        return (float(np.mean(distances)), len(distances)) if distances else (float("inf"), 0)
 
     def find_similar_trajectories(
         self,
@@ -267,15 +281,17 @@ class TrajectoryMatcher:
             p1_year = p1_data[p1_data["CAREER_YEAR"] == year].iloc[0]
             p2_year = p2_data[p2_data["CAREER_YEAR"] == year].iloc[0]
 
-            comparison_data.append({
-                "Career Year": year,
-                f"{name1} PTS": f"{p1_year['PTS']:.1f}",
-                f"{name2} PTS": f"{p2_year['PTS']:.1f}",
-                f"{name1} AST": f"{p1_year['AST']:.1f}",
-                f"{name2} AST": f"{p2_year['AST']:.1f}",
-                f"{name1} REB": f"{p1_year['REB']:.1f}",
-                f"{name2} REB": f"{p2_year['REB']:.1f}",
-            })
+            comparison_data.append(
+                {
+                    "Career Year": year,
+                    f"{name1} PTS": f"{p1_year['PTS']:.1f}",
+                    f"{name2} PTS": f"{p2_year['PTS']:.1f}",
+                    f"{name1} AST": f"{p1_year['AST']:.1f}",
+                    f"{name2} AST": f"{p2_year['AST']:.1f}",
+                    f"{name1} REB": f"{p1_year['REB']:.1f}",
+                    f"{name2} REB": f"{p2_year['REB']:.1f}",
+                }
+            )
 
         return pd.DataFrame(comparison_data)
 
@@ -284,9 +300,9 @@ class TrajectoryMatcher:
         if self.career_features is None:
             raise ValueError("Matcher not fitted")
 
-        data = self.career_features[
-            self.career_features["PLAYER_ID"] == player_id
-        ].sort_values("CAREER_YEAR")
+        data = self.career_features[self.career_features["PLAYER_ID"] == player_id].sort_values(
+            "CAREER_YEAR"
+        )
 
         return data
 
@@ -298,15 +314,18 @@ class TrajectoryMatcher:
         path.parent.mkdir(parents=True, exist_ok=True)
 
         with open(path, "wb") as f:
-            pickle.dump({
-                "career_features": self.career_features,
-                "player_names": self.player_names,
-                "scaler": self.scaler,
-                "_features_by_year": self._features_by_year,
-                "_features_by_age": self._features_by_age,
-                "_player_years": self._player_years,
-                "_player_ages": self._player_ages,
-            }, f)
+            pickle.dump(
+                {
+                    "career_features": self.career_features,
+                    "player_names": self.player_names,
+                    "scaler": self.scaler,
+                    "_features_by_year": self._features_by_year,
+                    "_features_by_age": self._features_by_age,
+                    "_player_years": self._player_years,
+                    "_player_ages": self._player_ages,
+                },
+                f,
+            )
 
     @classmethod
     def load(cls, path: str | Path) -> "TrajectoryMatcher":
@@ -330,9 +349,13 @@ class TrajectoryMatcher:
 
 def build_trajectory_matcher(
     career_features_path: str = "data/features/career_year_features.parquet",
-) -> TrajectoryMatcher:
+) -> AlignedTrajectoryMatcher:
     """Build a trajectory matcher from saved career features."""
     df = pd.read_parquet(career_features_path)
     matcher = TrajectoryMatcher()
     matcher.fit(df)
     return matcher
+
+
+# Backwards-compatible import; prefer the explicit strategy name.
+TrajectoryMatcher = AlignedTrajectoryMatcher

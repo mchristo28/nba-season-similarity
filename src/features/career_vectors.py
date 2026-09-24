@@ -9,8 +9,9 @@ Enables matching "developing like Player X" patterns by comparing
 year-by-year development rather than career averages.
 """
 
-import numpy as np
 import pandas as pd
+
+from .transforms import add_career_year, efficiency_stats, per_game
 
 
 def fetch_player_rookie_years() -> dict[int, int]:
@@ -19,8 +20,9 @@ def fetch_player_rookie_years() -> dict[int, int]:
     Returns:
         Dict mapping player_id -> rookie_year (e.g., {2544: 2003} for LeBron)
     """
-    from nba_api.stats.endpoints import commonallplayers
     import time
+
+    from nba_api.stats.endpoints import commonallplayers
 
     print("Fetching player rookie years from NBA API...")
     time.sleep(0.6)  # Rate limit
@@ -43,14 +45,30 @@ class CareerVectorBuilder:
 
     # Stats to include in career vectors (will be per-game)
     STAT_COLS = [
-        "PTS", "AST", "REB", "STL", "BLK", "TOV", "MIN",
-        "FGM", "FGA", "FG3M", "FG3A", "FTM", "FTA",
+        "PTS",
+        "AST",
+        "REB",
+        "STL",
+        "BLK",
+        "TOV",
+        "MIN",
+        "FGM",
+        "FGA",
+        "FG3M",
+        "FG3A",
+        "FTM",
+        "FTA",
     ]
 
     # Composition stats
     COMPOSITION_COLS = [
-        "pts_share", "ast_share", "reb_share", "min_share",
-        "stl_share", "blk_share", "fg3a_share",
+        "pts_share",
+        "ast_share",
+        "reb_share",
+        "min_share",
+        "stl_share",
+        "blk_share",
+        "fg3a_share",
     ]
 
     # Derived stats
@@ -85,49 +103,10 @@ class CareerVectorBuilder:
         if years is None:
             raise ValueError("rookie_years required - pass to __init__ or add_career_year")
 
-        # Extract season start year from "2020-21" format -> 2020
-        df["_season_year"] = df["SEASON"].str[:4].astype(int)
-
-        # Calculate actual career year
-        df["CAREER_YEAR"] = df.apply(
-            lambda row: row["_season_year"] - years.get(row["PLAYER_ID"], row["_season_year"]) + 1,
-            axis=1
-        )
-
-        # Handle edge cases (negative years from bad data)
-        df.loc[df["CAREER_YEAR"] < 1, "CAREER_YEAR"] = 1
-
-        # Clean up temp column
-        df = df.drop(columns=["_season_year"])
-
-        # Sort by player and career year
-        df = df.sort_values(["PLAYER_ID", "CAREER_YEAR"])
-
-        return df
+        return add_career_year(df, years)
 
     def compute_per_game_stats(self, df: pd.DataFrame) -> pd.DataFrame:
-        """Convert counting stats to per-game averages."""
-        result = df.copy()
-
-        for col in self.STAT_COLS:
-            if col in result.columns and "GP" in result.columns:
-                result[col] = result[col] / result["GP"].replace(0, 1)
-
-        # Compute derived stats
-        if "FGA" in result.columns and "FGM" in result.columns:
-            result["fg_pct"] = result["FGM"] / result["FGA"].replace(0, 1)
-
-        if "FG3A" in result.columns and "FG3M" in result.columns:
-            result["fg3_pct"] = result["FG3M"] / result["FG3A"].replace(0, 1)
-
-        if "FTA" in result.columns and "FTM" in result.columns:
-            result["ft_pct"] = result["FTM"] / result["FTA"].replace(0, 1)
-
-        if all(c in result.columns for c in ["PTS", "FGA", "FTA"]):
-            tsa = result["FGA"] + 0.44 * result["FTA"]
-            result["ts_pct"] = result["PTS"] / (2 * tsa.replace(0, 1))
-
-        return result
+        return efficiency_stats(per_game(df, self.STAT_COLS))
 
     def build_career_year_features(
         self,
@@ -164,9 +143,7 @@ class CareerVectorBuilder:
         player_id: int,
     ) -> pd.DataFrame:
         """Get a player's full career trajectory."""
-        return career_features[
-            career_features["PLAYER_ID"] == player_id
-        ].sort_values("CAREER_YEAR")
+        return career_features[career_features["PLAYER_ID"] == player_id].sort_values("CAREER_YEAR")
 
     def get_players_by_career_length(
         self,

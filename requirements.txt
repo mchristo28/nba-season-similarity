@@ -1,10 +1,2 @@
-nba_api
-pandas
-numpy
-scikit-learn
-streamlit
-plotly
-beautifulsoup4
-requests
-lxml
-pyarrow
+# Dependencies are declared once in pyproject.toml.
+-e .

@@ -6,14 +6,16 @@ position at the same career stage, and show the distribution of outcomes.
 Key insight: We're not asking "who's similar?" but "what could this player become?"
 """
 
-import numpy as np
-import pandas as pd
 from dataclasses import dataclass
 from enum import Enum
+
+import numpy as np
+import pandas as pd
 
 
 class OutcomeTier(Enum):
     """Career outcome tiers."""
+
     STAR = "Star"  # All-Star, All-NBA, or sustained 20+ PPG
     QUALITY_STARTER = "Quality Starter"  # Long career, solid production
     ROLE_PLAYER = "Role Player"  # Rotation player, limited peak
@@ -23,6 +25,7 @@ class OutcomeTier(Enum):
 @dataclass
 class PlayerOutcome:
     """A player's career outcome."""
+
     player_id: int
     player_name: str
     tier: OutcomeTier
@@ -37,6 +40,7 @@ class PlayerOutcome:
 @dataclass
 class ProjectionResult:
     """Projection result for a player."""
+
     query_player_id: int
     query_player_name: str
     career_year: int
@@ -63,20 +67,37 @@ class TrajectoryProjector:
     # Stats to compare at each career stage (full profile)
     COMPARISON_STATS = [
         # Scoring volume
-        "PTS", "FGA", "FG3A", "FTA", "MIN",
+        "PTS",
+        "FGA",
+        "FG3A",
+        "FTA",
+        "MIN",
         # Scoring efficiency
-        "ts_pct", "efg_pct", "fg_pct", "fg3_pct", "ft_pct",
+        "ts_pct",
+        "efg_pct",
+        "fg_pct",
+        "fg3_pct",
+        "ft_pct",
         # Shot profile
-        "pct_fga_restricted", "pct_fga_paint", "pct_fga_midrange",
-        "pct_fga_corner3", "pct_fga_above_break3",
+        "pct_fga_restricted",
+        "pct_fga_paint",
+        "pct_fga_midrange",
+        "pct_fga_corner3",
+        "pct_fga_above_break3",
         # Playmaking
-        "AST", "TOV",
+        "AST",
+        "TOV",
         # Rebounding
-        "REB", "OREB", "DREB",
+        "REB",
+        "OREB",
+        "DREB",
         # Defense
-        "STL", "BLK",
+        "STL",
+        "BLK",
         # Overall impact
-        "e_off_rating", "e_def_rating", "e_usg_pct",
+        "e_off_rating",
+        "e_def_rating",
+        "e_usg_pct",
     ]
 
     # Physical for archetype matching
@@ -132,9 +153,7 @@ class TrajectoryProjector:
         """
         awards_data = awards_data or {}
 
-        self.player_names = dict(
-            zip(career_features["PLAYER_ID"], career_features["PLAYER_NAME"])
-        )
+        self.player_names = dict(zip(career_features["PLAYER_ID"], career_features["PLAYER_NAME"]))
 
         # Compute league averages for normalization
         for stat in self.COMPARISON_STATS:
@@ -145,9 +164,9 @@ class TrajectoryProjector:
         self.player_outcomes = {}
 
         for player_id in career_features["PLAYER_ID"].unique():
-            player_data = career_features[
-                career_features["PLAYER_ID"] == player_id
-            ].sort_values("CAREER_YEAR")
+            player_data = career_features[career_features["PLAYER_ID"] == player_id].sort_values(
+                "CAREER_YEAR"
+            )
 
             if len(player_data) < 1:
                 continue
@@ -167,8 +186,7 @@ class TrajectoryProjector:
 
             # Classify outcome
             tier = self._classify_outcome(
-                seasons_played, peak_ppg, career_ppg,
-                all_star_apps, all_nba
+                seasons_played, peak_ppg, career_ppg, all_star_apps, all_nba
             )
 
             # Build stats by year
@@ -180,10 +198,6 @@ class TrajectoryProjector:
                     for stat in self.COMPARISON_STATS + self.PHYSICAL_STATS
                     if stat in row.index
                 }
-
-            # Physical attributes (constant)
-            first_row = player_data.iloc[0]
-            height = float(first_row.get("height_inches", 0) or 0)
 
             self.player_outcomes[player_id] = PlayerOutcome(
                 player_id=player_id,
@@ -243,6 +257,9 @@ class TrajectoryProjector:
                 q_val = q_stats[stat]
                 o_val = o_stats[stat]
 
+                if not np.isfinite(q_val) or not np.isfinite(o_val):
+                    continue
+
                 # Normalize by league average
                 league_avg = self.league_averages.get(stat, 1)
                 if league_avg > 0:
@@ -266,7 +283,9 @@ class TrajectoryProjector:
 
         # Add height penalty (significant for archetype matching)
         height_diff = abs(query_height - other_height)
-        height_penalty = height_diff / 4.0  # 4 inches diff = 1.0 penalty
+        height_penalty = (
+            height_diff / 4.0 if np.isfinite(height_diff) else 0.0
+        )  # 4 inches diff = 1.0 penalty
 
         return avg_distance + 0.3 * height_penalty
 

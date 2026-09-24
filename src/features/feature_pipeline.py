@@ -9,6 +9,7 @@ from src.data.cache_manager import CacheManager
 from src.data.data_loader import DataLoader
 
 from .composition_stats import CompositionStatsCalculator
+from .transforms import efficiency_stats, per_game
 
 
 class FeaturePipeline:
@@ -38,7 +39,9 @@ class FeaturePipeline:
                 team_stats[team["id"]] = df
         return team_stats
 
-    def process_season(self, season: str, team_stats: dict[int, pd.DataFrame], include_tracking: bool = True) -> pd.DataFrame:
+    def process_season(
+        self, season: str, team_stats: dict[int, pd.DataFrame], include_tracking: bool = True
+    ) -> pd.DataFrame:
         """Process a single season's data with composition stats.
 
         Args:
@@ -63,9 +66,7 @@ class FeaturePipeline:
             return pd.DataFrame()
 
         # Add composition stats
-        result = self.composition_calc.calculate_for_season(
-            league_stats, team_stats, season
-        )
+        result = self.composition_calc.calculate_for_season(league_stats, team_stats, season)
         result["SEASON"] = season
         return result
 
@@ -94,7 +95,7 @@ class FeaturePipeline:
             # Find all cached league stats
             seasons = []
             for year in range(2020, 2026):
-                season = f"{year}-{str(year+1)[-2:]}"
+                season = f"{year}-{str(year + 1)[-2:]}"
                 key = f"league_stats_{season}"
                 if self.cache.has(key):
                     seasons.append(season)
@@ -102,7 +103,7 @@ class FeaturePipeline:
         all_data = []
         for i, season in enumerate(seasons):
             if verbose:
-                print(f"[{i+1}/{len(seasons)}] Processing {season}...")
+                print(f"[{i + 1}/{len(seasons)}] Processing {season}...")
             df = self.process_season(season, team_stats)
             if not df.empty:
                 all_data.append(df)
@@ -128,24 +129,31 @@ class FeaturePipeline:
         Returns:
             DataFrame with one row per player
         """
-        # First compute per-game stats for each season
-        df = combined_stats.copy()
-
-        # Stats to convert to per-game
-        counting_stats = ["MIN", "PTS", "REB", "AST", "STL", "BLK", "TOV",
-                         "FGM", "FGA", "FG3M", "FG3A", "FTM", "FTA",
-                         "OREB", "DREB"]
-
-        for col in counting_stats:
-            if col in df.columns and "GP" in df.columns:
-                df[col] = df[col] / df["GP"].replace(0, 1)
+        df = per_game(combined_stats)
 
         # Columns to aggregate (now per-game)
         numeric_cols = [
-            "GP", "MIN", "PTS", "REB", "AST", "STL", "BLK", "TOV",
-            "FGM", "FGA", "FG3M", "FG3A", "FTM", "FTA",
-            "pts_share", "ast_share", "reb_share", "stl_share", "blk_share",
-            "fg3a_share", "min_share",
+            "GP",
+            "MIN",
+            "PTS",
+            "REB",
+            "AST",
+            "STL",
+            "BLK",
+            "TOV",
+            "FGM",
+            "FGA",
+            "FG3M",
+            "FG3A",
+            "FTM",
+            "FTA",
+            "pts_share",
+            "ast_share",
+            "reb_share",
+            "stl_share",
+            "blk_share",
+            "fg3a_share",
+            "min_share",
         ]
 
         # Filter to columns that exist
@@ -156,26 +164,14 @@ class FeaturePipeline:
         player_features = player_features.reset_index()
 
         # Add season count and total games
-        season_counts = combined_stats.groupby("PLAYER_ID").agg(
-            season_count=("SEASON", "nunique"),
-            total_gp=("GP", "sum")
-        ).reset_index()
+        season_counts = (
+            combined_stats.groupby("PLAYER_ID")
+            .agg(season_count=("SEASON", "nunique"), total_gp=("GP", "sum"))
+            .reset_index()
+        )
         player_features = player_features.merge(season_counts, on="PLAYER_ID")
 
-        # Compute derived stats
-        if "FGA" in player_features.columns and "FGM" in player_features.columns:
-            player_features["fg_pct"] = player_features["FGM"] / player_features["FGA"].replace(0, 1)
-
-        if "FG3A" in player_features.columns and "FG3M" in player_features.columns:
-            player_features["fg3_pct"] = player_features["FG3M"] / player_features["FG3A"].replace(0, 1)
-
-        if "FTA" in player_features.columns and "FTM" in player_features.columns:
-            player_features["ft_pct"] = player_features["FTM"] / player_features["FTA"].replace(0, 1)
-
-        # True shooting percentage approximation
-        if all(c in player_features.columns for c in ["PTS", "FGA", "FTA"]):
-            tsa = player_features["FGA"] + 0.44 * player_features["FTA"]
-            player_features["ts_pct"] = player_features["PTS"] / (2 * tsa.replace(0, 1))
+        player_features = efficiency_stats(player_features)
 
         return player_features
 
@@ -215,13 +211,17 @@ class FeaturePipeline:
         # Save if path provided
         if output_path:
             path = Path(output_path)
+            if path.name == "player_features.parquet":
+                raise ValueError(
+                    "Use a distinct path for career aggregates; player_features.parquet is reserved for seasons"
+                )
             path.parent.mkdir(parents=True, exist_ok=True)
             features.to_parquet(path, index=False)
             if verbose:
                 print(f"Saved to {path}")
         else:
             # Save to default location
-            default_path = self.cache.features_dir / "player_features.parquet"
+            default_path = self.cache.features_dir / "career_aggregate_features.parquet"
             features.to_parquet(default_path, index=False)
             if verbose:
                 print(f"Saved to {default_path}")

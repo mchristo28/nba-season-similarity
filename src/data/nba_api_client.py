@@ -15,7 +15,6 @@ from nba_api.stats.endpoints import (
 )
 from nba_api.stats.static import players, teams
 
-
 _client_instance = None
 
 
@@ -104,7 +103,7 @@ class NBAApiClient:
 
         Returns stats like PCT_AST_2PM, PCT_UAST_2PM, PCT_AST_3PM, PCT_UAST_3PM, etc.
         """
-        stats = LeagueDashPlayerStats(season=season, measure_type_detailed_defense='Scoring')
+        stats = LeagueDashPlayerStats(season=season, measure_type_detailed_defense="Scoring")
         df = stats.get_data_frames()[0]
         return df
 
@@ -132,8 +131,9 @@ class NBAApiClient:
         """
         stats = LeagueDashPtStats(
             season=season,
-            player_or_team='Player',
-            pt_measure_type=measure_type
+            player_or_team="Player",
+            per_mode_simple="Totals",
+            pt_measure_type=measure_type,
         )
         df = stats.get_data_frames()[0]
         return df
@@ -154,7 +154,7 @@ class NBAApiClient:
         Fetches: Drives, CatchShoot, PullUpShot, Passing, Possessions
         Merges on PLAYER_ID.
         """
-        measure_types = ['Drives', 'CatchShoot', 'PullUpShot', 'Passing', 'Possessions']
+        measure_types = ["Drives", "CatchShoot", "PullUpShot", "Passing", "Possessions"]
 
         merged = None
         for measure in measure_types:
@@ -162,18 +162,32 @@ class NBAApiClient:
                 df = self.get_tracking_stats(season, measure)
 
                 # Keep only relevant columns (drop duplicates like GP, W, L, MIN)
-                keep_cols = ['PLAYER_ID', 'PLAYER_NAME']
-                stat_cols = [c for c in df.columns if c not in
-                            ['PLAYER_ID', 'PLAYER_NAME', 'TEAM_ID', 'TEAM_ABBREVIATION',
-                             'GP', 'W', 'L', 'MIN']]
+                keep_cols = ["PLAYER_ID", "PLAYER_NAME"]
+                stat_cols = [
+                    c
+                    for c in df.columns
+                    if c
+                    not in [
+                        "PLAYER_ID",
+                        "PLAYER_NAME",
+                        "TEAM_ID",
+                        "TEAM_ABBREVIATION",
+                        "GP",
+                        "W",
+                        "L",
+                        "MIN",
+                    ]
+                ]
                 keep_cols.extend(stat_cols)
                 df = df[keep_cols]
 
                 if merged is None:
                     merged = df
                 else:
-                    merged = merged.merge(df.drop(columns=['PLAYER_NAME']),
-                                         on='PLAYER_ID', how='outer')
+                    columns = ["PLAYER_ID"] + [c for c in df if c not in merged.columns]
+                    merged = merged.merge(
+                        df[columns], on="PLAYER_ID", how="outer", validate="one_to_one"
+                    )
             except Exception as e:
                 print(f"Warning: Could not fetch {measure} stats: {e}")
                 continue

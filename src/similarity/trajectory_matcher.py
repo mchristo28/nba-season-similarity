@@ -9,48 +9,18 @@ This module compares players using multiple sophisticated techniques:
 
 import numpy as np
 import pandas as pd
-from dtw import dtw
 from sklearn.preprocessing import MinMaxScaler
 
 
-class TrajectoryMatcher:
+class HybridTrajectoryMatcher:
     """Match players using hybrid year-for-year + DTW trajectory comparison."""
 
-    # Stats organized by category (mirrors WeightedMatcher)
+    # Same features as season matching; only strategy weights differ.
+    from src.features.registry import FEATURE_GROUPS
+
     STAT_GROUPS = {
-        "physical": {
-            "stats": ["height_inches", "weight"],
-            "weight": 1.5,  # Important for matching similar player types
-        },
-        "scoring_volume": {
-            "stats": ["PTS", "FGA", "FG3A", "FTA", "MIN"],
-            "weight": 1.5,  # Scoring volume important
-        },
-        "scoring_efficiency": {
-            "stats": ["ts_pct", "efg_pct", "fg_pct", "fg3_pct", "ft_pct"],
-            "weight": 1.0,
-        },
-        "shot_profile": {
-            "stats": ["pct_fga_restricted", "pct_fga_paint", "pct_fga_midrange",
-                      "pct_fga_corner3", "pct_fga_above_break3"],
-            "weight": 1.0,
-        },
-        "playmaking": {
-            "stats": ["AST", "TOV"],
-            "weight": 1.2,
-        },
-        "rebounding": {
-            "stats": ["REB", "OREB", "DREB"],
-            "weight": 1.0,
-        },
-        "defense": {
-            "stats": ["STL", "BLK", "deflections"],
-            "weight": 0.8,  # Often has missing data
-        },
-        "overall_impact": {
-            "stats": ["e_off_rating", "e_def_rating", "e_usg_pct"],
-            "weight": 1.0,
-        },
+        name: {"stats": spec["features"], "weight": spec["default_weight"]}
+        for name, spec in FEATURE_GROUPS.items()
     }
 
     # Flatten for easy access
@@ -73,9 +43,7 @@ class TrajectoryMatcher:
         Args:
             career_features: DataFrame with PLAYER_ID, CAREER_YEAR, and stat columns
         """
-        self.player_names = dict(
-            zip(career_features["PLAYER_ID"], career_features["PLAYER_NAME"])
-        )
+        self.player_names = dict(zip(career_features["PLAYER_ID"], career_features["PLAYER_NAME"]))
 
         # Compute league averages for each stat (for normalization)
         for stat in self.TRAJECTORY_STATS:
@@ -86,9 +54,9 @@ class TrajectoryMatcher:
         self.player_trajectories = {}
 
         for player_id in career_features["PLAYER_ID"].unique():
-            player_data = career_features[
-                career_features["PLAYER_ID"] == player_id
-            ].sort_values("CAREER_YEAR")
+            player_data = career_features[career_features["PLAYER_ID"] == player_id].sort_values(
+                "CAREER_YEAR"
+            )
 
             if len(player_data) < 2:
                 continue
@@ -105,14 +73,9 @@ class TrajectoryMatcher:
                 trajectory_by_year[year] = np.array(stats)
 
             # Build raw trajectory matrix for DTW (seasons x stats)
-            raw_trajectory = player_data[available_stats].fillna(0).values
+            raw_trajectory = player_data[available_stats].to_numpy(dtype=float)
 
-            # Normalize for DTW shape comparison (0-1 per stat)
-            scaler = MinMaxScaler()
-            if raw_trajectory.max() > raw_trajectory.min():
-                normalized_trajectory = scaler.fit_transform(raw_trajectory)
-            else:
-                normalized_trajectory = raw_trajectory
+            normalized_trajectory = raw_trajectory  # Normalized on the compared prefix in DTW.
 
             # Compute summary stats
             pts_values = player_data["PTS"].values if "PTS" in player_data.columns else []
@@ -138,14 +101,30 @@ class TrajectoryMatcher:
                 "height": height,
                 "weight": weight,
                 "stats": available_stats,
-                "seasons": player_data["SEASON"].tolist() if "SEASON" in player_data.columns else [],
+                "seasons": player_data["SEASON"].tolist()
+                if "SEASON" in player_data.columns
+                else [],
                 # For visualization
-                "pts_by_year": {int(row["CAREER_YEAR"]): row["PTS"] for _, row in player_data.iterrows()},
-                "ast_by_year": {int(row["CAREER_YEAR"]): row.get("AST", 0) for _, row in player_data.iterrows()},
-                "reb_by_year": {int(row["CAREER_YEAR"]): row.get("REB", 0) for _, row in player_data.iterrows()},
-                "min_by_year": {int(row["CAREER_YEAR"]): row.get("MIN", 0) for _, row in player_data.iterrows()},
-                "ts_by_year": {int(row["CAREER_YEAR"]): row.get("ts_pct", 0) or 0 for _, row in player_data.iterrows()},
-                "usg_by_year": {int(row["CAREER_YEAR"]): row.get("e_usg_pct", 0) or 0 for _, row in player_data.iterrows()},
+                "pts_by_year": {
+                    int(row["CAREER_YEAR"]): row["PTS"] for _, row in player_data.iterrows()
+                },
+                "ast_by_year": {
+                    int(row["CAREER_YEAR"]): row.get("AST", 0) for _, row in player_data.iterrows()
+                },
+                "reb_by_year": {
+                    int(row["CAREER_YEAR"]): row.get("REB", 0) for _, row in player_data.iterrows()
+                },
+                "min_by_year": {
+                    int(row["CAREER_YEAR"]): row.get("MIN", 0) for _, row in player_data.iterrows()
+                },
+                "ts_by_year": {
+                    int(row["CAREER_YEAR"]): row.get("ts_pct", 0) or 0
+                    for _, row in player_data.iterrows()
+                },
+                "usg_by_year": {
+                    int(row["CAREER_YEAR"]): row.get("e_usg_pct", 0) or 0
+                    for _, row in player_data.iterrows()
+                },
             }
 
         self._fitted = True
@@ -159,8 +138,7 @@ class TrajectoryMatcher:
     ) -> float:
         """Compute year-for-year distance (Year 1 vs Year 1, etc.)."""
         years_to_compare = [
-            y for y in range(1, max_years + 1)
-            if y in traj1["by_year"] and y in traj2["by_year"]
+            y for y in range(1, max_years + 1) if y in traj1["by_year"] and y in traj2["by_year"]
         ]
 
         if len(years_to_compare) < 2:
@@ -177,9 +155,11 @@ class TrajectoryMatcher:
             vec1 = traj1["by_year"][year] / league_avgs
             vec2 = traj2["by_year"][year] / league_avgs
             diff = (vec1 - vec2) ** 2
-            year_distances.append(np.sqrt(np.sum(diff * stat_weights)))
+            valid = np.isfinite(diff)
+            if valid.any():
+                year_distances.append(np.sqrt(np.average(diff[valid], weights=stat_weights[valid])))
 
-        return float(np.mean(year_distances))
+        return float(np.mean(year_distances)) if len(year_distances) >= 2 else float("inf")
 
     def _compute_dtw_distance(
         self,
@@ -188,13 +168,20 @@ class TrajectoryMatcher:
         max_years: int,
     ) -> float:
         """Compute DTW distance on normalized trajectories for shape matching."""
-        # Use only the first max_years of each trajectory
-        norm1 = traj1["normalized"][:max_years]
-        norm2 = traj2["normalized"][:max_years]
-
-        if len(norm1) < 2 or len(norm2) < 2:
+        raw1 = np.array([traj1["by_year"][y] for y in traj1["years"] if y <= max_years])
+        raw2 = np.array([traj2["by_year"][y] for y in traj2["years"] if y <= max_years])
+        if len(raw1) < 2 or len(raw2) < 2:
             return float("inf")
+        shared = np.isfinite(raw1).all(axis=0) & np.isfinite(raw2).all(axis=0)
+        if not shared.any():
+            return float("inf")
+        norm1 = MinMaxScaler().fit_transform(raw1[:, shared])
+        norm2 = MinMaxScaler().fit_transform(raw2[:, shared])
 
+        try:
+            from dtw import dtw
+        except ImportError:
+            return float("inf")  # Optional trajectory extra; year-for-year fallback.
         try:
             alignment = dtw(norm1, norm2, keep_internals=True)
             return float(alignment.normalizedDistance)
@@ -231,7 +218,7 @@ class TrajectoryMatcher:
         traj2 = self.player_trajectories[player_id_2]
 
         if max_years is None:
-            max_years = traj1["n_seasons"]
+            max_years = max(traj1["years"])
 
         # Component 1: Year-for-year distance
         yfy_distance = self._compute_year_for_year_distance(traj1, traj2, max_years)
@@ -244,13 +231,16 @@ class TrajectoryMatcher:
             dtw_distance = yfy_distance  # Fallback to year-for-year
 
         # Component 3: Production similarity (peak PPG)
-        peak_diff = abs(traj1["peak_ppg"] - traj2["peak_ppg"])
-        production_distance = peak_diff / max(traj1["peak_ppg"], 1)
+        peak1 = max(v for y, v in traj1["pts_by_year"].items() if y <= max_years)
+        peak2 = max(v for y, v in traj2["pts_by_year"].items() if y <= max_years)
+        production_distance = abs(peak1 - peak2) / max(peak1, 1)
 
         # Component 4: Physical similarity (height)
         # Height difference in inches, normalized (3 inches = 0.5 penalty)
         height_diff = abs(traj1["height"] - traj2["height"])
-        physical_distance = height_diff / 6.0  # 6 inch diff = 1.0 penalty
+        physical_distance = (
+            height_diff / 6.0 if np.isfinite(height_diff) else 0.0
+        )  # 6 inch diff = 1.0 penalty
 
         # Weighted combination
         # 40% year-for-year (most important - same career stage)
@@ -258,10 +248,10 @@ class TrajectoryMatcher:
         # 15% production level (ensures similar caliber players)
         # 20% physical similarity (ensures similar body types)
         combined = (
-            0.40 * yfy_distance +
-            0.25 * dtw_distance +
-            0.15 * production_distance +
-            0.20 * physical_distance
+            0.40 * yfy_distance
+            + 0.25 * dtw_distance
+            + 0.15 * production_distance
+            + 0.20 * physical_distance
         )
 
         info = {
@@ -404,3 +394,7 @@ class TrajectoryMatcher:
             },
             "stat": stat,
         }
+
+
+# Backwards-compatible import; prefer the explicit strategy name.
+TrajectoryMatcher = HybridTrajectoryMatcher

@@ -24,9 +24,7 @@ class DistanceMetrics:
         """Calculate cosine similarity between two vectors."""
         return float(cosine_similarity(vec1.reshape(1, -1), vec2.reshape(1, -1))[0, 0])
 
-    def weighted_euclidean(
-        self, vec1: np.ndarray, vec2: np.ndarray, weights: np.ndarray
-    ) -> float:
+    def weighted_euclidean(self, vec1: np.ndarray, vec2: np.ndarray, weights: np.ndarray) -> float:
         """Weighted Euclidean distance.
 
         Args:
@@ -35,9 +33,7 @@ class DistanceMetrics:
         """
         return float(np.sqrt(np.sum(weights * (vec1 - vec2) ** 2)))
 
-    def pairwise_distances(
-        self, vectors: np.ndarray, metric: str = "euclidean"
-    ) -> np.ndarray:
+    def pairwise_distances(self, vectors: np.ndarray, metric: str = "euclidean") -> np.ndarray:
         """Compute pairwise distances for a matrix of vectors.
 
         Args:

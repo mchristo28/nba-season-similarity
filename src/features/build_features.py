@@ -1,7 +1,14 @@
 """Build feature set from comprehensive stats for similarity matching."""
 
-import pandas as pd
+import argparse
+import json
+from datetime import datetime, timezone
 from pathlib import Path
+
+import pandas as pd
+
+from .schema import publish_features
+from .transforms import efficiency_stats, per_game, team_shares
 
 
 def convert_tracking_totals_to_per_game(df: pd.DataFrame) -> pd.DataFrame:
@@ -14,35 +21,44 @@ def convert_tracking_totals_to_per_game(df: pd.DataFrame) -> pd.DataFrame:
     # (excludes percentages and already-per-touch stats)
     total_stats = [
         # Drives
-        "DRIVES", "DRIVE_FGA", "DRIVE_FGM", "DRIVE_PTS", "DRIVE_AST",
-        "DRIVE_TOV", "DRIVE_FTA", "DRIVE_FTM", "DRIVE_PASSES", "DRIVE_PF",
+        "DRIVES",
+        "DRIVE_FGA",
+        "DRIVE_FGM",
+        "DRIVE_PTS",
+        "DRIVE_AST",
+        "DRIVE_TOV",
+        "DRIVE_FTA",
+        "DRIVE_FTM",
+        "DRIVE_PASSES",
+        "DRIVE_PF",
         # Pull-up shots
-        "PULL_UP_FGA", "PULL_UP_FGM", "PULL_UP_FG3A", "PULL_UP_FG3M", "PULL_UP_PTS",
+        "PULL_UP_FGA",
+        "PULL_UP_FGM",
+        "PULL_UP_FG3A",
+        "PULL_UP_FG3M",
+        "PULL_UP_PTS",
         # Catch and shoot
-        "CATCH_SHOOT_FGA", "CATCH_SHOOT_FGM", "CATCH_SHOOT_FG3A",
-        "CATCH_SHOOT_FG3M", "CATCH_SHOOT_PTS",
+        "CATCH_SHOOT_FGA",
+        "CATCH_SHOOT_FGM",
+        "CATCH_SHOOT_FG3A",
+        "CATCH_SHOOT_FG3M",
+        "CATCH_SHOOT_PTS",
         # Passing
-        "PASSES_MADE", "PASSES_RECEIVED", "POTENTIAL_AST", "AST_PTS_CREATED",
+        "PASSES_MADE",
+        "PASSES_RECEIVED",
+        "POTENTIAL_AST",
+        "AST_PTS_CREATED",
         # Touches
-        "TOUCHES", "FRONT_CT_TOUCHES", "ELBOW_TOUCHES", "PAINT_TOUCHES", "POST_TOUCHES",
+        "TOUCHES",
+        "FRONT_CT_TOUCHES",
+        "ELBOW_TOUCHES",
+        "PAINT_TOUCHES",
+        "POST_TOUCHES",
         # Time of possession (in minutes, convert to per-game)
         "TIME_OF_POSS",
     ]
 
-    # Only convert stats that exist in the dataframe
-    stats_to_convert = [s for s in total_stats if s in df.columns]
-
-    if "GP" not in df.columns:
-        print("Warning: GP column not found, cannot convert to per-game")
-        return df
-
-    # Convert each stat to per-game
-    for stat in stats_to_convert:
-        # Avoid division by zero
-        df[stat] = df[stat] / df["GP"].replace(0, 1)
-
-    print(f"Converted {len(stats_to_convert)} tracking stats to per-game values")
-    return df
+    return per_game(df, total_stats)
 
 
 def compute_trajectory_features(df: pd.DataFrame) -> pd.DataFrame:
@@ -56,10 +72,19 @@ def compute_trajectory_features(df: pd.DataFrame) -> pd.DataFrame:
     """
     # Stats to compute deltas for
     delta_stats = [
-        "PTS", "AST", "REB", "STL", "BLK",  # counting stats
-        "ts_pct", "efg_pct",  # efficiency
-        "MIN", "FGA", "FG3A",  # volume/role
-        "e_usg_pct", "e_off_rating", "e_def_rating",  # advanced
+        "PTS",
+        "AST",
+        "REB",
+        "STL",
+        "BLK",  # counting stats
+        "ts_pct",
+        "efg_pct",  # efficiency
+        "MIN",
+        "FGA",
+        "FG3A",  # volume/role
+        "e_usg_pct",
+        "e_off_rating",
+        "e_def_rating",  # advanced
     ]
 
     # Only use stats that exist in the dataframe
@@ -96,6 +121,7 @@ def compute_trajectory_features(df: pd.DataFrame) -> pd.DataFrame:
 def build_features(
     input_path: str = "data/processed/comprehensive_stats.parquet",
     output_path: str = "data/features/player_features.parquet",
+    team_stats_path: str | None = None,
 ) -> pd.DataFrame:
     """Build and save player features from comprehensive stats.
 
@@ -115,17 +141,60 @@ def build_features(
     print("Converting tracking stats to per-game...")
     df = convert_tracking_totals_to_per_game(df)
 
+    df = efficiency_stats(df)
+    # Recompute historical shares from real team totals, never sums of player averages.
+    if team_stats_path:
+        teams = pd.read_parquet(team_stats_path)
+    else:
+        raw = Path(input_path).parent.parent / "raw"
+        frames = [
+            pd.read_parquet(p).rename(columns={"YEAR": "SEASON"})
+            for p in sorted(raw.glob("team_*_all_seasons.parquet"))
+        ]
+        frames += [pd.read_parquet(p) for p in sorted(raw.glob("team_totals_*.parquet"))]
+        teams = pd.concat(frames, ignore_index=True) if frames else pd.DataFrame()
+        if not teams.empty:
+            teams = teams.drop_duplicates(["TEAM_ID", "SEASON"], keep="last")
+    df = team_shares(df, teams)
+
     # Add trajectory features (year-over-year deltas)
     print("Computing trajectory features...")
     df = compute_trajectory_features(df)
 
     # Columns we want to keep for features
-    id_cols = ["PLAYER_ID", "PLAYER_NAME", "TEAM_ID", "TEAM_ABBREVIATION", "SEASON", "CAREER_YEAR", "AGE", "GP"]
+    id_cols = [
+        "PLAYER_ID",
+        "PLAYER_NAME",
+        "TEAM_ID",
+        "TEAM_ABBREVIATION",
+        "SEASON",
+        "CAREER_YEAR",
+        "AGE",
+        "GP",
+        "TEAM_COUNT",
+    ]
 
     # Basic box score stats
     box_score_cols = [
-        "MIN", "PTS", "FGM", "FGA", "FG_PCT", "FG3M", "FG3A", "FG3_PCT",
-        "FTM", "FTA", "FT_PCT", "OREB", "DREB", "REB", "AST", "STL", "BLK", "TOV", "PF",
+        "MIN",
+        "PTS",
+        "FGM",
+        "FGA",
+        "FG_PCT",
+        "FG3M",
+        "FG3A",
+        "FG3_PCT",
+        "FTM",
+        "FTA",
+        "FT_PCT",
+        "OREB",
+        "DREB",
+        "REB",
+        "AST",
+        "STL",
+        "BLK",
+        "TOV",
+        "PF",
         "PLUS_MINUS",
     ]
 
@@ -133,10 +202,24 @@ def build_features(
     bio_cols = ["height_inches", "weight"]
 
     # Shot location stats
-    shot_cols = [c for c in df.columns if any(x in c.lower() for x in ["restricted", "paint", "mid_range", "corner", "above_the_break"])]
+    shot_cols = [
+        c
+        for c in df.columns
+        if any(
+            x in c.lower()
+            for x in ["restricted", "paint", "mid_range", "corner", "above_the_break"]
+        )
+    ]
 
     # Hustle stats
-    hustle_cols = [c for c in df.columns if any(x in c.lower() for x in ["contested", "deflection", "charge", "loose_ball", "screen_assist", "box_out"])]
+    hustle_cols = [
+        c
+        for c in df.columns
+        if any(
+            x in c.lower()
+            for x in ["contested", "deflection", "charge", "loose_ball", "screen_assist", "box_out"]
+        )
+    ]
 
     # Advanced/estimated metrics
     advanced_cols = [c for c in df.columns if c.startswith("e_") and not c.endswith("_rank")]
@@ -151,26 +234,44 @@ def build_features(
     profile_cols = [c for c in df.columns if c.startswith("pct_fga_") or c.startswith("fg_pct_")]
 
     # Tracking stats (drives, catch-shoot, pull-up, touches, passing, assisted/unassisted)
-    tracking_cols = [c for c in df.columns if any(x in c for x in
-        ['DRIVE', 'CATCH_SHOOT', 'PULL_UP', 'TOUCHES', 'TOUCH', 'PASSES', 'POTENTIAL_AST',
-         'AST_PTS_CREATED', 'TIME_OF_POSS', 'DRIB', 'PCT_UAST', 'PCT_AST_'])]
+    tracking_cols = [
+        c
+        for c in df.columns
+        if any(
+            x in c
+            for x in [
+                "DRIVE",
+                "CATCH_SHOOT",
+                "PULL_UP",
+                "TOUCHES",
+                "TOUCH",
+                "PASSES",
+                "POTENTIAL_AST",
+                "AST_PTS_CREATED",
+                "TIME_OF_POSS",
+                "DRIB",
+                "PCT_UAST",
+                "PCT_AST_",
+            ]
+        )
+    ]
 
     # Trajectory features (year-over-year deltas and percentage changes)
     trajectory_cols = [c for c in df.columns if c.endswith("_delta") or c.endswith("_pct_change")]
 
     # Combine all columns
     all_feature_cols = (
-        id_cols +
-        [c for c in box_score_cols if c in df.columns] +
-        [c for c in bio_cols if c in df.columns] +
-        [c for c in shot_cols if c in df.columns] +
-        [c for c in hustle_cols if c in df.columns] +
-        [c for c in advanced_cols if c in df.columns] +
-        [c for c in share_cols if c in df.columns] +
-        [c for c in efficiency_cols if c in df.columns] +
-        [c for c in profile_cols if c in df.columns] +
-        [c for c in tracking_cols if c in df.columns] +
-        [c for c in trajectory_cols if c in df.columns]
+        id_cols
+        + [c for c in box_score_cols if c in df.columns]
+        + [c for c in bio_cols if c in df.columns]
+        + [c for c in shot_cols if c in df.columns]
+        + [c for c in hustle_cols if c in df.columns]
+        + [c for c in advanced_cols if c in df.columns]
+        + [c for c in share_cols if c in df.columns]
+        + [c for c in efficiency_cols if c in df.columns]
+        + [c for c in profile_cols if c in df.columns]
+        + [c for c in tracking_cols if c in df.columns]
+        + [c for c in trajectory_cols if c in df.columns]
     )
 
     # Remove duplicates while preserving order
@@ -187,15 +288,26 @@ def build_features(
 
     # Save
     Path(output_path).parent.mkdir(parents=True, exist_ok=True)
-    features.to_parquet(output_path, index=False)
+    publish_features(features, output_path)
+    metadata = {
+        "schema_version": 2,
+        "built_at": datetime.now(timezone.utc).isoformat(),
+        "source_updated_at": None,
+        "source_note": "Rebuilt from a stored snapshot; build time is not data freshness.",
+        "rows": len(features),
+        "seasons": sorted(features.SEASON.unique().tolist()),
+        "tracking_units": "per_game",
+        "team_share_definition": "Player per-game / actual team per-game; multi-team seasons unavailable",
+    }
+    Path(output_path).with_suffix(".json").write_text(json.dumps(metadata, indent=2) + "\n")
     print(f"Saved to {output_path}")
 
     # Print summary
-    print(f"\n=== Feature Summary ===")
+    print("\n=== Feature Summary ===")
     print(f"Total rows: {len(features)}")
     print(f"Unique players: {features['PLAYER_ID'].nunique()}")
     print(f"Career year range: {features['CAREER_YEAR'].min()} to {features['CAREER_YEAR'].max()}")
-    print(f"\nFeature categories:")
+    print("\nFeature categories:")
     print(f"  ID columns: {len(id_cols)}")
     print(f"  Box score: {len([c for c in box_score_cols if c in df.columns])}")
     print(f"  Bio/physical: {len([c for c in bio_cols if c in df.columns])}")
@@ -209,5 +321,32 @@ def build_features(
     return features
 
 
+def main():
+    parser = argparse.ArgumentParser(description="Build validated season features")
+    parser.add_argument("--fetch", action="store_true", help="Fetch a new source snapshot first")
+    parser.add_argument("--start-year", type=int, default=2003)
+    parser.add_argument("--end-year", type=int, default=2025)
+    parser.add_argument("--input", default="data/processed/comprehensive_stats.parquet")
+    parser.add_argument("--output", default="data/features/player_features.parquet")
+    parser.add_argument("--team-stats", help="Optional parquet of actual team totals")
+    args = parser.parse_args()
+    if args.fetch:
+        from src.data.comprehensive_stats import ComprehensiveStatsPipeline
+
+        pipeline = ComprehensiveStatsPipeline(str(Path(args.input).parent.parent))
+        source = pipeline.pull_all_seasons(
+            f"{args.start_year}-{str(args.start_year + 1)[-2:]}",
+            f"{args.end_year}-{str(args.end_year + 1)[-2:]}",
+        )
+        pipeline.save_data(source, Path(args.input).name)
+    build_features(args.input, args.output, args.team_stats)
+    if args.fetch:
+        path = Path(args.output).with_suffix(".json")
+        metadata = json.loads(path.read_text())
+        metadata["source_updated_at"] = datetime.now(timezone.utc).isoformat()
+        metadata["source_note"] = "NBA endpoints fetched by the rebuild command."
+        path.write_text(json.dumps(metadata, indent=2) + "\n")
+
+
 if __name__ == "__main__":
-    build_features()
+    main()
