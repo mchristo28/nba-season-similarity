@@ -80,7 +80,8 @@ def team_shares(
     indexed = teams.set_index(["TEAM_ID", "SEASON"])
     keys = pd.MultiIndex.from_frame(result[["TEAM_ID", "SEASON"]])
     aligned = indexed.reindex(keys).reset_index(drop=True)
-    valid_team = result.TEAM_ID.gt(0).to_numpy()
+    # This mask is mutated below; pandas Copy-on-Write views can be read-only.
+    valid_team = result.TEAM_ID.gt(0).to_numpy(copy=True)
     if "TEAM_COUNT" in result:
         valid_team &= result.TEAM_COUNT.eq(1).to_numpy()
     elif player_mode == "PerGame":

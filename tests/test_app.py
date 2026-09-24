@@ -1,3 +1,5 @@
+from pathlib import Path
+
 import pandas as pd
 from streamlit.testing.v1 import AppTest
 
@@ -17,7 +19,8 @@ def test_missing_radar_is_not_zero():
 
 
 def test_full_app_controls():
-    app = AppTest.from_file("src/app/streamlit_app.py").run(timeout=30)
+    app_path = Path(__file__).resolve().parents[1] / "src/app/streamlit_app.py"
+    app = AppTest.from_file(str(app_path)).run(timeout=30)
     assert not app.exception
     app.slider(key="w_usage").set_value(3).run()
     app.button[0].click().run()
