@@ -135,12 +135,12 @@ def main():
         metadata = json.loads(metadata_path.read_text()) if metadata_path.exists() else {}
     except (OSError, ValueError):
         metadata = {}
-    source_date = metadata.get("source_updated_at") or "unknown (stored snapshot)"
+    source_date = (metadata.get("source_updated_at") or "unknown (stored snapshot)").split("T")[0]
     latest = career_df.SEASON.max()
     latest_games = int(career_df.loc[career_df.SEASON == latest, "GP"].max())
     st.caption(
         f"Stored data snapshot · latest season {latest} · maximum {latest_games} games per player. "
-        f"Source updated: {source_date}. This is not a live feed; incomplete seasons are included."
+        f"Source fetched: {source_date}. This is a regular-season snapshot, not a live feed."
     )
     total_seasons = len(career_df)
     total_players = career_df["PLAYER_ID"].nunique()

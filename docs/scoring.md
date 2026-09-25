@@ -42,12 +42,13 @@ can change the dimensions represented in a ranking; compare coverage alongside
 scores, or raise the minimum for stricter searches. Category bars use the same
 score mapping. They display N/A for unavailable groups and OFF for disabled ones.
 
-In the included snapshot, drives and touches are absent before 2020–21. Missing
+In the refreshed snapshot, drives and touches extend back to 2013–14. Earlier
+tracking is unavailable; hustle starts with partial coverage in 2015–16. Missing
 stats are excluded rather than interpreted as zero. Team shares use player
 per-game production divided by actual team per-game production; aggregate seasons
 with multiple teams have missing shares because final-team attribution would be
-incorrect. Missing team minutes are also left unavailable. These are explicit
-limitations, not estimated data.
+incorrect. Team-minute shares are populated from refreshed NBA team totals.
+Unavailable source measurements remain missing rather than being estimated.
 
 A full category breakdown displays raw measurements separately from scores. The
 radar is descriptive, with its own axis scales, and omits axes lacking shared data.

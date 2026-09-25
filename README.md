@@ -2,7 +2,8 @@
 
 Compare NBA player-seasons with weighted statistical dimensions, a transparent
 0–100 similarity scale, and side-by-side profiles. The bundled snapshot includes
-11,424 seasons from 2,353 players, spanning 2003–04 through a **partial 2025–26**.
+11,501 seasons from 2,385 players, spanning 2003–04 through the **complete 2025–26
+regular season**, refreshed September 24, 2026.
 It is stored data, not a live feed.
 
 [Open the hosted app](https://nba-season-similarity.streamlit.app)
@@ -52,15 +53,21 @@ Provide `--team-stats path/to/team_totals.parquet` to supply a table with `TEAM_
 Fetch a new source snapshot and publish validated features:
 
 ```bash
-python -m src.features.build_features --fetch --start-year 2003 --end-year 2025
+python scripts/refresh_data.py --snapshot-dir data/raw/refresh_YYYYMMDD --start-year 2003 --end-year 2025
+python scripts/refresh_data.py --snapshot-dir data/raw/awards_YYYYMMDD --end-year 2025 --awards-only
 ```
 
-This makes many rate-limited NBA API requests and may take substantial time.
-Optional endpoint failures leave missing measurements; missing entire seasons or
-invalid output schemas prevent publishing the app dataset. `--input` and `--output`
-select alternate paths. Feature publication is atomic. The adjacent JSON records
-build time and, for a fresh fetch, source update time. Rebuilding old inputs does
-not claim to refresh them.
+Use a new directory for each refresh; reuse that directory only to resume an
+interrupted run. Successful responses and their fetch timestamps are cached there.
+The refresh retries failed calls and refuses publication when required endpoints,
+seasons, existing players, or tracking coverage are missing. It updates the local
+processed inputs and actual team totals too, so subsequent rebuilds use fresh data.
+
+The awards command refreshes every player who appeared in the selected season,
+retains retired players' historical awards, and rebuilds the displayed badges.
+All requests must succeed before publishing. Commit the resulting files under
+`data/features` to deploy them. The adjacent JSON files record source fetch dates,
+coverage, and refresh scope. Rebuilding existing inputs does not claim to refresh them.
 
 The older `src.features.feature_pipeline` produces **career aggregates** in
 `career_aggregate_features.parquet`; it cannot overwrite the app's season file.
@@ -98,8 +105,9 @@ extension points; the app does not use them or claim their data.
 
 ## Data limitations
 
-- The included 2025–26 snapshot is incomplete; the app displays its maximum player games.
-- Drives/touches are absent before 2020–21 in this snapshot; other coverage varies.
+- The included 2025–26 regular season is complete (all 30 teams played 82 games).
+- Tracking starts in 2013–14. Hustle starts with partial 2015–16 coverage; some source measurements remain unavailable.
+- Missing season heights/weights use NBA player-profile measurements where available; fallback player-seasons are listed in the metadata.
 - Multi-team season shares are unavailable without team-stint data.
 - Regular-season comparisons only. Scores do not adjust for every era or rule change.
 - Statistical similarity is sensitive to the selected dimensions and available data.

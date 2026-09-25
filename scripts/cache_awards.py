@@ -7,12 +7,15 @@ from pathlib import Path
 project_root = Path(__file__).parent.parent
 sys.path.insert(0, str(project_root))
 
-import pandas as pd
-from src.data.nba_api_client import NBAApiClient
+import pandas as pd  # noqa: E402
+
+from src.data.nba_api_client import NBAApiClient  # noqa: E402
 
 
-def fetch_all_awards(features_path: str = "data/features/player_features.parquet",
-                     output_path: str = "data/features/player_awards.parquet"):
+def fetch_all_awards(
+    features_path: str = "data/features/player_features.parquet",
+    output_path: str = "data/features/player_awards.parquet",
+):
     """Fetch awards for all players and save to parquet."""
 
     print("Loading player features...")
@@ -36,7 +39,9 @@ def fetch_all_awards(features_path: str = "data/features/player_features.parquet
                 awards_df["PLAYER_ID"] = player_id
                 all_awards.append(awards_df)
         except Exception as e:
-            print(f"  Error fetching awards for {player_id}: {e}")
+            raise RuntimeError(
+                f"Awards refresh failed for {player_id}; preserving published data"
+            ) from e
 
     if all_awards:
         combined = pd.concat(all_awards, ignore_index=True)
@@ -53,8 +58,10 @@ def fetch_all_awards(features_path: str = "data/features/player_features.parquet
         return pd.DataFrame()
 
 
-def build_season_awards_lookup(awards_path: str = "data/features/player_awards.parquet",
-                                output_path: str = "data/features/season_awards.parquet"):
+def build_season_awards_lookup(
+    awards_path: str = "data/features/player_awards.parquet",
+    output_path: str = "data/features/season_awards.parquet",
+):
     """Build a lookup table of player_id + season -> award emojis."""
 
     print("Loading awards...")
@@ -63,9 +70,9 @@ def build_season_awards_lookup(awards_path: str = "data/features/player_awards.p
     # Map award descriptions to emojis
     def get_emoji(row):
         desc = row.get("DESCRIPTION", "")
-        team_num = row.get("ALL_NBA_TEAM_NUMBER", "")
+        team_num = pd.to_numeric(row.get("ALL_NBA_TEAM_NUMBER", ""), errors="coerce")
 
-        if "All-Star" in desc and "MVP" not in desc:
+        if desc == "NBA All-Star":
             return ("all_star", "⭐")
         elif "All-NBA" in desc:
             if team_num == 1:
@@ -78,7 +85,7 @@ def build_season_awards_lookup(awards_path: str = "data/features/player_awards.p
                 return ("all_nba", "🏅")
         elif "Champion" in desc:
             return ("champion", "🏆")
-        elif "MVP" in desc and "All-Star" not in desc:
+        elif desc in {"NBA Most Valuable Player", "NBA MVP"}:
             return ("mvp", "👑")
         elif "Rookie of the Year" in desc:
             return ("roy", "🌟")
@@ -113,11 +120,7 @@ def build_season_awards_lookup(awards_path: str = "data/features/player_awards.p
     # Convert to dataframe
     rows = []
     for (player_id, season), data in season_awards.items():
-        rows.append({
-            "PLAYER_ID": player_id,
-            "SEASON": season,
-            "AWARDS": "".join(data["awards"])
-        })
+        rows.append({"PLAYER_ID": player_id, "SEASON": season, "AWARDS": "".join(data["awards"])})
 
     result = pd.DataFrame(rows)
     print(f"Built {len(result)} season-award records")
@@ -134,7 +137,9 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(description="Cache player awards")
     parser.add_argument("--fetch", action="store_true", help="Fetch awards from API")
-    parser.add_argument("--build-lookup", action="store_true", help="Build season lookup from cached awards")
+    parser.add_argument(
+        "--build-lookup", action="store_true", help="Build season lookup from cached awards"
+    )
     args = parser.parse_args()
 
     if args.fetch:

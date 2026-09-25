@@ -1,9 +1,9 @@
 {
   "schema_version": 2,
-  "built_at": "2026-09-24T17:24:01.030630+00:00",
-  "source_updated_at": null,
-  "source_note": "Rebuilt from a stored snapshot; build time is not data freshness.",
-  "rows": 11424,
+  "built_at": "2026-09-25T00:01:09.040522+00:00",
+  "source_updated_at": "2026-09-24T23:52:09.204730+00:00",
+  "source_note": "NBA regular-season endpoints refreshed; source dates describe this fetch, not a live feed.",
+  "rows": 11501,
   "seasons": [
     "2003-04",
     "2004-05",
@@ -30,5 +30,350 @@
     "2025-26"
   ],
   "tracking_units": "per_game",
-  "team_share_definition": "Player per-game / actual team per-game; multi-team seasons unavailable"
+  "team_share_definition": "Player per-game / actual team per-game; multi-team seasons unavailable",
+  "source_fetch_completed_at": "2026-09-25T00:00:12.611698+00:00",
+  "availability": {
+    "tracking_first_season": "2013-14",
+    "hustle_first_season": "2015-16 (partial coverage)",
+    "team_shares": "Unavailable for multi-team player seasons"
+  },
+  "physical_profile_fallbacks": {
+    "height_inches": [
+      {
+        "PLAYER_ID": 202343,
+        "SEASON": "2014-15"
+      }
+    ],
+    "weight": [
+      {
+        "PLAYER_ID": 202343,
+        "SEASON": "2014-15"
+      }
+    ]
+  },
+  "physical_profile_note": "Missing season bio measurements use NBA profile height/weight where available; these are listed profile measurements, not verified season-specific measurements.",
+  "season_coverage": {
+    "2003-04": {
+      "players": 442,
+      "max_player_games": 85,
+      "team_games_min": 82,
+      "team_games_max": 82,
+      "available_rows": {
+        "DRIVES": 0,
+        "TOUCHES": 0,
+        "deflections": 0,
+        "height_inches": 442,
+        "weight": 442,
+        "min_share": 374
+      }
+    },
+    "2004-05": {
+      "players": 464,
+      "max_player_games": 84,
+      "team_games_min": 82,
+      "team_games_max": 82,
+      "available_rows": {
+        "DRIVES": 0,
+        "TOUCHES": 0,
+        "deflections": 0,
+        "height_inches": 464,
+        "weight": 464,
+        "min_share": 405
+      }
+    },
+    "2005-06": {
+      "players": 458,
+      "max_player_games": 82,
+      "team_games_min": 82,
+      "team_games_max": 82,
+      "available_rows": {
+        "DRIVES": 0,
+        "TOUCHES": 0,
+        "deflections": 0,
+        "height_inches": 458,
+        "weight": 458,
+        "min_share": 407
+      }
+    },
+    "2006-07": {
+      "players": 458,
+      "max_player_games": 82,
+      "team_games_min": 82,
+      "team_games_max": 82,
+      "available_rows": {
+        "DRIVES": 0,
+        "TOUCHES": 0,
+        "deflections": 0,
+        "height_inches": 458,
+        "weight": 458,
+        "min_share": 429
+      }
+    },
+    "2007-08": {
+      "players": 451,
+      "max_player_games": 82,
+      "team_games_min": 82,
+      "team_games_max": 82,
+      "available_rows": {
+        "DRIVES": 0,
+        "TOUCHES": 0,
+        "deflections": 0,
+        "height_inches": 451,
+        "weight": 451,
+        "min_share": 383
+      }
+    },
+    "2008-09": {
+      "players": 445,
+      "max_player_games": 82,
+      "team_games_min": 82,
+      "team_games_max": 82,
+      "available_rows": {
+        "DRIVES": 0,
+        "TOUCHES": 0,
+        "deflections": 0,
+        "height_inches": 445,
+        "weight": 445,
+        "min_share": 378
+      }
+    },
+    "2009-10": {
+      "players": 442,
+      "max_player_games": 82,
+      "team_games_min": 82,
+      "team_games_max": 82,
+      "available_rows": {
+        "DRIVES": 0,
+        "TOUCHES": 0,
+        "deflections": 0,
+        "height_inches": 442,
+        "weight": 442,
+        "min_share": 376
+      }
+    },
+    "2010-11": {
+      "players": 452,
+      "max_player_games": 83,
+      "team_games_min": 82,
+      "team_games_max": 82,
+      "available_rows": {
+        "DRIVES": 0,
+        "TOUCHES": 0,
+        "deflections": 0,
+        "height_inches": 452,
+        "weight": 452,
+        "min_share": 369
+      }
+    },
+    "2011-12": {
+      "players": 478,
+      "max_player_games": 66,
+      "team_games_min": 66,
+      "team_games_max": 66,
+      "available_rows": {
+        "DRIVES": 0,
+        "TOUCHES": 0,
+        "deflections": 0,
+        "height_inches": 478,
+        "weight": 478,
+        "min_share": 442
+      }
+    },
+    "2012-13": {
+      "players": 469,
+      "max_player_games": 82,
+      "team_games_min": 81,
+      "team_games_max": 82,
+      "available_rows": {
+        "DRIVES": 0,
+        "TOUCHES": 0,
+        "deflections": 0,
+        "height_inches": 469,
+        "weight": 469,
+        "min_share": 419
+      }
+    },
+    "2013-14": {
+      "players": 482,
+      "max_player_games": 83,
+      "team_games_min": 82,
+      "team_games_max": 82,
+      "available_rows": {
+        "DRIVES": 482,
+        "TOUCHES": 482,
+        "deflections": 0,
+        "height_inches": 482,
+        "weight": 482,
+        "min_share": 419
+      }
+    },
+    "2014-15": {
+      "players": 492,
+      "max_player_games": 83,
+      "team_games_min": 82,
+      "team_games_max": 82,
+      "available_rows": {
+        "DRIVES": 492,
+        "TOUCHES": 492,
+        "deflections": 0,
+        "height_inches": 488,
+        "weight": 488,
+        "min_share": 416
+      }
+    },
+    "2015-16": {
+      "players": 476,
+      "max_player_games": 82,
+      "team_games_min": 82,
+      "team_games_max": 82,
+      "available_rows": {
+        "DRIVES": 476,
+        "TOUCHES": 476,
+        "deflections": 147,
+        "height_inches": 476,
+        "weight": 476,
+        "min_share": 426
+      }
+    },
+    "2016-17": {
+      "players": 486,
+      "max_player_games": 82,
+      "team_games_min": 82,
+      "team_games_max": 82,
+      "available_rows": {
+        "DRIVES": 486,
+        "TOUCHES": 486,
+        "deflections": 485,
+        "height_inches": 486,
+        "weight": 486,
+        "min_share": 433
+      }
+    },
+    "2017-18": {
+      "players": 540,
+      "max_player_games": 82,
+      "team_games_min": 82,
+      "team_games_max": 82,
+      "available_rows": {
+        "DRIVES": 540,
+        "TOUCHES": 540,
+        "deflections": 536,
+        "height_inches": 540,
+        "weight": 540,
+        "min_share": 481
+      }
+    },
+    "2018-19": {
+      "players": 530,
+      "max_player_games": 82,
+      "team_games_min": 82,
+      "team_games_max": 82,
+      "available_rows": {
+        "DRIVES": 530,
+        "TOUCHES": 530,
+        "deflections": 525,
+        "height_inches": 530,
+        "weight": 530,
+        "min_share": 444
+      }
+    },
+    "2019-20": {
+      "players": 529,
+      "max_player_games": 74,
+      "team_games_min": 64,
+      "team_games_max": 75,
+      "available_rows": {
+        "DRIVES": 529,
+        "TOUCHES": 529,
+        "deflections": 525,
+        "height_inches": 529,
+        "weight": 529,
+        "min_share": 469
+      }
+    },
+    "2020-21": {
+      "players": 540,
+      "max_player_games": 72,
+      "team_games_min": 72,
+      "team_games_max": 72,
+      "available_rows": {
+        "DRIVES": 540,
+        "TOUCHES": 540,
+        "deflections": 538,
+        "height_inches": 540,
+        "weight": 540,
+        "min_share": 461
+      }
+    },
+    "2021-22": {
+      "players": 605,
+      "max_player_games": 82,
+      "team_games_min": 82,
+      "team_games_max": 82,
+      "available_rows": {
+        "DRIVES": 605,
+        "TOUCHES": 605,
+        "deflections": 596,
+        "height_inches": 605,
+        "weight": 605,
+        "min_share": 508
+      }
+    },
+    "2022-23": {
+      "players": 539,
+      "max_player_games": 83,
+      "team_games_min": 82,
+      "team_games_max": 82,
+      "available_rows": {
+        "DRIVES": 539,
+        "TOUCHES": 539,
+        "deflections": 535,
+        "height_inches": 539,
+        "weight": 539,
+        "min_share": 469
+      }
+    },
+    "2023-24": {
+      "players": 572,
+      "max_player_games": 84,
+      "team_games_min": 82,
+      "team_games_max": 82,
+      "available_rows": {
+        "DRIVES": 572,
+        "TOUCHES": 572,
+        "deflections": 567,
+        "height_inches": 572,
+        "weight": 572,
+        "min_share": 494
+      }
+    },
+    "2024-25": {
+      "players": 569,
+      "max_player_games": 82,
+      "team_games_min": 82,
+      "team_games_max": 82,
+      "available_rows": {
+        "DRIVES": 569,
+        "TOUCHES": 569,
+        "deflections": 567,
+        "height_inches": 569,
+        "weight": 567,
+        "min_share": 488
+      }
+    },
+    "2025-26": {
+      "players": 582,
+      "max_player_games": 82,
+      "team_games_min": 82,
+      "team_games_max": 82,
+      "available_rows": {
+        "DRIVES": 582,
+        "TOUCHES": 582,
+        "deflections": 581,
+        "height_inches": 582,
+        "weight": 576,
+        "min_share": 510
+      }
+    }
+  }
 }
