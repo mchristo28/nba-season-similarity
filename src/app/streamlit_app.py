@@ -207,6 +207,13 @@ def main():
 
     col_anchor, col_editor = st.columns([1.2, 0.9], gap="large")
 
+    def reset_player_season():
+        selected = st.session_state["player_select"]
+        # Season values are list positions, not shared career/year identifiers.
+        # A position carried from the previous player can select an unrelated era.
+        st.session_state["season_select"] = int(career_df.PLAYER_NAME.eq(selected).sum()) - 1
+        st.session_state["compare_select"] = 0
+
     with col_anchor:
         col_portrait, col_meta = st.columns([1, 2])
 
@@ -218,6 +225,7 @@ def main():
                 if "Shai Gilgeous-Alexander" in player_names
                 else 0,
                 key="player_select",
+                on_change=reset_player_season,
             )
 
         # Get player data

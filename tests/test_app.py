@@ -31,6 +31,10 @@ def test_full_app_controls():
     assert not app.exception
     app.selectbox(key="player_select").select("LeBron James").run()
     assert not app.exception
+    assert (
+        app.selectbox(key="season_select").value
+        == len(app.selectbox(key="season_select").options) - 1
+    )
     for slider in app.slider:
         if slider.key and slider.key.startswith("w_"):
             slider.set_value(0)
