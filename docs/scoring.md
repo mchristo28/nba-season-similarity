@@ -1,4 +1,4 @@
-# How comparison scores work (model 3.0)
+# How comparison scores work (model 3.1)
 
 A score describes closeness under the selected comparison mode. It is not a grade,
 probability, impact estimate, or forecast of equal player quality.
@@ -49,23 +49,58 @@ the season has many games.
    All query and candidate values use that reference. Changing search filters
    does not refit the scales.
 2. Compute a root mean square of standardized differences within each dimension.
-3. Average dimension distances by the selected weights. Exact zero distances
+3. Combine **squared** dimension distances by the selected weights, then take
+   the square root. This is one weighted Euclidean distance across the complete
+   observed profile, with each dimension's weight divided among its observed
+   features. Large mismatches are harder to offset with several small matches.
+   Exact zero distances
    retain their weight. Dimensions unknown for the query are excluded.
 4. Map distance `d` to `100 × 2^(-d²)`.
 
-| Average group RMS distance | Score | Interpretation |
+For standardized feature differences `z_i` in group `g`, with `n_g` shared
+features and group weight `w_g`:
+
+`d² = sum_g [(w_g / sum(w)) × (sum_i z_i² / n_g)]`
+
+Groups organize weights and explanations; the final score is not an arithmetic
+average of category scores. This diagonal metric does not learn nonlinear roles
+or remove every correlation. See the [aggregate-method review](comparison-geometry-review.md)
+for the evaluated correlation-aware alternative and why it was not deployed.
+
+| Joint weighted RMS distance | Score | Interpretation |
 | --- | --- | --- |
 | 0 | 100 | Identical measured profile |
-| 0.25 | 95.8 | Very close |
-| 0.5 | 84.1 | Close |
-| 1 | 50 | Moderate difference |
+| 0.25 | 95.8 | Small measured gap |
+| 0.5 | 84.1 | Moderate measured gap |
+| 1 | 50 | Large measured gap |
 | 1.5 | 21.0 | Large difference |
 | 2 | 6.3 | Very large difference |
 
 This mapping is a transparent design calibration, not an empirically established
 measure of basketball equivalence. Top results are not rescaled to 100. Compare
 scores within one mode and weight setting; changing mode, data, or model version
-changes the reference and/or measurements. The UI identifies model version 3.0.
+changes the reference and/or measurements. The UI identifies model version 3.1.
+
+## Colors and explanations
+
+Feature colors use the same absolute standardized gaps as the distance:
+less than 0.5 SD is **Close** (green), 0.5 to less than 1 is **Noticeable difference**
+(yellow), and 1 or more is **Large difference** (red). These are explicitly chosen
+display boundaries, not fitted basketball-quality labels or significance tests.
+No normal-distribution assumption is needed to express a difference in SD units.
+Missing inputs are unavailable; disabled inputs are not scored and remain neutral.
+
+Category bars show each group's share of the **total squared difference**, not
+separate similarity scores. Each feature contributes
+`(w_g / sum(w)) × z_i² / n_g`; summing contributions recovers `d²` exactly.
+Longer bars mean more influence on the gap; their colors describe category RMS
+gap size. An exact match has zero contributions throughout. Key differences show
+the three largest contributing features whose gaps are at least 0.5 SD.
+
+The normalized input table includes text labels as well as colors. Raw season
+stats and the descriptive radar are in a separate context expander; raw stats do
+not receive similarity colors. A tracking shortcut offers the richer mode for
+eligible queries without silently changing the selected mode.
 
 ## Comparable evidence
 
@@ -86,6 +121,8 @@ Different-player matches are the default. Games, MPG, age difference, candidate
 year range, and shared coverage can be filtered. The ordinary result table shows
 per-game stats for context. The comparison breakdown separately lists the actual
 normalized inputs; the radar remains a descriptive chart with its own scales.
+New visits default to tracking style. Selecting a pre-2013 query offers a button
+to switch to historical data; an explicitly chosen mode is never silently replaced.
 
 The original 71-feature matcher is retained as a backward-compatible Python API
 when no profile is supplied. The web app and audit command explicitly select the

@@ -1,8 +1,8 @@
 """Exact shooting, league context, and opportunity-normalized comparison features."""
 
 from src.features.transforms import efficiency_stats
+from src.similarity.scoring import MODEL_VERSION  # noqa: F401
 
-MODEL_VERSION = "3.0"
 TOTAL_STATS = [
     "PTS",
     "FGM",

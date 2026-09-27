@@ -12,5 +12,5 @@ jobs:
         with:
           python-version: ${{ matrix.python }}
       - run: python -m pip install '.[dev,trajectory]'
-      - run: ruff check src tests scripts/refresh_data.py scripts/cache_awards.py scripts/audit_scores.py
+      - run: ruff check src tests scripts/refresh_data.py scripts/cache_awards.py scripts/audit_scores.py scripts/audit_geometry.py
       - run: python -m pytest -q

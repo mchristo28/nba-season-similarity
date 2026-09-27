@@ -1,0 +1,3860 @@
+{
+  "dataset_sha256": "31b8ceeec29aa08c7f5f67921a5b72af4401ae38e00eb41f414f74844c669c8e",
+  "seed": 42,
+  "profiles": {
+    "style_historical": {
+      "reference_rows": 7103,
+      "covariance_complete_rows": 7101,
+      "covariance_shrinkage": 0.0016147254945837488,
+      "covariance_condition": 2805.1877505664143,
+      "distributions": {
+        "height_inches": {
+          "n": 7103,
+          "missing": 0,
+          "sd": 3.4382257276335455,
+          "skew": -0.2287718535206729,
+          "zero_fraction": 0.0,
+          "quantiles": {
+            "0": 65.0,
+            "0.01": 72.0,
+            "0.25": 76.0,
+            "0.5": 79.0,
+            "0.75": 81.0,
+            "0.99": 85.0,
+            "1": 90.0
+          },
+          "iqr_normal_scale_ratio": 1.0780121828117233
+        },
+        "weight": {
+          "n": 7101,
+          "missing": 2,
+          "sd": 25.95624047548881,
+          "skew": 0.23330831468340096,
+          "zero_fraction": 0.0,
+          "quantiles": {
+            "0": 133.0,
+            "0.01": 170.0,
+            "0.25": 200.0,
+            "0.5": 220.0,
+            "0.75": 240.0,
+            "0.99": 282.0,
+            "1": 340.0
+          },
+          "iqr_normal_scale_ratio": 1.1423685876683922
+        },
+        "free_throw_rate": {
+          "n": 7103,
+          "missing": 0,
+          "sd": 0.12990105804289176,
+          "skew": 1.2399848036072745,
+          "zero_fraction": 0.0,
+          "quantiles": {
+            "0": 0.013333333333333334,
+            "0.01": 0.06810198761811666,
+            "0.25": 0.1808852156174877,
+            "0.5": 0.2517385257301808,
+            "0.75": 0.3393325910179843,
+            "0.99": 0.6902629938925589,
+            "1": 1.218503937007874
+          },
+          "iqr_normal_scale_ratio": 0.904191482460531
+        },
+        "pct_fga_restricted": {
+          "n": 7103,
+          "missing": 0,
+          "sd": 0.17164042678249544,
+          "skew": 1.010683612196189,
+          "zero_fraction": 0.00014078558355624384,
+          "quantiles": {
+            "0": 0.0,
+            "0.01": 0.0604536504119919,
+            "0.25": 0.20745403926177886,
+            "0.5": 0.2943661971830986,
+            "0.75": 0.4100602824061658,
+            "0.99": 0.8399274019153536,
+            "1": 0.9854368932038835
+          },
+          "iqr_normal_scale_ratio": 0.8750266662464975
+        },
+        "pct_fga_paint": {
+          "n": 7103,
+          "missing": 0,
+          "sd": 0.08200033052807447,
+          "skew": 0.9144381931853325,
+          "zero_fraction": 0.0,
+          "quantiles": {
+            "0": 0.002967359050445104,
+            "0.01": 0.023335416666666664,
+            "0.25": 0.09303464455731955,
+            "0.5": 0.13937282229965156,
+            "0.75": 0.20119736104390834,
+            "0.99": 0.39122763714471437,
+            "1": 0.6885245901639344
+          },
+          "iqr_normal_scale_ratio": 0.9778000009293659
+        },
+        "pct_fga_midrange": {
+          "n": 7103,
+          "missing": 0,
+          "sd": 0.1459157999911519,
+          "skew": 0.6607874455697931,
+          "zero_fraction": 0.0019709981697874136,
+          "quantiles": {
+            "0": 0.0,
+            "0.01": 0.008197170446889735,
+            "0.25": 0.09388907989991022,
+            "0.5": 0.19282511210762335,
+            "0.75": 0.31406687225172747,
+            "0.99": 0.6041816122014179,
+            "1": 0.7834394904458599
+          },
+          "iqr_normal_scale_ratio": 1.118559891575195
+        },
+        "pct_fga_corner3": {
+          "n": 7103,
+          "missing": 0,
+          "sd": 0.0798539044821045,
+          "skew": 1.340750421133216,
+          "zero_fraction": 0.12952273687174434,
+          "quantiles": {
+            "0": 0.0,
+            "0.01": 0.0,
+            "0.25": 0.018581134099748042,
+            "0.5": 0.06674757281553396,
+            "0.75": 0.127174837472792,
+            "0.99": 0.335232558139534,
+            "1": 0.7
+          },
+          "iqr_normal_scale_ratio": 1.0080835745053385
+        },
+        "pct_fga_above_break3": {
+          "n": 7103,
+          "missing": 0,
+          "sd": 0.15999836227325573,
+          "skew": 0.24624784223752735,
+          "zero_fraction": 0.07165986203012811,
+          "quantiles": {
+            "0": 0.0,
+            "0.01": 0.0,
+            "0.25": 0.05611384673790462,
+            "0.5": 0.22395023328149302,
+            "0.75": 0.33321264783972965,
+            "0.99": 0.5848817553146072,
+            "1": 0.7531380753138075
+          },
+          "iqr_normal_scale_ratio": 1.2838289355846504
+        },
+        "unassisted_fg_share": {
+          "n": 7103,
+          "missing": 0,
+          "sd": 0.16738222723120474,
+          "skew": 0.4646572488559582,
+          "zero_fraction": 0.0,
+          "quantiles": {
+            "0": 0.01,
+            "0.01": 0.07501999999999999,
+            "0.25": 0.256,
+            "0.5": 0.354,
+            "0.75": 0.491,
+            "0.99": 0.785,
+            "1": 0.888
+          },
+          "iqr_normal_scale_ratio": 1.0407503610088769
+        },
+        "assist_involvement": {
+          "n": 7103,
+          "missing": 0,
+          "sd": 0.07731983065088548,
+          "skew": 0.8560340974795018,
+          "zero_fraction": 0.0,
+          "quantiles": {
+            "0": 0.011546455238241861,
+            "0.01": 0.04496171882396674,
+            "0.25": 0.11109255220650284,
+            "0.5": 0.15310828260468548,
+            "0.75": 0.21396158685055994,
+            "0.99": 0.39073040977618384,
+            "1": 0.48717948717948717
+          },
+          "iqr_normal_scale_ratio": 0.9862382009330999
+        },
+        "turnover_rate": {
+          "n": 7103,
+          "missing": 0,
+          "sd": 0.03644572008015063,
+          "skew": 0.8453972728354704,
+          "zero_fraction": 0.0,
+          "quantiles": {
+            "0": 0.02628581442215018,
+            "0.01": 0.0601110826281913,
+            "0.25": 0.10238661180775255,
+            "0.5": 0.12389948107982042,
+            "0.75": 0.14831969823605676,
+            "0.99": 0.2382793270871784,
+            "1": 0.345
+          },
+          "iqr_normal_scale_ratio": 0.9342586842326838
+        },
+        "offensive_rebound_fraction": {
+          "n": 7103,
+          "missing": 0,
+          "sd": 0.09041862723603206,
+          "skew": 0.4214067170881768,
+          "zero_fraction": 0.0,
+          "quantiles": {
+            "0": 0.028,
+            "0.01": 0.07142857142857142,
+            "0.25": 0.16,
+            "0.5": 0.21978021978021978,
+            "0.75": 0.29547289896986306,
+            "0.99": 0.45113042084535376,
+            "1": 0.5605839416058395
+          },
+          "iqr_normal_scale_ratio": 1.1106636680739896
+        },
+        "STL_PER100": {
+          "n": 7103,
+          "missing": 0,
+          "sd": 0.5747946222689431,
+          "skew": 0.8493567676748403,
+          "zero_fraction": 0.0,
+          "quantiles": {
+            "0": 0.1,
+            "0.01": 0.5,
+            "0.25": 1.1,
+            "0.5": 1.5,
+            "0.75": 1.9,
+            "0.99": 3.2,
+            "1": 5.8
+          },
+          "iqr_normal_scale_ratio": 1.0317282947470408
+        },
+        "BLK_PER100": {
+          "n": 7103,
+          "missing": 0,
+          "sd": 0.9191658769302931,
+          "skew": 1.866492649286532,
+          "zero_fraction": 0.0102773475996058,
+          "quantiles": {
+            "0": 0.0,
+            "0.01": 0.0,
+            "0.25": 0.4,
+            "0.5": 0.7,
+            "0.75": 1.3,
+            "0.99": 4.2,
+            "1": 6.8
+          },
+          "iqr_normal_scale_ratio": 0.725832928137317
+        },
+        "e_usg_pct": {
+          "n": 7103,
+          "missing": 0,
+          "sd": 0.05154622226268508,
+          "skew": 0.5058739428494758,
+          "zero_fraction": 0.0,
+          "quantiles": {
+            "0": 0.053,
+            "0.01": 0.098,
+            "0.25": 0.158,
+            "0.5": 0.189,
+            "0.75": 0.228,
+            "0.99": 0.333,
+            "1": 0.408
+          },
+          "iqr_normal_scale_ratio": 1.0066749186506978
+        }
+      },
+      "correlated_pairs": [
+        [
+          "height_inches",
+          "weight",
+          0.8073942017925025
+        ]
+      ],
+      "color_pair_fractions": {
+        "height_inches": {
+          "close": 0.2351,
+          "noticeable": 0.2795,
+          "large": 0.4854
+        },
+        "weight": {
+          "close": 0.2676,
+          "noticeable": 0.2502,
+          "large": 0.4822
+        },
+        "free_throw_rate": {
+          "close": 0.3141,
+          "noticeable": 0.2632,
+          "large": 0.4227
+        },
+        "pct_fga_restricted": {
+          "close": 0.3176,
+          "noticeable": 0.26,
+          "large": 0.4224
+        },
+        "pct_fga_paint": {
+          "close": 0.2951,
+          "noticeable": 0.2506,
+          "large": 0.4543
+        },
+        "pct_fga_midrange": {
+          "close": 0.285,
+          "noticeable": 0.2388,
+          "large": 0.4762
+        },
+        "pct_fga_corner3": {
+          "close": 0.3249,
+          "noticeable": 0.2497,
+          "large": 0.4254
+        },
+        "pct_fga_above_break3": {
+          "close": 0.2811,
+          "noticeable": 0.2162,
+          "large": 0.5027
+        },
+        "unassisted_fg_share": {
+          "close": 0.2791,
+          "noticeable": 0.2401,
+          "large": 0.4808
+        },
+        "assist_involvement": {
+          "close": 0.2985,
+          "noticeable": 0.2446,
+          "large": 0.4569
+        },
+        "turnover_rate": {
+          "close": 0.2931,
+          "noticeable": 0.2547,
+          "large": 0.4522
+        },
+        "offensive_rebound_fraction": {
+          "close": 0.2669,
+          "noticeable": 0.2439,
+          "large": 0.4892
+        },
+        "STL_PER100": {
+          "close": 0.2613,
+          "noticeable": 0.2719,
+          "large": 0.4668
+        },
+        "BLK_PER100": {
+          "close": 0.4058,
+          "noticeable": 0.2427,
+          "large": 0.3515
+        },
+        "e_usg_pct": {
+          "close": 0.2784,
+          "noticeable": 0.2512,
+          "large": 0.4704
+        }
+      },
+      "cases": [
+        {
+          "name": "Lauri Markkanen",
+          "season": "2024-25",
+          "methods": {
+            "mean_group_rms": {
+              "top5": [
+                {
+                  "name": "GG Jackson",
+                  "season": "2023-24",
+                  "score": 92.22
+                },
+                {
+                  "name": "Marreese Speights",
+                  "season": "2016-17",
+                  "score": 91.65
+                },
+                {
+                  "name": "Antawn Jamison",
+                  "season": "2010-11",
+                  "score": 91.59
+                },
+                {
+                  "name": "Ersan Ilyasova",
+                  "season": "2016-17",
+                  "score": 91.11
+                },
+                {
+                  "name": "Antawn Jamison",
+                  "season": "2009-10",
+                  "score": 90.45
+                }
+              ],
+              "top5_overlap_earlier_reference": 5,
+              "mean_top5_overlap_weight_perturbations": 4.875,
+              "gg_pair": {
+                "rank": 1,
+                "score": 92.22
+              }
+            },
+            "joint_rms": {
+              "top5": [
+                {
+                  "name": "Ersan Ilyasova",
+                  "season": "2016-17",
+                  "score": 87.47
+                },
+                {
+                  "name": "GG Jackson",
+                  "season": "2023-24",
+                  "score": 87.32
+                },
+                {
+                  "name": "Marreese Speights",
+                  "season": "2016-17",
+                  "score": 86.98
+                },
+                {
+                  "name": "Michael Porter Jr.",
+                  "season": "2024-25",
+                  "score": 86.32
+                },
+                {
+                  "name": "Antawn Jamison",
+                  "season": "2010-11",
+                  "score": 85.89
+                }
+              ],
+              "top5_overlap_earlier_reference": 5,
+              "mean_top5_overlap_weight_perturbations": 4.875,
+              "gg_pair": {
+                "rank": 2,
+                "score": 87.32
+              }
+            },
+            "regularized_mahalanobis": {
+              "top5": [
+                {
+                  "name": "Ersan Ilyasova",
+                  "season": "2016-17",
+                  "score": 86.9
+                },
+                {
+                  "name": "Cameron Johnson",
+                  "season": "2024-25",
+                  "score": 84.75
+                },
+                {
+                  "name": "Simone Fontecchio",
+                  "season": "2025-26",
+                  "score": 84.58
+                },
+                {
+                  "name": "Frank Kaminsky",
+                  "season": "2018-19",
+                  "score": 84.55
+                },
+                {
+                  "name": "Antawn Jamison",
+                  "season": "2008-09",
+                  "score": 83.88
+                }
+              ],
+              "top5_overlap_earlier_reference": 5,
+              "mean_top5_overlap_weight_perturbations": 5.0,
+              "gg_pair": {
+                "rank": 6,
+                "score": 82.27
+              }
+            }
+          }
+        },
+        {
+          "name": "Lauri Markkanen",
+          "season": "2022-23",
+          "methods": {
+            "mean_group_rms": {
+              "top5": [
+                {
+                  "name": "Kevin Love",
+                  "season": "2016-17",
+                  "score": 92.28
+                },
+                {
+                  "name": "Frank Kaminsky",
+                  "season": "2018-19",
+                  "score": 91.56
+                },
+                {
+                  "name": "Kevin Love",
+                  "season": "2017-18",
+                  "score": 91.55
+                },
+                {
+                  "name": "Christian Wood",
+                  "season": "2020-21",
+                  "score": 90.95
+                },
+                {
+                  "name": "Karl-Anthony Towns",
+                  "season": "2024-25",
+                  "score": 90.56
+                }
+              ],
+              "top5_overlap_earlier_reference": 5,
+              "mean_top5_overlap_weight_perturbations": 5.0
+            },
+            "joint_rms": {
+              "top5": [
+                {
+                  "name": "Kevin Love",
+                  "season": "2017-18",
+                  "score": 89.65
+                },
+                {
+                  "name": "Kevin Love",
+                  "season": "2016-17",
+                  "score": 88.38
+                },
+                {
+                  "name": "Christian Wood",
+                  "season": "2020-21",
+                  "score": 87.43
+                },
+                {
+                  "name": "Frank Kaminsky",
+                  "season": "2018-19",
+                  "score": 86.79
+                },
+                {
+                  "name": "Kevin Love",
+                  "season": "2015-16",
+                  "score": 86.57
+                }
+              ],
+              "top5_overlap_earlier_reference": 5,
+              "mean_top5_overlap_weight_perturbations": 4.875
+            },
+            "regularized_mahalanobis": {
+              "top5": [
+                {
+                  "name": "Karl-Anthony Towns",
+                  "season": "2024-25",
+                  "score": 89.91
+                },
+                {
+                  "name": "Cameron Johnson",
+                  "season": "2024-25",
+                  "score": 87.35
+                },
+                {
+                  "name": "Karl-Anthony Towns",
+                  "season": "2025-26",
+                  "score": 86.85
+                },
+                {
+                  "name": "Kevin Love",
+                  "season": "2016-17",
+                  "score": 84.23
+                },
+                {
+                  "name": "Kevin Love",
+                  "season": "2017-18",
+                  "score": 84.14
+                }
+              ],
+              "top5_overlap_earlier_reference": 5,
+              "mean_top5_overlap_weight_perturbations": 4.875
+            }
+          }
+        },
+        {
+          "name": "Stephen Curry",
+          "season": "2024-25",
+          "methods": {
+            "mean_group_rms": {
+              "top5": [
+                {
+                  "name": "D'Angelo Russell",
+                  "season": "2020-21",
+                  "score": 92.71
+                },
+                {
+                  "name": "Jordan Poole",
+                  "season": "2021-22",
+                  "score": 92.19
+                },
+                {
+                  "name": "Bones Hyland",
+                  "season": "2022-23",
+                  "score": 91.72
+                },
+                {
+                  "name": "Jordan Poole",
+                  "season": "2024-25",
+                  "score": 91.13
+                },
+                {
+                  "name": "Jordan Poole",
+                  "season": "2023-24",
+                  "score": 90.83
+                }
+              ],
+              "top5_overlap_earlier_reference": 5,
+              "mean_top5_overlap_weight_perturbations": 5.0
+            },
+            "joint_rms": {
+              "top5": [
+                {
+                  "name": "Jordan Poole",
+                  "season": "2021-22",
+                  "score": 89.71
+                },
+                {
+                  "name": "Jordan Poole",
+                  "season": "2023-24",
+                  "score": 88.82
+                },
+                {
+                  "name": "Jordan Poole",
+                  "season": "2024-25",
+                  "score": 88.11
+                },
+                {
+                  "name": "Bones Hyland",
+                  "season": "2022-23",
+                  "score": 87.72
+                },
+                {
+                  "name": "Jordan Poole",
+                  "season": "2022-23",
+                  "score": 86.74
+                }
+              ],
+              "top5_overlap_earlier_reference": 5,
+              "mean_top5_overlap_weight_perturbations": 4.5
+            },
+            "regularized_mahalanobis": {
+              "top5": [
+                {
+                  "name": "Malik Monk",
+                  "season": "2022-23",
+                  "score": 90.01
+                },
+                {
+                  "name": "Jordan Poole",
+                  "season": "2022-23",
+                  "score": 83.81
+                },
+                {
+                  "name": "Nickeil Alexander-Walker",
+                  "season": "2025-26",
+                  "score": 82.5
+                },
+                {
+                  "name": "Malik Monk",
+                  "season": "2023-24",
+                  "score": 81.56
+                },
+                {
+                  "name": "Jordan Poole",
+                  "season": "2020-21",
+                  "score": 81.42
+                }
+              ],
+              "top5_overlap_earlier_reference": 5,
+              "mean_top5_overlap_weight_perturbations": 4.625
+            }
+          }
+        },
+        {
+          "name": "Shai Gilgeous-Alexander",
+          "season": "2024-25",
+          "methods": {
+            "mean_group_rms": {
+              "top5": [
+                {
+                  "name": "De'Aaron Fox",
+                  "season": "2020-21",
+                  "score": 88.26
+                },
+                {
+                  "name": "Ja Morant",
+                  "season": "2022-23",
+                  "score": 86.76
+                },
+                {
+                  "name": "Kawhi Leonard",
+                  "season": "2019-20",
+                  "score": 85.77
+                },
+                {
+                  "name": "Allen Iverson",
+                  "season": "2005-06",
+                  "score": 84.57
+                },
+                {
+                  "name": "DeMar DeRozan",
+                  "season": "2016-17",
+                  "score": 84.16
+                }
+              ],
+              "top5_overlap_earlier_reference": 5,
+              "mean_top5_overlap_weight_perturbations": 4.875
+            },
+            "joint_rms": {
+              "top5": [
+                {
+                  "name": "Kawhi Leonard",
+                  "season": "2019-20",
+                  "score": 83.89
+                },
+                {
+                  "name": "De'Aaron Fox",
+                  "season": "2020-21",
+                  "score": 83.33
+                },
+                {
+                  "name": "Kawhi Leonard",
+                  "season": "2025-26",
+                  "score": 77.75
+                },
+                {
+                  "name": "Kawhi Leonard",
+                  "season": "2018-19",
+                  "score": 77.22
+                },
+                {
+                  "name": "De'Aaron Fox",
+                  "season": "2023-24",
+                  "score": 75.93
+                }
+              ],
+              "top5_overlap_earlier_reference": 5,
+              "mean_top5_overlap_weight_perturbations": 4.625
+            },
+            "regularized_mahalanobis": {
+              "top5": [
+                {
+                  "name": "De'Aaron Fox",
+                  "season": "2020-21",
+                  "score": 83.18
+                },
+                {
+                  "name": "De'Aaron Fox",
+                  "season": "2019-20",
+                  "score": 76.11
+                },
+                {
+                  "name": "Kobe Bryant",
+                  "season": "2008-09",
+                  "score": 73.33
+                },
+                {
+                  "name": "Kawhi Leonard",
+                  "season": "2019-20",
+                  "score": 73.19
+                },
+                {
+                  "name": "De'Aaron Fox",
+                  "season": "2023-24",
+                  "score": 72.22
+                }
+              ],
+              "top5_overlap_earlier_reference": 4,
+              "mean_top5_overlap_weight_perturbations": 4.25
+            }
+          }
+        },
+        {
+          "name": "LeBron James",
+          "season": "2024-25",
+          "methods": {
+            "mean_group_rms": {
+              "top5": [
+                {
+                  "name": "Cade Cunningham",
+                  "season": "2023-24",
+                  "score": 93.92
+                },
+                {
+                  "name": "Paul George",
+                  "season": "2020-21",
+                  "score": 92.79
+                },
+                {
+                  "name": "Julius Randle",
+                  "season": "2020-21",
+                  "score": 91.45
+                },
+                {
+                  "name": "Blake Griffin",
+                  "season": "2017-18",
+                  "score": 90.17
+                },
+                {
+                  "name": "Jalen Johnson",
+                  "season": "2025-26",
+                  "score": 89.81
+                }
+              ],
+              "top5_overlap_earlier_reference": 4,
+              "mean_top5_overlap_weight_perturbations": 4.0
+            },
+            "joint_rms": {
+              "top5": [
+                {
+                  "name": "Cade Cunningham",
+                  "season": "2023-24",
+                  "score": 90.31
+                },
+                {
+                  "name": "Julius Randle",
+                  "season": "2020-21",
+                  "score": 88.78
+                },
+                {
+                  "name": "Paul George",
+                  "season": "2020-21",
+                  "score": 88.3
+                },
+                {
+                  "name": "Julius Randle",
+                  "season": "2021-22",
+                  "score": 87.58
+                },
+                {
+                  "name": "Blake Griffin",
+                  "season": "2017-18",
+                  "score": 87.15
+                }
+              ],
+              "top5_overlap_earlier_reference": 5,
+              "mean_top5_overlap_weight_perturbations": 4.875
+            },
+            "regularized_mahalanobis": {
+              "top5": [
+                {
+                  "name": "Cade Cunningham",
+                  "season": "2023-24",
+                  "score": 89.03
+                },
+                {
+                  "name": "Blake Griffin",
+                  "season": "2017-18",
+                  "score": 83.64
+                },
+                {
+                  "name": "Julius Randle",
+                  "season": "2020-21",
+                  "score": 82.68
+                },
+                {
+                  "name": "Deron Williams",
+                  "season": "2011-12",
+                  "score": 82.34
+                },
+                {
+                  "name": "Cade Cunningham",
+                  "season": "2024-25",
+                  "score": 82.3
+                }
+              ],
+              "top5_overlap_earlier_reference": 5,
+              "mean_top5_overlap_weight_perturbations": 4.625
+            }
+          }
+        },
+        {
+          "name": "Nikola Joki\u0107",
+          "season": "2024-25",
+          "methods": {
+            "mean_group_rms": {
+              "top5": [
+                {
+                  "name": "Alperen Sengun",
+                  "season": "2023-24",
+                  "score": 79.44
+                },
+                {
+                  "name": "Bam Adebayo",
+                  "season": "2024-25",
+                  "score": 79.14
+                },
+                {
+                  "name": "Pascal Siakam",
+                  "season": "2025-26",
+                  "score": 77.41
+                },
+                {
+                  "name": "Karl-Anthony Towns",
+                  "season": "2024-25",
+                  "score": 77.39
+                },
+                {
+                  "name": "Scottie Barnes",
+                  "season": "2024-25",
+                  "score": 77.26
+                }
+              ],
+              "top5_overlap_earlier_reference": 5,
+              "mean_top5_overlap_weight_perturbations": 4.25
+            },
+            "joint_rms": {
+              "top5": [
+                {
+                  "name": "Alperen Sengun",
+                  "season": "2023-24",
+                  "score": 74.73
+                },
+                {
+                  "name": "Bam Adebayo",
+                  "season": "2024-25",
+                  "score": 74.21
+                },
+                {
+                  "name": "Scottie Barnes",
+                  "season": "2024-25",
+                  "score": 69.87
+                },
+                {
+                  "name": "Domantas Sabonis",
+                  "season": "2020-21",
+                  "score": 68.78
+                },
+                {
+                  "name": "Bam Adebayo",
+                  "season": "2023-24",
+                  "score": 68.65
+                }
+              ],
+              "top5_overlap_earlier_reference": 4,
+              "mean_top5_overlap_weight_perturbations": 4.5
+            },
+            "regularized_mahalanobis": {
+              "top5": [
+                {
+                  "name": "Alperen Sengun",
+                  "season": "2023-24",
+                  "score": 58.91
+                },
+                {
+                  "name": "Blake Griffin",
+                  "season": "2014-15",
+                  "score": 55.14
+                },
+                {
+                  "name": "Jusuf Nurki\u0107",
+                  "season": "2020-21",
+                  "score": 54.79
+                },
+                {
+                  "name": "Chris Webber",
+                  "season": "2003-04",
+                  "score": 54.2
+                },
+                {
+                  "name": "Bam Adebayo",
+                  "season": "2020-21",
+                  "score": 53.82
+                }
+              ],
+              "top5_overlap_earlier_reference": 5,
+              "mean_top5_overlap_weight_perturbations": 5.0
+            }
+          }
+        },
+        {
+          "name": "Rudy Gobert",
+          "season": "2024-25",
+          "methods": {
+            "mean_group_rms": {
+              "top5": [
+                {
+                  "name": "Jarrett Allen",
+                  "season": "2019-20",
+                  "score": 94.11
+                },
+                {
+                  "name": "Nick Richards",
+                  "season": "2023-24",
+                  "score": 92.73
+                },
+                {
+                  "name": "Tyson Chandler",
+                  "season": "2014-15",
+                  "score": 92.24
+                },
+                {
+                  "name": "Bam Adebayo",
+                  "season": "2017-18",
+                  "score": 91.76
+                },
+                {
+                  "name": "Alex Len",
+                  "season": "2017-18",
+                  "score": 91.54
+                }
+              ],
+              "top5_overlap_earlier_reference": 5,
+              "mean_top5_overlap_weight_perturbations": 4.375
+            },
+            "joint_rms": {
+              "top5": [
+                {
+                  "name": "Jarrett Allen",
+                  "season": "2019-20",
+                  "score": 92.49
+                },
+                {
+                  "name": "Nick Richards",
+                  "season": "2023-24",
+                  "score": 90.05
+                },
+                {
+                  "name": "Bam Adebayo",
+                  "season": "2017-18",
+                  "score": 89.01
+                },
+                {
+                  "name": "Alex Len",
+                  "season": "2017-18",
+                  "score": 88.5
+                },
+                {
+                  "name": "Tyson Chandler",
+                  "season": "2014-15",
+                  "score": 88.21
+                }
+              ],
+              "top5_overlap_earlier_reference": 5,
+              "mean_top5_overlap_weight_perturbations": 4.5
+            },
+            "regularized_mahalanobis": {
+              "top5": [
+                {
+                  "name": "Damian Jones",
+                  "season": "2019-20",
+                  "score": 85.68
+                },
+                {
+                  "name": "Bam Adebayo",
+                  "season": "2017-18",
+                  "score": 84.67
+                },
+                {
+                  "name": "Alex Len",
+                  "season": "2017-18",
+                  "score": 83.4
+                },
+                {
+                  "name": "Nick Richards",
+                  "season": "2023-24",
+                  "score": 81.08
+                },
+                {
+                  "name": "Josh Boone",
+                  "season": "2007-08",
+                  "score": 80.42
+                }
+              ],
+              "top5_overlap_earlier_reference": 4,
+              "mean_top5_overlap_weight_perturbations": 4.25
+            }
+          }
+        },
+        {
+          "name": "Draymond Green",
+          "season": "2024-25",
+          "methods": {
+            "mean_group_rms": {
+              "top5": [
+                {
+                  "name": "Juan Toscano-Anderson",
+                  "season": "2021-22",
+                  "score": 82.74
+                },
+                {
+                  "name": "Andre Iguodala",
+                  "season": "2020-21",
+                  "score": 74.9
+                },
+                {
+                  "name": "Alex Caruso",
+                  "season": "2020-21",
+                  "score": 74.45
+                },
+                {
+                  "name": "Nemanja Bjelica",
+                  "season": "2021-22",
+                  "score": 73.3
+                },
+                {
+                  "name": "Josh Hart",
+                  "season": "2025-26",
+                  "score": 72.52
+                }
+              ],
+              "top5_overlap_earlier_reference": 5,
+              "mean_top5_overlap_weight_perturbations": 4.625
+            },
+            "joint_rms": {
+              "top5": [
+                {
+                  "name": "Juan Toscano-Anderson",
+                  "season": "2021-22",
+                  "score": 77.53
+                },
+                {
+                  "name": "Nemanja Bjelica",
+                  "season": "2021-22",
+                  "score": 69.09
+                },
+                {
+                  "name": "Juan Toscano-Anderson",
+                  "season": "2020-21",
+                  "score": 65.68
+                },
+                {
+                  "name": "Andre Iguodala",
+                  "season": "2019-20",
+                  "score": 65.4
+                },
+                {
+                  "name": "Andre Iguodala",
+                  "season": "2020-21",
+                  "score": 65.3
+                }
+              ],
+              "top5_overlap_earlier_reference": 4,
+              "mean_top5_overlap_weight_perturbations": 4.25
+            },
+            "regularized_mahalanobis": {
+              "top5": [
+                {
+                  "name": "Andre Iguodala",
+                  "season": "2020-21",
+                  "score": 63.6
+                },
+                {
+                  "name": "David West",
+                  "season": "2016-17",
+                  "score": 63.36
+                },
+                {
+                  "name": "Bam Adebayo",
+                  "season": "2019-20",
+                  "score": 55.96
+                },
+                {
+                  "name": "Nemanja Bjelica",
+                  "season": "2021-22",
+                  "score": 54.9
+                },
+                {
+                  "name": "Doug Christie",
+                  "season": "2004-05",
+                  "score": 52.5
+                }
+              ],
+              "top5_overlap_earlier_reference": 4,
+              "mean_top5_overlap_weight_perturbations": 4.875
+            }
+          }
+        },
+        {
+          "name": "Kevin Durant",
+          "season": "2024-25",
+          "methods": {
+            "mean_group_rms": {
+              "top5": [
+                {
+                  "name": "Julius Randle",
+                  "season": "2020-21",
+                  "score": 84.52
+                },
+                {
+                  "name": "Marc Gasol",
+                  "season": "2016-17",
+                  "score": 84.05
+                },
+                {
+                  "name": "Brandon Ingram",
+                  "season": "2025-26",
+                  "score": 83.91
+                },
+                {
+                  "name": "Kyle Kuzma",
+                  "season": "2022-23",
+                  "score": 83.8
+                },
+                {
+                  "name": "Brandon Ingram",
+                  "season": "2020-21",
+                  "score": 83.13
+                }
+              ],
+              "top5_overlap_earlier_reference": 5,
+              "mean_top5_overlap_weight_perturbations": 4.5
+            },
+            "joint_rms": {
+              "top5": [
+                {
+                  "name": "Marc Gasol",
+                  "season": "2016-17",
+                  "score": 83.03
+                },
+                {
+                  "name": "Julius Randle",
+                  "season": "2020-21",
+                  "score": 78.8
+                },
+                {
+                  "name": "Kyle Kuzma",
+                  "season": "2021-22",
+                  "score": 78.56
+                },
+                {
+                  "name": "Pascal Siakam",
+                  "season": "2019-20",
+                  "score": 78.28
+                },
+                {
+                  "name": "Kyle Kuzma",
+                  "season": "2022-23",
+                  "score": 77.73
+                }
+              ],
+              "top5_overlap_earlier_reference": 5,
+              "mean_top5_overlap_weight_perturbations": 4.75
+            },
+            "regularized_mahalanobis": {
+              "top5": [
+                {
+                  "name": "Kyle Kuzma",
+                  "season": "2021-22",
+                  "score": 78.44
+                },
+                {
+                  "name": "Marc Gasol",
+                  "season": "2016-17",
+                  "score": 75.13
+                },
+                {
+                  "name": "Dirk Nowitzki",
+                  "season": "2010-11",
+                  "score": 73.83
+                },
+                {
+                  "name": "Brandon Ingram",
+                  "season": "2022-23",
+                  "score": 73.5
+                },
+                {
+                  "name": "Tyler Herro",
+                  "season": "2024-25",
+                  "score": 71.2
+                }
+              ],
+              "top5_overlap_earlier_reference": 5,
+              "mean_top5_overlap_weight_perturbations": 4.625
+            }
+          }
+        }
+      ]
+    },
+    "style_tracking": {
+      "reference_rows": 4237,
+      "covariance_complete_rows": 4226,
+      "covariance_shrinkage": 0.002127441477384339,
+      "covariance_condition": 3259.533906774833,
+      "distributions": {
+        "height_inches": {
+          "n": 4237,
+          "missing": 0,
+          "sd": 3.3185452341948256,
+          "skew": -0.10256707559868615,
+          "zero_fraction": 0.0,
+          "quantiles": {
+            "0": 68.0,
+            "0.01": 72.0,
+            "0.25": 76.0,
+            "0.5": 79.0,
+            "0.75": 81.0,
+            "0.99": 85.0,
+            "1": 88.0
+          },
+          "iqr_normal_scale_ratio": 1.1168897694850781
+        },
+        "weight": {
+          "n": 4235,
+          "missing": 2,
+          "sd": 24.54301152522168,
+          "skew": 0.300507061790309,
+          "zero_fraction": 0.0,
+          "quantiles": {
+            "0": 150.0,
+            "0.01": 172.0,
+            "0.25": 200.0,
+            "0.5": 215.0,
+            "0.75": 235.0,
+            "0.99": 280.0,
+            "1": 305.0
+          },
+          "iqr_normal_scale_ratio": 1.0571296242458696
+        },
+        "free_throw_rate": {
+          "n": 4237,
+          "missing": 0,
+          "sd": 0.11916642391663451,
+          "skew": 1.2044889853971898,
+          "zero_fraction": 0.0,
+          "quantiles": {
+            "0": 0.013333333333333334,
+            "0.01": 0.06272223968941806,
+            "0.25": 0.1686046511627907,
+            "0.5": 0.23617339312406577,
+            "0.75": 0.31664853101196955,
+            "0.99": 0.624832713754647,
+            "1": 1.218503937007874
+          },
+          "iqr_normal_scale_ratio": 0.9209257191778454
+        },
+        "pct_fga_restricted": {
+          "n": 4237,
+          "missing": 0,
+          "sd": 0.17474708026530353,
+          "skew": 1.1180951183830967,
+          "zero_fraction": 0.0,
+          "quantiles": {
+            "0": 0.008403361344537815,
+            "0.01": 0.06124579124579125,
+            "0.25": 0.20071047957371227,
+            "0.5": 0.2868217054263566,
+            "0.75": 0.40170940170940167,
+            "0.99": 0.8535756774619964,
+            "1": 0.9854368932038835
+          },
+          "iqr_normal_scale_ratio": 0.852652069917718
+        },
+        "pct_fga_paint": {
+          "n": 4237,
+          "missing": 0,
+          "sd": 0.08278602366170154,
+          "skew": 0.8115226261500804,
+          "zero_fraction": 0.0,
+          "quantiles": {
+            "0": 0.004201680672268907,
+            "0.01": 0.026796396396396395,
+            "0.25": 0.10536044362292052,
+            "0.5": 0.15542521994134897,
+            "0.75": 0.21714285714285714,
+            "0.99": 0.3985418267301189,
+            "1": 0.6885245901639344
+          },
+          "iqr_normal_scale_ratio": 1.0009318511967944
+        },
+        "pct_fga_midrange": {
+          "n": 4237,
+          "missing": 0,
+          "sd": 0.1115761180409442,
+          "skew": 1.1195343113634615,
+          "zero_fraction": 0.003304224687278735,
+          "quantiles": {
+            "0": 0.0,
+            "0.01": 0.005948202257850299,
+            "0.25": 0.061818181818181814,
+            "0.5": 0.12449255751014886,
+            "0.75": 0.21014492753623185,
+            "0.99": 0.482469145605313,
+            "1": 0.7455268389662028
+          },
+          "iqr_normal_scale_ratio": 0.9854538065469489
+        },
+        "pct_fga_corner3": {
+          "n": 4237,
+          "missing": 0,
+          "sd": 0.08082778274234745,
+          "skew": 1.1985052720572764,
+          "zero_fraction": 0.0778852962001416,
+          "quantiles": {
+            "0": 0.0,
+            "0.01": 0.0,
+            "0.25": 0.03629764065335753,
+            "0.5": 0.08172043010752689,
+            "0.75": 0.14406779661016947,
+            "0.99": 0.3364994694021932,
+            "1": 0.7
+          },
+          "iqr_normal_scale_ratio": 0.9883844319621045
+        },
+        "pct_fga_above_break3": {
+          "n": 4237,
+          "missing": 0,
+          "sd": 0.1580652587635822,
+          "skew": -0.009143552876686912,
+          "zero_fraction": 0.04909133821099835,
+          "quantiles": {
+            "0": 0.0,
+            "0.01": 0.0,
+            "0.25": 0.14814814814814814,
+            "0.5": 0.2712215320910973,
+            "0.75": 0.37301587301587297,
+            "0.99": 0.6052157943067036,
+            "1": 0.7531380753138075
+          },
+          "iqr_normal_scale_ratio": 1.0545781031565133
+        },
+        "unassisted_fg_share": {
+          "n": 4237,
+          "missing": 0,
+          "sd": 0.17330726233239466,
+          "skew": 0.5013847369977619,
+          "zero_fraction": 0.0,
+          "quantiles": {
+            "0": 0.01,
+            "0.01": 0.07036,
+            "0.25": 0.233,
+            "0.5": 0.339,
+            "0.75": 0.486,
+            "0.99": 0.79,
+            "1": 0.878
+          },
+          "iqr_normal_scale_ratio": 1.0821608286418263
+        },
+        "pullup_attempt_share": {
+          "n": 4237,
+          "missing": 0,
+          "sd": 0.15344042502003205,
+          "skew": 0.4392644738868449,
+          "zero_fraction": 0.008260561718196837,
+          "quantiles": {
+            "0": 0.0,
+            "0.01": 0.0025474424053104254,
+            "0.25": 0.08354755784061697,
+            "0.5": 0.19835680751173707,
+            "0.75": 0.3373083475298126,
+            "0.99": 0.570924788948581,
+            "1": 0.7542662116040956
+          },
+          "iqr_normal_scale_ratio": 1.2259500471338196
+        },
+        "catch_shoot_attempt_share": {
+          "n": 4237,
+          "missing": 0,
+          "sd": 0.17026302545928632,
+          "skew": 0.3190645418261079,
+          "zero_fraction": 0.0018881283927307056,
+          "quantiles": {
+            "0": 0.0,
+            "0.01": 0.009228055868994224,
+            "0.25": 0.187779433681073,
+            "0.5": 0.3068432671081677,
+            "0.75": 0.4368231046931408,
+            "0.99": 0.7274991156703221,
+            "1": 0.9243697478991596
+          },
+          "iqr_normal_scale_ratio": 1.0842844100631626
+        },
+        "assist_involvement": {
+          "n": 4237,
+          "missing": 0,
+          "sd": 0.07337295039906908,
+          "skew": 0.8627928799166104,
+          "zero_fraction": 0.0,
+          "quantiles": {
+            "0": 0.011546455238241861,
+            "0.01": 0.0578696757940164,
+            "0.25": 0.12008005336891261,
+            "0.5": 0.1599058274475488,
+            "0.75": 0.21699406121516673,
+            "0.99": 0.3857522266882365,
+            "1": 0.47908510199876364
+          },
+          "iqr_normal_scale_ratio": 0.9791260866425995
+        },
+        "turnover_rate": {
+          "n": 4237,
+          "missing": 0,
+          "sd": 0.035322086921486584,
+          "skew": 0.8437993497731501,
+          "zero_fraction": 0.0,
+          "quantiles": {
+            "0": 0.03462603878116343,
+            "0.01": 0.05848191661807214,
+            "0.25": 0.09856686901558295,
+            "0.5": 0.11937208172233843,
+            "0.75": 0.1440967823663542,
+            "0.99": 0.22512931068542583,
+            "1": 0.333747283452344
+          },
+          "iqr_normal_scale_ratio": 0.9555172222732208
+        },
+        "potential_assists_per_pass": {
+          "n": 4237,
+          "missing": 0,
+          "sd": 0.056063600437521004,
+          "skew": 0.5747474845659821,
+          "zero_fraction": 0.0,
+          "quantiles": {
+            "0": 0.02588555858310627,
+            "0.01": 0.052115469463352486,
+            "0.25": 0.10674157303370786,
+            "0.5": 0.1460037759597231,
+            "0.75": 0.1871657754010695,
+            "0.99": 0.2985435504257126,
+            "1": 0.5714285714285714
+          },
+          "iqr_normal_scale_ratio": 1.0633930747925455
+        },
+        "offensive_rebound_fraction": {
+          "n": 4237,
+          "missing": 0,
+          "sd": 0.08770245516236219,
+          "skew": 0.5649288339451201,
+          "zero_fraction": 0.0,
+          "quantiles": {
+            "0": 0.028,
+            "0.01": 0.06944089884963921,
+            "0.25": 0.152753108348135,
+            "0.5": 0.20754716981132076,
+            "0.75": 0.2756756756756757,
+            "0.99": 0.4428989166213928,
+            "1": 0.5605839416058395
+          },
+          "iqr_normal_scale_ratio": 1.038981755186655
+        },
+        "STL_PER100": {
+          "n": 4237,
+          "missing": 0,
+          "sd": 0.5701740857835667,
+          "skew": 0.9298407934157458,
+          "zero_fraction": 0.0,
+          "quantiles": {
+            "0": 0.1,
+            "0.01": 0.5,
+            "0.25": 1.1,
+            "0.5": 1.5,
+            "0.75": 1.9,
+            "0.99": 3.2,
+            "1": 5.8
+          },
+          "iqr_normal_scale_ratio": 1.0400891416317648
+        },
+        "BLK_PER100": {
+          "n": 4237,
+          "missing": 0,
+          "sd": 0.8298130322358603,
+          "skew": 1.8644153832197459,
+          "zero_fraction": 0.0080245456691055,
+          "quantiles": {
+            "0": 0.0,
+            "0.01": 0.1,
+            "0.25": 0.4,
+            "0.5": 0.7,
+            "0.75": 1.2,
+            "0.99": 3.9,
+            "1": 6.5
+          },
+          "iqr_normal_scale_ratio": 0.7146572208747222
+        },
+        "e_usg_pct": {
+          "n": 4237,
+          "missing": 0,
+          "sd": 0.05358852198243745,
+          "skew": 0.6036983270936621,
+          "zero_fraction": 0.0,
+          "quantiles": {
+            "0": 0.054,
+            "0.01": 0.098,
+            "0.25": 0.156,
+            "0.5": 0.187,
+            "0.75": 0.229,
+            "0.99": 0.33664000000000033,
+            "1": 0.408
+          },
+          "iqr_normal_scale_ratio": 1.0098087544523342
+        },
+        "drive_pass_fraction": {
+          "n": 4228,
+          "missing": 9,
+          "sd": 0.13434137557022038,
+          "skew": 0.13975449369003046,
+          "zero_fraction": 0.008987701040681173,
+          "quantiles": {
+            "0": 0.0,
+            "0.01": 0.045595611285266464,
+            "0.25": 0.2610972795725042,
+            "0.5": 0.351513128047183,
+            "0.75": 0.43878031438564125,
+            "0.99": 0.6666666666666666,
+            "1": 1.0
+          },
+          "iqr_normal_scale_ratio": 0.9804472275014844
+        },
+        "drive_shot_fraction": {
+          "n": 4228,
+          "missing": 9,
+          "sd": 0.11555995681213178,
+          "skew": 0.34970101407112386,
+          "zero_fraction": 0.001892147587511826,
+          "quantiles": {
+            "0": 0.0,
+            "0.01": 0.1814928698752228,
+            "0.25": 0.37834336927601175,
+            "0.5": 0.44496134094974327,
+            "0.75": 0.5185185185185185,
+            "0.99": 0.7330498687664037,
+            "1": 1.0
+          },
+          "iqr_normal_scale_ratio": 0.8991904932062244
+        },
+        "passes_per_touch": {
+          "n": 4237,
+          "missing": 0,
+          "sd": 0.07612457858094532,
+          "skew": 0.04572892888888328,
+          "zero_fraction": 0.0,
+          "quantiles": {
+            "0": 0.4658002735978112,
+            "0.01": 0.5376222710716839,
+            "0.25": 0.6655172413793103,
+            "0.5": 0.7185025197984162,
+            "0.75": 0.767111111111111,
+            "0.99": 0.9010488984276341,
+            "1": 1.1644628099173553
+          },
+          "iqr_normal_scale_ratio": 0.9893060202389296
+        },
+        "seconds_per_touch": {
+          "n": 4237,
+          "missing": 0,
+          "sd": 1.4802498495007717,
+          "skew": 0.9739787597836114,
+          "zero_fraction": 0.0,
+          "quantiles": {
+            "0": 1.0443686006825936,
+            "0.01": 1.2862970715699291,
+            "0.25": 1.8098530682800344,
+            "0.5": 2.543357933579336,
+            "0.75": 4.170258620689655,
+            "0.99": 7.339767994486692,
+            "1": 11.49589459614283
+          },
+          "iqr_normal_scale_ratio": 1.1820603562901668
+        },
+        "AVG_DRIB_PER_TOUCH": {
+          "n": 4237,
+          "missing": 0,
+          "sd": 1.5256002971013611,
+          "skew": 0.788320646944307,
+          "zero_fraction": 0.0,
+          "quantiles": {
+            "0": 0.12,
+            "0.01": 0.25,
+            "0.25": 0.68,
+            "0.5": 1.46,
+            "0.75": 3.13,
+            "0.99": 5.666400000000003,
+            "1": 6.71
+          },
+          "iqr_normal_scale_ratio": 1.1904560598585863
+        }
+      },
+      "correlated_pairs": [
+        [
+          "unassisted_fg_share",
+          "AVG_DRIB_PER_TOUCH",
+          0.8140401458735811
+        ],
+        [
+          "seconds_per_touch",
+          "AVG_DRIB_PER_TOUCH",
+          0.8605267528146016
+        ]
+      ],
+      "color_pair_fractions": {
+        "height_inches": {
+          "close": 0.2439,
+          "noticeable": 0.2827,
+          "large": 0.4734
+        },
+        "weight": {
+          "close": 0.2774,
+          "noticeable": 0.2232,
+          "large": 0.4994
+        },
+        "free_throw_rate": {
+          "close": 0.3052,
+          "noticeable": 0.2539,
+          "large": 0.4409
+        },
+        "pct_fga_restricted": {
+          "close": 0.3284,
+          "noticeable": 0.2542,
+          "large": 0.4174
+        },
+        "pct_fga_paint": {
+          "close": 0.2885,
+          "noticeable": 0.2462,
+          "large": 0.4653
+        },
+        "pct_fga_midrange": {
+          "close": 0.3189,
+          "noticeable": 0.2391,
+          "large": 0.442
+        },
+        "pct_fga_corner3": {
+          "close": 0.3149,
+          "noticeable": 0.2435,
+          "large": 0.4416
+        },
+        "pct_fga_above_break3": {
+          "close": 0.2711,
+          "noticeable": 0.2264,
+          "large": 0.5025
+        },
+        "unassisted_fg_share": {
+          "close": 0.2752,
+          "noticeable": 0.2466,
+          "large": 0.4782
+        },
+        "pullup_attempt_share": {
+          "close": 0.2834,
+          "noticeable": 0.2197,
+          "large": 0.4969
+        },
+        "catch_shoot_attempt_share": {
+          "close": 0.2764,
+          "noticeable": 0.24,
+          "large": 0.4836
+        },
+        "assist_involvement": {
+          "close": 0.3067,
+          "noticeable": 0.2511,
+          "large": 0.4422
+        },
+        "turnover_rate": {
+          "close": 0.2994,
+          "noticeable": 0.2493,
+          "large": 0.4513
+        },
+        "potential_assists_per_pass": {
+          "close": 0.284,
+          "noticeable": 0.2413,
+          "large": 0.4747
+        },
+        "offensive_rebound_fraction": {
+          "close": 0.28,
+          "noticeable": 0.2416,
+          "large": 0.4784
+        },
+        "STL_PER100": {
+          "close": 0.2602,
+          "noticeable": 0.2739,
+          "large": 0.4659
+        },
+        "BLK_PER100": {
+          "close": 0.4391,
+          "noticeable": 0.2149,
+          "large": 0.346
+        },
+        "e_usg_pct": {
+          "close": 0.28,
+          "noticeable": 0.2448,
+          "large": 0.4752
+        },
+        "drive_pass_fraction": {
+          "close": 0.2808,
+          "noticeable": 0.2451,
+          "large": 0.4741
+        },
+        "drive_shot_fraction": {
+          "close": 0.3046,
+          "noticeable": 0.2497,
+          "large": 0.4457
+        },
+        "passes_per_touch": {
+          "close": 0.2847,
+          "noticeable": 0.251,
+          "large": 0.4643
+        },
+        "seconds_per_touch": {
+          "close": 0.3305,
+          "noticeable": 0.2065,
+          "large": 0.463
+        },
+        "AVG_DRIB_PER_TOUCH": {
+          "close": 0.3367,
+          "noticeable": 0.2053,
+          "large": 0.458
+        }
+      },
+      "cases": [
+        {
+          "name": "Lauri Markkanen",
+          "season": "2024-25",
+          "methods": {
+            "mean_group_rms": {
+              "top5": [
+                {
+                  "name": "Pascal Siakam",
+                  "season": "2024-25",
+                  "score": 85.87
+                },
+                {
+                  "name": "GG Jackson",
+                  "season": "2024-25",
+                  "score": 84.78
+                },
+                {
+                  "name": "De'Andre Hunter",
+                  "season": "2024-25",
+                  "score": 84.19
+                },
+                {
+                  "name": "Trey Murphy III",
+                  "season": "2024-25",
+                  "score": 83.69
+                },
+                {
+                  "name": "Michael Porter Jr.",
+                  "season": "2024-25",
+                  "score": 83.64
+                }
+              ],
+              "top5_overlap_earlier_reference": 5,
+              "mean_top5_overlap_weight_perturbations": 5.0,
+              "gg_pair": {
+                "rank": 7,
+                "score": 82.08
+              }
+            },
+            "joint_rms": {
+              "top5": [
+                {
+                  "name": "GG Jackson",
+                  "season": "2024-25",
+                  "score": 81.59
+                },
+                {
+                  "name": "Michael Porter Jr.",
+                  "season": "2024-25",
+                  "score": 80.48
+                },
+                {
+                  "name": "De'Andre Hunter",
+                  "season": "2024-25",
+                  "score": 80.18
+                },
+                {
+                  "name": "Pascal Siakam",
+                  "season": "2024-25",
+                  "score": 77.89
+                },
+                {
+                  "name": "Gradey Dick",
+                  "season": "2024-25",
+                  "score": 76.07
+                }
+              ],
+              "top5_overlap_earlier_reference": 5,
+              "mean_top5_overlap_weight_perturbations": 4.7,
+              "gg_pair": {
+                "rank": 15,
+                "score": 72.16
+              }
+            },
+            "regularized_mahalanobis": {
+              "top5": [
+                {
+                  "name": "Cameron Johnson",
+                  "season": "2024-25",
+                  "score": 82.28
+                },
+                {
+                  "name": "GG Jackson",
+                  "season": "2024-25",
+                  "score": 76.55
+                },
+                {
+                  "name": "Stephon Castle",
+                  "season": "2024-25",
+                  "score": 76.18
+                },
+                {
+                  "name": "Noah Clowney",
+                  "season": "2024-25",
+                  "score": 74.71
+                },
+                {
+                  "name": "Trey Murphy III",
+                  "season": "2024-25",
+                  "score": 72.89
+                }
+              ],
+              "top5_overlap_earlier_reference": 2,
+              "mean_top5_overlap_weight_perturbations": 4.6,
+              "gg_pair": {
+                "rank": 90,
+                "score": 53.1
+              }
+            }
+          }
+        },
+        {
+          "name": "Lauri Markkanen",
+          "season": "2022-23",
+          "methods": {
+            "mean_group_rms": {
+              "top5": [
+                {
+                  "name": "Karl-Anthony Towns",
+                  "season": "2023-24",
+                  "score": 88.92
+                },
+                {
+                  "name": "Karl-Anthony Towns",
+                  "season": "2022-23",
+                  "score": 88.25
+                },
+                {
+                  "name": "Kevin Love",
+                  "season": "2016-17",
+                  "score": 87.69
+                },
+                {
+                  "name": "Bojan Bogdanovic",
+                  "season": "2021-22",
+                  "score": 87.21
+                },
+                {
+                  "name": "GG Jackson",
+                  "season": "2023-24",
+                  "score": 86.89
+                }
+              ],
+              "top5_overlap_earlier_reference": 5,
+              "mean_top5_overlap_weight_perturbations": 5.0
+            },
+            "joint_rms": {
+              "top5": [
+                {
+                  "name": "Karl-Anthony Towns",
+                  "season": "2023-24",
+                  "score": 85.51
+                },
+                {
+                  "name": "GG Jackson",
+                  "season": "2023-24",
+                  "score": 84.25
+                },
+                {
+                  "name": "Bojan Bogdanovic",
+                  "season": "2021-22",
+                  "score": 82.95
+                },
+                {
+                  "name": "Kevin Love",
+                  "season": "2016-17",
+                  "score": 82.65
+                },
+                {
+                  "name": "Jerami Grant",
+                  "season": "2022-23",
+                  "score": 82.04
+                }
+              ],
+              "top5_overlap_earlier_reference": 5,
+              "mean_top5_overlap_weight_perturbations": 4.9
+            },
+            "regularized_mahalanobis": {
+              "top5": [
+                {
+                  "name": "GG Jackson",
+                  "season": "2023-24",
+                  "score": 81.63
+                },
+                {
+                  "name": "Karl-Anthony Towns",
+                  "season": "2025-26",
+                  "score": 80.13
+                },
+                {
+                  "name": "Bojan Bogdanovic",
+                  "season": "2021-22",
+                  "score": 79.88
+                },
+                {
+                  "name": "Jerami Grant",
+                  "season": "2022-23",
+                  "score": 78.68
+                },
+                {
+                  "name": "Frank Kaminsky",
+                  "season": "2018-19",
+                  "score": 77.55
+                }
+              ],
+              "top5_overlap_earlier_reference": 3,
+              "mean_top5_overlap_weight_perturbations": 4.7
+            }
+          }
+        },
+        {
+          "name": "Stephen Curry",
+          "season": "2024-25",
+          "methods": {
+            "mean_group_rms": {
+              "top5": [
+                {
+                  "name": "Jordan Poole",
+                  "season": "2024-25",
+                  "score": 92.18
+                },
+                {
+                  "name": "Tyler Herro",
+                  "season": "2024-25",
+                  "score": 88.84
+                },
+                {
+                  "name": "Darius Garland",
+                  "season": "2024-25",
+                  "score": 85.33
+                },
+                {
+                  "name": "Malik Monk",
+                  "season": "2024-25",
+                  "score": 84.91
+                },
+                {
+                  "name": "Immanuel Quickley",
+                  "season": "2024-25",
+                  "score": 84.87
+                }
+              ],
+              "top5_overlap_earlier_reference": 5,
+              "mean_top5_overlap_weight_perturbations": 4.5
+            },
+            "joint_rms": {
+              "top5": [
+                {
+                  "name": "Jordan Poole",
+                  "season": "2024-25",
+                  "score": 91.11
+                },
+                {
+                  "name": "Tyler Herro",
+                  "season": "2024-25",
+                  "score": 85.99
+                },
+                {
+                  "name": "Immanuel Quickley",
+                  "season": "2024-25",
+                  "score": 82.03
+                },
+                {
+                  "name": "Darius Garland",
+                  "season": "2024-25",
+                  "score": 81.32
+                },
+                {
+                  "name": "Coby White",
+                  "season": "2024-25",
+                  "score": 80.69
+                }
+              ],
+              "top5_overlap_earlier_reference": 5,
+              "mean_top5_overlap_weight_perturbations": 4.9
+            },
+            "regularized_mahalanobis": {
+              "top5": [
+                {
+                  "name": "Jordan Poole",
+                  "season": "2024-25",
+                  "score": 79.2
+                },
+                {
+                  "name": "Trey Murphy III",
+                  "season": "2024-25",
+                  "score": 78.73
+                },
+                {
+                  "name": "Darius Garland",
+                  "season": "2024-25",
+                  "score": 77.39
+                },
+                {
+                  "name": "Tyler Herro",
+                  "season": "2024-25",
+                  "score": 76.01
+                },
+                {
+                  "name": "Immanuel Quickley",
+                  "season": "2024-25",
+                  "score": 74.3
+                }
+              ],
+              "top5_overlap_earlier_reference": 3,
+              "mean_top5_overlap_weight_perturbations": 4.9
+            }
+          }
+        },
+        {
+          "name": "Shai Gilgeous-Alexander",
+          "season": "2024-25",
+          "methods": {
+            "mean_group_rms": {
+              "top5": [
+                {
+                  "name": "Donovan Mitchell",
+                  "season": "2024-25",
+                  "score": 78.15
+                },
+                {
+                  "name": "Luka Don\u010di\u0107",
+                  "season": "2024-25",
+                  "score": 76.86
+                },
+                {
+                  "name": "Jalen Brunson",
+                  "season": "2024-25",
+                  "score": 71.55
+                },
+                {
+                  "name": "Ja Morant",
+                  "season": "2024-25",
+                  "score": 71.02
+                },
+                {
+                  "name": "Kawhi Leonard",
+                  "season": "2019-20",
+                  "score": 69.96
+                }
+              ],
+              "top5_overlap_earlier_reference": 4,
+              "mean_top5_overlap_weight_perturbations": 4.7
+            },
+            "joint_rms": {
+              "top5": [
+                {
+                  "name": "Donovan Mitchell",
+                  "season": "2024-25",
+                  "score": 71.25
+                },
+                {
+                  "name": "Luka Don\u010di\u0107",
+                  "season": "2024-25",
+                  "score": 70.4
+                },
+                {
+                  "name": "Ja Morant",
+                  "season": "2024-25",
+                  "score": 64.11
+                },
+                {
+                  "name": "Jalen Brunson",
+                  "season": "2024-25",
+                  "score": 60.49
+                },
+                {
+                  "name": "Anthony Edwards",
+                  "season": "2024-25",
+                  "score": 58.95
+                }
+              ],
+              "top5_overlap_earlier_reference": 5,
+              "mean_top5_overlap_weight_perturbations": 4.9
+            },
+            "regularized_mahalanobis": {
+              "top5": [
+                {
+                  "name": "Donovan Mitchell",
+                  "season": "2024-25",
+                  "score": 66.78
+                },
+                {
+                  "name": "Jaylen Brown",
+                  "season": "2024-25",
+                  "score": 60.23
+                },
+                {
+                  "name": "Paolo Banchero",
+                  "season": "2024-25",
+                  "score": 57.88
+                },
+                {
+                  "name": "Jalen Brunson",
+                  "season": "2024-25",
+                  "score": 57.52
+                },
+                {
+                  "name": "Luka Don\u010di\u0107",
+                  "season": "2024-25",
+                  "score": 57.41
+                }
+              ],
+              "top5_overlap_earlier_reference": 3,
+              "mean_top5_overlap_weight_perturbations": 5.0
+            }
+          }
+        },
+        {
+          "name": "LeBron James",
+          "season": "2024-25",
+          "methods": {
+            "mean_group_rms": {
+              "top5": [
+                {
+                  "name": "Cade Cunningham",
+                  "season": "2023-24",
+                  "score": 87.72
+                },
+                {
+                  "name": "Cade Cunningham",
+                  "season": "2025-26",
+                  "score": 86.79
+                },
+                {
+                  "name": "Cade Cunningham",
+                  "season": "2024-25",
+                  "score": 86.26
+                },
+                {
+                  "name": "Scottie Barnes",
+                  "season": "2024-25",
+                  "score": 84.4
+                },
+                {
+                  "name": "Paul George",
+                  "season": "2020-21",
+                  "score": 84.13
+                }
+              ],
+              "top5_overlap_earlier_reference": 4,
+              "mean_top5_overlap_weight_perturbations": 4.9
+            },
+            "joint_rms": {
+              "top5": [
+                {
+                  "name": "Cade Cunningham",
+                  "season": "2025-26",
+                  "score": 82.79
+                },
+                {
+                  "name": "Cade Cunningham",
+                  "season": "2023-24",
+                  "score": 80.72
+                },
+                {
+                  "name": "Scottie Barnes",
+                  "season": "2024-25",
+                  "score": 79.91
+                },
+                {
+                  "name": "RJ Barrett",
+                  "season": "2024-25",
+                  "score": 78.87
+                },
+                {
+                  "name": "Paul George",
+                  "season": "2020-21",
+                  "score": 77.22
+                }
+              ],
+              "top5_overlap_earlier_reference": 4,
+              "mean_top5_overlap_weight_perturbations": 4.5
+            },
+            "regularized_mahalanobis": {
+              "top5": [
+                {
+                  "name": "Miles Bridges",
+                  "season": "2024-25",
+                  "score": 80.79
+                },
+                {
+                  "name": "Cade Cunningham",
+                  "season": "2024-25",
+                  "score": 76.89
+                },
+                {
+                  "name": "Tyler Herro",
+                  "season": "2024-25",
+                  "score": 72.21
+                },
+                {
+                  "name": "Cade Cunningham",
+                  "season": "2025-26",
+                  "score": 72.11
+                },
+                {
+                  "name": "Desmond Bane",
+                  "season": "2024-25",
+                  "score": 71.34
+                }
+              ],
+              "top5_overlap_earlier_reference": 3,
+              "mean_top5_overlap_weight_perturbations": 5.0
+            }
+          }
+        },
+        {
+          "name": "Nikola Joki\u0107",
+          "season": "2024-25",
+          "methods": {
+            "mean_group_rms": {
+              "top5": [
+                {
+                  "name": "Scottie Barnes",
+                  "season": "2024-25",
+                  "score": 78.72
+                },
+                {
+                  "name": "Jalen Johnson",
+                  "season": "2025-26",
+                  "score": 73.0
+                },
+                {
+                  "name": "Pascal Siakam",
+                  "season": "2025-26",
+                  "score": 72.99
+                },
+                {
+                  "name": "Jusuf Nurki\u0107",
+                  "season": "2024-25",
+                  "score": 72.14
+                },
+                {
+                  "name": "Bam Adebayo",
+                  "season": "2024-25",
+                  "score": 71.04
+                }
+              ],
+              "top5_overlap_earlier_reference": 5,
+              "mean_top5_overlap_weight_perturbations": 4.9
+            },
+            "joint_rms": {
+              "top5": [
+                {
+                  "name": "Scottie Barnes",
+                  "season": "2024-25",
+                  "score": 72.21
+                },
+                {
+                  "name": "Jalen Johnson",
+                  "season": "2025-26",
+                  "score": 65.44
+                },
+                {
+                  "name": "Bam Adebayo",
+                  "season": "2024-25",
+                  "score": 65.26
+                },
+                {
+                  "name": "Scottie Barnes",
+                  "season": "2025-26",
+                  "score": 63.64
+                },
+                {
+                  "name": "Pascal Siakam",
+                  "season": "2025-26",
+                  "score": 63.56
+                }
+              ],
+              "top5_overlap_earlier_reference": 5,
+              "mean_top5_overlap_weight_perturbations": 4.6
+            },
+            "regularized_mahalanobis": {
+              "top5": [
+                {
+                  "name": "Domantas Sabonis",
+                  "season": "2020-21",
+                  "score": 50.44
+                },
+                {
+                  "name": "LeBron James",
+                  "season": "2025-26",
+                  "score": 48.67
+                },
+                {
+                  "name": "Pascal Siakam",
+                  "season": "2025-26",
+                  "score": 48.45
+                },
+                {
+                  "name": "LeBron James",
+                  "season": "2024-25",
+                  "score": 47.12
+                },
+                {
+                  "name": "Domantas Sabonis",
+                  "season": "2023-24",
+                  "score": 46.66
+                }
+              ],
+              "top5_overlap_earlier_reference": 1,
+              "mean_top5_overlap_weight_perturbations": 4.6
+            }
+          }
+        },
+        {
+          "name": "Rudy Gobert",
+          "season": "2024-25",
+          "methods": {
+            "mean_group_rms": {
+              "top5": [
+                {
+                  "name": "Jaxson Hayes",
+                  "season": "2024-25",
+                  "score": 90.79
+                },
+                {
+                  "name": "Jaxson Hayes",
+                  "season": "2025-26",
+                  "score": 90.23
+                },
+                {
+                  "name": "Omer Asik",
+                  "season": "2014-15",
+                  "score": 88.84
+                },
+                {
+                  "name": "Jalen Duren",
+                  "season": "2024-25",
+                  "score": 84.49
+                },
+                {
+                  "name": "Yves Missi",
+                  "season": "2024-25",
+                  "score": 83.25
+                }
+              ],
+              "top5_overlap_earlier_reference": 5,
+              "mean_top5_overlap_weight_perturbations": 4.9
+            },
+            "joint_rms": {
+              "top5": [
+                {
+                  "name": "Jaxson Hayes",
+                  "season": "2024-25",
+                  "score": 86.04
+                },
+                {
+                  "name": "Jaxson Hayes",
+                  "season": "2025-26",
+                  "score": 84.91
+                },
+                {
+                  "name": "Omer Asik",
+                  "season": "2014-15",
+                  "score": 82.61
+                },
+                {
+                  "name": "Ed Davis",
+                  "season": "2016-17",
+                  "score": 79.06
+                },
+                {
+                  "name": "Jalen Duren",
+                  "season": "2024-25",
+                  "score": 78.53
+                }
+              ],
+              "top5_overlap_earlier_reference": 5,
+              "mean_top5_overlap_weight_perturbations": 4.9
+            },
+            "regularized_mahalanobis": {
+              "top5": [
+                {
+                  "name": "Jalen Duren",
+                  "season": "2024-25",
+                  "score": 69.6
+                },
+                {
+                  "name": "Jaxson Hayes",
+                  "season": "2024-25",
+                  "score": 68.88
+                },
+                {
+                  "name": "Daniel Gafford",
+                  "season": "2025-26",
+                  "score": 68.71
+                },
+                {
+                  "name": "Omer Asik",
+                  "season": "2014-15",
+                  "score": 68.04
+                },
+                {
+                  "name": "Yves Missi",
+                  "season": "2024-25",
+                  "score": 66.71
+                }
+              ],
+              "top5_overlap_earlier_reference": 3,
+              "mean_top5_overlap_weight_perturbations": 4.8
+            }
+          }
+        },
+        {
+          "name": "Draymond Green",
+          "season": "2024-25",
+          "methods": {
+            "mean_group_rms": {
+              "top5": [
+                {
+                  "name": "Juan Toscano-Anderson",
+                  "season": "2021-22",
+                  "score": 78.66
+                },
+                {
+                  "name": "Andre Iguodala",
+                  "season": "2021-22",
+                  "score": 73.71
+                },
+                {
+                  "name": "Alex Caruso",
+                  "season": "2020-21",
+                  "score": 72.7
+                },
+                {
+                  "name": "David Roddy",
+                  "season": "2024-25",
+                  "score": 71.98
+                },
+                {
+                  "name": "Tomas Satoransky",
+                  "season": "2020-21",
+                  "score": 71.36
+                }
+              ],
+              "top5_overlap_earlier_reference": 5,
+              "mean_top5_overlap_weight_perturbations": 4.5
+            },
+            "joint_rms": {
+              "top5": [
+                {
+                  "name": "Juan Toscano-Anderson",
+                  "season": "2021-22",
+                  "score": 73.81
+                },
+                {
+                  "name": "Andre Iguodala",
+                  "season": "2021-22",
+                  "score": 69.6
+                },
+                {
+                  "name": "Alex Caruso",
+                  "season": "2022-23",
+                  "score": 67.14
+                },
+                {
+                  "name": "Alex Caruso",
+                  "season": "2020-21",
+                  "score": 65.71
+                },
+                {
+                  "name": "Andre Iguodala",
+                  "season": "2019-20",
+                  "score": 65.32
+                }
+              ],
+              "top5_overlap_earlier_reference": 4,
+              "mean_top5_overlap_weight_perturbations": 4.9
+            },
+            "regularized_mahalanobis": {
+              "top5": [
+                {
+                  "name": "Grayson Allen",
+                  "season": "2024-25",
+                  "score": 57.38
+                },
+                {
+                  "name": "Manu Ginobili",
+                  "season": "2014-15",
+                  "score": 56.99
+                },
+                {
+                  "name": "Jusuf Nurki\u0107",
+                  "season": "2024-25",
+                  "score": 55.15
+                },
+                {
+                  "name": "Vince Williams Jr.",
+                  "season": "2023-24",
+                  "score": 54.03
+                },
+                {
+                  "name": "Jamal Shead",
+                  "season": "2025-26",
+                  "score": 53.58
+                }
+              ],
+              "top5_overlap_earlier_reference": 1,
+              "mean_top5_overlap_weight_perturbations": 4.0
+            }
+          }
+        },
+        {
+          "name": "Kevin Durant",
+          "season": "2024-25",
+          "methods": {
+            "mean_group_rms": {
+              "top5": [
+                {
+                  "name": "Brandon Ingram",
+                  "season": "2025-26",
+                  "score": 76.99
+                },
+                {
+                  "name": "Brandon Ingram",
+                  "season": "2019-20",
+                  "score": 75.76
+                },
+                {
+                  "name": "Julius Randle",
+                  "season": "2020-21",
+                  "score": 75.67
+                },
+                {
+                  "name": "Brandon Ingram",
+                  "season": "2020-21",
+                  "score": 75.26
+                },
+                {
+                  "name": "Brandon Ingram",
+                  "season": "2023-24",
+                  "score": 74.77
+                }
+              ],
+              "top5_overlap_earlier_reference": 5,
+              "mean_top5_overlap_weight_perturbations": 4.5
+            },
+            "joint_rms": {
+              "top5": [
+                {
+                  "name": "Brandon Ingram",
+                  "season": "2025-26",
+                  "score": 70.8
+                },
+                {
+                  "name": "Miles Bridges",
+                  "season": "2024-25",
+                  "score": 70.46
+                },
+                {
+                  "name": "Paolo Banchero",
+                  "season": "2023-24",
+                  "score": 70.23
+                },
+                {
+                  "name": "Brandon Ingram",
+                  "season": "2023-24",
+                  "score": 69.0
+                },
+                {
+                  "name": "Pascal Siakam",
+                  "season": "2019-20",
+                  "score": 68.76
+                }
+              ],
+              "top5_overlap_earlier_reference": 4,
+              "mean_top5_overlap_weight_perturbations": 4.8
+            },
+            "regularized_mahalanobis": {
+              "top5": [
+                {
+                  "name": "Tyler Herro",
+                  "season": "2024-25",
+                  "score": 53.24
+                },
+                {
+                  "name": "Dejounte Murray",
+                  "season": "2024-25",
+                  "score": 51.94
+                },
+                {
+                  "name": "Luka Don\u010di\u0107",
+                  "season": "2024-25",
+                  "score": 51.31
+                },
+                {
+                  "name": "D'Angelo Russell",
+                  "season": "2024-25",
+                  "score": 50.59
+                },
+                {
+                  "name": "Jalen Williams",
+                  "season": "2024-25",
+                  "score": 49.08
+                }
+              ],
+              "top5_overlap_earlier_reference": 3,
+              "mean_top5_overlap_weight_perturbations": 4.7
+            }
+          }
+        }
+      ]
+    },
+    "production": {
+      "reference_rows": 7103,
+      "covariance_complete_rows": 7101,
+      "covariance_shrinkage": 0.0012566722489895023,
+      "covariance_condition": 487.3727769790208,
+      "distributions": {
+        "height_inches": {
+          "n": 7103,
+          "missing": 0,
+          "sd": 3.4382257276335455,
+          "skew": -0.2287718535206729,
+          "zero_fraction": 0.0,
+          "quantiles": {
+            "0": 65.0,
+            "0.01": 72.0,
+            "0.25": 76.0,
+            "0.5": 79.0,
+            "0.75": 81.0,
+            "0.99": 85.0,
+            "1": 90.0
+          },
+          "iqr_normal_scale_ratio": 1.0780121828117233
+        },
+        "weight": {
+          "n": 7101,
+          "missing": 2,
+          "sd": 25.95624047548881,
+          "skew": 0.23330831468340096,
+          "zero_fraction": 0.0,
+          "quantiles": {
+            "0": 133.0,
+            "0.01": 170.0,
+            "0.25": 200.0,
+            "0.5": 220.0,
+            "0.75": 240.0,
+            "0.99": 282.0,
+            "1": 340.0
+          },
+          "iqr_normal_scale_ratio": 1.1423685876683922
+        },
+        "PTS_PER100": {
+          "n": 7103,
+          "missing": 0,
+          "sd": 6.169583340977315,
+          "skew": 0.6515705290351154,
+          "zero_fraction": 0.0,
+          "quantiles": {
+            "0": 4.5,
+            "0.01": 9.3,
+            "0.25": 16.6,
+            "0.5": 20.2,
+            "0.75": 24.6,
+            "0.99": 38.29799999999995,
+            "1": 49.2
+          },
+          "iqr_normal_scale_ratio": 0.9612186799139094
+        },
+        "ts_relative": {
+          "n": 7103,
+          "missing": 0,
+          "sd": 0.046778120449751055,
+          "skew": 0.09549167693741797,
+          "zero_fraction": 0.0,
+          "quantiles": {
+            "0": -0.23640699868324122,
+            "0.01": -0.11404849513542425,
+            "0.25": -0.031431214208049174,
+            "0.5": -0.0031252645298119885,
+            "0.75": 0.02726905404993646,
+            "0.99": 0.11895504577631877,
+            "1": 0.1991714713978895
+          },
+          "iqr_normal_scale_ratio": 0.9302193482908969
+        },
+        "AST_PER100": {
+          "n": 7103,
+          "missing": 0,
+          "sd": 2.820661785259536,
+          "skew": 1.1439121126665142,
+          "zero_fraction": 0.0,
+          "quantiles": {
+            "0": 0.3,
+            "0.01": 0.9,
+            "0.25": 2.5,
+            "0.5": 3.7,
+            "0.75": 6.2,
+            "0.99": 13.297999999999957,
+            "1": 17.0
+          },
+          "iqr_normal_scale_ratio": 0.972386139434091
+        },
+        "TOV_PER100": {
+          "n": 7103,
+          "missing": 0,
+          "sd": 0.9804828480881514,
+          "skew": 0.6037498306565751,
+          "zero_fraction": 0.0,
+          "quantiles": {
+            "0": 0.4,
+            "0.01": 1.0,
+            "0.25": 2.0,
+            "0.5": 2.6,
+            "0.75": 3.4,
+            "0.99": 5.4,
+            "1": 7.5
+          },
+          "iqr_normal_scale_ratio": 1.0584639844382884
+        },
+        "OREB_PER100": {
+          "n": 7103,
+          "missing": 0,
+          "sd": 1.6571625951356326,
+          "skew": 1.1312449267297833,
+          "zero_fraction": 0.0,
+          "quantiles": {
+            "0": 0.2,
+            "0.01": 0.4,
+            "0.25": 0.9,
+            "0.5": 1.6,
+            "0.75": 3.3,
+            "0.99": 6.9,
+            "1": 10.5
+          },
+          "iqr_normal_scale_ratio": 1.073579401087258
+        },
+        "DREB_PER100": {
+          "n": 7103,
+          "missing": 0,
+          "sd": 2.611595457344749,
+          "skew": 0.8694053031720389,
+          "zero_fraction": 0.0,
+          "quantiles": {
+            "0": 1.8,
+            "0.01": 2.7,
+            "0.25": 4.5,
+            "0.5": 6.0,
+            "0.75": 8.2,
+            "0.99": 13.9,
+            "1": 17.1
+          },
+          "iqr_normal_scale_ratio": 1.0502286701043704
+        },
+        "STL_PER100": {
+          "n": 7103,
+          "missing": 0,
+          "sd": 0.5747946222689431,
+          "skew": 0.8493567676748403,
+          "zero_fraction": 0.0,
+          "quantiles": {
+            "0": 0.1,
+            "0.01": 0.5,
+            "0.25": 1.1,
+            "0.5": 1.5,
+            "0.75": 1.9,
+            "0.99": 3.2,
+            "1": 5.8
+          },
+          "iqr_normal_scale_ratio": 1.0317282947470408
+        },
+        "BLK_PER100": {
+          "n": 7103,
+          "missing": 0,
+          "sd": 0.9191658769302931,
+          "skew": 1.866492649286532,
+          "zero_fraction": 0.0102773475996058,
+          "quantiles": {
+            "0": 0.0,
+            "0.01": 0.0,
+            "0.25": 0.4,
+            "0.5": 0.7,
+            "0.75": 1.3,
+            "0.99": 4.2,
+            "1": 6.8
+          },
+          "iqr_normal_scale_ratio": 0.725832928137317
+        },
+        "e_usg_pct": {
+          "n": 7103,
+          "missing": 0,
+          "sd": 0.05154622226268508,
+          "skew": 0.5058739428494758,
+          "zero_fraction": 0.0,
+          "quantiles": {
+            "0": 0.053,
+            "0.01": 0.098,
+            "0.25": 0.158,
+            "0.5": 0.189,
+            "0.75": 0.228,
+            "0.99": 0.333,
+            "1": 0.408
+          },
+          "iqr_normal_scale_ratio": 1.0066749186506978
+        }
+      },
+      "correlated_pairs": [
+        [
+          "height_inches",
+          "weight",
+          0.8073942017925025
+        ],
+        [
+          "PTS_PER100",
+          "e_usg_pct",
+          0.9423127195751579
+        ]
+      ],
+      "color_pair_fractions": {
+        "height_inches": {
+          "close": 0.2351,
+          "noticeable": 0.2795,
+          "large": 0.4854
+        },
+        "weight": {
+          "close": 0.2676,
+          "noticeable": 0.2502,
+          "large": 0.4822
+        },
+        "PTS_PER100": {
+          "close": 0.287,
+          "noticeable": 0.2469,
+          "large": 0.4661
+        },
+        "ts_relative": {
+          "close": 0.287,
+          "noticeable": 0.2538,
+          "large": 0.4592
+        },
+        "AST_PER100": {
+          "close": 0.3462,
+          "noticeable": 0.2316,
+          "large": 0.4222
+        },
+        "TOV_PER100": {
+          "close": 0.2654,
+          "noticeable": 0.2514,
+          "large": 0.4832
+        },
+        "OREB_PER100": {
+          "close": 0.3754,
+          "noticeable": 0.1917,
+          "large": 0.4329
+        },
+        "DREB_PER100": {
+          "close": 0.3149,
+          "noticeable": 0.2413,
+          "large": 0.4438
+        },
+        "STL_PER100": {
+          "close": 0.2613,
+          "noticeable": 0.2719,
+          "large": 0.4668
+        },
+        "BLK_PER100": {
+          "close": 0.4058,
+          "noticeable": 0.2427,
+          "large": 0.3515
+        },
+        "e_usg_pct": {
+          "close": 0.2784,
+          "noticeable": 0.2512,
+          "large": 0.4704
+        }
+      },
+      "cases": [
+        {
+          "name": "Lauri Markkanen",
+          "season": "2024-25",
+          "methods": {
+            "mean_group_rms": {
+              "top5": [
+                {
+                  "name": "Ryan Anderson",
+                  "season": "2015-16",
+                  "score": 96.64
+                },
+                {
+                  "name": "Josh Howard",
+                  "season": "2007-08",
+                  "score": 96.16
+                },
+                {
+                  "name": "Harrison Barnes",
+                  "season": "2016-17",
+                  "score": 95.77
+                },
+                {
+                  "name": "Ryan Anderson",
+                  "season": "2014-15",
+                  "score": 95.12
+                },
+                {
+                  "name": "Ryan Anderson",
+                  "season": "2012-13",
+                  "score": 94.68
+                }
+              ],
+              "top5_overlap_earlier_reference": 5,
+              "mean_top5_overlap_weight_perturbations": 4.857142857142857,
+              "gg_pair": {
+                "rank": 7,
+                "score": 94.18
+              }
+            },
+            "joint_rms": {
+              "top5": [
+                {
+                  "name": "Ryan Anderson",
+                  "season": "2015-16",
+                  "score": 96.09
+                },
+                {
+                  "name": "Harrison Barnes",
+                  "season": "2016-17",
+                  "score": 93.79
+                },
+                {
+                  "name": "Ryan Anderson",
+                  "season": "2014-15",
+                  "score": 93.31
+                },
+                {
+                  "name": "Tobias Harris",
+                  "season": "2017-18",
+                  "score": 92.5
+                },
+                {
+                  "name": "Harrison Barnes",
+                  "season": "2017-18",
+                  "score": 92.46
+                }
+              ],
+              "top5_overlap_earlier_reference": 5,
+              "mean_top5_overlap_weight_perturbations": 4.428571428571429,
+              "gg_pair": {
+                "rank": 8,
+                "score": 92.02
+              }
+            },
+            "regularized_mahalanobis": {
+              "top5": [
+                {
+                  "name": "Saddiq Bey",
+                  "season": "2022-23",
+                  "score": 87.42
+                },
+                {
+                  "name": "Franz Wagner",
+                  "season": "2025-26",
+                  "score": 85.3
+                },
+                {
+                  "name": "GG Jackson",
+                  "season": "2023-24",
+                  "score": 85.0
+                },
+                {
+                  "name": "Simone Fontecchio",
+                  "season": "2025-26",
+                  "score": 84.74
+                },
+                {
+                  "name": "Saddiq Bey",
+                  "season": "2025-26",
+                  "score": 83.9
+                }
+              ],
+              "top5_overlap_earlier_reference": 5,
+              "mean_top5_overlap_weight_perturbations": 4.142857142857143,
+              "gg_pair": {
+                "rank": 3,
+                "score": 85.0
+              }
+            }
+          }
+        },
+        {
+          "name": "Lauri Markkanen",
+          "season": "2022-23",
+          "methods": {
+            "mean_group_rms": {
+              "top5": [
+                {
+                  "name": "Dirk Nowitzki",
+                  "season": "2010-11",
+                  "score": 92.75
+                },
+                {
+                  "name": "Dirk Nowitzki",
+                  "season": "2006-07",
+                  "score": 92.51
+                },
+                {
+                  "name": "Dirk Nowitzki",
+                  "season": "2005-06",
+                  "score": 89.86
+                },
+                {
+                  "name": "Dirk Nowitzki",
+                  "season": "2011-12",
+                  "score": 89.64
+                },
+                {
+                  "name": "Dirk Nowitzki",
+                  "season": "2013-14",
+                  "score": 89.14
+                }
+              ],
+              "top5_overlap_earlier_reference": 4,
+              "mean_top5_overlap_weight_perturbations": 4.571428571428571
+            },
+            "joint_rms": {
+              "top5": [
+                {
+                  "name": "Dirk Nowitzki",
+                  "season": "2010-11",
+                  "score": 90.61
+                },
+                {
+                  "name": "Dirk Nowitzki",
+                  "season": "2006-07",
+                  "score": 89.93
+                },
+                {
+                  "name": "Dirk Nowitzki",
+                  "season": "2005-06",
+                  "score": 87.82
+                },
+                {
+                  "name": "Dirk Nowitzki",
+                  "season": "2007-08",
+                  "score": 87.71
+                },
+                {
+                  "name": "Dirk Nowitzki",
+                  "season": "2011-12",
+                  "score": 87.6
+                }
+              ],
+              "top5_overlap_earlier_reference": 5,
+              "mean_top5_overlap_weight_perturbations": 5.0
+            },
+            "regularized_mahalanobis": {
+              "top5": [
+                {
+                  "name": "Stephen Curry",
+                  "season": "2022-23",
+                  "score": 65.51
+                },
+                {
+                  "name": "Kon Knueppel",
+                  "season": "2025-26",
+                  "score": 65.11
+                },
+                {
+                  "name": "Michael Porter Jr.",
+                  "season": "2025-26",
+                  "score": 62.76
+                },
+                {
+                  "name": "Chris Boucher",
+                  "season": "2024-25",
+                  "score": 61.8
+                },
+                {
+                  "name": "Michael Porter Jr.",
+                  "season": "2022-23",
+                  "score": 61.57
+                }
+              ],
+              "top5_overlap_earlier_reference": 4,
+              "mean_top5_overlap_weight_perturbations": 4.0
+            }
+          }
+        },
+        {
+          "name": "Stephen Curry",
+          "season": "2024-25",
+          "methods": {
+            "mean_group_rms": {
+              "top5": [
+                {
+                  "name": "Damian Lillard",
+                  "season": "2017-18",
+                  "score": 97.13
+                },
+                {
+                  "name": "Kyrie Irving",
+                  "season": "2020-21",
+                  "score": 95.61
+                },
+                {
+                  "name": "De'Aaron Fox",
+                  "season": "2022-23",
+                  "score": 95.36
+                },
+                {
+                  "name": "Damian Lillard",
+                  "season": "2018-19",
+                  "score": 95.26
+                },
+                {
+                  "name": "Kyrie Irving",
+                  "season": "2017-18",
+                  "score": 94.88
+                }
+              ],
+              "top5_overlap_earlier_reference": 5,
+              "mean_top5_overlap_weight_perturbations": 4.571428571428571
+            },
+            "joint_rms": {
+              "top5": [
+                {
+                  "name": "Damian Lillard",
+                  "season": "2017-18",
+                  "score": 96.18
+                },
+                {
+                  "name": "Damian Lillard",
+                  "season": "2018-19",
+                  "score": 94.2
+                },
+                {
+                  "name": "Keyonte George",
+                  "season": "2025-26",
+                  "score": 93.99
+                },
+                {
+                  "name": "Kyrie Irving",
+                  "season": "2017-18",
+                  "score": 93.65
+                },
+                {
+                  "name": "De'Aaron Fox",
+                  "season": "2022-23",
+                  "score": 93.25
+                }
+              ],
+              "top5_overlap_earlier_reference": 5,
+              "mean_top5_overlap_weight_perturbations": 4.857142857142857
+            },
+            "regularized_mahalanobis": {
+              "top5": [
+                {
+                  "name": "Keyonte George",
+                  "season": "2025-26",
+                  "score": 88.33
+                },
+                {
+                  "name": "Desmond Bane",
+                  "season": "2022-23",
+                  "score": 86.83
+                },
+                {
+                  "name": "Damian Lillard",
+                  "season": "2020-21",
+                  "score": 84.39
+                },
+                {
+                  "name": "Devin Booker",
+                  "season": "2022-23",
+                  "score": 80.06
+                },
+                {
+                  "name": "Desmond Bane",
+                  "season": "2023-24",
+                  "score": 79.41
+                }
+              ],
+              "top5_overlap_earlier_reference": 4,
+              "mean_top5_overlap_weight_perturbations": 4.428571428571429
+            }
+          }
+        },
+        {
+          "name": "Shai Gilgeous-Alexander",
+          "season": "2024-25",
+          "methods": {
+            "mean_group_rms": {
+              "top5": [
+                {
+                  "name": "James Harden",
+                  "season": "2019-20",
+                  "score": 83.6
+                },
+                {
+                  "name": "Kobe Bryant",
+                  "season": "2005-06",
+                  "score": 80.98
+                },
+                {
+                  "name": "Kawhi Leonard",
+                  "season": "2025-26",
+                  "score": 80.66
+                },
+                {
+                  "name": "LeBron James",
+                  "season": "2008-09",
+                  "score": 80.55
+                },
+                {
+                  "name": "Damian Lillard",
+                  "season": "2022-23",
+                  "score": 80.21
+                }
+              ],
+              "top5_overlap_earlier_reference": 5,
+              "mean_top5_overlap_weight_perturbations": 4.428571428571429
+            },
+            "joint_rms": {
+              "top5": [
+                {
+                  "name": "Kawhi Leonard",
+                  "season": "2025-26",
+                  "score": 76.91
+                },
+                {
+                  "name": "Kobe Bryant",
+                  "season": "2005-06",
+                  "score": 74.8
+                },
+                {
+                  "name": "Dwyane Wade",
+                  "season": "2008-09",
+                  "score": 74.61
+                },
+                {
+                  "name": "Kyrie Irving",
+                  "season": "2019-20",
+                  "score": 74.27
+                },
+                {
+                  "name": "LeBron James",
+                  "season": "2008-09",
+                  "score": 73.66
+                }
+              ],
+              "top5_overlap_earlier_reference": 5,
+              "mean_top5_overlap_weight_perturbations": 4.857142857142857
+            },
+            "regularized_mahalanobis": {
+              "top5": [
+                {
+                  "name": "Jalen Brunson",
+                  "season": "2023-24",
+                  "score": 57.42
+                },
+                {
+                  "name": "Kawhi Leonard",
+                  "season": "2025-26",
+                  "score": 57.18
+                },
+                {
+                  "name": "Tyrese Maxey",
+                  "season": "2025-26",
+                  "score": 54.26
+                },
+                {
+                  "name": "Kawhi Leonard",
+                  "season": "2023-24",
+                  "score": 49.85
+                },
+                {
+                  "name": "Lauri Markkanen",
+                  "season": "2025-26",
+                  "score": 46.7
+                }
+              ],
+              "top5_overlap_earlier_reference": 4,
+              "mean_top5_overlap_weight_perturbations": 4.0
+            }
+          }
+        },
+        {
+          "name": "LeBron James",
+          "season": "2024-25",
+          "methods": {
+            "mean_group_rms": {
+              "top5": [
+                {
+                  "name": "Deni Avdija",
+                  "season": "2025-26",
+                  "score": 94.29
+                },
+                {
+                  "name": "Paul George",
+                  "season": "2020-21",
+                  "score": 93.67
+                },
+                {
+                  "name": "James Harden",
+                  "season": "2025-26",
+                  "score": 93.28
+                },
+                {
+                  "name": "Blake Griffin",
+                  "season": "2018-19",
+                  "score": 92.41
+                },
+                {
+                  "name": "James Harden",
+                  "season": "2020-21",
+                  "score": 91.05
+                }
+              ],
+              "top5_overlap_earlier_reference": 5,
+              "mean_top5_overlap_weight_perturbations": 5.0
+            },
+            "joint_rms": {
+              "top5": [
+                {
+                  "name": "Deni Avdija",
+                  "season": "2025-26",
+                  "score": 92.84
+                },
+                {
+                  "name": "Paul George",
+                  "season": "2020-21",
+                  "score": 86.99
+                },
+                {
+                  "name": "James Harden",
+                  "season": "2020-21",
+                  "score": 86.85
+                },
+                {
+                  "name": "Blake Griffin",
+                  "season": "2018-19",
+                  "score": 86.05
+                },
+                {
+                  "name": "James Harden",
+                  "season": "2025-26",
+                  "score": 85.81
+                }
+              ],
+              "top5_overlap_earlier_reference": 5,
+              "mean_top5_overlap_weight_perturbations": 5.0
+            },
+            "regularized_mahalanobis": {
+              "top5": [
+                {
+                  "name": "James Harden",
+                  "season": "2020-21",
+                  "score": 85.3
+                },
+                {
+                  "name": "James Harden",
+                  "season": "2021-22",
+                  "score": 83.4
+                },
+                {
+                  "name": "Luka Don\u010di\u0107",
+                  "season": "2020-21",
+                  "score": 82.4
+                },
+                {
+                  "name": "Cade Cunningham",
+                  "season": "2024-25",
+                  "score": 79.08
+                },
+                {
+                  "name": "Khris Middleton",
+                  "season": "2021-22",
+                  "score": 79.06
+                }
+              ],
+              "top5_overlap_earlier_reference": 5,
+              "mean_top5_overlap_weight_perturbations": 4.285714285714286
+            }
+          }
+        },
+        {
+          "name": "Nikola Joki\u0107",
+          "season": "2024-25",
+          "methods": {
+            "mean_group_rms": {
+              "top5": [
+                {
+                  "name": "LeBron James",
+                  "season": "2012-13",
+                  "score": 81.74
+                },
+                {
+                  "name": "LeBron James",
+                  "season": "2011-12",
+                  "score": 76.88
+                },
+                {
+                  "name": "Giannis Antetokounmpo",
+                  "season": "2018-19",
+                  "score": 73.74
+                },
+                {
+                  "name": "Giannis Antetokounmpo",
+                  "season": "2023-24",
+                  "score": 73.65
+                },
+                {
+                  "name": "LeBron James",
+                  "season": "2017-18",
+                  "score": 72.15
+                }
+              ],
+              "top5_overlap_earlier_reference": 4,
+              "mean_top5_overlap_weight_perturbations": 4.428571428571429
+            },
+            "joint_rms": {
+              "top5": [
+                {
+                  "name": "LeBron James",
+                  "season": "2012-13",
+                  "score": 72.89
+                },
+                {
+                  "name": "Giannis Antetokounmpo",
+                  "season": "2023-24",
+                  "score": 68.24
+                },
+                {
+                  "name": "LeBron James",
+                  "season": "2017-18",
+                  "score": 66.98
+                },
+                {
+                  "name": "LeBron James",
+                  "season": "2011-12",
+                  "score": 66.41
+                },
+                {
+                  "name": "LeBron James",
+                  "season": "2016-17",
+                  "score": 65.31
+                }
+              ],
+              "top5_overlap_earlier_reference": 5,
+              "mean_top5_overlap_weight_perturbations": 5.0
+            },
+            "regularized_mahalanobis": {
+              "top5": [
+                {
+                  "name": "Giannis Antetokounmpo",
+                  "season": "2023-24",
+                  "score": 47.27
+                },
+                {
+                  "name": "Luka Don\u010di\u0107",
+                  "season": "2023-24",
+                  "score": 44.21
+                },
+                {
+                  "name": "Kawhi Leonard",
+                  "season": "2020-21",
+                  "score": 40.19
+                },
+                {
+                  "name": "LeBron James",
+                  "season": "2023-24",
+                  "score": 40.17
+                },
+                {
+                  "name": "Jimmy Butler III",
+                  "season": "2020-21",
+                  "score": 34.47
+                }
+              ],
+              "top5_overlap_earlier_reference": 4,
+              "mean_top5_overlap_weight_perturbations": 4.142857142857143
+            }
+          }
+        },
+        {
+          "name": "Rudy Gobert",
+          "season": "2024-25",
+          "methods": {
+            "mean_group_rms": {
+              "top5": [
+                {
+                  "name": "Andris Biedrins",
+                  "season": "2007-08",
+                  "score": 96.11
+                },
+                {
+                  "name": "Jarrett Allen",
+                  "season": "2019-20",
+                  "score": 94.53
+                },
+                {
+                  "name": "Neemias Queta",
+                  "season": "2024-25",
+                  "score": 94.03
+                },
+                {
+                  "name": "Tony Bradley",
+                  "season": "2020-21",
+                  "score": 93.43
+                },
+                {
+                  "name": "Isaiah Hartenstein",
+                  "season": "2019-20",
+                  "score": 93.22
+                }
+              ],
+              "top5_overlap_earlier_reference": 4,
+              "mean_top5_overlap_weight_perturbations": 4.285714285714286
+            },
+            "joint_rms": {
+              "top5": [
+                {
+                  "name": "Andris Biedrins",
+                  "season": "2007-08",
+                  "score": 94.64
+                },
+                {
+                  "name": "Jarrett Allen",
+                  "season": "2019-20",
+                  "score": 94.01
+                },
+                {
+                  "name": "Neemias Queta",
+                  "season": "2024-25",
+                  "score": 92.32
+                },
+                {
+                  "name": "Tony Bradley",
+                  "season": "2020-21",
+                  "score": 91.71
+                },
+                {
+                  "name": "Tyson Chandler",
+                  "season": "2012-13",
+                  "score": 91.42
+                }
+              ],
+              "top5_overlap_earlier_reference": 5,
+              "mean_top5_overlap_weight_perturbations": 5.0
+            },
+            "regularized_mahalanobis": {
+              "top5": [
+                {
+                  "name": "Jarrett Allen",
+                  "season": "2019-20",
+                  "score": 90.96
+                },
+                {
+                  "name": "Tony Bradley",
+                  "season": "2020-21",
+                  "score": 90.48
+                },
+                {
+                  "name": "Richaun Holmes",
+                  "season": "2024-25",
+                  "score": 88.91
+                },
+                {
+                  "name": "Neemias Queta",
+                  "season": "2024-25",
+                  "score": 86.39
+                },
+                {
+                  "name": "Isaiah Hartenstein",
+                  "season": "2019-20",
+                  "score": 85.99
+                }
+              ],
+              "top5_overlap_earlier_reference": 4,
+              "mean_top5_overlap_weight_perturbations": 4.285714285714286
+            }
+          }
+        },
+        {
+          "name": "Draymond Green",
+          "season": "2024-25",
+          "methods": {
+            "mean_group_rms": {
+              "top5": [
+                {
+                  "name": "Lonzo Ball",
+                  "season": "2019-20",
+                  "score": 89.52
+                },
+                {
+                  "name": "Ben Simmons",
+                  "season": "2022-23",
+                  "score": 87.41
+                },
+                {
+                  "name": "Bruce Brown",
+                  "season": "2019-20",
+                  "score": 86.59
+                },
+                {
+                  "name": "Marko Jaric",
+                  "season": "2003-04",
+                  "score": 86.21
+                },
+                {
+                  "name": "Thabo Sefolosha",
+                  "season": "2007-08",
+                  "score": 85.84
+                }
+              ],
+              "top5_overlap_earlier_reference": 5,
+              "mean_top5_overlap_weight_perturbations": 4.714285714285714
+            },
+            "joint_rms": {
+              "top5": [
+                {
+                  "name": "Ben Simmons",
+                  "season": "2022-23",
+                  "score": 86.48
+                },
+                {
+                  "name": "Lonzo Ball",
+                  "season": "2019-20",
+                  "score": 85.77
+                },
+                {
+                  "name": "Tracy McGrady",
+                  "season": "2010-11",
+                  "score": 82.11
+                },
+                {
+                  "name": "James Johnson",
+                  "season": "2010-11",
+                  "score": 80.25
+                },
+                {
+                  "name": "Michael Carter-Williams",
+                  "season": "2015-16",
+                  "score": 79.59
+                }
+              ],
+              "top5_overlap_earlier_reference": 5,
+              "mean_top5_overlap_weight_perturbations": 4.571428571428571
+            },
+            "regularized_mahalanobis": {
+              "top5": [
+                {
+                  "name": "Anthony Carter",
+                  "season": "2009-10",
+                  "score": 80.02
+                },
+                {
+                  "name": "Anthony Carter",
+                  "season": "2005-06",
+                  "score": 79.07
+                },
+                {
+                  "name": "Lonzo Ball",
+                  "season": "2019-20",
+                  "score": 78.13
+                },
+                {
+                  "name": "Anthony Carter",
+                  "season": "2008-09",
+                  "score": 76.96
+                },
+                {
+                  "name": "Andre Iguodala",
+                  "season": "2020-21",
+                  "score": 76.84
+                }
+              ],
+              "top5_overlap_earlier_reference": 5,
+              "mean_top5_overlap_weight_perturbations": 4.428571428571429
+            }
+          }
+        },
+        {
+          "name": "Kevin Durant",
+          "season": "2024-25",
+          "methods": {
+            "mean_group_rms": {
+              "top5": [
+                {
+                  "name": "Dirk Nowitzki",
+                  "season": "2006-07",
+                  "score": 90.28
+                },
+                {
+                  "name": "Karl-Anthony Towns",
+                  "season": "2019-20",
+                  "score": 89.73
+                },
+                {
+                  "name": "Danny Granger",
+                  "season": "2008-09",
+                  "score": 89.45
+                },
+                {
+                  "name": "Dirk Nowitzki",
+                  "season": "2010-11",
+                  "score": 89.07
+                },
+                {
+                  "name": "Dirk Nowitzki",
+                  "season": "2007-08",
+                  "score": 87.85
+                }
+              ],
+              "top5_overlap_earlier_reference": 5,
+              "mean_top5_overlap_weight_perturbations": 4.428571428571429
+            },
+            "joint_rms": {
+              "top5": [
+                {
+                  "name": "Danny Granger",
+                  "season": "2008-09",
+                  "score": 86.08
+                },
+                {
+                  "name": "Dirk Nowitzki",
+                  "season": "2010-11",
+                  "score": 83.24
+                },
+                {
+                  "name": "Dirk Nowitzki",
+                  "season": "2007-08",
+                  "score": 81.31
+                },
+                {
+                  "name": "Karl-Anthony Towns",
+                  "season": "2023-24",
+                  "score": 80.69
+                },
+                {
+                  "name": "Dirk Nowitzki",
+                  "season": "2006-07",
+                  "score": 80.67
+                }
+              ],
+              "top5_overlap_earlier_reference": 5,
+              "mean_top5_overlap_weight_perturbations": 4.714285714285714
+            },
+            "regularized_mahalanobis": {
+              "top5": [
+                {
+                  "name": "Zach LaVine",
+                  "season": "2020-21",
+                  "score": 78.4
+                },
+                {
+                  "name": "Austin Reaves",
+                  "season": "2025-26",
+                  "score": 76.51
+                },
+                {
+                  "name": "Zach LaVine",
+                  "season": "2024-25",
+                  "score": 74.16
+                },
+                {
+                  "name": "LeBron James",
+                  "season": "2021-22",
+                  "score": 72.46
+                },
+                {
+                  "name": "Shai Gilgeous-Alexander",
+                  "season": "2020-21",
+                  "score": 71.81
+                }
+              ],
+              "top5_overlap_earlier_reference": 5,
+              "mean_top5_overlap_weight_perturbations": 4.142857142857143
+            }
+          }
+        }
+      ]
+    }
+  }
+}

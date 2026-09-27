@@ -479,6 +479,11 @@ header[data-testid="stHeader"] { background: transparent !important; }
     gap: 24px;
     margin-top: 14px;
 }
+.comparison-inputs {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr));
+}
+.comparison-inputs .detail-table .c-gap { font-size: 11px; min-width: 65px; }
+.comparison-inputs .detail-table .c-val { white-space: nowrap; }
 .stat-cat-head {
     display: flex;
     align-items: center;
@@ -534,11 +539,11 @@ header[data-testid="stHeader"] { background: transparent !important; }
     width: 56px;
 }
 tr.match-strong { background: rgba(42,157,92,0.10); }
-tr.match-strong .c-diff { color: var(--good); }
+tr.match-strong .c-diff, tr.match-strong .c-gap { color: var(--good); }
 tr.match-mid { background: rgba(201,162,39,0.08); }
-tr.match-mid .c-diff { color: var(--warn); }
+tr.match-mid .c-diff, tr.match-mid .c-gap { color: var(--warn); }
 tr.match-weak { background: rgba(196,69,54,0.08); }
-tr.match-weak .c-diff { color: var(--bad); }
+tr.match-weak .c-diff, tr.match-weak .c-gap { color: var(--bad); }
 
 /* Colophon */
 .colophon {

@@ -3,14 +3,15 @@
 import math
 import re
 from datetime import date
+from html import escape
 
 import numpy as np
 import pandas as pd
 import streamlit as st
 
-from src.app.comparison_display import TWO_DECIMAL_FEATURES
+from src.app.comparison_display import BANDS, LABELS, TWO_DECIMAL_FEATURES
 from src.features.registry import DIMENSIONS, STAT_CATEGORIES
-from src.similarity.scoring import similarity_score
+from src.similarity.scoring import difference_band, similarity_score
 
 TEAM_COLORS = {
     "ATL": "#E03A3E",
@@ -68,9 +69,9 @@ def player_abbr(name: str) -> str:
 
 
 def score_color_hex(s: float) -> str:
-    if s >= 80:
+    if s > similarity_score(0.5):
         return "#2a9d5c"
-    if s >= 50:
+    if s > similarity_score(1.0):
         return "#c9a227"
     return "#c44536"
 
@@ -83,13 +84,11 @@ def _clean(html: str) -> str:
 def score_label(s: float) -> str:
     if s >= 100 - 1e-10:
         return "IDENTICAL MEASURED PROFILE"
-    if s >= 90:
-        return "VERY CLOSE"
-    if s >= 75:
-        return "CLOSE"
-    if s >= 50:
-        return "MODERATE"
-    return "DISTANT"
+    if s > similarity_score(0.5):
+        return "SMALL MEASURED GAP"
+    if s > similarity_score(1.0):
+        return "MODERATE MEASURED GAP"
+    return "LARGE MEASURED GAP"
 
 
 def fmt_stat(val, col_name: str, is_pct: bool) -> str:
@@ -381,7 +380,9 @@ def render_results_table_html(results_data: list[dict], selected_idx: int) -> st
     """)
 
 
-def render_similarity_bars(group_distances: dict, weights=None, dimensions=None) -> str:
+def render_similarity_bars(
+    group_distances: dict, weights=None, dimensions=None, contributions=None
+) -> str:
     bars_html = []
     for dim in dimensions if dimensions is not None else DIMENSIONS:
         dist = group_distances.get(dim["key"])
@@ -393,21 +394,61 @@ def render_similarity_bars(group_distances: dict, weights=None, dimensions=None)
             )
             continue
         score = similarity_score(dist)
-        sc = score_color_hex(score)
-        txt_color = "#0a0a0a" if score >= 45 else "#fff"
+        label = dim["group"]
+        if contributions is not None:
+            label, _, sc = BANDS[difference_band(dist)]
+            total = sum(contributions.values())
+            score = 100 * contributions.get(dim["key"], 0) / total if total else 0
+            value = f"{score:.0f}% of gap" if score >= 1 or score == 0 else "<1% of gap"
+        else:
+            sc = score_color_hex(score)
+            value = f"{score:.0f}"
+        txt_color = "var(--ink)"
         bars_html.append(f"""
         <div class="simbar-row">
             <div class="simbar-label">
                 <span class="simbar-name">{dim["label"]}</span>
-                <span class="simbar-group">{dim["group"]}</span>
+                <span class="simbar-group">{label}</span>
             </div>
             <div class="simbar-track">
                 <div class="simbar-fill" style="width:{score:.0f}%; background:{sc};"></div>
-                <div class="simbar-val" style="color:{txt_color};">{score:.0f}</div>
+                <div class="simbar-val" style="color:{txt_color};">{value}</div>
             </div>
         </div>
         """)
     return _clean(f'<div class="simbars">{"".join(bars_html)}</div>')
+
+
+def render_key_differences(anchor, other, explanation):
+    """Rank visible disagreements by their actual contribution to overall distance."""
+    features = explanation["features"]
+    selected = sorted(
+        [
+            c
+            for c, v in features.items()
+            if v["enabled"]
+            and np.isfinite(v["distance"])
+            and v["distance"] >= 0.5
+            and v["contribution"] > 0
+        ],
+        key=lambda c: features[c]["contribution"],
+        reverse=True,
+    )[:3]
+    if not selected:
+        return "<p>No noticeable gaps in the shared, enabled measurements.</p>"
+    items = []
+    for column in selected:
+        name, pct = LABELS[column]
+        label, _, color = BANDS[difference_band(features[column]["distance"])]
+        left, right = (
+            fmt_stat(anchor.get(column), column, pct),
+            fmt_stat(other.get(column), column, pct),
+        )
+        items.append(
+            f"<p><b>{escape(name)}</b><br>{escape(left)} → {escape(right)}<br>"
+            f'<span style="color:{color}">{label}</span></p>'
+        )
+    return "".join(items)
 
 
 def render_radar_svg(anchor_row, compare_row, anchor_label: str, compare_label: str) -> str:
@@ -520,7 +561,7 @@ def render_radar_svg(anchor_row, compare_row, anchor_label: str, compare_label: 
 
 
 def render_stat_breakdown(
-    anchor_row, compare_row, label_a: str, label_b: str, categories=None
+    anchor_row, compare_row, label_a: str, label_b: str, categories=None, evidence=None
 ) -> str:
     cats_html = []
     for cat in categories if categories is not None else STAT_CATEGORIES:
@@ -534,6 +575,14 @@ def render_stat_breakdown(
             # Delta
             diff_str = "—"
             row_cls = ""
+            gap_cell = ""
+            if evidence is not None:
+                item = evidence.get(col_name)
+                if item is None or not item["enabled"]:
+                    band_label = "Not scored"
+                else:
+                    band_label, row_cls, _ = BANDS[difference_band(item["distance"])]
+                gap_cell = f'<td class="c-gap">{band_label}</td>'
             if (
                 v1 is not None
                 and v2 is not None
@@ -550,22 +599,13 @@ def render_stat_breakdown(
                 else:
                     diff_str = f"{'+' if d >= 0 else ''}{d:.1f}"
 
-                avg = (abs(float(v1)) + abs(float(v2))) / 2
-                if avg > 0:
-                    diff_pct = abs(float(v1) - float(v2)) / avg
-                    if diff_pct < 0.05:
-                        row_cls = "match-strong"
-                    elif diff_pct < 0.15:
-                        row_cls = "match-mid"
-                    else:
-                        row_cls = "match-weak"
-
             rows_html.append(f"""
             <tr class="{row_cls}">
                 <td class="c-stat">{stat_name}</td>
                 <td class="c-val">{v1_f}</td>
                 <td class="c-val">{v2_f}</td>
                 <td class="c-diff">{diff_str}</td>
+                {gap_cell}
             </tr>
             """)
 
@@ -582,6 +622,7 @@ def render_stat_breakdown(
                         <th class="r">{label_a}</th>
                         <th class="r">{label_b}</th>
                         <th class="r">Δ</th>
+                        {"<th>GAP</th>" if evidence is not None else ""}
                     </tr>
                 </thead>
                 <tbody>{"".join(rows_html)}</tbody>
@@ -589,7 +630,8 @@ def render_stat_breakdown(
         </div>
         """)
 
-    return _clean(f'<div class="stat-breakdown">{"".join(cats_html)}</div>')
+    extra_class = " comparison-inputs" if evidence is not None else ""
+    return _clean(f'<div class="stat-breakdown{extra_class}">{"".join(cats_html)}</div>')
 
 
 def render_colophon():
@@ -603,7 +645,7 @@ def render_colophon():
                 <p>
                     Data sourced from stats.nba.com via <code>nba_api</code>.
                     Features standardized per-group via <code>StandardScaler</code>.
-                    Nearest neighbors via weighted RMS standardized differences.
+                    Whole-profile comparisons via a joint weighted RMS of standardized differences.
                 </p>
             </div>
             <div>

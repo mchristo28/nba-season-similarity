@@ -64,7 +64,7 @@ class WeightedMatcher:
                     "Not enough rotation-player seasons to fit this comparison profile"
                 )
         for group, spec in self.FEATURE_GROUPS.items():
-            columns = [c for c in spec["features"] if c in df and df[c].notna().any()]
+            columns = [c for c in spec["features"] if c in reference and reference[c].notna().any()]
             if not columns:
                 continue
             scaler = StandardScaler()
@@ -118,16 +118,65 @@ class WeightedMatcher:
             if self.profile and weight > 0:
                 # Every candidate must share the same query-observed evidence for this ranking.
                 complete &= count == np.isfinite(matrix[query]).sum()
-            numerator += np.where(count > 0, distance, 0) * weight
+            component = distance**2 if self.profile else distance
+            numerator += np.where(count > 0, component, 0) * weight
             denominator += (count > 0) * weight
             # Use registry length so absent columns don't masquerade as full coverage.
             coverage += weight * count / len(self.FEATURE_GROUPS[group]["features"])
         overall = np.divide(
             numerator, denominator, out=np.full(len(candidates), np.inf), where=denominator > 0
         )
+        if self.profile:
+            overall = np.sqrt(overall)
         coverage /= sum(weights.values())
         overall[~complete] = np.inf
         return overall, group_distances, coverage
+
+    def explain_season(self, player_id, season_key, other_id, other_key, *, weights=None):
+        """Expose the same feature gaps and additive squared-distance terms used to rank.
+
+        Contributions sum to the squared overall distance for profile comparisons.
+        Disabled and unshared features remain explicitly unscored.
+        """
+        index = self._index("year")
+        query, candidate = index[player_id][season_key], index[other_id][other_key]
+        weights = self._weights(weights)
+        distance, groups, coverage = self._distances(query, np.array([candidate]), weights)
+        valid_groups = {
+            g: float(values[0])
+            for g, values in groups.items()
+            if np.isfinite(values[0]) and weights.get(g, 0) > 0
+        }
+        total_weight = sum(weights[g] for g in valid_groups)
+        features = {}
+        for group, spec in self.FEATURE_GROUPS.items():
+            fitted = self.scalers.get(group, {}).get("columns", [])
+            gaps = {}
+            if fitted:
+                delta = self._matrices[group][candidate] - self._matrices[group][query]
+                gaps = dict(zip(fitted, np.abs(delta)))
+            observed = sum(np.isfinite(v) for v in gaps.values())
+            for column in spec["features"]:
+                gap = float(gaps.get(column, np.nan))
+                enabled = weights.get(group, 0) > 0
+                contribution = (
+                    weights[group] * gap**2 / (observed * total_weight)
+                    if enabled and np.isfinite(gap) and observed and total_weight
+                    else 0.0
+                )
+                features[column] = {
+                    "group": group,
+                    "distance": gap,
+                    "enabled": enabled,
+                    "contribution": contribution,
+                }
+        contributions = {g: weights[g] * d**2 / total_weight for g, d in valid_groups.items()}
+        return {
+            "distance": float(distance[0]),
+            "coverage": float(coverage[0]),
+            "features": features,
+            "group_contributions": contributions,
+        }
 
     def season_coverage(
         self, player_id, season_key, other_id, other_key, compare_by="year", weights=None
@@ -231,8 +280,11 @@ class WeightedMatcher:
             for group, values in per_group.items():
                 if np.isfinite(values[0]):
                     groups.setdefault(group, []).append(float(values[0]))
-        averaged = {g: float(np.mean(v)) for g, v in groups.items()}
-        return combine_distances(averaged, weights), periods, averaged
+        averaged = {
+            g: float(np.sqrt(np.mean(np.square(v))) if self.profile else np.mean(v))
+            for g, v in groups.items()
+        }
+        return combine_distances(averaged, weights, joint=bool(self.profile)), periods, averaged
 
     def find_similar(
         self,

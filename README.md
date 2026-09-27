@@ -22,7 +22,8 @@ project. The feature snapshot is included, so startup does not require API calls
 
 ## Matching and scores
 
-Choose **Playing style** or **Production**. Historical style uses 15 tendency and
+Choose **Playing style** or **Production**. New visits default to richer Tracking
+style; Historical remains available for older seasons. Historical style uses 15 tendency and
 role measurements across eight dimensions from 2003–04 onward. Tracking style
 adds creation, drive decisions and handling per touch (23 features, 2013–14 onward).
 Production uses 11 features: per-100-possession output, league-relative shooting
@@ -30,7 +31,11 @@ efficiency, usage, and size. Exact season totals prevent rounded-per-game shooti
 errors. The breakdown shows the actual measurements used by each mode.
 
 Features are standardized against rotation-player seasons (20+ games, 15+ MPG).
-Group RMS distances prevent large dimensions from automatically dominating.
+Model 3.1 combines squared standardized gaps across the whole profile, balancing
+category sizes with their weights. Large mismatches have more influence than in
+the previous average-of-category-distances model. Colors use those same reference
+scales; category bars explain contributions to the total difference, and key
+differences remain visible even for high-scoring matches. Raw context stats are neutral.
 Every ranked candidate must have the same query-observed comparison inputs;
 missing measurements never count as zero. Other seasons by the same player are
 excluded by default. Games, minutes, candidate seasons, age difference, coverage,
@@ -84,6 +89,7 @@ pip install '.[dev,trajectory]'
 ruff check src tests
 python -m pytest -q
 python scripts/audit_scores.py --profile all
+python scripts/audit_geometry.py
 ```
 
 Tests cover matching invariants, missingness, score reference points, units, team

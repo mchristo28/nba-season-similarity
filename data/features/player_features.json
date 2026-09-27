@@ -1,6 +1,6 @@
 {
   "schema_version": 3,
-  "comparison_model_version": "3.0",
+  "comparison_model_version": "3.1",
   "efficiency_units": "Ratios computed from exact season totals; TS uses 0.44 FTA approximation",
   "rate_units": "NBA per 100 on-court possessions",
   "era_adjustment": "TS minus league TS, weighted by exact team shooting totals",

@@ -1,5 +1,12 @@
 """Readable labels for the actual normalized comparison inputs."""
 
+BANDS = {
+    "close": ("Close", "match-strong", "#2a9d5c"),
+    "noticeable": ("Noticeable difference", "match-mid", "#c9a227"),
+    "large": ("Large difference", "match-weak", "#c44536"),
+    "unavailable": ("Unavailable", "", "#888888"),
+}
+
 LABELS = {
     "PTS_PER100": ("PTS / 100 poss", False),
     "AST_PER100": ("AST / 100 poss", False),

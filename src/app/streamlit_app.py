@@ -27,6 +27,7 @@ from src.app.presentation import (
     render_anchor_portrait,
     render_awards,
     render_colophon,
+    render_key_differences,
     render_masthead,
     render_radar_svg,
     render_results_table_html,
@@ -38,9 +39,8 @@ from src.app.presentation import (
     score_label,
 )
 from src.app.styles import CSS, FONT_LINKS
-from src.features.comparison import MODEL_VERSION
 from src.similarity.profiles import get_profile
-from src.similarity.scoring import similarity_score
+from src.similarity.scoring import MODEL_VERSION, similarity_score
 
 # ---------------------------------------------------------------------------
 # Config
@@ -120,7 +120,11 @@ def main():
     st.markdown(CSS, unsafe_allow_html=True)
 
     mode = st.session_state.get("matching_mode", "Playing style")
-    detail = st.session_state.get("matching_detail", "Historical (2003+)")
+    detail = st.session_state.setdefault(
+        "matching_detail", st.session_state.get("style_detail_preference", "Tracking (2013+)")
+    )
+    # Streamlit removes widget state while Production hides the style control.
+    st.session_state["style_detail_preference"] = detail
     profile = (
         "production"
         if mode == "Production"
@@ -272,6 +276,8 @@ def main():
             <div class="editor-note-flag">EDITOR'S NOTE</div>
             <p><b>{profile_spec["label"]}</b></p>
             <p>{profile_spec["description"]}</p>
+            <p>The score compares the whole measured profile. Larger mismatches carry more influence;
+            category breakdowns explain where that difference comes from.</p>
             <p>Every candidate in this ranking must have the same measurements available as the selected season.
             Scores use a fixed reference of rotation-player seasons. Adjust the weights to emphasize what matters.</p>
             </div>"""),
@@ -332,8 +338,8 @@ def main():
             "Candidate season start years", first_year, last_year, (first_year, last_year)
         )
     st.caption(
-        "Score guide: 100 = identical measured features; 84 ≈ half a standard deviation "
-        "apart; 50 = one standard deviation apart; 6 ≈ two. Scores describe statistical "
+        "Score guide: 100 = identical measured features; 84 ≈ a combined gap of half a standard deviation; "
+        "50 ≈ one; 6 ≈ two. Larger individual gaps have more influence. Scores describe statistical "
         "closeness, not player quality, percentiles, or probabilities. Compare scores within the selected mode. "
         f"Model {MODEL_VERSION}; coverage is shown separately."
     )
@@ -345,7 +351,22 @@ def main():
         st.info(
             "Tracking comparisons start in 2013–14. Choose Historical style data for this season."
         )
+
+        def use_historical():
+            st.session_state["matching_detail"] = "Historical (2003+)"
+
+        st.button("Compare with historical data", on_click=use_historical)
         return
+    if profile == "style_historical" and int(anchor_season["SEASON"][:4]) >= 2013:
+        st.info(
+            "This season supports richer tracking comparisons, including pull-up shots, "
+            "catch-and-shoot attempts, drives and handling. Historical mode uses a broader, simpler profile."
+        )
+
+        def use_tracking():
+            st.session_state["matching_detail"] = "Tracking (2013+)"
+
+        st.button("Compare with tracking detail", on_click=use_tracking)
     if anchor_row.GP < 20 or anchor_row.MIN < 10:
         st.warning("This subject has a small playing-time sample; its profile may be unstable.")
     if anchor_row.get("FGA_TOTAL", 0) < 100 and mode == "Production":
@@ -474,6 +495,17 @@ def main():
 
     # ---- Section III: Anatomy of the match ----
     compare_data = results_data[compare_idx]
+    compare_row = career_df[
+        (career_df["PLAYER_ID"] == compare_data["player_id"])
+        & (career_df["CAREER_YEAR"] == compare_data["career_year"])
+    ].iloc[0]
+    explanation = matcher.explain_season(
+        player_id,
+        anchor_year,
+        compare_data["player_id"],
+        compare_data["career_year"],
+        weights=custom_weights,
+    )
     compare_score = compare_data["score"]
     sc_hex = score_color_hex(compare_score)
     sc_label = score_label(compare_score)
@@ -498,7 +530,7 @@ def main():
             </div>
             <div class="ch-score">
                 <div class="ch-score-num" style="color:{sc_hex};">{compare_score:.0f}</div>
-                <div class="ch-score-lbl">SIMILARITY SCORE</div>
+                <div class="ch-score-lbl">{profile_spec["label"]}</div>
                 <div class="ch-score-tag" style="color:{sc_hex};">— {sc_label} —</div>
             </div>
             <div class="ch-b">
@@ -517,44 +549,48 @@ def main():
         "Unavailable measurements are not treated as zero."
     )
 
-    # Charts: Similarity bars + Radar
-    col_bars, col_radar = st.columns([1.2, 1], gap="large")
+    st.caption(
+        "One score for the whole measured profile; it does not mean equivalent players. "
+        "Close matches can still have meaningful differences."
+    )
+    col_bars, col_differences = st.columns([1.2, 1], gap="large")
 
     with col_bars:
         st.markdown(
             """<div style="font-family:var(--mono); font-size:10.5px; letter-spacing:0.22em;
                     color:var(--ink-60); margin-bottom:14px; padding-bottom:6px;
-                    border-bottom:1px dotted var(--ink-20);">FIG. B — SIMILARITY BY CATEGORY</div>""",
+                    border-bottom:1px dotted var(--ink-20);">FIG. B — WHAT DRIVES THE DIFFERENCE</div>""",
             unsafe_allow_html=True,
         )
         st.markdown(
-            render_similarity_bars(compare_data["group_distances"], custom_weights, dimensions),
+            render_similarity_bars(
+                compare_data["group_distances"],
+                custom_weights,
+                dimensions,
+                explanation["group_contributions"],
+            ),
             unsafe_allow_html=True,
         )
 
-    with col_radar:
+        st.caption(
+            "Longer bars contribute more to the total measured difference. "
+            "Colors describe gap size, not player quality."
+        )
+
+    with col_differences:
         st.markdown(
             """<div style="font-family:var(--mono); font-size:10.5px; letter-spacing:0.22em;
                     color:var(--ink-60); margin-bottom:14px; padding-bottom:6px;
-                    border-bottom:1px dotted var(--ink-20);">FIG. C — PLAYER PROFILE OVERLAY</div>""",
+                    border-bottom:1px dotted var(--ink-20);">FIG. C — KEY DIFFERENCES</div>""",
             unsafe_allow_html=True,
         )
 
-        compare_row = career_df[
-            (career_df["PLAYER_ID"] == compare_data["player_id"])
-            & (career_df["CAREER_YEAR"] == compare_data["career_year"])
-        ]
-        if not compare_row.empty:
-            compare_row = compare_row.iloc[0]
-            st.markdown(
-                render_radar_svg(
-                    anchor_row,
-                    compare_row,
-                    f"{anchor_abbr} {anchor_season['SEASON']}",
-                    f"{compare_data['abbr']} {compare_data['season']}",
-                ),
-                unsafe_allow_html=True,
-            )
+        st.caption(
+            f"{anchor_abbr} → {compare_data['abbr']} · largest contributors among noticeable or large gaps"
+        )
+        st.markdown(
+            render_key_differences(anchor_row, compare_row, explanation), unsafe_allow_html=True
+        )
 
     # Stat breakdown
     st.markdown(
@@ -565,10 +601,22 @@ def main():
         unsafe_allow_html=True,
     )
 
-    if not compare_row.empty if isinstance(compare_row, pd.DataFrame) else True:
+    if not compare_row.empty:
         label_a = f"{anchor_abbr} {anchor_season['SEASON'][2:]}"
         label_b = f"{compare_data['abbr']} {compare_data['season'][2:]}"
         st.markdown("**Measurements for this comparison mode**")
+        st.caption(
+            "Green: close · Yellow: noticeable difference · Red: large difference. "
+            "Colors use the same reference scales as the score. Disabled measurements are not scored."
+        )
+        with st.expander("How gaps and colors are measured"):
+            st.write(
+                "Each gap is measured against the variation among rotation-player seasons in this mode. "
+                "Close means less than half a standard deviation; noticeable means half to less than one; "
+                "large means one or more. These are display guidelines, not significance tests. "
+                "Search filters do not change the scales. The overall score combines squared gaps, "
+                "with the selected category weights; the largest differences count more."
+            )
 
         st.markdown(
             render_stat_breakdown(
@@ -577,16 +625,23 @@ def main():
                 label_a,
                 label_b,
                 profile_categories(profile_spec["groups"]),
+                evidence=explanation["features"],
             ),
             unsafe_allow_html=True,
         )
-        st.caption(
-            "The following tables show observed season stats for context; not every displayed stat enters the selected comparison mode."
-        )
-        st.markdown(
-            render_stat_breakdown(anchor_row, compare_row, label_a, label_b),
-            unsafe_allow_html=True,
-        )
+        with st.expander("Season context · raw stats and descriptive profile"):
+            st.caption(
+                "These tables and the profile overlay provide season context. "
+                "They do not explain the score; differences are shown without similarity colors."
+            )
+            st.markdown(
+                render_radar_svg(anchor_row, compare_row, label_a, label_b),
+                unsafe_allow_html=True,
+            )
+            st.markdown(
+                render_stat_breakdown(anchor_row, compare_row, label_a, label_b),
+                unsafe_allow_html=True,
+            )
 
     # Close comparison panel
     st.markdown("</div>", unsafe_allow_html=True)

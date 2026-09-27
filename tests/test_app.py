@@ -52,6 +52,7 @@ def test_award_tokens():
 def test_comparison_modes_and_historical_boundary():
     app_path = Path(__file__).resolve().parents[1] / "src/app/streamlit_app.py"
     app = AppTest.from_file(str(app_path)).run(timeout=30)
+    assert app.radio(key="matching_detail").value == "Tracking (2013+)"
     assert app.checkbox(key="exclude_same").value
     app.radio(key="matching_mode").set_value("Production").run(timeout=30)
     assert not app.exception
@@ -64,7 +65,7 @@ def test_comparison_modes_and_historical_boundary():
     app.selectbox(key="season_select").select(0).run()
     assert not app.exception
     assert any("Tracking comparisons start" in item.value for item in app.info)
-    app.radio(key="matching_detail").set_value("Historical (2003+)").run()
+    next(b for b in app.button if b.label == "Compare with historical data").click().run()
     assert not app.exception
     assert app.selectbox(key="compare_select").options
     app.selectbox(key="age_filter").select("Within 2 years of age").run()
@@ -76,3 +77,32 @@ def test_relative_efficiency_is_displayed_in_percentage_points():
 
     assert fmt_stat(0.04, "ts_relative", True) == "+4.0 pp"
     assert fmt_stat(-0.025, "ts_relative", True) == "-2.5 pp"
+
+
+def test_whole_profile_explanation_and_tracking_shortcut():
+    app_path = Path(__file__).resolve().parents[1] / "src/app/streamlit_app.py"
+    app = AppTest.from_file(str(app_path)).run(timeout=30)
+    app.radio(key="matching_detail").set_value("Historical (2003+)").run()
+    app.radio(key="matching_mode").set_value("Production").run()
+    app.radio(key="matching_mode").set_value("Playing style").run()
+    assert app.radio(key="matching_detail").value == "Historical (2003+)"
+    app.selectbox(key="player_select").select("Lauri Markkanen").run()
+    app.selectbox(key="season_select").select(7).run()
+    assert not app.exception
+    gg = next(
+        i
+        for i, option in enumerate(app.selectbox(key="compare_select").options)
+        if "GG Jackson (2023-24)" in option
+    )
+    app.selectbox(key="compare_select").select(gg).run()
+    text = "\n".join(item.value for item in app.markdown)
+    assert "WHAT DRIVES THE DIFFERENCE" in text and "KEY DIFFERENCES" in text
+    assert "Noticeable difference" in text and "Large difference" in text
+    assert "VERY CLOSE" not in text and "SIMILARITY BY CATEGORY" not in text
+    app.slider(key="w_physical").set_value(0).run()
+    assert not app.exception
+    assert any("Not scored" in item.value for item in app.markdown)
+    button = next(b for b in app.button if b.label == "Compare with tracking detail")
+    button.click().run()
+    assert not app.exception
+    assert app.radio(key="matching_detail").value == "Tracking (2013+)"
