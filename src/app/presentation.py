@@ -8,6 +8,7 @@ import numpy as np
 import pandas as pd
 import streamlit as st
 
+from src.app.comparison_display import TWO_DECIMAL_FEATURES
 from src.features.registry import DIMENSIONS, STAT_CATEGORIES
 from src.similarity.scoring import similarity_score
 
@@ -98,6 +99,10 @@ def fmt_stat(val, col_name: str, is_pct: bool) -> str:
         return f"{int(val // 12)}'{int(val % 12)}\""
     if col_name == "weight":
         return f"{int(val)}"
+    if col_name == "ts_relative":
+        return f"{float(val) * 100:+.1f} pp"
+    if col_name in TWO_DECIMAL_FEATURES:
+        return f"{float(val):.2f}"
     if is_pct:
         return f"{val * 100:.1f}%"
     return f"{val:.1f}"
@@ -162,7 +167,13 @@ def compute_radar_value(row, dimension_key: str) -> float:
     return 50
 
 
-def render_masthead(total_seasons: int, total_players: int, issue_no: str, feature_count: int):
+def render_masthead(
+    total_seasons: int,
+    total_players: int,
+    issue_no: str,
+    feature_count: int,
+    dimension_count: int = 11,
+):
     today = date.today()
     date_str = today.strftime("%A, %B %d, %Y").upper()
     st.markdown(
@@ -191,7 +202,7 @@ def render_masthead(total_seasons: int, total_players: int, issue_no: str, featu
             <span class="sep">·</span>
             <span><b>{feature_count}</b> matching features</span>
             <span class="sep">·</span>
-            <span><b>11</b> dimensions</span>
+            <span><b>{dimension_count}</b> dimensions</span>
         </div>
     </div>
     """),
@@ -370,9 +381,9 @@ def render_results_table_html(results_data: list[dict], selected_idx: int) -> st
     """)
 
 
-def render_similarity_bars(group_distances: dict, weights=None) -> str:
+def render_similarity_bars(group_distances: dict, weights=None, dimensions=None) -> str:
     bars_html = []
-    for dim in DIMENSIONS:
+    for dim in dimensions if dimensions is not None else DIMENSIONS:
         dist = group_distances.get(dim["key"])
         disabled = weights is not None and weights.get(dim["key"], 0) == 0
         if disabled or dist is None or not math.isfinite(dist):
@@ -508,9 +519,11 @@ def render_radar_svg(anchor_row, compare_row, anchor_label: str, compare_label: 
     return _clean(svg)
 
 
-def render_stat_breakdown(anchor_row, compare_row, label_a: str, label_b: str) -> str:
+def render_stat_breakdown(
+    anchor_row, compare_row, label_a: str, label_b: str, categories=None
+) -> str:
     cats_html = []
-    for cat in STAT_CATEGORIES:
+    for cat in categories if categories is not None else STAT_CATEGORIES:
         rows_html = []
         for stat_name, col_name, is_pct in cat["stats"]:
             v1 = anchor_row.get(col_name)
@@ -530,6 +543,8 @@ def render_stat_breakdown(anchor_row, compare_row, label_a: str, label_b: str) -
                 d = float(v2) - float(v1)
                 if is_pct:
                     diff_str = f"{'+' if d >= 0 else ''}{d * 100:.1f}"
+                elif col_name in TWO_DECIMAL_FEATURES:
+                    diff_str = f"{d:+.2f}"
                 elif col_name in ("height_inches", "weight"):
                     diff_str = f"{'+' if d >= 0 else ''}{d:.0f}"
                 else:

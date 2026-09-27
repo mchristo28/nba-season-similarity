@@ -7,6 +7,7 @@ from pathlib import Path
 
 import pandas as pd
 
+from .comparison import MODEL_VERSION, comparison_columns, comparison_features
 from .schema import publish_features
 from .transforms import efficiency_stats, per_game, team_shares
 
@@ -156,6 +157,7 @@ def build_features(
         if not teams.empty:
             teams = teams.drop_duplicates(["TEAM_ID", "SEASON"], keep="last")
     df = team_shares(df, teams)
+    df = comparison_features(df, teams)
 
     # Add trajectory features (year-over-year deltas)
     print("Computing trajectory features...")
@@ -272,6 +274,7 @@ def build_features(
         + [c for c in profile_cols if c in df.columns]
         + [c for c in tracking_cols if c in df.columns]
         + [c for c in trajectory_cols if c in df.columns]
+        + comparison_columns(df)
     )
 
     # Remove duplicates while preserving order
@@ -290,7 +293,11 @@ def build_features(
     Path(output_path).parent.mkdir(parents=True, exist_ok=True)
     publish_features(features, output_path)
     metadata = {
-        "schema_version": 2,
+        "schema_version": 3,
+        "comparison_model_version": MODEL_VERSION,
+        "efficiency_units": "Ratios computed from exact season totals; TS uses 0.44 FTA approximation",
+        "rate_units": "NBA per 100 on-court possessions",
+        "era_adjustment": "TS minus league TS, weighted by exact team shooting totals",
         "built_at": datetime.now(timezone.utc).isoformat(),
         "source_updated_at": None,
         "source_note": "Rebuilt from a stored snapshot; build time is not data freshness.",
@@ -331,21 +338,10 @@ def main():
     parser.add_argument("--team-stats", help="Optional parquet of actual team totals")
     args = parser.parse_args()
     if args.fetch:
-        from src.data.comprehensive_stats import ComprehensiveStatsPipeline
-
-        pipeline = ComprehensiveStatsPipeline(str(Path(args.input).parent.parent))
-        source = pipeline.pull_all_seasons(
-            f"{args.start_year}-{str(args.start_year + 1)[-2:]}",
-            f"{args.end_year}-{str(args.end_year + 1)[-2:]}",
+        parser.error(
+            "Use python scripts/refresh_data.py --snapshot-dir data/raw/refresh_YYYYMMDD to fetch validated comparison data"
         )
-        pipeline.save_data(source, Path(args.input).name)
     build_features(args.input, args.output, args.team_stats)
-    if args.fetch:
-        path = Path(args.output).with_suffix(".json")
-        metadata = json.loads(path.read_text())
-        metadata["source_updated_at"] = datetime.now(timezone.utc).isoformat()
-        metadata["source_note"] = "NBA endpoints fetched by the rebuild command."
-        path.write_text(json.dumps(metadata, indent=2) + "\n")
 
 
 if __name__ == "__main__":

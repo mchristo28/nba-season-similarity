@@ -47,3 +47,32 @@ def test_award_tokens():
 
     awards = pd.DataFrame({"PLAYER_ID": [1], "SEASON": ["2020-21"], "AWARDS": ["🛡️6️⃣👑"]})
     assert set(get_awards_pills(1, "2020-21", awards)) == {"DPOY", "6MOY", "MVP"}
+
+
+def test_comparison_modes_and_historical_boundary():
+    app_path = Path(__file__).resolve().parents[1] / "src/app/streamlit_app.py"
+    app = AppTest.from_file(str(app_path)).run(timeout=30)
+    assert app.checkbox(key="exclude_same").value
+    app.radio(key="matching_mode").set_value("Production").run(timeout=30)
+    assert not app.exception
+    assert any("TS above league" in item.value for item in app.markdown)
+    app.radio(key="matching_mode").set_value("Playing style").run(timeout=30)
+    app.radio(key="matching_detail").set_value("Tracking (2013+)").run(timeout=30)
+    assert not app.exception
+    assert app.slider(key="w_drives").value == 1
+    app.selectbox(key="player_select").select("LeBron James").run()
+    app.selectbox(key="season_select").select(0).run()
+    assert not app.exception
+    assert any("Tracking comparisons start" in item.value for item in app.info)
+    app.radio(key="matching_detail").set_value("Historical (2003+)").run()
+    assert not app.exception
+    assert app.selectbox(key="compare_select").options
+    app.selectbox(key="age_filter").select("Within 2 years of age").run()
+    assert not app.exception
+
+
+def test_relative_efficiency_is_displayed_in_percentage_points():
+    from src.app.presentation import fmt_stat
+
+    assert fmt_stat(0.04, "ts_relative", True) == "+4.0 pp"
+    assert fmt_stat(-0.025, "ts_relative", True) == "-2.5 pp"

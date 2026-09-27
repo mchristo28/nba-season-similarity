@@ -226,7 +226,7 @@ class ComprehensiveStatsPipeline:
         # Shot distribution percentages
         total_fga_col = "FGA"
         if total_fga_col in result.columns:
-            total_fga = result[total_fga_col].replace(0, 1)
+            total_fga = result[total_fga_col].where(result[total_fga_col] > 0)
 
             # Map shot location columns to our naming
             zone_mappings = {
@@ -242,9 +242,7 @@ class ComprehensiveStatsPipeline:
 
             # Corner 3 = left + right
             if "left_corner_3_fga" in result.columns and "right_corner_3_fga" in result.columns:
-                corner3_fga = result["left_corner_3_fga"].fillna(0) + result[
-                    "right_corner_3_fga"
-                ].fillna(0)
+                corner3_fga = result["left_corner_3_fga"] + result["right_corner_3_fga"]
                 result["pct_fga_corner3"] = corner3_fga / total_fga
 
             # Shot zone FG%
@@ -256,7 +254,8 @@ class ComprehensiveStatsPipeline:
             }
             for src_col, dest_col in fg_pct_mappings.items():
                 if src_col in result.columns:
-                    result[dest_col] = result[src_col]
+                    attempts_col = src_col.removesuffix("_fg_pct") + "_fga"
+                    result[dest_col] = result[src_col].where(result[attempts_col] > 0)
 
             # Corner 3 FG% (weighted average)
             if all(
@@ -268,13 +267,9 @@ class ComprehensiveStatsPipeline:
                     "right_corner_3_fga",
                 ]
             ):
-                corner_fgm = result["left_corner_3_fgm"].fillna(0) + result[
-                    "right_corner_3_fgm"
-                ].fillna(0)
-                corner_fga = result["left_corner_3_fga"].fillna(0) + result[
-                    "right_corner_3_fga"
-                ].fillna(0)
-                result["fg_pct_corner3"] = corner_fgm / corner_fga.replace(0, 1)
+                corner_fgm = result["left_corner_3_fgm"] + result["right_corner_3_fgm"]
+                corner_fga = result["left_corner_3_fga"] + result["right_corner_3_fga"]
+                result["fg_pct_corner3"] = corner_fgm / corner_fga.where(corner_fga > 0)
 
         return result
 

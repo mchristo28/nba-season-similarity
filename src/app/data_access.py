@@ -18,13 +18,13 @@ def load_cached_awards(version=None) -> pd.DataFrame | None:
     return None
 
 
-@st.cache_resource(max_entries=2)
-def load_matcher(version=None) -> WeightedMatcher | None:
+@st.cache_resource(max_entries=4)
+def load_matcher(version=None, profile=None) -> WeightedMatcher | None:
     features_path = project_root / "data/features/player_features.parquet"
     if not features_path.exists():
         return None
     df = load_career_features(version)
-    matcher = WeightedMatcher()
+    matcher = WeightedMatcher(profile=profile)
     matcher.fit(df)
     return matcher
 
@@ -43,5 +43,5 @@ def data_version(filename="player_features.parquet"):
 
 
 @st.cache_data(max_entries=32)
-def search_seasons(player_id, season_key, version=None, **kwargs):
-    return load_matcher(version).find_similar_season(player_id, season_key, **kwargs)
+def search_seasons(player_id, season_key, version=None, profile=None, **kwargs):
+    return load_matcher(version, profile).find_similar_season(player_id, season_key, **kwargs)

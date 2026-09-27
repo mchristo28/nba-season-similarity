@@ -13,6 +13,7 @@ sys.path.insert(0, str(project_root))
 import pandas as pd
 import streamlit as st
 
+from src.app.comparison_display import profile_categories
 from src.app.data_access import (
     data_version,
     load_cached_awards,
@@ -37,7 +38,8 @@ from src.app.presentation import (
     score_label,
 )
 from src.app.styles import CSS, FONT_LINKS
-from src.features.registry import DEFAULT_WEIGHTS, DIMENSIONS
+from src.features.comparison import MODEL_VERSION
+from src.similarity.profiles import get_profile
 from src.similarity.scoring import similarity_score
 
 # ---------------------------------------------------------------------------
@@ -117,9 +119,18 @@ def main():
     st.markdown(FONT_LINKS, unsafe_allow_html=True)
     st.markdown(CSS, unsafe_allow_html=True)
 
+    mode = st.session_state.get("matching_mode", "Playing style")
+    detail = st.session_state.get("matching_detail", "Historical (2003+)")
+    profile = (
+        "production"
+        if mode == "Production"
+        else ("style_tracking" if detail == "Tracking (2013+)" else "style_historical")
+    )
+    profile_spec = get_profile(profile)
+    dimensions = [{"key": key, **spec} for key, spec in profile_spec["groups"].items()]
     # Load and validate before rendering controls.
     try:
-        matcher = load_matcher(data_version())
+        matcher = load_matcher(data_version(), profile)
         career_df = load_career_features(data_version())
         cached_awards = load_cached_awards(data_version("season_awards.parquet"))
     except (ValueError, OSError) as error:
@@ -151,7 +162,12 @@ def main():
         st.session_state.compare_idx = 0
 
     # Default weights
-    default_weights = DEFAULT_WEIGHTS
+    default_weights = {key: spec["default_weight"] for key, spec in profile_spec["groups"].items()}
+    if st.session_state.get("active_profile") != profile:
+        for key, val in default_weights.items():
+            st.session_state[f"w_{key}"] = val
+        st.session_state["active_profile"] = profile
+        st.session_state["compare_select"] = 0
     for key, val in default_weights.items():
         if f"w_{key}" not in st.session_state:
             st.session_state[f"w_{key}"] = val
@@ -163,7 +179,17 @@ def main():
         total_players,
         issue_no,
         sum(len(v["columns"]) for v in matcher.scalers.values()),
+        len(dimensions),
     )
+    st.radio("Compare", ["Playing style", "Production"], horizontal=True, key="matching_mode")
+    if mode == "Playing style":
+        st.radio(
+            "Style data",
+            ["Historical (2003+)", "Tracking (2013+)"],
+            horizontal=True,
+            key="matching_detail",
+        )
+    st.caption(profile_spec["description"])
 
     # ---- Section I: The Subject ----
     render_section_head(
@@ -241,17 +267,14 @@ def main():
         render_awards(award_pills)
 
     with col_editor:
-        # Editor's note
         st.markdown(
-            _clean("""
-        <div class="editor-note">
+            _clean(f"""<div class="editor-note">
             <div class="editor-note-flag">EDITOR'S NOTE</div>
-            <p>Similarity is computed across <b>eleven dimensions</b> — scoring, efficiency, shot profile,
-            creation, drives, playmaking, ball handling, rebounding, defense, usage, and physical build.</p>
-            <p>Stats are standardized and each dimension uses an average difference, so larger groups do not
-            automatically outweigh smaller ones. Unavailable measurements are excluded. Adjust the weights below to tell the engine what matters.</p>
-        </div>
-        """),
+            <p><b>{profile_spec["label"]}</b></p>
+            <p>{profile_spec["description"]}</p>
+            <p>Every candidate in this ranking must have the same measurements available as the selected season.
+            Scores use a fixed reference of rotation-player seasons. Adjust the weights to emphasize what matters.</p>
+            </div>"""),
             unsafe_allow_html=True,
         )
 
@@ -264,7 +287,7 @@ def main():
             )
 
             custom_weights = {}
-            for dim in DIMENSIONS:
+            for dim in dimensions:
                 st.markdown(
                     f'<div class="weight-desc-line">{dim["desc"]}</div>', unsafe_allow_html=True
                 )
@@ -285,13 +308,25 @@ def main():
     # Render controls before searching so state and results are consistent.
     with st.expander("Search filters"):
         n_results = st.radio("SHOW", [5, 10, 15, 20], index=1, horizontal=True, key="n_results")
-        exclude_same = st.checkbox("Exclude other seasons by the same player", key="exclude_same")
+        exclude_same = st.checkbox(
+            "Exclude other seasons by the same player", value=True, key="exclude_same"
+        )
         min_games = st.number_input("Minimum games", min_value=0, value=20, step=5)
         min_minutes = st.number_input(
             "Minimum minutes per game", min_value=0.0, value=10.0, step=1.0
         )
-        min_coverage = st.slider("Minimum shared data coverage", 0, 100, 50, step=5) / 100
-        first_year = int(career_df.SEASON.str[:4].min())
+        min_coverage = st.slider("Minimum shared data coverage", 0, 100, 80, step=5) / 100
+        age_filter = st.selectbox(
+            "Career-stage filter",
+            ["Any age", "Within 2 years of age", "Within 5 years of age"],
+            key="age_filter",
+        )
+        max_age_difference = {
+            "Any age": None,
+            "Within 2 years of age": 2,
+            "Within 5 years of age": 5,
+        }[age_filter]
+        first_year = max(profile_spec["first_year"], int(career_df.SEASON.str[:4].min()))
         last_year = int(career_df.SEASON.str[:4].max())
         year_range = st.slider(
             "Candidate season start years", first_year, last_year, (first_year, last_year)
@@ -299,12 +334,24 @@ def main():
     st.caption(
         "Score guide: 100 = identical measured features; 84 ≈ half a standard deviation "
         "apart; 50 = one standard deviation apart; 6 ≈ two. Scores describe statistical "
-        "closeness, not player quality, percentiles, or probabilities. Coverage is shown separately."
+        "closeness, not player quality, percentiles, or probabilities. Compare scores within the selected mode. "
+        f"Model {MODEL_VERSION}; coverage is shown separately."
     )
     if not any(custom_weights.values()):
         st.warning("Enable at least one matching dimension.")
         return
 
+    if int(anchor_season["SEASON"][:4]) < profile_spec["first_year"]:
+        st.info(
+            "Tracking comparisons start in 2013–14. Choose Historical style data for this season."
+        )
+        return
+    if anchor_row.GP < 20 or anchor_row.MIN < 10:
+        st.warning("This subject has a small playing-time sample; its profile may be unstable.")
+    if anchor_row.get("FGA_TOTAL", 0) < 100 and mode == "Production":
+        st.caption(
+            "Shooting efficiency is based on fewer than 100 field-goal attempts. It is an observed result, not an estimate of shooting talent."
+        )
     try:
         similar = search_seasons(
             player_id,
@@ -319,6 +366,8 @@ def main():
             season_start=year_range[0],
             season_end=year_range[1],
             version=data_version(),
+            profile=profile,
+            max_age_difference=max_age_difference,
         )
 
         results_data = []
@@ -405,6 +454,9 @@ def main():
         )
 
     # Render results table
+    st.caption(
+        "Table stats are per game. The selected mode’s normalized measurements appear in the breakdown below."
+    )
     st.markdown(
         render_results_table_html(results_data, compare_idx),
         unsafe_allow_html=True,
@@ -461,7 +513,8 @@ def main():
 
     st.caption(
         f"Shared data coverage: {compare_data['coverage']:.0%} of weighted requested features. "
-        "Unavailable stats are omitted, never treated as zero. Traded-season team shares are unavailable."
+        "All ranked candidates share the selected season’s available comparison measurements. "
+        "Unavailable measurements are not treated as zero."
     )
 
     # Charts: Similarity bars + Radar
@@ -475,7 +528,7 @@ def main():
             unsafe_allow_html=True,
         )
         st.markdown(
-            render_similarity_bars(compare_data["group_distances"], custom_weights),
+            render_similarity_bars(compare_data["group_distances"], custom_weights, dimensions),
             unsafe_allow_html=True,
         )
 
@@ -515,6 +568,21 @@ def main():
     if not compare_row.empty if isinstance(compare_row, pd.DataFrame) else True:
         label_a = f"{anchor_abbr} {anchor_season['SEASON'][2:]}"
         label_b = f"{compare_data['abbr']} {compare_data['season'][2:]}"
+        st.markdown("**Measurements for this comparison mode**")
+
+        st.markdown(
+            render_stat_breakdown(
+                anchor_row,
+                compare_row,
+                label_a,
+                label_b,
+                profile_categories(profile_spec["groups"]),
+            ),
+            unsafe_allow_html=True,
+        )
+        st.caption(
+            "The following tables show observed season stats for context; not every displayed stat enters the selected comparison mode."
+        )
         st.markdown(
             render_stat_breakdown(anchor_row, compare_row, label_a, label_b),
             unsafe_allow_html=True,

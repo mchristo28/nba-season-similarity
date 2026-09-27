@@ -22,15 +22,19 @@ project. The feature snapshot is included, so startup does not require API calls
 
 ## Matching and scores
 
-Eleven dimensions cover scoring, efficiency, shot location, creation, drives,
-passing, touches, rebounding, defense, usage, and physical measurements. The UI
-reports the actual available matching-feature count; the parquet's total column
-count also includes metadata and features not used by this matcher.
+Choose **Playing style** or **Production**. Historical style uses 15 tendency and
+role measurements across eight dimensions from 2003–04 onward. Tracking style
+adds creation, drive decisions and handling per touch (23 features, 2013–14 onward).
+Production uses 11 features: per-100-possession output, league-relative shooting
+efficiency, usage, and size. Exact season totals prevent rounded-per-game shooting
+errors. The breakdown shows the actual measurements used by each mode.
 
-Within each dimension, matching uses RMS differences of standardized features.
-Group weights control their influence. Missing observations are excluded and
-coverage is displayed separately. Games, minutes, season range, same-player
-exclusion, and minimum shared coverage are configurable.
+Features are standardized against rotation-player seasons (20+ games, 15+ MPG).
+Group RMS distances prevent large dimensions from automatically dominating.
+Every ranked candidate must have the same query-observed comparison inputs;
+missing measurements never count as zero. Other seasons by the same player are
+excluded by default. Games, minutes, candidate seasons, age difference, coverage,
+and group weights are configurable. Scores should be compared within one mode.
 
 Scores use `100 × 2^(-distance²)`: 100 is identical on measured features, about 84
 is a half-standard-deviation difference, and 50 is one standard deviation. Scores
@@ -46,7 +50,8 @@ python -m src.features.build_features
 ```
 
 This requires `data/processed/comprehensive_stats.parquet` and uses team-total
-caches in `data/raw`. If team totals are unavailable, shares remain missing.
+caches in `data/raw`. Exact player totals, NBA per-100 rates, possessions, and
+actual team totals are required; missing normalization inputs prevent publishing.
 Provide `--team-stats path/to/team_totals.parquet` to supply a table with `TEAM_ID`,
 `SEASON`, `GP`, and season-total stat columns.
 
@@ -78,7 +83,7 @@ The older `src.features.feature_pipeline` produces **career aggregates** in
 pip install '.[dev,trajectory]'
 ruff check src tests
 python -m pytest -q
-python scripts/audit_scores.py
+python scripts/audit_scores.py --profile all
 ```
 
 Tests cover matching invariants, missingness, score reference points, units, team
@@ -87,7 +92,9 @@ CI runs on Python 3.10 and 3.12.
 
 ## Structure
 
-- `src/features/registry.py`: shared feature groups, weights, and display metadata.
+- `src/similarity/profiles.py`: explicit style and production feature sets.
+- `src/features/comparison.py`: exact totals, per-possession units, and league-relative efficiency.
+- `src/features/registry.py`: shared display metadata and legacy feature groups.
 - `src/features/transforms.py`: units, efficiency, career-year, and team-share transformations.
 - `src/similarity/weighted_matcher.py`: vectorized season and career matching.
 - `src/similarity/scoring.py`: shared aggregation and 0–100 score mapping.
@@ -100,8 +107,9 @@ in `trajectory_matching.py` and `HybridTrajectoryMatcher` in `trajectory_matcher
 Their historical `TrajectoryMatcher` imports remain aliases. DTW is an optional
 `trajectory` extra; the hybrid matcher falls back to aligned matching without it.
 These strategies and the outcome projector are not exposed in the season UI.
-Basketball Reference scraping and era adjustment modules remain unimplemented
-extension points; the app does not use them or claim their data.
+Basketball Reference scraping and the older `EraAdjuster` class remain unused
+extension points. The app’s implemented pace and league-relative adjustments live
+in `src/features/comparison.py`.
 
 ## Data limitations
 
@@ -110,4 +118,5 @@ extension points; the app does not use them or claim their data.
 - Missing season heights/weights use NBA player-profile measurements where available; fallback player-seasons are listed in the metadata.
 - Multi-team season shares are unavailable without team-stint data.
 - Regular-season comparisons only. Scores do not adjust for every era or rule change.
+- Detailed play types, defensive assignments and estimated shooting skill are not yet included.
 - Statistical similarity is sensitive to the selected dimensions and available data.

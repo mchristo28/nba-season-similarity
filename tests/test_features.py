@@ -54,3 +54,24 @@ def test_publish_validates_before_replacing(tmp_path):
 def test_missing_rookie_year_does_not_collapse_seasons():
     with pytest.raises(ValueError, match="rookie"):
         add_career_year(frame(), {})
+
+
+def test_shot_zone_no_attempts_are_unknown_not_misses(tmp_path):
+    from src.data.comprehensive_stats import ComprehensiveStatsPipeline
+
+    data = pd.DataFrame(
+        {
+            "FGA": [0.0, 1.0],
+            "restricted_area_fga": [0.0, 1.0],
+            "restricted_area_fg_pct": [0.0, 0.0],
+            "left_corner_3_fga": [0.0, 0.0],
+            "right_corner_3_fga": [0.0, 0.0],
+            "left_corner_3_fgm": [0.0, 0.0],
+            "right_corner_3_fgm": [0.0, 0.0],
+        }
+    )
+    result = ComprehensiveStatsPipeline(str(tmp_path)).compute_derived_stats(data)
+    assert pd.isna(result.fg_pct_restricted.iloc[0])
+    assert result.fg_pct_restricted.iloc[1] == 0
+    assert result.fg_pct_corner3.isna().all()
+    assert result.pct_fga_corner3.iloc[1] == 0

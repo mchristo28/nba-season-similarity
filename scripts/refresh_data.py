@@ -20,6 +20,7 @@ from scripts.cache_awards import build_season_awards_lookup
 from src.data.comprehensive_stats import ComprehensiveStatsPipeline
 from src.data.merge_stats import merge_player_measurements
 from src.features.build_features import build_features
+from src.features.comparison import attach_measurements
 from src.features.schema import publish_features, validate_season_features
 
 
@@ -106,8 +107,27 @@ def fetch_stats(snapshot, start, end):
             per_mode_detailed="PerGame",
         ).copy()
         basic["SEASON"] = season
+        totals = snapshot.fetch(
+            f"totals_{year}",
+            endpoints.LeagueDashPlayerStats,
+            season=season,
+            per_mode_detailed="Totals",
+        )
+        rates = snapshot.fetch(
+            f"per100_{year}",
+            endpoints.LeagueDashPlayerStats,
+            season=season,
+            per_mode_detailed="Per100Possessions",
+        )
+        advanced = snapshot.fetch(
+            f"advanced_{year}",
+            endpoints.LeagueDashPlayerStats,
+            season=season,
+            measure_type_detailed_defense="Advanced",
+        )
+        basic = attach_measurements(basic, totals, rates, advanced)
         specs = [
-            ("shots", endpoints.LeagueDashPlayerShotLocations, {"per_mode_detailed": "PerGame"}),
+            ("shots", endpoints.LeagueDashPlayerShotLocations, {"per_mode_detailed": "Totals"}),
             ("bio", endpoints.LeagueDashPlayerBioStats, {}),
             ("estimated", endpoints.PlayerEstimatedMetrics, {}),
             (
@@ -121,8 +141,16 @@ def fetch_stats(snapshot, start, end):
                 ("hustle", endpoints.LeagueHustleStatsPlayer, {"per_mode_time": "PerGame"})
             )
         for kind, endpoint, parameters in specs:
-            extra = snapshot.fetch(f"{kind}_{year}", endpoint, season=season, **parameters)
-            basic = merge_player_measurements(basic, normalize(extra, kind))
+            cache_kind = "shots_totals" if kind == "shots" else kind
+            extra = snapshot.fetch(f"{cache_kind}_{year}", endpoint, season=season, **parameters)
+            extra = normalize(extra, kind)
+            if kind == "shots":
+                # Store exact shot counts normalized by GP so distributions share base units.
+                games = extra.PLAYER_ID.map(basic.set_index("PLAYER_ID").GP)
+                for column in extra:
+                    if column.endswith(("_fga", "_fgm")):
+                        extra[column] = extra[column] / games.where(games > 0)
+            basic = merge_player_measurements(basic, extra)
         if year >= 2013:
             for kind in ("Drives", "CatchShoot", "PullUpShot", "Passing", "Possessions"):
                 extra = snapshot.fetch(

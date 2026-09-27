@@ -34,19 +34,35 @@ def per_game(df: pd.DataFrame, columns=COUNTING_STATS) -> pd.DataFrame:
 
 
 def efficiency_stats(df: pd.DataFrame) -> pd.DataFrame:
+    """Prefer exact counts, then official ratios; never overwrite with rounded rates."""
     result = df.copy()
-    for made, attempted, output in [
-        ("FGM", "FGA", "fg_pct"),
-        ("FG3M", "FG3A", "fg3_pct"),
-        ("FTM", "FTA", "ft_pct"),
+    for made, attempted, output, official in [
+        ("FGM", "FGA", "fg_pct", "FG_PCT"),
+        ("FG3M", "FG3A", "fg3_pct", "FG3_PCT"),
+        ("FTM", "FTA", "ft_pct", "FT_PCT"),
     ]:
-        if made in result and attempted in result:
+        if {made + "_TOTAL", attempted + "_TOTAL"} <= set(result):
+            denominator = result[attempted + "_TOTAL"]
+            result[output] = result[made + "_TOTAL"] / denominator.where(denominator > 0)
+        elif official in result:
+            result[output] = result[official].where(result[attempted] > 0)
+        elif made in result and attempted in result:
             result[output] = result[made] / result[attempted].where(result[attempted] > 0)
-    if {"PTS", "FGA", "FTA"} <= set(result):
-        attempts = result.FGA + 0.44 * result.FTA
-        result["ts_pct"] = result.PTS / (2 * attempts.where(attempts > 0))
-    if {"FGM", "FG3M", "FGA"} <= set(result):
-        result["efg_pct"] = (result.FGM + 0.5 * result.FG3M) / result.FGA.where(result.FGA > 0)
+    if {"PTS_TOTAL", "FGA_TOTAL", "FTA_TOTAL", "FGM_TOTAL", "FG3M_TOTAL"} <= set(result):
+        attempts = result.FGA_TOTAL + 0.44 * result.FTA_TOTAL
+        result["ts_pct"] = result.PTS_TOTAL / (2 * attempts.where(attempts > 0))
+        result["efg_pct"] = (result.FGM_TOTAL + 0.5 * result.FG3M_TOTAL) / result.FGA_TOTAL.where(
+            result.FGA_TOTAL > 0
+        )
+    else:
+        for official, output in [("TS_PCT", "ts_pct"), ("EFG_PCT", "efg_pct")]:
+            if official in result:
+                result[output] = result[official]
+        if "ts_pct" not in result and {"PTS", "FGA", "FTA"} <= set(result):
+            attempts = result.FGA + 0.44 * result.FTA
+            result["ts_pct"] = result.PTS / (2 * attempts.where(attempts > 0))
+        if "efg_pct" not in result and {"FGM", "FG3M", "FGA"} <= set(result):
+            result["efg_pct"] = (result.FGM + 0.5 * result.FG3M) / result.FGA.where(result.FGA > 0)
     return result
 
 
