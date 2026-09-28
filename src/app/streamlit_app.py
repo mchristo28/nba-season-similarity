@@ -3,6 +3,7 @@
 Editorial broadsheet redesign. Preserves WeightedMatcher wiring.
 """
 
+import hashlib
 import json
 import sys
 from pathlib import Path
@@ -169,7 +170,6 @@ def main():
         for key, val in default_weights.items():
             st.session_state[f"w_{key}"] = val
         st.session_state["active_profile"] = profile
-        st.session_state.pop("compare_select", None)
     for key, val in default_weights.items():
         if f"w_{key}" not in st.session_state:
             st.session_state[f"w_{key}"] = val
@@ -210,7 +210,6 @@ def main():
         # Season values are list positions, not shared career/year identifiers.
         # A position carried from the previous player can select an unrelated era.
         st.session_state["season_select"] = int(career_df.PLAYER_NAME.eq(selected).sum()) - 1
-        st.session_state.pop("compare_select", None)
 
     with col_anchor:
         col_portrait, col_meta = st.columns([1, 2])
@@ -518,17 +517,16 @@ def main():
         "eligible seasons under the selected filters.",
     )
 
-    # Use the visible choice as its value so changed scores cannot retain a stale
-    # label through a numeric selection whose underlying value is still 0.
+    # Remount when results change: the hosted selectbox can otherwise retain its
+    # previous input label even after its selected value and options have changed.
     compare_options = [
         f"{r['name']} ({r['season']}) — Score: {r['score']:.0f}" for r in results_data
     ]
-    if st.session_state.get("compare_select") not in compare_options:
-        st.session_state.pop("compare_select", None)
     selected_comparison = st.selectbox(
         "SELECT COMPARISON",
         options=compare_options,
-        key="compare_select",
+        key="compare_select_"
+        + hashlib.sha256("\n".join(compare_options).encode()).hexdigest()[:16],
     )
     compare_idx = compare_options.index(selected_comparison)
 

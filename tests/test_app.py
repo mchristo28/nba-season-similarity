@@ -6,6 +6,10 @@ from streamlit.testing.v1 import AppTest
 from src.app.presentation import render_radar_svg, render_similarity_bars, score_label
 
 
+def comparison_selector(app):
+    return next(box for box in app.selectbox if box.label == "SELECT COMPARISON")
+
+
 def test_unavailable_bars_and_labels():
     html = render_similarity_bars({"usage": 0}, {"usage": 1, "drives": 1})
     assert "N/A" in html and "OFF" in html and ">100<" in html
@@ -43,7 +47,7 @@ def test_full_app_controls():
     assert any("Enable at least one" in w.value for w in app.warning)
     app.button[0].click().run()
     assert not app.exception
-    assert len(app.selectbox(key="compare_select").options) == 5
+    assert len(comparison_selector(app).options) == 5
 
 
 def test_award_tokens():
@@ -71,7 +75,7 @@ def test_comparison_modes_and_historical_boundary():
     assert any("Tracking comparisons start" in item.value for item in app.info)
     next(b for b in app.button if b.label == "Compare with historical data").click().run()
     assert not app.exception
-    assert app.selectbox(key="compare_select").options
+    assert comparison_selector(app).options
     app.selectbox(key="age_filter").select("Within 2 years of age").run()
     assert not app.exception
 
@@ -96,12 +100,10 @@ def test_whole_profile_explanation_and_tracking_shortcut():
     assert not app.exception
     gg = next(
         i
-        for i, option in enumerate(app.selectbox(key="compare_select").options)
+        for i, option in enumerate(comparison_selector(app).options)
         if "GG Jackson (2023-24)" in option
     )
-    app.selectbox(key="compare_select").select(
-        app.selectbox(key="compare_select").options[gg]
-    ).run()
+    comparison_selector(app).select(comparison_selector(app).options[gg]).run()
     text = "\n".join(item.value for item in app.markdown)
     assert "WHAT DRIVES THE DIFFERENCE" in text and "KEY DIFFERENCES" in text
     assert "Noticeable difference" in text and "Large difference" in text
@@ -123,7 +125,7 @@ def test_position_peers_and_hybrid_switching():
     assert not app.exception and not app.error
     assert app.multiselect(key="peer_groups").value == ["Guard"]
     assert any("Reference: Guard" in item.value for item in app.caption)
-    assert app.selectbox(key="compare_select").value == "Austin Reaves (2025-26) — Score: 84"
+    assert comparison_selector(app).value == "Austin Reaves (2025-26) — Score: 84"
     app.selectbox(key="player_select").select("Lauri Markkanen").run()
     assert not app.exception and not app.error
     assert app.multiselect(key="peer_groups").value == ["Forward / Wing", "Center / Big"]
@@ -151,4 +153,4 @@ def test_unknown_season_position_stays_available_in_all_player_mode():
     assert any("no verified roster position" in item.value for item in app.info)
     app.radio(key="reference_mode").set_value("All players").run()
     assert not app.exception and not app.error
-    assert app.selectbox(key="compare_select").options
+    assert comparison_selector(app).options
