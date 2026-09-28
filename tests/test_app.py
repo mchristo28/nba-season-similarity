@@ -98,7 +98,9 @@ def test_whole_profile_explanation_and_tracking_shortcut():
         for i, option in enumerate(app.selectbox(key="compare_select").options)
         if "GG Jackson (2023-24)" in option
     )
-    app.selectbox(key="compare_select").select(gg).run()
+    app.selectbox(key="compare_select").select(
+        app.selectbox(key="compare_select").options[gg]
+    ).run()
     text = "\n".join(item.value for item in app.markdown)
     assert "WHAT DRIVES THE DIFFERENCE" in text and "KEY DIFFERENCES" in text
     assert "Noticeable difference" in text and "Large difference" in text
@@ -121,6 +123,7 @@ def test_position_peers_and_hybrid_switching():
     assert not app.exception and not app.error
     assert app.selectbox(key="peer_group").value == "Guard"
     assert any("Reference: Guard" in item.value for item in app.caption)
+    assert app.selectbox(key="compare_select").value == "Austin Reaves (2025-26) — Score: 84"
     app.selectbox(key="player_select").select("Lauri Markkanen").run()
     assert not app.exception and not app.error
     assert len(app.selectbox(key="peer_group").options) == 3
