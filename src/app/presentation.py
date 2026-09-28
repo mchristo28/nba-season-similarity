@@ -308,7 +308,7 @@ def render_results_table_html(results_data: list[dict], selected_idx: int) -> st
                             {r["name"]}
                         </div>
                         <div style="font-family:var(--mono); font-size:10px; letter-spacing:0.16em; color:var(--ink-60); margin-top:2px;">
-                            {r["team"]} · {r.get("coverage", 0):.0%} data coverage
+                            {r["team"]} · {r.get("pos") or "Position unavailable"} · {r.get("coverage", 0):.0%} data coverage
                         </div>
                     </div>
                 </div>

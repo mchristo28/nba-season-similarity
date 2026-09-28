@@ -31,7 +31,7 @@ efficiency, usage, and size. Exact season totals prevent rounded-per-game shooti
 errors. The breakdown shows the actual measurements used by each mode.
 
 Features are standardized against rotation-player seasons (20+ games, 15+ MPG).
-Model 3.1 combines squared standardized gaps across the whole profile, balancing
+Model 3.2 combines squared standardized gaps across the whole profile, balancing
 category sizes with their weights. Large mismatches have more influence than in
 the previous average-of-category-distances model. Colors use those same reference
 scales; category bars explain contributions to the total difference, and key
@@ -71,7 +71,7 @@ Use a new directory for each refresh; reuse that directory only to resume an
 interrupted run. Successful responses and their fetch timestamps are cached there.
 The refresh retries failed calls and refuses publication when required endpoints,
 seasons, existing players, or tracking coverage are missing. It updates the local
-processed inputs and actual team totals too, so subsequent rebuilds use fresh data.
+processed inputs, actual team totals, and season roster positions too, so subsequent rebuilds use fresh data.
 
 The awards command refreshes every player who appeared in the selected season,
 retains retired players' historical awards, and rebuilds the displayed badges.
@@ -126,3 +126,28 @@ in `src/features/comparison.py`.
 - Regular-season comparisons only. Scores do not adjust for every era or rule change.
 - Detailed play types, defensive assignments and estimated shooting skill are not yet included.
 - Statistical similarity is sensitive to the selected dimensions and available data.
+
+## Position peers
+
+The default All players comparison is unchanged. Position peers restricts candidates
+and the fixed statistical reference to the selected broad roster group: Guard,
+Forward / Wing, or Center / Big. Scores, per-stat colors, and category contributions
+use that same reference (20+ GP, 15+ MPG, within the profile's supported years).
+Search filters never refit it. Scores should be compared within the same mode and pool.
+
+NBA CommonTeamRoster is requested separately for each season and team. A season's
+labels are combined across team stints, with original labels, teams, and label
+variation retained in `player_positions.parquet`. G-F and F-C retain both memberships;
+hybrids can use either group or their union. These are listed roster positions, not
+measured playing-time roles. Missing labels stay unknown and are excluded only from
+peer mode. `player_positions.json` records per-season coverage and every missing row.
+
+To refresh only positions against an existing team-season snapshot:
+
+```bash
+python scripts/refresh_positions.py --snapshot-dir data/raw/positions_YYYYMMDD --teams data/raw/refresh_YYYYMMDD/teams.parquet
+```
+
+Use a fresh directory for new source data; reusing one resumes the cached requests.
+All requested rosters must succeed before publication. The full data-refresh command
+also stages positions before publishing its feature snapshot.

@@ -7,6 +7,7 @@ import numpy as np
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
 
+from src.features.positions import POSITION_GROUPS, position_mask
 from src.features.registry import FEATURE_GROUPS
 from src.features.schema import validate_season_features
 
@@ -23,7 +24,16 @@ class WeightedMatcher:
 
     FEATURE_GROUPS = FEATURE_GROUPS
 
-    def __init__(self, weights: dict[str, float] | None = None, *, profile: str | None = None):
+    def __init__(
+        self,
+        weights: dict[str, float] | None = None,
+        *,
+        profile: str | None = None,
+        peer_groups: tuple[str, ...] = (),
+    ):
+        self.peer_groups = tuple(g for g in POSITION_GROUPS if g in peer_groups)
+        if set(peer_groups) - POSITION_GROUPS.keys():
+            raise ValueError("Unknown position peer group")
         self.profile = profile
         self.profile_spec = get_profile(profile) if profile else None
         if self.profile_spec:
@@ -63,6 +73,16 @@ class WeightedMatcher:
                 raise ValueError(
                     "Not enough rotation-player seasons to fit this comparison profile"
                 )
+        if self.peer_groups:
+            reference = reference[position_mask(reference, self.peer_groups)]
+            if len(reference) < 2:
+                raise ValueError("Not enough listed position peers for this comparison profile")
+        self._peer_eligible = (
+            position_mask(df, self.peer_groups).to_numpy()
+            if self.peer_groups
+            else np.ones(len(df), dtype=bool)
+        )
+        self.reference_count = len(reference)
         for group, spec in self.FEATURE_GROUPS.items():
             columns = [c for c in spec["features"] if c in reference and reference[c].notna().any()]
             if not columns:
@@ -140,6 +160,8 @@ class WeightedMatcher:
         """
         index = self._index("year")
         query, candidate = index[player_id][season_key], index[other_id][other_key]
+        if not self._peer_eligible[[query, candidate]].all():
+            raise ValueError("Both seasons must belong to the selected position pool")
         weights = self._weights(weights)
         distance, groups, coverage = self._distances(query, np.array([candidate]), weights)
         valid_groups = {
@@ -212,6 +234,11 @@ class WeightedMatcher:
         if n < 0 or min_games < 0 or min_minutes < 0 or not 0 <= min_coverage <= 1:
             raise ValueError("Invalid search limits")
         query = index[player_id][season_key]
+        if (
+            self.peer_groups
+            and not position_mask(self.career_features.iloc[[query]], self.peer_groups).iloc[0]
+        ):
+            raise ValueError("The subject has no listed membership in the selected peer group")
         if max_age_difference is not None and max_age_difference < 0:
             raise ValueError("Age difference must be nonnegative")
         if self.profile_spec:
@@ -232,6 +259,8 @@ class WeightedMatcher:
         candidates = np.array([row for _, _, row in entries])
         df = self.career_features.iloc[candidates]
         mask = (df.GP.to_numpy() >= min_games) & (df.MIN.to_numpy() >= min_minutes)
+        if self.peer_groups:
+            mask &= position_mask(df, self.peer_groups).to_numpy()
         years = df.SEASON.str[:4].astype(int).to_numpy()
         if season_start is not None:
             mask &= years >= season_start
@@ -268,6 +297,8 @@ class WeightedMatcher:
         groups = {}
         periods = 0
         for key in common:
+            if not self._peer_eligible[[first[key], second[key]]].all():
+                continue
             if self.profile_spec and any(
                 int(self.career_features.iloc[i].SEASON[:4]) < self.profile_spec["first_year"]
                 for i in [first[key], second[key]]
@@ -347,6 +378,7 @@ class WeightedMatcher:
                     "career_features": self.career_features,
                     "weights": self.weights,
                     "profile": self.profile,
+                    "peer_groups": self.peer_groups,
                 },
                 handle,
             )
@@ -356,4 +388,8 @@ class WeightedMatcher:
         """Load trusted local model files only; refit to rebuild all indexes."""
         with open(path, "rb") as handle:
             data = pickle.load(handle)
-        return cls(data["weights"], profile=data.get("profile")).fit(data["career_features"])
+        return cls(
+            data["weights"],
+            profile=data.get("profile"),
+            peer_groups=data.get("peer_groups", ()),
+        ).fit(data["career_features"])

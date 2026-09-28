@@ -364,7 +364,13 @@ def main():
         }
     )
     metadata_path.write_text(json.dumps(metadata, indent=2) + "\n")
+    # Refresh positions with the same seasons; stage them until all source requests pass.
+    from scripts.refresh_positions import refresh_positions
+
+    refresh_positions(features, teams, snapshot.directory / "positions", output=snapshot.directory)
     # All requests and validation must succeed before any app artifact is replaced.
+    for name in ["player_positions.parquet", "player_positions.json"]:
+        publish_file(snapshot.directory / name, Path("data/features") / name)
     publish_features(features, "data/features/player_features.parquet")
     publish_file(metadata_path, "data/features/player_features.json")
     publish_file(stats_path, "data/processed/comprehensive_stats.parquet")

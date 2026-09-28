@@ -39,6 +39,7 @@ from src.app.presentation import (
     score_label,
 )
 from src.app.styles import CSS, FONT_LINKS
+from src.features.positions import POSITION_GROUPS, position_groups
 from src.similarity.profiles import get_profile
 from src.similarity.scoring import MODEL_VERSION, similarity_score
 
@@ -267,6 +268,12 @@ def main():
                 unsafe_allow_html=True,
             )
 
+        listed_position = anchor_row.get("POSITION_LABELS")
+        st.caption(
+            f"Listed season position: {listed_position}"
+            if pd.notna(listed_position)
+            else "Listed season position: unavailable"
+        )
         # Statline
         ts_pct = anchor_row.get("ts_pct", 0)
         usg_pct = anchor_row.get("e_usg_pct", 0)
@@ -318,6 +325,48 @@ def main():
                     st.session_state[f"w_{key}"] = val
 
             st.button("↺ RESET TO DEFAULTS", on_click=reset_weights)
+
+    reference_mode = st.radio(
+        "Comparison pool",
+        ["All players", "Position peers"],
+        horizontal=True,
+        key="reference_mode",
+    )
+    peer_groups = ()
+    reference_label = "All players"
+    if reference_mode == "Position peers":
+        memberships = position_groups(anchor_row.get("POSITION"))
+        if not memberships:
+            st.info(
+                "This season has no verified roster position. Select All players to compare it."
+            )
+            return
+        options = {" + ".join(POSITION_GROUPS[g] for g in memberships): memberships}
+        if len(memberships) > 1:
+            options.update({POSITION_GROUPS[g]: (g,) for g in memberships})
+        context = (int(player_id), anchor_year)
+        if st.session_state.get("peer_subject") != context:
+            st.session_state["peer_group"] = next(iter(options))
+            st.session_state["peer_subject"] = context
+        reference_label = st.selectbox("Position group", list(options), key="peer_group")
+        peer_groups = options[reference_label]
+        try:
+            matcher = load_matcher(data_version(), profile, peer_groups)
+        except ValueError as error:
+            st.info(str(error))
+            return
+        eligible = career_df[career_df.SEASON.str[:4].astype(int) >= profile_spec["first_year"]]
+        known = eligible.get("POSITION", pd.Series(index=eligible.index, dtype=str)).notna()
+        st.caption(
+            "Season roster labels; hybrids belong to each listed group. These describe listed "
+            "positions, not time spent playing each role. Unknown positions are excluded. "
+            f"Positions available for {known.sum():,} of {len(eligible):,} seasons in this mode."
+        )
+    st.caption(
+        f"Reference: {reference_label} · {matcher.reference_count:,} rotation-player seasons "
+        "(20+ games, 15+ minutes per game). Scores and gap colors use this same reference; "
+        "search filters do not change it. Compare scores within the same mode and pool."
+    )
 
     # Render controls before searching so state and results are consistent.
     with st.expander("Search filters"):
@@ -396,6 +445,7 @@ def main():
             season_end=year_range[1],
             version=data_version(),
             profile=profile,
+            peer_groups=peer_groups,
             max_age_difference=max_age_difference,
         )
 
@@ -426,7 +476,7 @@ def main():
                     "name": name,
                     "abbr": player_abbr(name),
                     "team": season_row.get("TEAM_ABBREVIATION", ""),
-                    "pos": "",
+                    "pos": season_row.get("POSITION", ""),
                     "season": info["season"],
                     "year": their_year,
                     "age": int(info.get("age", 0)) if info.get("age") else "—",
@@ -526,6 +576,14 @@ def main():
         f"with {selected_player}'s {anchor_season['SEASON']}.",
     )
 
+    other_position = compare_row.get("POSITION_LABELS")
+    other_position = other_position if pd.notna(other_position) else "unavailable"
+    query_position = listed_position if pd.notna(listed_position) else "unavailable"
+    st.caption(
+        f"Listed positions: {selected_player} — {query_position}; "
+        f"{compare_data['name']} — {other_position}. "
+        f"Comparison pool: {reference_label}."
+    )
     # Comparison heads
     st.markdown(
         _clean(f"""
@@ -619,7 +677,7 @@ def main():
         )
         with st.expander("How gaps and colors are measured"):
             st.write(
-                "Each gap is measured against the variation among rotation-player seasons in this mode. "
+                f"Each gap uses the {reference_label} rotation-player reference in this mode. "
                 "Close means less than half a standard deviation; noticeable means half to less than one; "
                 "large means one or more. These are display guidelines, not significance tests. "
                 "Search filters do not change the scales. The overall score combines squared gaps, "

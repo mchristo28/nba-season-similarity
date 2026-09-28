@@ -1,0 +1,7108 @@
+{
+  "source": "NBA CommonTeamRoster",
+  "source_updated_at": "2026-09-28T13:12:57.087158+00:00",
+  "source_fetch_completed_at": "2026-09-28T13:17:42.835289+00:00",
+  "team_season_requests": 689,
+  "note": "Listed positions from season-requested rosters, not minutes played by role. Hybrid and differing team labels retain all memberships. Unknown positions are not inferred.",
+  "season_coverage": {
+    "2003-04": {
+      "players": 442,
+      "known": 407,
+      "rotation_players": 265,
+      "rotation_known": 265
+    },
+    "2004-05": {
+      "players": 464,
+      "known": 378,
+      "rotation_players": 294,
+      "rotation_known": 264
+    },
+    "2005-06": {
+      "players": 458,
+      "known": 412,
+      "rotation_players": 281,
+      "rotation_known": 275
+    },
+    "2006-07": {
+      "players": 458,
+      "known": 429,
+      "rotation_players": 288,
+      "rotation_known": 285
+    },
+    "2007-08": {
+      "players": 451,
+      "known": 421,
+      "rotation_players": 279,
+      "rotation_known": 276
+    },
+    "2008-09": {
+      "players": 445,
+      "known": 427,
+      "rotation_players": 276,
+      "rotation_known": 276
+    },
+    "2009-10": {
+      "players": 442,
+      "known": 417,
+      "rotation_players": 291,
+      "rotation_known": 290
+    },
+    "2010-11": {
+      "players": 452,
+      "known": 427,
+      "rotation_players": 296,
+      "rotation_known": 294
+    },
+    "2011-12": {
+      "players": 478,
+      "known": 440,
+      "rotation_players": 297,
+      "rotation_known": 294
+    },
+    "2012-13": {
+      "players": 469,
+      "known": 436,
+      "rotation_players": 299,
+      "rotation_known": 296
+    },
+    "2013-14": {
+      "players": 482,
+      "known": 438,
+      "rotation_players": 302,
+      "rotation_known": 300
+    },
+    "2014-15": {
+      "players": 492,
+      "known": 447,
+      "rotation_players": 329,
+      "rotation_known": 326
+    },
+    "2015-16": {
+      "players": 476,
+      "known": 444,
+      "rotation_players": 306,
+      "rotation_known": 303
+    },
+    "2016-17": {
+      "players": 486,
+      "known": 446,
+      "rotation_players": 320,
+      "rotation_known": 313
+    },
+    "2017-18": {
+      "players": 540,
+      "known": 494,
+      "rotation_players": 320,
+      "rotation_known": 317
+    },
+    "2018-19": {
+      "players": 530,
+      "known": 483,
+      "rotation_players": 323,
+      "rotation_known": 318
+    },
+    "2019-20": {
+      "players": 529,
+      "known": 499,
+      "rotation_players": 320,
+      "rotation_known": 318
+    },
+    "2020-21": {
+      "players": 540,
+      "known": 497,
+      "rotation_players": 345,
+      "rotation_known": 343
+    },
+    "2021-22": {
+      "players": 605,
+      "known": 493,
+      "rotation_players": 343,
+      "rotation_known": 335
+    },
+    "2022-23": {
+      "players": 539,
+      "known": 497,
+      "rotation_players": 323,
+      "rotation_known": 321
+    },
+    "2023-24": {
+      "players": 572,
+      "known": 522,
+      "rotation_players": 316,
+      "rotation_known": 311
+    },
+    "2024-25": {
+      "players": 569,
+      "known": 528,
+      "rotation_players": 340,
+      "rotation_known": 337
+    },
+    "2025-26": {
+      "players": 582,
+      "known": 525,
+      "rotation_players": 350,
+      "rotation_known": 343
+    }
+  },
+  "missing": [
+    {
+      "PLAYER_ID": 57,
+      "PLAYER_NAME": "Doug Christie",
+      "SEASON": "2004-05",
+      "GP": 52,
+      "MIN": 29.2
+    },
+    {
+      "PLAYER_ID": 57,
+      "PLAYER_NAME": "Doug Christie",
+      "SEASON": "2005-06",
+      "GP": 7,
+      "MIN": 26.5
+    },
+    {
+      "PLAYER_ID": 57,
+      "PLAYER_NAME": "Doug Christie",
+      "SEASON": "2006-07",
+      "GP": 7,
+      "MIN": 11.7
+    },
+    {
+      "PLAYER_ID": 72,
+      "PLAYER_NAME": "Kenny Anderson",
+      "SEASON": "2004-05",
+      "GP": 43,
+      "MIN": 17.3
+    },
+    {
+      "PLAYER_ID": 89,
+      "PLAYER_NAME": "Nick Van Exel",
+      "SEASON": "2004-05",
+      "GP": 53,
+      "MIN": 30.5
+    },
+    {
+      "PLAYER_ID": 123,
+      "PLAYER_NAME": "Robert Pack",
+      "SEASON": "2003-04",
+      "GP": 26,
+      "MIN": 8.3
+    },
+    {
+      "PLAYER_ID": 145,
+      "PLAYER_NAME": "Tracy Murray",
+      "SEASON": "2003-04",
+      "GP": 7,
+      "MIN": 5.0
+    },
+    {
+      "PLAYER_ID": 178,
+      "PLAYER_NAME": "Olden Polynice",
+      "SEASON": "2003-04",
+      "GP": 2,
+      "MIN": 5.5
+    },
+    {
+      "PLAYER_ID": 185,
+      "PLAYER_NAME": "Chris Webber",
+      "SEASON": "2007-08",
+      "GP": 9,
+      "MIN": 14.0
+    },
+    {
+      "PLAYER_ID": 213,
+      "PLAYER_NAME": "Antonio Davis",
+      "SEASON": "2005-06",
+      "GP": 44,
+      "MIN": 21.4
+    },
+    {
+      "PLAYER_ID": 238,
+      "PLAYER_NAME": "Tyrone Hill",
+      "SEASON": "2003-04",
+      "GP": 5,
+      "MIN": 7.5
+    },
+    {
+      "PLAYER_ID": 239,
+      "PLAYER_NAME": "Darrick Martin",
+      "SEASON": "2004-05",
+      "GP": 11,
+      "MIN": 17.2
+    },
+    {
+      "PLAYER_ID": 239,
+      "PLAYER_NAME": "Darrick Martin",
+      "SEASON": "2007-08",
+      "GP": 17,
+      "MIN": 8.3
+    },
+    {
+      "PLAYER_ID": 255,
+      "PLAYER_NAME": "Grant Hill",
+      "SEASON": "2004-05",
+      "GP": 67,
+      "MIN": 35.0
+    },
+    {
+      "PLAYER_ID": 275,
+      "PLAYER_NAME": "Allan Houston",
+      "SEASON": "2004-05",
+      "GP": 20,
+      "MIN": 26.7
+    },
+    {
+      "PLAYER_ID": 281,
+      "PLAYER_NAME": "Scott Williams",
+      "SEASON": "2004-05",
+      "GP": 19,
+      "MIN": 8.0
+    },
+    {
+      "PLAYER_ID": 283,
+      "PLAYER_NAME": "Lindsey Hunter",
+      "SEASON": "2009-10",
+      "GP": 13,
+      "MIN": 9.4
+    },
+    {
+      "PLAYER_ID": 292,
+      "PLAYER_NAME": "Anthony Miller",
+      "SEASON": "2004-05",
+      "GP": 2,
+      "MIN": 4.9
+    },
+    {
+      "PLAYER_ID": 358,
+      "PLAYER_NAME": "Anfernee Hardaway",
+      "SEASON": "2004-05",
+      "GP": 37,
+      "MIN": 24.2
+    },
+    {
+      "PLAYER_ID": 358,
+      "PLAYER_NAME": "Anfernee Hardaway",
+      "SEASON": "2005-06",
+      "GP": 4,
+      "MIN": 17.9
+    },
+    {
+      "PLAYER_ID": 358,
+      "PLAYER_NAME": "Anfernee Hardaway",
+      "SEASON": "2007-08",
+      "GP": 16,
+      "MIN": 20.3
+    },
+    {
+      "PLAYER_ID": 369,
+      "PLAYER_NAME": "Charlie Ward",
+      "SEASON": "2004-05",
+      "GP": 14,
+      "MIN": 25.7
+    },
+    {
+      "PLAYER_ID": 383,
+      "PLAYER_NAME": "Kendall Gill",
+      "SEASON": "2004-05",
+      "GP": 14,
+      "MIN": 20.3
+    },
+    {
+      "PLAYER_ID": 393,
+      "PLAYER_NAME": "Rod Strickland",
+      "SEASON": "2004-05",
+      "GP": 16,
+      "MIN": 12.3
+    },
+    {
+      "PLAYER_ID": 436,
+      "PLAYER_NAME": "Juwan Howard",
+      "SEASON": "2004-05",
+      "GP": 61,
+      "MIN": 26.6
+    },
+    {
+      "PLAYER_ID": 436,
+      "PLAYER_NAME": "Juwan Howard",
+      "SEASON": "2006-07",
+      "GP": 80,
+      "MIN": 26.5
+    },
+    {
+      "PLAYER_ID": 446,
+      "PLAYER_NAME": "Lucious Harris",
+      "SEASON": "2004-05",
+      "GP": 73,
+      "MIN": 15.4
+    },
+    {
+      "PLAYER_ID": 448,
+      "PLAYER_NAME": "Bo Outlaw",
+      "SEASON": "2007-08",
+      "GP": 2,
+      "MIN": 3.3
+    },
+    {
+      "PLAYER_ID": 468,
+      "PLAYER_NAME": "Jon Barry",
+      "SEASON": "2005-06",
+      "GP": 20,
+      "MIN": 17.1
+    },
+    {
+      "PLAYER_ID": 677,
+      "PLAYER_NAME": "Eric Williams",
+      "SEASON": "2006-07",
+      "GP": 21,
+      "MIN": 5.8
+    },
+    {
+      "PLAYER_ID": 685,
+      "PLAYER_NAME": "Cherokee Parks",
+      "SEASON": "2003-04",
+      "GP": 12,
+      "MIN": 4.9
+    },
+    {
+      "PLAYER_ID": 688,
+      "PLAYER_NAME": "Michael Curry",
+      "SEASON": "2004-05",
+      "GP": 18,
+      "MIN": 14.0
+    },
+    {
+      "PLAYER_ID": 692,
+      "PLAYER_NAME": "Andrew DeClercq",
+      "SEASON": "2004-05",
+      "GP": 8,
+      "MIN": 6.3
+    },
+    {
+      "PLAYER_ID": 693,
+      "PLAYER_NAME": "Joe Smith",
+      "SEASON": "2004-05",
+      "GP": 74,
+      "MIN": 30.7
+    },
+    {
+      "PLAYER_ID": 703,
+      "PLAYER_NAME": "Kurt Thomas",
+      "SEASON": "2012-13",
+      "GP": 39,
+      "MIN": 10.1
+    },
+    {
+      "PLAYER_ID": 711,
+      "PLAYER_NAME": "Jerry Stackhouse",
+      "SEASON": "2010-11",
+      "GP": 7,
+      "MIN": 7.1
+    },
+    {
+      "PLAYER_ID": 731,
+      "PLAYER_NAME": "Greg Ostertag",
+      "SEASON": "2005-06",
+      "GP": 60,
+      "MIN": 13.5
+    },
+    {
+      "PLAYER_ID": 739,
+      "PLAYER_NAME": "Rasheed Wallace",
+      "SEASON": "2012-13",
+      "GP": 21,
+      "MIN": 14.1
+    },
+    {
+      "PLAYER_ID": 779,
+      "PLAYER_NAME": "Glen Rice",
+      "SEASON": "2003-04",
+      "GP": 18,
+      "MIN": 14.5
+    },
+    {
+      "PLAYER_ID": 923,
+      "PLAYER_NAME": "Donyell Marshall",
+      "SEASON": "2004-05",
+      "GP": 65,
+      "MIN": 25.5
+    },
+    {
+      "PLAYER_ID": 924,
+      "PLAYER_NAME": "Anthony Goldwire",
+      "SEASON": "2003-04",
+      "GP": 11,
+      "MIN": 7.6
+    },
+    {
+      "PLAYER_ID": 924,
+      "PLAYER_NAME": "Anthony Goldwire",
+      "SEASON": "2005-06",
+      "GP": 3,
+      "MIN": 7.3
+    },
+    {
+      "PLAYER_ID": 934,
+      "PLAYER_NAME": "Derrick Coleman",
+      "SEASON": "2004-05",
+      "GP": 5,
+      "MIN": 9.9
+    },
+    {
+      "PLAYER_ID": 935,
+      "PLAYER_NAME": "Bryon Russell",
+      "SEASON": "2005-06",
+      "GP": 1,
+      "MIN": 2.6
+    },
+    {
+      "PLAYER_ID": 954,
+      "PLAYER_NAME": "Kerry Kittles",
+      "SEASON": "2004-05",
+      "GP": 11,
+      "MIN": 22.1
+    },
+    {
+      "PLAYER_ID": 955,
+      "PLAYER_NAME": "Samaki Walker",
+      "SEASON": "2004-05",
+      "GP": 14,
+      "MIN": 9.7
+    },
+    {
+      "PLAYER_ID": 955,
+      "PLAYER_NAME": "Samaki Walker",
+      "SEASON": "2005-06",
+      "GP": 7,
+      "MIN": 3.1
+    },
+    {
+      "PLAYER_ID": 976,
+      "PLAYER_NAME": "Jeff McInnis",
+      "SEASON": "2005-06",
+      "GP": 28,
+      "MIN": 17.4
+    },
+    {
+      "PLAYER_ID": 976,
+      "PLAYER_NAME": "Jeff McInnis",
+      "SEASON": "2007-08",
+      "GP": 54,
+      "MIN": 26.1
+    },
+    {
+      "PLAYER_ID": 979,
+      "PLAYER_NAME": "Jermaine O'Neal",
+      "SEASON": "2011-12",
+      "GP": 25,
+      "MIN": 22.8
+    },
+    {
+      "PLAYER_ID": 988,
+      "PLAYER_NAME": "Randy Livingston",
+      "SEASON": "2003-04",
+      "GP": 4,
+      "MIN": 12.1
+    },
+    {
+      "PLAYER_ID": 1049,
+      "PLAYER_NAME": "Shane Heal",
+      "SEASON": "2003-04",
+      "GP": 6,
+      "MIN": 11.5
+    },
+    {
+      "PLAYER_ID": 1052,
+      "PLAYER_NAME": "Ben Handlogten",
+      "SEASON": "2003-04",
+      "GP": 17,
+      "MIN": 10.1
+    },
+    {
+      "PLAYER_ID": 1425,
+      "PLAYER_NAME": "Aaron Williams",
+      "SEASON": "2007-08",
+      "GP": 30,
+      "MIN": 9.9
+    },
+    {
+      "PLAYER_ID": 1500,
+      "PLAYER_NAME": "Ron Mercer",
+      "SEASON": "2003-04",
+      "GP": 39,
+      "MIN": 13.3
+    },
+    {
+      "PLAYER_ID": 1500,
+      "PLAYER_NAME": "Ron Mercer",
+      "SEASON": "2004-05",
+      "GP": 18,
+      "MIN": 21.7
+    },
+    {
+      "PLAYER_ID": 1506,
+      "PLAYER_NAME": "Austin Croshere",
+      "SEASON": "2008-09",
+      "GP": 14,
+      "MIN": 7.1
+    },
+    {
+      "PLAYER_ID": 1508,
+      "PLAYER_NAME": "Maurice Taylor",
+      "SEASON": "2006-07",
+      "GP": 12,
+      "MIN": 8.6
+    },
+    {
+      "PLAYER_ID": 1514,
+      "PLAYER_NAME": "Paul Grant",
+      "SEASON": "2003-04",
+      "GP": 10,
+      "MIN": 9.6
+    },
+    {
+      "PLAYER_ID": 1520,
+      "PLAYER_NAME": "Charles Smith",
+      "SEASON": "2005-06",
+      "GP": 22,
+      "MIN": 9.5
+    },
+    {
+      "PLAYER_ID": 1536,
+      "PLAYER_NAME": "Stephen Jackson",
+      "SEASON": "2012-13",
+      "GP": 55,
+      "MIN": 19.5
+    },
+    {
+      "PLAYER_ID": 1536,
+      "PLAYER_NAME": "Stephen Jackson",
+      "SEASON": "2013-14",
+      "GP": 9,
+      "MIN": 11.9
+    },
+    {
+      "PLAYER_ID": 1541,
+      "PLAYER_NAME": "Alvin Williams",
+      "SEASON": "2006-07",
+      "GP": 2,
+      "MIN": 4.8
+    },
+    {
+      "PLAYER_ID": 1594,
+      "PLAYER_NAME": "Rick Brunson",
+      "SEASON": "2003-04",
+      "GP": 40,
+      "MIN": 10.2
+    },
+    {
+      "PLAYER_ID": 1601,
+      "PLAYER_NAME": "Rusty LaRue",
+      "SEASON": "2003-04",
+      "GP": 4,
+      "MIN": 4.8
+    },
+    {
+      "PLAYER_ID": 1607,
+      "PLAYER_NAME": "Troy Hudson",
+      "SEASON": "2004-05",
+      "GP": 79,
+      "MIN": 22.1
+    },
+    {
+      "PLAYER_ID": 1607,
+      "PLAYER_NAME": "Troy Hudson",
+      "SEASON": "2007-08",
+      "GP": 9,
+      "MIN": 10.4
+    },
+    {
+      "PLAYER_ID": 1630,
+      "PLAYER_NAME": "Mikki Moore",
+      "SEASON": "2009-10",
+      "GP": 23,
+      "MIN": 17.6
+    },
+    {
+      "PLAYER_ID": 1712,
+      "PLAYER_NAME": "Antawn Jamison",
+      "SEASON": "2013-14",
+      "GP": 22,
+      "MIN": 11.3
+    },
+    {
+      "PLAYER_ID": 1715,
+      "PLAYER_NAME": "Jason Williams",
+      "SEASON": "2010-11",
+      "GP": 27,
+      "MIN": 10.9
+    },
+    {
+      "PLAYER_ID": 1716,
+      "PLAYER_NAME": "Larry Hughes",
+      "SEASON": "2011-12",
+      "GP": 9,
+      "MIN": 12.6
+    },
+    {
+      "PLAYER_ID": 1724,
+      "PLAYER_NAME": "Bryce Drew",
+      "SEASON": "2003-04",
+      "GP": 15,
+      "MIN": 5.1
+    },
+    {
+      "PLAYER_ID": 1729,
+      "PLAYER_NAME": "Ricky Davis",
+      "SEASON": "2009-10",
+      "GP": 36,
+      "MIN": 13.9
+    },
+    {
+      "PLAYER_ID": 1730,
+      "PLAYER_NAME": "Brian Skinner",
+      "SEASON": "2010-11",
+      "GP": 2,
+      "MIN": 2.9
+    },
+    {
+      "PLAYER_ID": 1730,
+      "PLAYER_NAME": "Brian Skinner",
+      "SEASON": "2011-12",
+      "GP": 1,
+      "MIN": 4.4
+    },
+    {
+      "PLAYER_ID": 1738,
+      "PLAYER_NAME": "Ansu Sesay",
+      "SEASON": "2004-05",
+      "GP": 16,
+      "MIN": 8.0
+    },
+    {
+      "PLAYER_ID": 1739,
+      "PLAYER_NAME": "Ruben Patterson",
+      "SEASON": "2007-08",
+      "GP": 20,
+      "MIN": 16.3
+    },
+    {
+      "PLAYER_ID": 1741,
+      "PLAYER_NAME": "Jelani McCoy",
+      "SEASON": "2003-04",
+      "GP": 2,
+      "MIN": 6.6
+    },
+    {
+      "PLAYER_ID": 1741,
+      "PLAYER_NAME": "Jelani McCoy",
+      "SEASON": "2004-05",
+      "GP": 10,
+      "MIN": 8.6
+    },
+    {
+      "PLAYER_ID": 1741,
+      "PLAYER_NAME": "Jelani McCoy",
+      "SEASON": "2007-08",
+      "GP": 6,
+      "MIN": 5.5
+    },
+    {
+      "PLAYER_ID": 1743,
+      "PLAYER_NAME": "Bruno Sundov",
+      "SEASON": "2003-04",
+      "GP": 5,
+      "MIN": 6.1
+    },
+    {
+      "PLAYER_ID": 1751,
+      "PLAYER_NAME": "Jahidi White",
+      "SEASON": "2004-05",
+      "GP": 17,
+      "MIN": 7.8
+    },
+    {
+      "PLAYER_ID": 1752,
+      "PLAYER_NAME": "Sean Marks",
+      "SEASON": "2010-11",
+      "GP": 29,
+      "MIN": 7.2
+    },
+    {
+      "PLAYER_ID": 1762,
+      "PLAYER_NAME": "Tremaine Fowlkes",
+      "SEASON": "2004-05",
+      "GP": 8,
+      "MIN": 6.4
+    },
+    {
+      "PLAYER_ID": 1763,
+      "PLAYER_NAME": "Ryan Bowen",
+      "SEASON": "2009-10",
+      "GP": 1,
+      "MIN": 7.9
+    },
+    {
+      "PLAYER_ID": 1765,
+      "PLAYER_NAME": "Torraye Braggs",
+      "SEASON": "2003-04",
+      "GP": 15,
+      "MIN": 10.0
+    },
+    {
+      "PLAYER_ID": 1853,
+      "PLAYER_NAME": "Anthony Carter",
+      "SEASON": "2003-04",
+      "GP": 5,
+      "MIN": 17.4
+    },
+    {
+      "PLAYER_ID": 1853,
+      "PLAYER_NAME": "Anthony Carter",
+      "SEASON": "2011-12",
+      "GP": 24,
+      "MIN": 8.7
+    },
+    {
+      "PLAYER_ID": 1885,
+      "PLAYER_NAME": "Lamar Odom",
+      "SEASON": "2004-05",
+      "GP": 64,
+      "MIN": 36.2
+    },
+    {
+      "PLAYER_ID": 1886,
+      "PLAYER_NAME": "Jonathan Bender",
+      "SEASON": "2004-05",
+      "GP": 7,
+      "MIN": 13.2
+    },
+    {
+      "PLAYER_ID": 1886,
+      "PLAYER_NAME": "Jonathan Bender",
+      "SEASON": "2005-06",
+      "GP": 2,
+      "MIN": 10.3
+    },
+    {
+      "PLAYER_ID": 1893,
+      "PLAYER_NAME": "Aleksandar Radojevic",
+      "SEASON": "2004-05",
+      "GP": 12,
+      "MIN": 10.7
+    },
+    {
+      "PLAYER_ID": 1894,
+      "PLAYER_NAME": "Corey Maggette",
+      "SEASON": "2004-05",
+      "GP": 66,
+      "MIN": 37.1
+    },
+    {
+      "PLAYER_ID": 1897,
+      "PLAYER_NAME": "Metta World Peace",
+      "SEASON": "2013-14",
+      "GP": 29,
+      "MIN": 13.4
+    },
+    {
+      "PLAYER_ID": 1900,
+      "PLAYER_NAME": "Quincy Lewis",
+      "SEASON": "2003-04",
+      "GP": 14,
+      "MIN": 4.5
+    },
+    {
+      "PLAYER_ID": 1901,
+      "PLAYER_NAME": "Dion Glover",
+      "SEASON": "2004-05",
+      "GP": 7,
+      "MIN": 9.4
+    },
+    {
+      "PLAYER_ID": 1903,
+      "PLAYER_NAME": "Kenny Thomas",
+      "SEASON": "2009-10",
+      "GP": 26,
+      "MIN": 12.0
+    },
+    {
+      "PLAYER_ID": 1905,
+      "PLAYER_NAME": "Andrei Kirilenko",
+      "SEASON": "2004-05",
+      "GP": 41,
+      "MIN": 33.0
+    },
+    {
+      "PLAYER_ID": 1905,
+      "PLAYER_NAME": "Andrei Kirilenko",
+      "SEASON": "2014-15",
+      "GP": 7,
+      "MIN": 5.2
+    },
+    {
+      "PLAYER_ID": 1909,
+      "PLAYER_NAME": "Scott Padgett",
+      "SEASON": "2006-07",
+      "GP": 31,
+      "MIN": 7.4
+    },
+    {
+      "PLAYER_ID": 1917,
+      "PLAYER_NAME": "Wang Zhi-zhi",
+      "SEASON": "2004-05",
+      "GP": 20,
+      "MIN": 4.5
+    },
+    {
+      "PLAYER_ID": 1918,
+      "PLAYER_NAME": "Obinna Ekezie",
+      "SEASON": "2004-05",
+      "GP": 42,
+      "MIN": 17.4
+    },
+    {
+      "PLAYER_ID": 1919,
+      "PLAYER_NAME": "Laron Profit",
+      "SEASON": "2005-06",
+      "GP": 25,
+      "MIN": 11.2
+    },
+    {
+      "PLAYER_ID": 1922,
+      "PLAYER_NAME": "Francisco Elson",
+      "SEASON": "2011-12",
+      "GP": 5,
+      "MIN": 3.3
+    },
+    {
+      "PLAYER_ID": 1924,
+      "PLAYER_NAME": "Lee Nailon",
+      "SEASON": "2005-06",
+      "GP": 22,
+      "MIN": 10.8
+    },
+    {
+      "PLAYER_ID": 1952,
+      "PLAYER_NAME": "Raja Bell",
+      "SEASON": "2009-10",
+      "GP": 6,
+      "MIN": 30.1
+    },
+    {
+      "PLAYER_ID": 1985,
+      "PLAYER_NAME": "Zendon Hamilton",
+      "SEASON": "2004-05",
+      "GP": 16,
+      "MIN": 10.1
+    },
+    {
+      "PLAYER_ID": 1985,
+      "PLAYER_NAME": "Zendon Hamilton",
+      "SEASON": "2005-06",
+      "GP": 12,
+      "MIN": 4.0
+    },
+    {
+      "PLAYER_ID": 2030,
+      "PLAYER_NAME": "Kenyon Martin",
+      "SEASON": "2014-15",
+      "GP": 11,
+      "MIN": 9.5
+    },
+    {
+      "PLAYER_ID": 2040,
+      "PLAYER_NAME": "Jerome Moiso",
+      "SEASON": "2004-05",
+      "GP": 20,
+      "MIN": 5.9
+    },
+    {
+      "PLAYER_ID": 2043,
+      "PLAYER_NAME": "Mateen Cleaves",
+      "SEASON": "2003-04",
+      "GP": 4,
+      "MIN": 22.8
+    },
+    {
+      "PLAYER_ID": 2043,
+      "PLAYER_NAME": "Mateen Cleaves",
+      "SEASON": "2005-06",
+      "GP": 27,
+      "MIN": 8.5
+    },
+    {
+      "PLAYER_ID": 2045,
+      "PLAYER_NAME": "Hedo Turkoglu",
+      "SEASON": "2004-05",
+      "GP": 67,
+      "MIN": 26.4
+    },
+    {
+      "PLAYER_ID": 2046,
+      "PLAYER_NAME": "Desmond Mason",
+      "SEASON": "2009-10",
+      "GP": 5,
+      "MIN": 13.1
+    },
+    {
+      "PLAYER_ID": 2049,
+      "PLAYER_NAME": "Speedy Claxton",
+      "SEASON": "2004-05",
+      "GP": 62,
+      "MIN": 30.2
+    },
+    {
+      "PLAYER_ID": 2050,
+      "PLAYER_NAME": "Morris Peterson",
+      "SEASON": "2010-11",
+      "GP": 4,
+      "MIN": 5.7
+    },
+    {
+      "PLAYER_ID": 2051,
+      "PLAYER_NAME": "Donnell Harvey",
+      "SEASON": "2004-05",
+      "GP": 3,
+      "MIN": 5.4
+    },
+    {
+      "PLAYER_ID": 2054,
+      "PLAYER_NAME": "Jake Tsakalidis",
+      "SEASON": "2004-05",
+      "GP": 31,
+      "MIN": 9.1
+    },
+    {
+      "PLAYER_ID": 2058,
+      "PLAYER_NAME": "Mark Madsen",
+      "SEASON": "2004-05",
+      "GP": 41,
+      "MIN": 14.7
+    },
+    {
+      "PLAYER_ID": 2061,
+      "PLAYER_NAME": "Dan Langhi",
+      "SEASON": "2003-04",
+      "GP": 6,
+      "MIN": 5.8
+    },
+    {
+      "PLAYER_ID": 2078,
+      "PLAYER_NAME": "Jason Hart",
+      "SEASON": "2009-10",
+      "GP": 5,
+      "MIN": 4.4
+    },
+    {
+      "PLAYER_ID": 2079,
+      "PLAYER_NAME": "Kaniel Dickens",
+      "SEASON": "2003-04",
+      "GP": 3,
+      "MIN": 4.4
+    },
+    {
+      "PLAYER_ID": 2079,
+      "PLAYER_NAME": "Kaniel Dickens",
+      "SEASON": "2004-05",
+      "GP": 11,
+      "MIN": 5.0
+    },
+    {
+      "PLAYER_ID": 2079,
+      "PLAYER_NAME": "Kaniel Dickens",
+      "SEASON": "2007-08",
+      "GP": 5,
+      "MIN": 2.4
+    },
+    {
+      "PLAYER_ID": 2098,
+      "PLAYER_NAME": "Slava Medvedenko",
+      "SEASON": "2005-06",
+      "GP": 2,
+      "MIN": 3.1
+    },
+    {
+      "PLAYER_ID": 2109,
+      "PLAYER_NAME": "Eddie Gill",
+      "SEASON": "2007-08",
+      "GP": 14,
+      "MIN": 10.9
+    },
+    {
+      "PLAYER_ID": 2109,
+      "PLAYER_NAME": "Eddie Gill",
+      "SEASON": "2008-09",
+      "GP": 6,
+      "MIN": 7.2
+    },
+    {
+      "PLAYER_ID": 2137,
+      "PLAYER_NAME": "Ime Udoka",
+      "SEASON": "2003-04",
+      "GP": 4,
+      "MIN": 7.0
+    },
+    {
+      "PLAYER_ID": 2137,
+      "PLAYER_NAME": "Ime Udoka",
+      "SEASON": "2010-11",
+      "GP": 20,
+      "MIN": 6.5
+    },
+    {
+      "PLAYER_ID": 2201,
+      "PLAYER_NAME": "Eddy Curry",
+      "SEASON": "2004-05",
+      "GP": 63,
+      "MIN": 28.8
+    },
+    {
+      "PLAYER_ID": 2201,
+      "PLAYER_NAME": "Eddy Curry",
+      "SEASON": "2012-13",
+      "GP": 2,
+      "MIN": 12.4
+    },
+    {
+      "PLAYER_ID": 2204,
+      "PLAYER_NAME": "Eddie Griffin",
+      "SEASON": "2006-07",
+      "GP": 13,
+      "MIN": 7.0
+    },
+    {
+      "PLAYER_ID": 2207,
+      "PLAYER_NAME": "Joe Johnson",
+      "SEASON": "2021-22",
+      "GP": 1,
+      "MIN": 2.0
+    },
+    {
+      "PLAYER_ID": 2208,
+      "PLAYER_NAME": "Kedrick Brown",
+      "SEASON": "2004-05",
+      "GP": 8,
+      "MIN": 6.8
+    },
+    {
+      "PLAYER_ID": 2211,
+      "PLAYER_NAME": "Troy Murphy",
+      "SEASON": "2012-13",
+      "GP": 14,
+      "MIN": 18.3
+    },
+    {
+      "PLAYER_ID": 2216,
+      "PLAYER_NAME": "Zach Randolph",
+      "SEASON": "2004-05",
+      "GP": 46,
+      "MIN": 34.9
+    },
+    {
+      "PLAYER_ID": 2221,
+      "PLAYER_NAME": "Raul Lopez",
+      "SEASON": "2004-05",
+      "GP": 31,
+      "MIN": 16.7
+    },
+    {
+      "PLAYER_ID": 2223,
+      "PLAYER_NAME": "Samuel Dalembert",
+      "SEASON": "2014-15",
+      "GP": 32,
+      "MIN": 17.0
+    },
+    {
+      "PLAYER_ID": 2224,
+      "PLAYER_NAME": "Jamaal Tinsley",
+      "SEASON": "2013-14",
+      "GP": 8,
+      "MIN": 13.8
+    },
+    {
+      "PLAYER_ID": 2226,
+      "PLAYER_NAME": "Will Solomon",
+      "SEASON": "2008-09",
+      "GP": 53,
+      "MIN": 13.4
+    },
+    {
+      "PLAYER_ID": 2228,
+      "PLAYER_NAME": "Alton Ford",
+      "SEASON": "2003-04",
+      "GP": 9,
+      "MIN": 4.5
+    },
+    {
+      "PLAYER_ID": 2229,
+      "PLAYER_NAME": "Mike James",
+      "SEASON": "2006-07",
+      "GP": 82,
+      "MIN": 25.2
+    },
+    {
+      "PLAYER_ID": 2229,
+      "PLAYER_NAME": "Mike James",
+      "SEASON": "2009-10",
+      "GP": 4,
+      "MIN": 11.4
+    },
+    {
+      "PLAYER_ID": 2242,
+      "PLAYER_NAME": "Terence Morris",
+      "SEASON": "2005-06",
+      "GP": 22,
+      "MIN": 8.7
+    },
+    {
+      "PLAYER_ID": 2245,
+      "PLAYER_NAME": "Damone Brown",
+      "SEASON": "2003-04",
+      "GP": 3,
+      "MIN": 5.4
+    },
+    {
+      "PLAYER_ID": 2245,
+      "PLAYER_NAME": "Damone Brown",
+      "SEASON": "2004-05",
+      "GP": 14,
+      "MIN": 10.8
+    },
+    {
+      "PLAYER_ID": 2246,
+      "PLAYER_NAME": "Mehmet Okur",
+      "SEASON": "2011-12",
+      "GP": 17,
+      "MIN": 26.7
+    },
+    {
+      "PLAYER_ID": 2249,
+      "PLAYER_NAME": "Jamison Brewer",
+      "SEASON": "2004-05",
+      "GP": 18,
+      "MIN": 10.0
+    },
+    {
+      "PLAYER_ID": 2250,
+      "PLAYER_NAME": "Bobby Simmons",
+      "SEASON": "2010-11",
+      "GP": 2,
+      "MIN": 7.8
+    },
+    {
+      "PLAYER_ID": 2253,
+      "PLAYER_NAME": "Sean Lampley",
+      "SEASON": "2003-04",
+      "GP": 10,
+      "MIN": 6.1
+    },
+    {
+      "PLAYER_ID": 2254,
+      "PLAYER_NAME": "Loren Woods",
+      "SEASON": "2004-05",
+      "GP": 45,
+      "MIN": 15.6
+    },
+    {
+      "PLAYER_ID": 2260,
+      "PLAYER_NAME": "Jarron Collins",
+      "SEASON": "2010-11",
+      "GP": 28,
+      "MIN": 6.5
+    },
+    {
+      "PLAYER_ID": 2357,
+      "PLAYER_NAME": "Tierre Brown",
+      "SEASON": "2003-04",
+      "GP": 3,
+      "MIN": 6.1
+    },
+    {
+      "PLAYER_ID": 2357,
+      "PLAYER_NAME": "Tierre Brown",
+      "SEASON": "2004-05",
+      "GP": 76,
+      "MIN": 13.9
+    },
+    {
+      "PLAYER_ID": 2365,
+      "PLAYER_NAME": "Chris Andersen",
+      "SEASON": "2005-06",
+      "GP": 32,
+      "MIN": 17.8
+    },
+    {
+      "PLAYER_ID": 2365,
+      "PLAYER_NAME": "Chris Andersen",
+      "SEASON": "2016-17",
+      "GP": 12,
+      "MIN": 9.5
+    },
+    {
+      "PLAYER_ID": 2366,
+      "PLAYER_NAME": "Mike Wilks",
+      "SEASON": "2007-08",
+      "GP": 15,
+      "MIN": 12.5
+    },
+    {
+      "PLAYER_ID": 2366,
+      "PLAYER_NAME": "Mike Wilks",
+      "SEASON": "2009-10",
+      "GP": 4,
+      "MIN": 14.8
+    },
+    {
+      "PLAYER_ID": 2367,
+      "PLAYER_NAME": "Geno Carlisle",
+      "SEASON": "2004-05",
+      "GP": 6,
+      "MIN": 2.6
+    },
+    {
+      "PLAYER_ID": 2370,
+      "PLAYER_NAME": "Mengke Bateer",
+      "SEASON": "2003-04",
+      "GP": 7,
+      "MIN": 5.6
+    },
+    {
+      "PLAYER_ID": 2402,
+      "PLAYER_NAME": "Dajuan Wagner",
+      "SEASON": "2004-05",
+      "GP": 11,
+      "MIN": 9.3
+    },
+    {
+      "PLAYER_ID": 2402,
+      "PLAYER_NAME": "Dajuan Wagner",
+      "SEASON": "2006-07",
+      "GP": 1,
+      "MIN": 6.8
+    },
+    {
+      "PLAYER_ID": 2404,
+      "PLAYER_NAME": "Chris Wilcox",
+      "SEASON": "2011-12",
+      "GP": 28,
+      "MIN": 17.2
+    },
+    {
+      "PLAYER_ID": 2409,
+      "PLAYER_NAME": "Marcus Haislip",
+      "SEASON": "2004-05",
+      "GP": 9,
+      "MIN": 11.7
+    },
+    {
+      "PLAYER_ID": 2409,
+      "PLAYER_NAME": "Marcus Haislip",
+      "SEASON": "2009-10",
+      "GP": 10,
+      "MIN": 4.4
+    },
+    {
+      "PLAYER_ID": 2415,
+      "PLAYER_NAME": "Ryan Humphrey",
+      "SEASON": "2004-05",
+      "GP": 35,
+      "MIN": 9.1
+    },
+    {
+      "PLAYER_ID": 2416,
+      "PLAYER_NAME": "Kareem Rush",
+      "SEASON": "2004-05",
+      "GP": 48,
+      "MIN": 20.1
+    },
+    {
+      "PLAYER_ID": 2416,
+      "PLAYER_NAME": "Kareem Rush",
+      "SEASON": "2005-06",
+      "GP": 47,
+      "MIN": 23.6
+    },
+    {
+      "PLAYER_ID": 2416,
+      "PLAYER_NAME": "Kareem Rush",
+      "SEASON": "2009-10",
+      "GP": 7,
+      "MIN": 8.3
+    },
+    {
+      "PLAYER_ID": 2417,
+      "PLAYER_NAME": "Qyntel Woods",
+      "SEASON": "2004-05",
+      "GP": 3,
+      "MIN": 13.1
+    },
+    {
+      "PLAYER_ID": 2422,
+      "PLAYER_NAME": "John Salmons",
+      "SEASON": "2014-15",
+      "GP": 21,
+      "MIN": 12.8
+    },
+    {
+      "PLAYER_ID": 2427,
+      "PLAYER_NAME": "Roger Mason Jr.",
+      "SEASON": "2011-12",
+      "GP": 52,
+      "MIN": 13.4
+    },
+    {
+      "PLAYER_ID": 2427,
+      "PLAYER_NAME": "Roger Mason Jr.",
+      "SEASON": "2013-14",
+      "GP": 25,
+      "MIN": 10.4
+    },
+    {
+      "PLAYER_ID": 2430,
+      "PLAYER_NAME": "Carlos Boozer",
+      "SEASON": "2004-05",
+      "GP": 51,
+      "MIN": 34.9
+    },
+    {
+      "PLAYER_ID": 2434,
+      "PLAYER_NAME": "Juan Carlos Navarro",
+      "SEASON": "2007-08",
+      "GP": 82,
+      "MIN": 25.8
+    },
+    {
+      "PLAYER_ID": 2437,
+      "PLAYER_NAME": "Lonny Baxter",
+      "SEASON": "2004-05",
+      "GP": 4,
+      "MIN": 9.0
+    },
+    {
+      "PLAYER_ID": 2440,
+      "PLAYER_NAME": "Matt Barnes",
+      "SEASON": "2004-05",
+      "GP": 43,
+      "MIN": 16.4
+    },
+    {
+      "PLAYER_ID": 2441,
+      "PLAYER_NAME": "Jamal Sampson",
+      "SEASON": "2004-05",
+      "GP": 23,
+      "MIN": 14.2
+    },
+    {
+      "PLAYER_ID": 2446,
+      "PLAYER_NAME": "Rasual Butler",
+      "SEASON": "2011-12",
+      "GP": 34,
+      "MIN": 13.3
+    },
+    {
+      "PLAYER_ID": 2446,
+      "PLAYER_NAME": "Rasual Butler",
+      "SEASON": "2015-16",
+      "GP": 46,
+      "MIN": 9.4
+    },
+    {
+      "PLAYER_ID": 2447,
+      "PLAYER_NAME": "Tamar Slay",
+      "SEASON": "2004-05",
+      "GP": 8,
+      "MIN": 9.7
+    },
+    {
+      "PLAYER_ID": 2449,
+      "PLAYER_NAME": "Luis Scola",
+      "SEASON": "2016-17",
+      "GP": 36,
+      "MIN": 12.8
+    },
+    {
+      "PLAYER_ID": 2450,
+      "PLAYER_NAME": "Randy Holcomb",
+      "SEASON": "2005-06",
+      "GP": 4,
+      "MIN": 2.6
+    },
+    {
+      "PLAYER_ID": 2451,
+      "PLAYER_NAME": "Corsley Edwards",
+      "SEASON": "2004-05",
+      "GP": 10,
+      "MIN": 11.0
+    },
+    {
+      "PLAYER_ID": 2454,
+      "PLAYER_NAME": "Junior Harrington",
+      "SEASON": "2004-05",
+      "GP": 29,
+      "MIN": 18.8
+    },
+    {
+      "PLAYER_ID": 2457,
+      "PLAYER_NAME": "Jannero Pargo",
+      "SEASON": "2014-15",
+      "GP": 9,
+      "MIN": 8.1
+    },
+    {
+      "PLAYER_ID": 2470,
+      "PLAYER_NAME": "Smush Parker",
+      "SEASON": "2004-05",
+      "GP": 16,
+      "MIN": 8.7
+    },
+    {
+      "PLAYER_ID": 2486,
+      "PLAYER_NAME": "Maurice Baker",
+      "SEASON": "2004-05",
+      "GP": 5,
+      "MIN": 3.8
+    },
+    {
+      "PLAYER_ID": 2499,
+      "PLAYER_NAME": "Richie Frahm",
+      "SEASON": "2007-08",
+      "GP": 10,
+      "MIN": 16.3
+    },
+    {
+      "PLAYER_ID": 2545,
+      "PLAYER_NAME": "Darko Milicic",
+      "SEASON": "2012-13",
+      "GP": 1,
+      "MIN": 4.5
+    },
+    {
+      "PLAYER_ID": 2546,
+      "PLAYER_NAME": "Carmelo Anthony",
+      "SEASON": "2018-19",
+      "GP": 10,
+      "MIN": 29.4
+    },
+    {
+      "PLAYER_ID": 2551,
+      "PLAYER_NAME": "T.J. Ford",
+      "SEASON": "2011-12",
+      "GP": 14,
+      "MIN": 13.6
+    },
+    {
+      "PLAYER_ID": 2553,
+      "PLAYER_NAME": "Jarvis Hayes",
+      "SEASON": "2004-05",
+      "GP": 54,
+      "MIN": 28.9
+    },
+    {
+      "PLAYER_ID": 2553,
+      "PLAYER_NAME": "Jarvis Hayes",
+      "SEASON": "2005-06",
+      "GP": 21,
+      "MIN": 24.6
+    },
+    {
+      "PLAYER_ID": 2558,
+      "PLAYER_NAME": "Reece Gaines",
+      "SEASON": "2005-06",
+      "GP": 12,
+      "MIN": 4.5
+    },
+    {
+      "PLAYER_ID": 2563,
+      "PLAYER_NAME": "Dahntay Jones",
+      "SEASON": "2007-08",
+      "GP": 25,
+      "MIN": 8.2
+    },
+    {
+      "PLAYER_ID": 2567,
+      "PLAYER_NAME": "Brian Cook",
+      "SEASON": "2009-10",
+      "GP": 15,
+      "MIN": 3.0
+    },
+    {
+      "PLAYER_ID": 2568,
+      "PLAYER_NAME": "Carlos Delfino",
+      "SEASON": "2006-07",
+      "GP": 82,
+      "MIN": 16.7
+    },
+    {
+      "PLAYER_ID": 2572,
+      "PLAYER_NAME": "Josh Howard",
+      "SEASON": "2012-13",
+      "GP": 11,
+      "MIN": 18.8
+    },
+    {
+      "PLAYER_ID": 2574,
+      "PLAYER_NAME": "Jason Kapono",
+      "SEASON": "2011-12",
+      "GP": 27,
+      "MIN": 10.0
+    },
+    {
+      "PLAYER_ID": 2582,
+      "PLAYER_NAME": "Slavko Vranes",
+      "SEASON": "2003-04",
+      "GP": 1,
+      "MIN": 2.8
+    },
+    {
+      "PLAYER_ID": 2583,
+      "PLAYER_NAME": "Derrick Zimmerman",
+      "SEASON": "2005-06",
+      "GP": 2,
+      "MIN": 15.9
+    },
+    {
+      "PLAYER_ID": 2586,
+      "PLAYER_NAME": "Keith Bogans",
+      "SEASON": "2011-12",
+      "GP": 5,
+      "MIN": 18.7
+    },
+    {
+      "PLAYER_ID": 2591,
+      "PLAYER_NAME": "James Lang",
+      "SEASON": "2006-07",
+      "GP": 11,
+      "MIN": 5.0
+    },
+    {
+      "PLAYER_ID": 2601,
+      "PLAYER_NAME": "Andreas Glyniadakis",
+      "SEASON": "2006-07",
+      "GP": 13,
+      "MIN": 6.2
+    },
+    {
+      "PLAYER_ID": 2604,
+      "PLAYER_NAME": "Theron Smith",
+      "SEASON": "2004-05",
+      "GP": 33,
+      "MIN": 15.4
+    },
+    {
+      "PLAYER_ID": 2624,
+      "PLAYER_NAME": "Quinton Ross",
+      "SEASON": "2010-11",
+      "GP": 36,
+      "MIN": 9.8
+    },
+    {
+      "PLAYER_ID": 2632,
+      "PLAYER_NAME": "Kirk Penney",
+      "SEASON": "2003-04",
+      "GP": 2,
+      "MIN": 8.6
+    },
+    {
+      "PLAYER_ID": 2632,
+      "PLAYER_NAME": "Kirk Penney",
+      "SEASON": "2004-05",
+      "GP": 4,
+      "MIN": 3.0
+    },
+    {
+      "PLAYER_ID": 2637,
+      "PLAYER_NAME": "Alex Scales",
+      "SEASON": "2005-06",
+      "GP": 1,
+      "MIN": 0.2
+    },
+    {
+      "PLAYER_ID": 2639,
+      "PLAYER_NAME": "Britton Johnsen",
+      "SEASON": "2004-05",
+      "GP": 6,
+      "MIN": 14.0
+    },
+    {
+      "PLAYER_ID": 2648,
+      "PLAYER_NAME": "Ronald Dupree",
+      "SEASON": "2010-11",
+      "GP": 3,
+      "MIN": 4.3
+    },
+    {
+      "PLAYER_ID": 2657,
+      "PLAYER_NAME": "Yuta Tabuse",
+      "SEASON": "2004-05",
+      "GP": 4,
+      "MIN": 4.3
+    },
+    {
+      "PLAYER_ID": 2667,
+      "PLAYER_NAME": "Desmond Penigar",
+      "SEASON": "2003-04",
+      "GP": 10,
+      "MIN": 8.6
+    },
+    {
+      "PLAYER_ID": 2668,
+      "PLAYER_NAME": "Josh Davis",
+      "SEASON": "2003-04",
+      "GP": 4,
+      "MIN": 5.6
+    },
+    {
+      "PLAYER_ID": 2668,
+      "PLAYER_NAME": "Josh Davis",
+      "SEASON": "2005-06",
+      "GP": 6,
+      "MIN": 2.8
+    },
+    {
+      "PLAYER_ID": 2668,
+      "PLAYER_NAME": "Josh Davis",
+      "SEASON": "2011-12",
+      "GP": 15,
+      "MIN": 8.7
+    },
+    {
+      "PLAYER_ID": 2669,
+      "PLAYER_NAME": "Linton Johnson",
+      "SEASON": "2004-05",
+      "GP": 2,
+      "MIN": 7.6
+    },
+    {
+      "PLAYER_ID": 2673,
+      "PLAYER_NAME": "Hiram Fuller",
+      "SEASON": "2003-04",
+      "GP": 4,
+      "MIN": 10.6
+    },
+    {
+      "PLAYER_ID": 2679,
+      "PLAYER_NAME": "Matt Carroll",
+      "SEASON": "2012-13",
+      "GP": 1,
+      "MIN": 5.9
+    },
+    {
+      "PLAYER_ID": 2682,
+      "PLAYER_NAME": "Alex Garcia",
+      "SEASON": "2004-05",
+      "GP": 8,
+      "MIN": 18.2
+    },
+    {
+      "PLAYER_ID": 2684,
+      "PLAYER_NAME": "Melvin Sanders",
+      "SEASON": "2005-06",
+      "GP": 16,
+      "MIN": 7.1
+    },
+    {
+      "PLAYER_ID": 2688,
+      "PLAYER_NAME": "Brandin Knight",
+      "SEASON": "2004-05",
+      "GP": 1,
+      "MIN": 2.8
+    },
+    {
+      "PLAYER_ID": 2693,
+      "PLAYER_NAME": "Keith McLeod",
+      "SEASON": "2003-04",
+      "GP": 33,
+      "MIN": 11.7
+    },
+    {
+      "PLAYER_ID": 2732,
+      "PLAYER_NAME": "Ben Gordon",
+      "SEASON": "2013-14",
+      "GP": 19,
+      "MIN": 14.7
+    },
+    {
+      "PLAYER_ID": 2735,
+      "PLAYER_NAME": "Josh Childress",
+      "SEASON": "2012-13",
+      "GP": 14,
+      "MIN": 7.2
+    },
+    {
+      "PLAYER_ID": 2735,
+      "PLAYER_NAME": "Josh Childress",
+      "SEASON": "2013-14",
+      "GP": 4,
+      "MIN": 6.0
+    },
+    {
+      "PLAYER_ID": 2736,
+      "PLAYER_NAME": "Luol Deng",
+      "SEASON": "2004-05",
+      "GP": 61,
+      "MIN": 27.2
+    },
+    {
+      "PLAYER_ID": 2739,
+      "PLAYER_NAME": "Luke Jackson",
+      "SEASON": "2004-05",
+      "GP": 10,
+      "MIN": 4.3
+    },
+    {
+      "PLAYER_ID": 2739,
+      "PLAYER_NAME": "Luke Jackson",
+      "SEASON": "2007-08",
+      "GP": 14,
+      "MIN": 16.3
+    },
+    {
+      "PLAYER_ID": 2740,
+      "PLAYER_NAME": "Andris Biedrins",
+      "SEASON": "2013-14",
+      "GP": 6,
+      "MIN": 7.4
+    },
+    {
+      "PLAYER_ID": 2742,
+      "PLAYER_NAME": "Sebastian Telfair",
+      "SEASON": "2014-15",
+      "GP": 16,
+      "MIN": 20.4
+    },
+    {
+      "PLAYER_ID": 2746,
+      "PLAYER_NAME": "Josh Smith",
+      "SEASON": "2017-18",
+      "GP": 3,
+      "MIN": 3.9
+    },
+    {
+      "PLAYER_ID": 2750,
+      "PLAYER_NAME": "Pavel Podkolzin",
+      "SEASON": "2004-05",
+      "GP": 5,
+      "MIN": 1.5
+    },
+    {
+      "PLAYER_ID": 2750,
+      "PLAYER_NAME": "Pavel Podkolzin",
+      "SEASON": "2005-06",
+      "GP": 1,
+      "MIN": 18.1
+    },
+    {
+      "PLAYER_ID": 2751,
+      "PLAYER_NAME": "Viktor Khryapa",
+      "SEASON": "2007-08",
+      "GP": 9,
+      "MIN": 11.6
+    },
+    {
+      "PLAYER_ID": 2752,
+      "PLAYER_NAME": "Sergei Monia",
+      "SEASON": "2005-06",
+      "GP": 26,
+      "MIN": 13.2
+    },
+    {
+      "PLAYER_ID": 2754,
+      "PLAYER_NAME": "Tony Allen",
+      "SEASON": "2017-18",
+      "GP": 22,
+      "MIN": 12.4
+    },
+    {
+      "PLAYER_ID": 2756,
+      "PLAYER_NAME": "Sasha Vujacic",
+      "SEASON": "2013-14",
+      "GP": 2,
+      "MIN": 5.2
+    },
+    {
+      "PLAYER_ID": 2757,
+      "PLAYER_NAME": "Beno Udrih",
+      "SEASON": "2015-16",
+      "GP": 44,
+      "MIN": 16.1
+    },
+    {
+      "PLAYER_ID": 2758,
+      "PLAYER_NAME": "David Harrison",
+      "SEASON": "2004-05",
+      "GP": 43,
+      "MIN": 17.7
+    },
+    {
+      "PLAYER_ID": 2760,
+      "PLAYER_NAME": "Anderson Varejao",
+      "SEASON": "2016-17",
+      "GP": 14,
+      "MIN": 6.6
+    },
+    {
+      "PLAYER_ID": 2760,
+      "PLAYER_NAME": "Anderson Varejao",
+      "SEASON": "2020-21",
+      "GP": 5,
+      "MIN": 7.2
+    },
+    {
+      "PLAYER_ID": 2761,
+      "PLAYER_NAME": "Jackson Vroman",
+      "SEASON": "2005-06",
+      "GP": 41,
+      "MIN": 9.9
+    },
+    {
+      "PLAYER_ID": 2762,
+      "PLAYER_NAME": "Peter John Ramos",
+      "SEASON": "2004-05",
+      "GP": 6,
+      "MIN": 3.3
+    },
+    {
+      "PLAYER_ID": 2765,
+      "PLAYER_NAME": "Andre Emmett",
+      "SEASON": "2004-05",
+      "GP": 8,
+      "MIN": 3.2
+    },
+    {
+      "PLAYER_ID": 2765,
+      "PLAYER_NAME": "Andre Emmett",
+      "SEASON": "2011-12",
+      "GP": 6,
+      "MIN": 7.5
+    },
+    {
+      "PLAYER_ID": 2767,
+      "PLAYER_NAME": "Royal Ivey",
+      "SEASON": "2013-14",
+      "GP": 2,
+      "MIN": 2.4
+    },
+    {
+      "PLAYER_ID": 2770,
+      "PLAYER_NAME": "Justin Reed",
+      "SEASON": "2006-07",
+      "GP": 41,
+      "MIN": 7.8
+    },
+    {
+      "PLAYER_ID": 2772,
+      "PLAYER_NAME": "Trevor Ariza",
+      "SEASON": "2021-22",
+      "GP": 24,
+      "MIN": 19.3
+    },
+    {
+      "PLAYER_ID": 2782,
+      "PLAYER_NAME": "Matt Freije",
+      "SEASON": "2004-05",
+      "GP": 23,
+      "MIN": 19.0
+    },
+    {
+      "PLAYER_ID": 2782,
+      "PLAYER_NAME": "Matt Freije",
+      "SEASON": "2006-07",
+      "GP": 19,
+      "MIN": 7.7
+    },
+    {
+      "PLAYER_ID": 2788,
+      "PLAYER_NAME": "DJ Mbenga",
+      "SEASON": "2004-05",
+      "GP": 15,
+      "MIN": 3.8
+    },
+    {
+      "PLAYER_ID": 2800,
+      "PLAYER_NAME": "Tony Bobbitt",
+      "SEASON": "2004-05",
+      "GP": 2,
+      "MIN": 6.0
+    },
+    {
+      "PLAYER_ID": 2804,
+      "PLAYER_NAME": "Andres Nocioni",
+      "SEASON": "2011-12",
+      "GP": 11,
+      "MIN": 5.1
+    },
+    {
+      "PLAYER_ID": 2809,
+      "PLAYER_NAME": "Gerald Fitch",
+      "SEASON": "2005-06",
+      "GP": 18,
+      "MIN": 13.3
+    },
+    {
+      "PLAYER_ID": 2810,
+      "PLAYER_NAME": "Andre Brown",
+      "SEASON": "2008-09",
+      "GP": 4,
+      "MIN": 10.3
+    },
+    {
+      "PLAYER_ID": 2824,
+      "PLAYER_NAME": "Desmon Farmer",
+      "SEASON": "2006-07",
+      "GP": 8,
+      "MIN": 4.0
+    },
+    {
+      "PLAYER_ID": 2824,
+      "PLAYER_NAME": "Desmon Farmer",
+      "SEASON": "2008-09",
+      "GP": 3,
+      "MIN": 18.0
+    },
+    {
+      "PLAYER_ID": 2825,
+      "PLAYER_NAME": "Ibrahim Kutluay",
+      "SEASON": "2004-05",
+      "GP": 5,
+      "MIN": 2.2
+    },
+    {
+      "PLAYER_ID": 2839,
+      "PLAYER_NAME": "James Thomas",
+      "SEASON": "2004-05",
+      "GP": 11,
+      "MIN": 10.3
+    },
+    {
+      "PLAYER_ID": 2839,
+      "PLAYER_NAME": "James Thomas",
+      "SEASON": "2005-06",
+      "GP": 22,
+      "MIN": 6.8
+    },
+    {
+      "PLAYER_ID": 2852,
+      "PLAYER_NAME": "Awvee Storey",
+      "SEASON": "2004-05",
+      "GP": 9,
+      "MIN": 3.0
+    },
+    {
+      "PLAYER_ID": 2853,
+      "PLAYER_NAME": "Earl Barron",
+      "SEASON": "2005-06",
+      "GP": 8,
+      "MIN": 5.6
+    },
+    {
+      "PLAYER_ID": 2853,
+      "PLAYER_NAME": "Earl Barron",
+      "SEASON": "2011-12",
+      "GP": 2,
+      "MIN": 4.4
+    },
+    {
+      "PLAYER_ID": 2857,
+      "PLAYER_NAME": "Andre Barrett",
+      "SEASON": "2007-08",
+      "GP": 4,
+      "MIN": 6.3
+    },
+    {
+      "PLAYER_ID": 2863,
+      "PLAYER_NAME": "Damien Wilkins",
+      "SEASON": "2017-18",
+      "GP": 19,
+      "MIN": 8.0
+    },
+    {
+      "PLAYER_ID": 101106,
+      "PLAYER_NAME": "Andrew Bogut",
+      "SEASON": "2016-17",
+      "GP": 27,
+      "MIN": 21.6
+    },
+    {
+      "PLAYER_ID": 101106,
+      "PLAYER_NAME": "Andrew Bogut",
+      "SEASON": "2017-18",
+      "GP": 24,
+      "MIN": 9.0
+    },
+    {
+      "PLAYER_ID": 101108,
+      "PLAYER_NAME": "Chris Paul",
+      "SEASON": "2025-26",
+      "GP": 16,
+      "MIN": 14.2
+    },
+    {
+      "PLAYER_ID": 101113,
+      "PLAYER_NAME": "Ike Diogu",
+      "SEASON": "2011-12",
+      "GP": 2,
+      "MIN": 7.1
+    },
+    {
+      "PLAYER_ID": 101117,
+      "PLAYER_NAME": "Yaroslav Korolev",
+      "SEASON": "2005-06",
+      "GP": 24,
+      "MIN": 5.3
+    },
+    {
+      "PLAYER_ID": 101120,
+      "PLAYER_NAME": "Antoine Wright",
+      "SEASON": "2010-11",
+      "GP": 7,
+      "MIN": 4.5
+    },
+    {
+      "PLAYER_ID": 101123,
+      "PLAYER_NAME": "Gerald Green",
+      "SEASON": "2007-08",
+      "GP": 30,
+      "MIN": 12.0
+    },
+    {
+      "PLAYER_ID": 101124,
+      "PLAYER_NAME": "Hakim Warrick",
+      "SEASON": "2012-13",
+      "GP": 28,
+      "MIN": 17.5
+    },
+    {
+      "PLAYER_ID": 101125,
+      "PLAYER_NAME": "Julius Hodge",
+      "SEASON": "2006-07",
+      "GP": 9,
+      "MIN": 7.1
+    },
+    {
+      "PLAYER_ID": 101126,
+      "PLAYER_NAME": "Nate Robinson",
+      "SEASON": "2014-15",
+      "GP": 42,
+      "MIN": 14.1
+    },
+    {
+      "PLAYER_ID": 101126,
+      "PLAYER_NAME": "Nate Robinson",
+      "SEASON": "2015-16",
+      "GP": 2,
+      "MIN": 11.6
+    },
+    {
+      "PLAYER_ID": 101127,
+      "PLAYER_NAME": "Jarrett Jack",
+      "SEASON": "2016-17",
+      "GP": 2,
+      "MIN": 16.5
+    },
+    {
+      "PLAYER_ID": 101128,
+      "PLAYER_NAME": "Francisco Garcia",
+      "SEASON": "2014-15",
+      "GP": 14,
+      "MIN": 14.3
+    },
+    {
+      "PLAYER_ID": 101129,
+      "PLAYER_NAME": "Luther Head",
+      "SEASON": "2010-11",
+      "GP": 36,
+      "MIN": 16.3
+    },
+    {
+      "PLAYER_ID": 101139,
+      "PLAYER_NAME": "CJ Miles",
+      "SEASON": "2019-20",
+      "GP": 10,
+      "MIN": 16.1
+    },
+    {
+      "PLAYER_ID": 101139,
+      "PLAYER_NAME": "CJ Miles",
+      "SEASON": "2021-22",
+      "GP": 1,
+      "MIN": 2.0
+    },
+    {
+      "PLAYER_ID": 101142,
+      "PLAYER_NAME": "Ronny Turiaf",
+      "SEASON": "2014-15",
+      "GP": 2,
+      "MIN": 9.7
+    },
+    {
+      "PLAYER_ID": 101144,
+      "PLAYER_NAME": "Von Wafer",
+      "SEASON": "2005-06",
+      "GP": 16,
+      "MIN": 4.5
+    },
+    {
+      "PLAYER_ID": 101146,
+      "PLAYER_NAME": "Roko Ukic",
+      "SEASON": "2009-10",
+      "GP": 13,
+      "MIN": 7.5
+    },
+    {
+      "PLAYER_ID": 101155,
+      "PLAYER_NAME": "Ryan Gomes",
+      "SEASON": "2013-14",
+      "GP": 5,
+      "MIN": 6.9
+    },
+    {
+      "PLAYER_ID": 101156,
+      "PLAYER_NAME": "Robert Whaley",
+      "SEASON": "2005-06",
+      "GP": 23,
+      "MIN": 9.2
+    },
+    {
+      "PLAYER_ID": 101158,
+      "PLAYER_NAME": "Orien Greene",
+      "SEASON": "2007-08",
+      "GP": 7,
+      "MIN": 8.7
+    },
+    {
+      "PLAYER_ID": 101158,
+      "PLAYER_NAME": "Orien Greene",
+      "SEASON": "2010-11",
+      "GP": 3,
+      "MIN": 1.8
+    },
+    {
+      "PLAYER_ID": 101159,
+      "PLAYER_NAME": "Dijon Thompson",
+      "SEASON": "2005-06",
+      "GP": 10,
+      "MIN": 4.3
+    },
+    {
+      "PLAYER_ID": 101159,
+      "PLAYER_NAME": "Dijon Thompson",
+      "SEASON": "2006-07",
+      "GP": 6,
+      "MIN": 8.4
+    },
+    {
+      "PLAYER_ID": 101161,
+      "PLAYER_NAME": "Amir Johnson",
+      "SEASON": "2005-06",
+      "GP": 3,
+      "MIN": 12.9
+    },
+    {
+      "PLAYER_ID": 101162,
+      "PLAYER_NAME": "Marcin Gortat",
+      "SEASON": "2018-19",
+      "GP": 47,
+      "MIN": 16.0
+    },
+    {
+      "PLAYER_ID": 101165,
+      "PLAYER_NAME": "Alex Acker",
+      "SEASON": "2005-06",
+      "GP": 5,
+      "MIN": 7.0
+    },
+    {
+      "PLAYER_ID": 101177,
+      "PLAYER_NAME": "Fabricio Oberto",
+      "SEASON": "2010-11",
+      "GP": 5,
+      "MIN": 8.9
+    },
+    {
+      "PLAYER_ID": 101179,
+      "PLAYER_NAME": "Ronnie Price",
+      "SEASON": "2012-13",
+      "GP": 39,
+      "MIN": 13.1
+    },
+    {
+      "PLAYER_ID": 101183,
+      "PLAYER_NAME": "Shavlik Randolph",
+      "SEASON": "2014-15",
+      "GP": 21,
+      "MIN": 6.0
+    },
+    {
+      "PLAYER_ID": 101184,
+      "PLAYER_NAME": "Deng Gai",
+      "SEASON": "2005-06",
+      "GP": 2,
+      "MIN": 2.4
+    },
+    {
+      "PLAYER_ID": 101185,
+      "PLAYER_NAME": "Rawle Marshall",
+      "SEASON": "2005-06",
+      "GP": 23,
+      "MIN": 10.5
+    },
+    {
+      "PLAYER_ID": 101190,
+      "PLAYER_NAME": "Matt Walsh",
+      "SEASON": "2005-06",
+      "GP": 2,
+      "MIN": 1.7
+    },
+    {
+      "PLAYER_ID": 101194,
+      "PLAYER_NAME": "Anthony Roberson",
+      "SEASON": "2006-07",
+      "GP": 20,
+      "MIN": 11.3
+    },
+    {
+      "PLAYER_ID": 101204,
+      "PLAYER_NAME": "Dwayne Jones",
+      "SEASON": "2008-09",
+      "GP": 6,
+      "MIN": 8.7
+    },
+    {
+      "PLAYER_ID": 101209,
+      "PLAYER_NAME": "Devin Green",
+      "SEASON": "2005-06",
+      "GP": 27,
+      "MIN": 5.0
+    },
+    {
+      "PLAYER_ID": 101211,
+      "PLAYER_NAME": "Stephen Graham",
+      "SEASON": "2006-07",
+      "GP": 14,
+      "MIN": 11.8
+    },
+    {
+      "PLAYER_ID": 101213,
+      "PLAYER_NAME": "Sharrod Ford",
+      "SEASON": "2005-06",
+      "GP": 3,
+      "MIN": 4.3
+    },
+    {
+      "PLAYER_ID": 101214,
+      "PLAYER_NAME": "Jawad Williams",
+      "SEASON": "2010-11",
+      "GP": 26,
+      "MIN": 15.0
+    },
+    {
+      "PLAYER_ID": 101215,
+      "PLAYER_NAME": "Will Conroy",
+      "SEASON": "2009-10",
+      "GP": 5,
+      "MIN": 7.2
+    },
+    {
+      "PLAYER_ID": 101215,
+      "PLAYER_NAME": "Will Conroy",
+      "SEASON": "2012-13",
+      "GP": 4,
+      "MIN": 5.1
+    },
+    {
+      "PLAYER_ID": 101223,
+      "PLAYER_NAME": "Aaron Miles",
+      "SEASON": "2005-06",
+      "GP": 19,
+      "MIN": 6.2
+    },
+    {
+      "PLAYER_ID": 101232,
+      "PLAYER_NAME": "Roger Powell",
+      "SEASON": "2006-07",
+      "GP": 3,
+      "MIN": 4.4
+    },
+    {
+      "PLAYER_ID": 101236,
+      "PLAYER_NAME": "Chuck Hayes",
+      "SEASON": "2015-16",
+      "GP": 2,
+      "MIN": 11.9
+    },
+    {
+      "PLAYER_ID": 101238,
+      "PLAYER_NAME": "Boniface Ndong",
+      "SEASON": "2005-06",
+      "GP": 23,
+      "MIN": 6.6
+    },
+    {
+      "PLAYER_ID": 101247,
+      "PLAYER_NAME": "Keith Langford",
+      "SEASON": "2007-08",
+      "GP": 2,
+      "MIN": 4.8
+    },
+    {
+      "PLAYER_ID": 101249,
+      "PLAYER_NAME": "John Lucas III",
+      "SEASON": "2005-06",
+      "GP": 13,
+      "MIN": 8.2
+    },
+    {
+      "PLAYER_ID": 101249,
+      "PLAYER_NAME": "John Lucas III",
+      "SEASON": "2016-17",
+      "GP": 5,
+      "MIN": 2.1
+    },
+    {
+      "PLAYER_ID": 200745,
+      "PLAYER_NAME": "Andrea Bargnani",
+      "SEASON": "2015-16",
+      "GP": 46,
+      "MIN": 13.8
+    },
+    {
+      "PLAYER_ID": 200746,
+      "PLAYER_NAME": "LaMarcus Aldridge",
+      "SEASON": "2020-21",
+      "GP": 26,
+      "MIN": 25.9
+    },
+    {
+      "PLAYER_ID": 200748,
+      "PLAYER_NAME": "Tyrus Thomas",
+      "SEASON": "2014-15",
+      "GP": 2,
+      "MIN": 3.3
+    },
+    {
+      "PLAYER_ID": 200756,
+      "PLAYER_NAME": "Hilton Armstrong",
+      "SEASON": "2009-10",
+      "GP": 33,
+      "MIN": 10.2
+    },
+    {
+      "PLAYER_ID": 200760,
+      "PLAYER_NAME": "Rodney Carney",
+      "SEASON": "2010-11",
+      "GP": 27,
+      "MIN": 12.4
+    },
+    {
+      "PLAYER_ID": 200761,
+      "PLAYER_NAME": "Shawne Williams",
+      "SEASON": "2013-14",
+      "GP": 36,
+      "MIN": 20.9
+    },
+    {
+      "PLAYER_ID": 200764,
+      "PLAYER_NAME": "Renaldo Balkman",
+      "SEASON": "2011-12",
+      "GP": 14,
+      "MIN": 8.2
+    },
+    {
+      "PLAYER_ID": 200766,
+      "PLAYER_NAME": "Marcus Williams",
+      "SEASON": "2008-09",
+      "GP": 9,
+      "MIN": 5.9
+    },
+    {
+      "PLAYER_ID": 200769,
+      "PLAYER_NAME": "Shannon Brown",
+      "SEASON": "2014-15",
+      "GP": 5,
+      "MIN": 17.8
+    },
+    {
+      "PLAYER_ID": 200770,
+      "PLAYER_NAME": "Jordan Farmar",
+      "SEASON": "2014-15",
+      "GP": 36,
+      "MIN": 14.7
+    },
+    {
+      "PLAYER_ID": 200770,
+      "PLAYER_NAME": "Jordan Farmar",
+      "SEASON": "2016-17",
+      "GP": 2,
+      "MIN": 17.7
+    },
+    {
+      "PLAYER_ID": 200772,
+      "PLAYER_NAME": "Maurice Ager",
+      "SEASON": "2010-11",
+      "GP": 4,
+      "MIN": 7.2
+    },
+    {
+      "PLAYER_ID": 200779,
+      "PLAYER_NAME": "Steve Novak",
+      "SEASON": "2016-17",
+      "GP": 8,
+      "MIN": 2.7
+    },
+    {
+      "PLAYER_ID": 200780,
+      "PLAYER_NAME": "Solomon Jones",
+      "SEASON": "2011-12",
+      "GP": 21,
+      "MIN": 13.9
+    },
+    {
+      "PLAYER_ID": 200780,
+      "PLAYER_NAME": "Solomon Jones",
+      "SEASON": "2012-13",
+      "GP": 2,
+      "MIN": 13.0
+    },
+    {
+      "PLAYER_ID": 200780,
+      "PLAYER_NAME": "Solomon Jones",
+      "SEASON": "2013-14",
+      "GP": 11,
+      "MIN": 7.7
+    },
+    {
+      "PLAYER_ID": 200781,
+      "PLAYER_NAME": "Paul Davis",
+      "SEASON": "2008-09",
+      "GP": 27,
+      "MIN": 11.8
+    },
+    {
+      "PLAYER_ID": 200781,
+      "PLAYER_NAME": "Paul Davis",
+      "SEASON": "2009-10",
+      "GP": 2,
+      "MIN": 4.0
+    },
+    {
+      "PLAYER_ID": 200782,
+      "PLAYER_NAME": "P.J. Tucker",
+      "SEASON": "2006-07",
+      "GP": 17,
+      "MIN": 4.9
+    },
+    {
+      "PLAYER_ID": 200790,
+      "PLAYER_NAME": "Marcus Vinicius",
+      "SEASON": "2007-08",
+      "GP": 13,
+      "MIN": 5.3
+    },
+    {
+      "PLAYER_ID": 200793,
+      "PLAYER_NAME": "Dee Brown",
+      "SEASON": "2008-09",
+      "GP": 19,
+      "MIN": 13.7
+    },
+    {
+      "PLAYER_ID": 200797,
+      "PLAYER_NAME": "Ryan Hollins",
+      "SEASON": "2015-16",
+      "GP": 37,
+      "MIN": 12.4
+    },
+    {
+      "PLAYER_ID": 200798,
+      "PLAYER_NAME": "Cheikh Samb",
+      "SEASON": "2008-09",
+      "GP": 18,
+      "MIN": 4.6
+    },
+    {
+      "PLAYER_ID": 200799,
+      "PLAYER_NAME": "Guillermo Diaz",
+      "SEASON": "2007-08",
+      "GP": 6,
+      "MIN": 3.0
+    },
+    {
+      "PLAYER_ID": 200801,
+      "PLAYER_NAME": "Hassan Adams",
+      "SEASON": "2008-09",
+      "GP": 12,
+      "MIN": 4.3
+    },
+    {
+      "PLAYER_ID": 200814,
+      "PLAYER_NAME": "Tarence Kinsey",
+      "SEASON": "2007-08",
+      "GP": 11,
+      "MIN": 8.7
+    },
+    {
+      "PLAYER_ID": 200816,
+      "PLAYER_NAME": "Jorge Garbajosa",
+      "SEASON": "2007-08",
+      "GP": 7,
+      "MIN": 10.5
+    },
+    {
+      "PLAYER_ID": 200818,
+      "PLAYER_NAME": "Justin Williams",
+      "SEASON": "2007-08",
+      "GP": 23,
+      "MIN": 5.3
+    },
+    {
+      "PLAYER_ID": 200822,
+      "PLAYER_NAME": "Pops Mensah-Bonsu",
+      "SEASON": "2009-10",
+      "GP": 20,
+      "MIN": 6.0
+    },
+    {
+      "PLAYER_ID": 200822,
+      "PLAYER_NAME": "Pops Mensah-Bonsu",
+      "SEASON": "2010-11",
+      "GP": 7,
+      "MIN": 5.0
+    },
+    {
+      "PLAYER_ID": 200823,
+      "PLAYER_NAME": "Robert Hite",
+      "SEASON": "2006-07",
+      "GP": 12,
+      "MIN": 11.3
+    },
+    {
+      "PLAYER_ID": 200827,
+      "PLAYER_NAME": "Darius Washington",
+      "SEASON": "2007-08",
+      "GP": 18,
+      "MIN": 8.1
+    },
+    {
+      "PLAYER_ID": 200829,
+      "PLAYER_NAME": "Ivan McFarlin",
+      "SEASON": "2006-07",
+      "GP": 11,
+      "MIN": 3.8
+    },
+    {
+      "PLAYER_ID": 200838,
+      "PLAYER_NAME": "Kevinn Pinkney",
+      "SEASON": "2006-07",
+      "GP": 6,
+      "MIN": 16.7
+    },
+    {
+      "PLAYER_ID": 200839,
+      "PLAYER_NAME": "Mike Harris",
+      "SEASON": "2010-11",
+      "GP": 4,
+      "MIN": 3.9
+    },
+    {
+      "PLAYER_ID": 200839,
+      "PLAYER_NAME": "Mike Harris",
+      "SEASON": "2013-14",
+      "GP": 20,
+      "MIN": 11.2
+    },
+    {
+      "PLAYER_ID": 200840,
+      "PLAYER_NAME": "Chris McCray",
+      "SEASON": "2006-07",
+      "GP": 5,
+      "MIN": 2.4
+    },
+    {
+      "PLAYER_ID": 200841,
+      "PLAYER_NAME": "Cedric Bozeman",
+      "SEASON": "2006-07",
+      "GP": 23,
+      "MIN": 8.7
+    },
+    {
+      "PLAYER_ID": 200848,
+      "PLAYER_NAME": "Steven Smith",
+      "SEASON": "2006-07",
+      "GP": 8,
+      "MIN": 3.5
+    },
+    {
+      "PLAYER_ID": 200970,
+      "PLAYER_NAME": "Renaldo Major",
+      "SEASON": "2006-07",
+      "GP": 1,
+      "MIN": 27.4
+    },
+    {
+      "PLAYER_ID": 200978,
+      "PLAYER_NAME": "Jeremy Richardson",
+      "SEASON": "2006-07",
+      "GP": 6,
+      "MIN": 3.3
+    },
+    {
+      "PLAYER_ID": 201148,
+      "PLAYER_NAME": "Brandan Wright",
+      "SEASON": "2017-18",
+      "GP": 28,
+      "MIN": 13.6
+    },
+    {
+      "PLAYER_ID": 201155,
+      "PLAYER_NAME": "Rodney Stuckey",
+      "SEASON": "2016-17",
+      "GP": 39,
+      "MIN": 17.9
+    },
+    {
+      "PLAYER_ID": 201156,
+      "PLAYER_NAME": "Nick Young",
+      "SEASON": "2018-19",
+      "GP": 4,
+      "MIN": 9.3
+    },
+    {
+      "PLAYER_ID": 201157,
+      "PLAYER_NAME": "Sean Williams",
+      "SEASON": "2009-10",
+      "GP": 20,
+      "MIN": 11.4
+    },
+    {
+      "PLAYER_ID": 201160,
+      "PLAYER_NAME": "Jason Smith",
+      "SEASON": "2018-19",
+      "GP": 20,
+      "MIN": 9.5
+    },
+    {
+      "PLAYER_ID": 201169,
+      "PLAYER_NAME": "Alando Tucker",
+      "SEASON": "2009-10",
+      "GP": 15,
+      "MIN": 6.4
+    },
+    {
+      "PLAYER_ID": 201177,
+      "PLAYER_NAME": "Josh McRoberts",
+      "SEASON": "2017-18",
+      "GP": 2,
+      "MIN": 2.9
+    },
+    {
+      "PLAYER_ID": 201187,
+      "PLAYER_NAME": "Dominic McGuire",
+      "SEASON": "2012-13",
+      "GP": 26,
+      "MIN": 14.9
+    },
+    {
+      "PLAYER_ID": 201191,
+      "PLAYER_NAME": "JamesOn Curry",
+      "SEASON": "2009-10",
+      "GP": 1,
+      "MIN": 0.1
+    },
+    {
+      "PLAYER_ID": 201193,
+      "PLAYER_NAME": "Demetris Nichols",
+      "SEASON": "2008-09",
+      "GP": 4,
+      "MIN": 3.6
+    },
+    {
+      "PLAYER_ID": 201203,
+      "PLAYER_NAME": "Mustafa Shakur",
+      "SEASON": "2013-14",
+      "GP": 3,
+      "MIN": 3.8
+    },
+    {
+      "PLAYER_ID": 201208,
+      "PLAYER_NAME": "Darryl Watkins",
+      "SEASON": "2007-08",
+      "GP": 9,
+      "MIN": 7.9
+    },
+    {
+      "PLAYER_ID": 201229,
+      "PLAYER_NAME": "Anthony Tolliver",
+      "SEASON": "2008-09",
+      "GP": 19,
+      "MIN": 11.0
+    },
+    {
+      "PLAYER_ID": 201229,
+      "PLAYER_NAME": "Anthony Tolliver",
+      "SEASON": "2016-17",
+      "GP": 65,
+      "MIN": 22.7
+    },
+    {
+      "PLAYER_ID": 201234,
+      "PLAYER_NAME": "Trey Johnson",
+      "SEASON": "2008-09",
+      "GP": 4,
+      "MIN": 3.5
+    },
+    {
+      "PLAYER_ID": 201234,
+      "PLAYER_NAME": "Trey Johnson",
+      "SEASON": "2011-12",
+      "GP": 11,
+      "MIN": 5.6
+    },
+    {
+      "PLAYER_ID": 201235,
+      "PLAYER_NAME": "Courtney Sims",
+      "SEASON": "2007-08",
+      "GP": 3,
+      "MIN": 3.7
+    },
+    {
+      "PLAYER_ID": 201235,
+      "PLAYER_NAME": "Courtney Sims",
+      "SEASON": "2008-09",
+      "GP": 2,
+      "MIN": 6.6
+    },
+    {
+      "PLAYER_ID": 201242,
+      "PLAYER_NAME": "Thomas Gardner",
+      "SEASON": "2007-08",
+      "GP": 4,
+      "MIN": 11.2
+    },
+    {
+      "PLAYER_ID": 201281,
+      "PLAYER_NAME": "Andre Ingram",
+      "SEASON": "2018-19",
+      "GP": 4,
+      "MIN": 3.7
+    },
+    {
+      "PLAYER_ID": 201286,
+      "PLAYER_NAME": "Eric Dawson",
+      "SEASON": "2011-12",
+      "GP": 4,
+      "MIN": 9.8
+    },
+    {
+      "PLAYER_ID": 201291,
+      "PLAYER_NAME": "Carldell Johnson",
+      "SEASON": "2011-12",
+      "GP": 15,
+      "MIN": 7.9
+    },
+    {
+      "PLAYER_ID": 201336,
+      "PLAYER_NAME": "Blake Ahearn",
+      "SEASON": "2008-09",
+      "GP": 3,
+      "MIN": 6.3
+    },
+    {
+      "PLAYER_ID": 201563,
+      "PLAYER_NAME": "Michael Beasley",
+      "SEASON": "2018-19",
+      "GP": 26,
+      "MIN": 10.7
+    },
+    {
+      "PLAYER_ID": 201569,
+      "PLAYER_NAME": "Eric Gordon",
+      "SEASON": "2025-26",
+      "GP": 6,
+      "MIN": 12.3
+    },
+    {
+      "PLAYER_ID": 201577,
+      "PLAYER_NAME": "Robin Lopez",
+      "SEASON": "2023-24",
+      "GP": 16,
+      "MIN": 4.0
+    },
+    {
+      "PLAYER_ID": 201580,
+      "PLAYER_NAME": "JaVale McGee",
+      "SEASON": "2014-15",
+      "GP": 23,
+      "MIN": 11.1
+    },
+    {
+      "PLAYER_ID": 201583,
+      "PLAYER_NAME": "Ryan Anderson",
+      "SEASON": "2019-20",
+      "GP": 2,
+      "MIN": 7.0
+    },
+    {
+      "PLAYER_ID": 201586,
+      "PLAYER_NAME": "Serge Ibaka",
+      "SEASON": "2022-23",
+      "GP": 16,
+      "MIN": 11.6
+    },
+    {
+      "PLAYER_ID": 201596,
+      "PLAYER_NAME": "Mario Chalmers",
+      "SEASON": "2015-16",
+      "GP": 61,
+      "MIN": 22.5
+    },
+    {
+      "PLAYER_ID": 201601,
+      "PLAYER_NAME": "Luc Mbah a Moute",
+      "SEASON": "2018-19",
+      "GP": 4,
+      "MIN": 15.3
+    },
+    {
+      "PLAYER_ID": 201602,
+      "PLAYER_NAME": "Kyle Weaver",
+      "SEASON": "2010-11",
+      "GP": 5,
+      "MIN": 13.9
+    },
+    {
+      "PLAYER_ID": 201603,
+      "PLAYER_NAME": "Sonny Weems",
+      "SEASON": "2015-16",
+      "GP": 43,
+      "MIN": 11.6
+    },
+    {
+      "PLAYER_ID": 201604,
+      "PLAYER_NAME": "Chris Douglas-Roberts",
+      "SEASON": "2012-13",
+      "GP": 6,
+      "MIN": 10.5
+    },
+    {
+      "PLAYER_ID": 201604,
+      "PLAYER_NAME": "Chris Douglas-Roberts",
+      "SEASON": "2014-15",
+      "GP": 12,
+      "MIN": 8.5
+    },
+    {
+      "PLAYER_ID": 201611,
+      "PLAYER_NAME": "Henry Walker",
+      "SEASON": "2011-12",
+      "GP": 32,
+      "MIN": 19.4
+    },
+    {
+      "PLAYER_ID": 201612,
+      "PLAYER_NAME": "Malik Hairston",
+      "SEASON": "2008-09",
+      "GP": 15,
+      "MIN": 10.3
+    },
+    {
+      "PLAYER_ID": 201628,
+      "PLAYER_NAME": "Bobby Brown",
+      "SEASON": "2017-18",
+      "GP": 20,
+      "MIN": 5.7
+    },
+    {
+      "PLAYER_ID": 201629,
+      "PLAYER_NAME": "Othello Hunter",
+      "SEASON": "2009-10",
+      "GP": 7,
+      "MIN": 4.7
+    },
+    {
+      "PLAYER_ID": 201631,
+      "PLAYER_NAME": "Steven Hill",
+      "SEASON": "2008-09",
+      "GP": 1,
+      "MIN": 2.4
+    },
+    {
+      "PLAYER_ID": 201821,
+      "PLAYER_NAME": "Trey Gilder",
+      "SEASON": "2009-10",
+      "GP": 2,
+      "MIN": 2.6
+    },
+    {
+      "PLAYER_ID": 201858,
+      "PLAYER_NAME": "Cartier Martin",
+      "SEASON": "2010-11",
+      "GP": 52,
+      "MIN": 10.4
+    },
+    {
+      "PLAYER_ID": 201880,
+      "PLAYER_NAME": "Greg Stiemsma",
+      "SEASON": "2013-14",
+      "GP": 55,
+      "MIN": 18.3
+    },
+    {
+      "PLAYER_ID": 201936,
+      "PLAYER_NAME": "Tyreke Evans",
+      "SEASON": "2018-19",
+      "GP": 69,
+      "MIN": 20.3
+    },
+    {
+      "PLAYER_ID": 201947,
+      "PLAYER_NAME": "Earl Clark",
+      "SEASON": "2013-14",
+      "GP": 54,
+      "MIN": 14.2
+    },
+    {
+      "PLAYER_ID": 201949,
+      "PLAYER_NAME": "James Johnson",
+      "SEASON": "2021-22",
+      "GP": 62,
+      "MIN": 19.2
+    },
+    {
+      "PLAYER_ID": 201953,
+      "PLAYER_NAME": "Eric Maynor",
+      "SEASON": "2013-14",
+      "GP": 31,
+      "MIN": 10.5
+    },
+    {
+      "PLAYER_ID": 201954,
+      "PLAYER_NAME": "Darren Collison",
+      "SEASON": "2021-22",
+      "GP": 3,
+      "MIN": 12.4
+    },
+    {
+      "PLAYER_ID": 201956,
+      "PLAYER_NAME": "Omri Casspi",
+      "SEASON": "2017-18",
+      "GP": 53,
+      "MIN": 14.0
+    },
+    {
+      "PLAYER_ID": 201956,
+      "PLAYER_NAME": "Omri Casspi",
+      "SEASON": "2018-19",
+      "GP": 36,
+      "MIN": 14.5
+    },
+    {
+      "PLAYER_ID": 201960,
+      "PLAYER_NAME": "DeMarre Carroll",
+      "SEASON": "2010-11",
+      "GP": 12,
+      "MIN": 4.2
+    },
+    {
+      "PLAYER_ID": 201962,
+      "PLAYER_NAME": "Toney Douglas",
+      "SEASON": "2016-17",
+      "GP": 24,
+      "MIN": 16.4
+    },
+    {
+      "PLAYER_ID": 201964,
+      "PLAYER_NAME": "Victor Claver",
+      "SEASON": "2014-15",
+      "GP": 10,
+      "MIN": 7.6
+    },
+    {
+      "PLAYER_ID": 201966,
+      "PLAYER_NAME": "Jermaine Taylor",
+      "SEASON": "2010-11",
+      "GP": 34,
+      "MIN": 14.2
+    },
+    {
+      "PLAYER_ID": 201969,
+      "PLAYER_NAME": "DaJuan Summers",
+      "SEASON": "2011-12",
+      "GP": 15,
+      "MIN": 13.9
+    },
+    {
+      "PLAYER_ID": 201971,
+      "PLAYER_NAME": "DeJuan Blair",
+      "SEASON": "2015-16",
+      "GP": 29,
+      "MIN": 7.5
+    },
+    {
+      "PLAYER_ID": 201977,
+      "PLAYER_NAME": "Marcus Thornton",
+      "SEASON": "2016-17",
+      "GP": 33,
+      "MIN": 17.4
+    },
+    {
+      "PLAYER_ID": 201980,
+      "PLAYER_NAME": "Danny Green",
+      "SEASON": "2023-24",
+      "GP": 2,
+      "MIN": 9.2
+    },
+    {
+      "PLAYER_ID": 201985,
+      "PLAYER_NAME": "AJ Price",
+      "SEASON": "2013-14",
+      "GP": 28,
+      "MIN": 3.5
+    },
+    {
+      "PLAYER_ID": 201985,
+      "PLAYER_NAME": "AJ Price",
+      "SEASON": "2014-15",
+      "GP": 26,
+      "MIN": 12.4
+    },
+    {
+      "PLAYER_ID": 201991,
+      "PLAYER_NAME": "Lester Hudson",
+      "SEASON": "2010-11",
+      "GP": 11,
+      "MIN": 6.7
+    },
+    {
+      "PLAYER_ID": 202068,
+      "PLAYER_NAME": "Marcus Landry",
+      "SEASON": "2009-10",
+      "GP": 18,
+      "MIN": 6.1
+    },
+    {
+      "PLAYER_ID": 202079,
+      "PLAYER_NAME": "Antonio Anderson",
+      "SEASON": "2009-10",
+      "GP": 1,
+      "MIN": 14.6
+    },
+    {
+      "PLAYER_ID": 202082,
+      "PLAYER_NAME": "Larry Owens",
+      "SEASON": "2011-12",
+      "GP": 7,
+      "MIN": 10.7
+    },
+    {
+      "PLAYER_ID": 202087,
+      "PLAYER_NAME": "Alonzo Gee",
+      "SEASON": "2016-17",
+      "GP": 13,
+      "MIN": 6.9
+    },
+    {
+      "PLAYER_ID": 202130,
+      "PLAYER_NAME": "Reggie Williams",
+      "SEASON": "2013-14",
+      "GP": 3,
+      "MIN": 5.6
+    },
+    {
+      "PLAYER_ID": 202130,
+      "PLAYER_NAME": "Reggie Williams",
+      "SEASON": "2016-17",
+      "GP": 6,
+      "MIN": 13.2
+    },
+    {
+      "PLAYER_ID": 202197,
+      "PLAYER_NAME": "Shane Edwards",
+      "SEASON": "2013-14",
+      "GP": 2,
+      "MIN": 5.9
+    },
+    {
+      "PLAYER_ID": 202322,
+      "PLAYER_NAME": "John Wall",
+      "SEASON": "2022-23",
+      "GP": 34,
+      "MIN": 22.2
+    },
+    {
+      "PLAYER_ID": 202333,
+      "PLAYER_NAME": "Xavier Henry",
+      "SEASON": "2014-15",
+      "GP": 9,
+      "MIN": 9.5
+    },
+    {
+      "PLAYER_ID": 202336,
+      "PLAYER_NAME": "Larry Sanders",
+      "SEASON": "2014-15",
+      "GP": 27,
+      "MIN": 21.7
+    },
+    {
+      "PLAYER_ID": 202336,
+      "PLAYER_NAME": "Larry Sanders",
+      "SEASON": "2016-17",
+      "GP": 5,
+      "MIN": 2.5
+    },
+    {
+      "PLAYER_ID": 202343,
+      "PLAYER_NAME": "Elliot Williams",
+      "SEASON": "2014-15",
+      "GP": 13,
+      "MIN": 9.1
+    },
+    {
+      "PLAYER_ID": 202343,
+      "PLAYER_NAME": "Elliot Williams",
+      "SEASON": "2015-16",
+      "GP": 5,
+      "MIN": 9.0
+    },
+    {
+      "PLAYER_ID": 202345,
+      "PLAYER_NAME": "Damion James",
+      "SEASON": "2012-13",
+      "GP": 2,
+      "MIN": 0.2
+    },
+    {
+      "PLAYER_ID": 202346,
+      "PLAYER_NAME": "Dominique Jones",
+      "SEASON": "2012-13",
+      "GP": 29,
+      "MIN": 11.6
+    },
+    {
+      "PLAYER_ID": 202347,
+      "PLAYER_NAME": "Quincy Pondexter",
+      "SEASON": "2017-18",
+      "GP": 23,
+      "MIN": 8.5
+    },
+    {
+      "PLAYER_ID": 202349,
+      "PLAYER_NAME": "Greivis Vasquez",
+      "SEASON": "2016-17",
+      "GP": 3,
+      "MIN": 12.9
+    },
+    {
+      "PLAYER_ID": 202350,
+      "PLAYER_NAME": "Daniel Orton",
+      "SEASON": "2013-14",
+      "GP": 22,
+      "MIN": 11.4
+    },
+    {
+      "PLAYER_ID": 202351,
+      "PLAYER_NAME": "Lazar Hayward",
+      "SEASON": "2012-13",
+      "GP": 4,
+      "MIN": 7.8
+    },
+    {
+      "PLAYER_ID": 202354,
+      "PLAYER_NAME": "Dexter Pittman",
+      "SEASON": "2012-13",
+      "GP": 11,
+      "MIN": 2.9
+    },
+    {
+      "PLAYER_ID": 202354,
+      "PLAYER_NAME": "Dexter Pittman",
+      "SEASON": "2013-14",
+      "GP": 2,
+      "MIN": 1.5
+    },
+    {
+      "PLAYER_ID": 202359,
+      "PLAYER_NAME": "Darington Hobson",
+      "SEASON": "2011-12",
+      "GP": 5,
+      "MIN": 7.8
+    },
+    {
+      "PLAYER_ID": 202380,
+      "PLAYER_NAME": "Hamady Ndiaye",
+      "SEASON": "2011-12",
+      "GP": 3,
+      "MIN": 1.0
+    },
+    {
+      "PLAYER_ID": 202380,
+      "PLAYER_NAME": "Hamady Ndiaye",
+      "SEASON": "2013-14",
+      "GP": 14,
+      "MIN": 5.3
+    },
+    {
+      "PLAYER_ID": 202385,
+      "PLAYER_NAME": "Ryan Reid",
+      "SEASON": "2011-12",
+      "GP": 5,
+      "MIN": 3.3
+    },
+    {
+      "PLAYER_ID": 202388,
+      "PLAYER_NAME": "Donald Sloan",
+      "SEASON": "2012-13",
+      "GP": 23,
+      "MIN": 11.4
+    },
+    {
+      "PLAYER_ID": 202390,
+      "PLAYER_NAME": "Gary Neal",
+      "SEASON": "2015-16",
+      "GP": 40,
+      "MIN": 20.2
+    },
+    {
+      "PLAYER_ID": 202390,
+      "PLAYER_NAME": "Gary Neal",
+      "SEASON": "2016-17",
+      "GP": 2,
+      "MIN": 9.2
+    },
+    {
+      "PLAYER_ID": 202395,
+      "PLAYER_NAME": "Sherron Collins",
+      "SEASON": "2010-11",
+      "GP": 20,
+      "MIN": 3.3
+    },
+    {
+      "PLAYER_ID": 202396,
+      "PLAYER_NAME": "Samardo Samuels",
+      "SEASON": "2012-13",
+      "GP": 18,
+      "MIN": 10.9
+    },
+    {
+      "PLAYER_ID": 202397,
+      "PLAYER_NAME": "Ish Smith",
+      "SEASON": "2023-24",
+      "GP": 43,
+      "MIN": 17.2
+    },
+    {
+      "PLAYER_ID": 202399,
+      "PLAYER_NAME": "Jeff Adrien",
+      "SEASON": "2011-12",
+      "GP": 8,
+      "MIN": 7.8
+    },
+    {
+      "PLAYER_ID": 202399,
+      "PLAYER_NAME": "Jeff Adrien",
+      "SEASON": "2014-15",
+      "GP": 17,
+      "MIN": 12.7
+    },
+    {
+      "PLAYER_ID": 202407,
+      "PLAYER_NAME": "Elijah Millsap",
+      "SEASON": "2015-16",
+      "GP": 20,
+      "MIN": 8.6
+    },
+    {
+      "PLAYER_ID": 202412,
+      "PLAYER_NAME": "Manny Harris",
+      "SEASON": "2013-14",
+      "GP": 9,
+      "MIN": 20.0
+    },
+    {
+      "PLAYER_ID": 202419,
+      "PLAYER_NAME": "Chris Johnson",
+      "SEASON": "2011-12",
+      "GP": 27,
+      "MIN": 6.5
+    },
+    {
+      "PLAYER_ID": 202458,
+      "PLAYER_NAME": "Justin Dentmon",
+      "SEASON": "2011-12",
+      "GP": 6,
+      "MIN": 15.1
+    },
+    {
+      "PLAYER_ID": 202458,
+      "PLAYER_NAME": "Justin Dentmon",
+      "SEASON": "2012-13",
+      "GP": 2,
+      "MIN": 2.2
+    },
+    {
+      "PLAYER_ID": 202498,
+      "PLAYER_NAME": "Lance Thomas",
+      "SEASON": "2013-14",
+      "GP": 5,
+      "MIN": 8.4
+    },
+    {
+      "PLAYER_ID": 202536,
+      "PLAYER_NAME": "Jerry Smith",
+      "SEASON": "2011-12",
+      "GP": 5,
+      "MIN": 9.2
+    },
+    {
+      "PLAYER_ID": 202545,
+      "PLAYER_NAME": "Luke Zeller",
+      "SEASON": "2012-13",
+      "GP": 16,
+      "MIN": 3.6
+    },
+    {
+      "PLAYER_ID": 202620,
+      "PLAYER_NAME": "Arinze Onuaku",
+      "SEASON": "2013-14",
+      "GP": 5,
+      "MIN": 6.0
+    },
+    {
+      "PLAYER_ID": 202620,
+      "PLAYER_NAME": "Arinze Onuaku",
+      "SEASON": "2016-17",
+      "GP": 8,
+      "MIN": 3.5
+    },
+    {
+      "PLAYER_ID": 202682,
+      "PLAYER_NAME": "Derrick Williams",
+      "SEASON": "2017-18",
+      "GP": 2,
+      "MIN": 4.3
+    },
+    {
+      "PLAYER_ID": 202683,
+      "PLAYER_NAME": "Enes Freedom",
+      "SEASON": "2021-22",
+      "GP": 35,
+      "MIN": 11.8
+    },
+    {
+      "PLAYER_ID": 202688,
+      "PLAYER_NAME": "Brandon Knight",
+      "SEASON": "2021-22",
+      "GP": 5,
+      "MIN": 12.9
+    },
+    {
+      "PLAYER_ID": 202689,
+      "PLAYER_NAME": "Kemba Walker",
+      "SEASON": "2022-23",
+      "GP": 9,
+      "MIN": 16.0
+    },
+    {
+      "PLAYER_ID": 202690,
+      "PLAYER_NAME": "Jimmer Fredette",
+      "SEASON": "2015-16",
+      "GP": 6,
+      "MIN": 2.9
+    },
+    {
+      "PLAYER_ID": 202697,
+      "PLAYER_NAME": "Iman Shumpert",
+      "SEASON": "2019-20",
+      "GP": 13,
+      "MIN": 18.5
+    },
+    {
+      "PLAYER_ID": 202697,
+      "PLAYER_NAME": "Iman Shumpert",
+      "SEASON": "2020-21",
+      "GP": 2,
+      "MIN": 5.5
+    },
+    {
+      "PLAYER_ID": 202704,
+      "PLAYER_NAME": "Reggie Jackson",
+      "SEASON": "2024-25",
+      "GP": 31,
+      "MIN": 12.4
+    },
+    {
+      "PLAYER_ID": 202705,
+      "PLAYER_NAME": "MarShon Brooks",
+      "SEASON": "2018-19",
+      "GP": 29,
+      "MIN": 13.3
+    },
+    {
+      "PLAYER_ID": 202709,
+      "PLAYER_NAME": "Cory Joseph",
+      "SEASON": "2023-24",
+      "GP": 26,
+      "MIN": 11.4
+    },
+    {
+      "PLAYER_ID": 202712,
+      "PLAYER_NAME": "Justin Harper",
+      "SEASON": "2015-16",
+      "GP": 5,
+      "MIN": 7.0
+    },
+    {
+      "PLAYER_ID": 202712,
+      "PLAYER_NAME": "Justin Harper",
+      "SEASON": "2016-17",
+      "GP": 3,
+      "MIN": 10.4
+    },
+    {
+      "PLAYER_ID": 202714,
+      "PLAYER_NAME": "Shelvin Mack",
+      "SEASON": "2017-18",
+      "GP": 69,
+      "MIN": 19.8
+    },
+    {
+      "PLAYER_ID": 202715,
+      "PLAYER_NAME": "Tyler Honeycutt",
+      "SEASON": "2012-13",
+      "GP": 9,
+      "MIN": 3.5
+    },
+    {
+      "PLAYER_ID": 202718,
+      "PLAYER_NAME": "Chandler Parsons",
+      "SEASON": "2019-20",
+      "GP": 5,
+      "MIN": 10.8
+    },
+    {
+      "PLAYER_ID": 202719,
+      "PLAYER_NAME": "Jeremy Tyler",
+      "SEASON": "2012-13",
+      "GP": 21,
+      "MIN": 3.3
+    },
+    {
+      "PLAYER_ID": 202721,
+      "PLAYER_NAME": "Darius Morris",
+      "SEASON": "2013-14",
+      "GP": 27,
+      "MIN": 11.6
+    },
+    {
+      "PLAYER_ID": 202723,
+      "PLAYER_NAME": "Malcolm Lee",
+      "SEASON": "2014-15",
+      "GP": 1,
+      "MIN": 2.0
+    },
+    {
+      "PLAYER_ID": 202725,
+      "PLAYER_NAME": "Josh Harrellson",
+      "SEASON": "2012-13",
+      "GP": 6,
+      "MIN": 5.1
+    },
+    {
+      "PLAYER_ID": 202728,
+      "PLAYER_NAME": "Keith Benson",
+      "SEASON": "2011-12",
+      "GP": 3,
+      "MIN": 3.0
+    },
+    {
+      "PLAYER_ID": 202729,
+      "PLAYER_NAME": "Josh Selby",
+      "SEASON": "2012-13",
+      "GP": 10,
+      "MIN": 5.9
+    },
+    {
+      "PLAYER_ID": 202732,
+      "PLAYER_NAME": "DeAndre Liggins",
+      "SEASON": "2013-14",
+      "GP": 1,
+      "MIN": 1.4
+    },
+    {
+      "PLAYER_ID": 202738,
+      "PLAYER_NAME": "Isaiah Thomas",
+      "SEASON": "2019-20",
+      "GP": 40,
+      "MIN": 23.1
+    },
+    {
+      "PLAYER_ID": 202738,
+      "PLAYER_NAME": "Isaiah Thomas",
+      "SEASON": "2020-21",
+      "GP": 3,
+      "MIN": 16.1
+    },
+    {
+      "PLAYER_ID": 202775,
+      "PLAYER_NAME": "Edwin Ubiles",
+      "SEASON": "2011-12",
+      "GP": 4,
+      "MIN": 13.0
+    },
+    {
+      "PLAYER_ID": 202779,
+      "PLAYER_NAME": "Dwight Buycks",
+      "SEASON": "2014-15",
+      "GP": 6,
+      "MIN": 20.5
+    },
+    {
+      "PLAYER_ID": 202809,
+      "PLAYER_NAME": "Cory Higgins",
+      "SEASON": "2012-13",
+      "GP": 6,
+      "MIN": 5.4
+    },
+    {
+      "PLAYER_ID": 202814,
+      "PLAYER_NAME": "Mychel Thompson",
+      "SEASON": "2011-12",
+      "GP": 5,
+      "MIN": 18.9
+    },
+    {
+      "PLAYER_ID": 202862,
+      "PLAYER_NAME": "Dennis Horner",
+      "SEASON": "2011-12",
+      "GP": 8,
+      "MIN": 2.8
+    },
+    {
+      "PLAYER_ID": 202880,
+      "PLAYER_NAME": "Jeff Foote",
+      "SEASON": "2011-12",
+      "GP": 4,
+      "MIN": 9.8
+    },
+    {
+      "PLAYER_ID": 202951,
+      "PLAYER_NAME": "Jeremy Pargo",
+      "SEASON": "2012-13",
+      "GP": 39,
+      "MIN": 16.8
+    },
+    {
+      "PLAYER_ID": 202951,
+      "PLAYER_NAME": "Jeremy Pargo",
+      "SEASON": "2019-20",
+      "GP": 3,
+      "MIN": 14.8
+    },
+    {
+      "PLAYER_ID": 202952,
+      "PLAYER_NAME": "Malcolm Thomas",
+      "SEASON": "2011-12",
+      "GP": 3,
+      "MIN": 5.0
+    },
+    {
+      "PLAYER_ID": 202952,
+      "PLAYER_NAME": "Malcolm Thomas",
+      "SEASON": "2014-15",
+      "GP": 17,
+      "MIN": 11.4
+    },
+    {
+      "PLAYER_ID": 202954,
+      "PLAYER_NAME": "Brad Wanamaker",
+      "SEASON": "2021-22",
+      "GP": 23,
+      "MIN": 13.9
+    },
+    {
+      "PLAYER_ID": 203086,
+      "PLAYER_NAME": "Meyers Leonard",
+      "SEASON": "2020-21",
+      "GP": 3,
+      "MIN": 9.8
+    },
+    {
+      "PLAYER_ID": 203088,
+      "PLAYER_NAME": "Kendall Marshall",
+      "SEASON": "2014-15",
+      "GP": 28,
+      "MIN": 14.9
+    },
+    {
+      "PLAYER_ID": 203091,
+      "PLAYER_NAME": "Royce White",
+      "SEASON": "2013-14",
+      "GP": 3,
+      "MIN": 3.0
+    },
+    {
+      "PLAYER_ID": 203093,
+      "PLAYER_NAME": "Terrence Jones",
+      "SEASON": "2016-17",
+      "GP": 54,
+      "MIN": 23.5
+    },
+    {
+      "PLAYER_ID": 203093,
+      "PLAYER_NAME": "Terrence Jones",
+      "SEASON": "2018-19",
+      "GP": 2,
+      "MIN": 2.6
+    },
+    {
+      "PLAYER_ID": 203096,
+      "PLAYER_NAME": "Jared Sullinger",
+      "SEASON": "2016-17",
+      "GP": 11,
+      "MIN": 10.7
+    },
+    {
+      "PLAYER_ID": 203098,
+      "PLAYER_NAME": "John Jenkins",
+      "SEASON": "2016-17",
+      "GP": 4,
+      "MIN": 3.2
+    },
+    {
+      "PLAYER_ID": 203099,
+      "PLAYER_NAME": "Jared Cunningham",
+      "SEASON": "2014-15",
+      "GP": 19,
+      "MIN": 4.7
+    },
+    {
+      "PLAYER_ID": 203099,
+      "PLAYER_NAME": "Jared Cunningham",
+      "SEASON": "2015-16",
+      "GP": 44,
+      "MIN": 9.3
+    },
+    {
+      "PLAYER_ID": 203111,
+      "PLAYER_NAME": "Orlando Johnson",
+      "SEASON": "2013-14",
+      "GP": 45,
+      "MIN": 8.7
+    },
+    {
+      "PLAYER_ID": 203111,
+      "PLAYER_NAME": "Orlando Johnson",
+      "SEASON": "2015-16",
+      "GP": 7,
+      "MIN": 14.5
+    },
+    {
+      "PLAYER_ID": 203112,
+      "PLAYER_NAME": "Quincy Acy",
+      "SEASON": "2018-19",
+      "GP": 10,
+      "MIN": 12.3
+    },
+    {
+      "PLAYER_ID": 203116,
+      "PLAYER_NAME": "Tyshawn Taylor",
+      "SEASON": "2013-14",
+      "GP": 23,
+      "MIN": 11.7
+    },
+    {
+      "PLAYER_ID": 203118,
+      "PLAYER_NAME": "Mike Scott",
+      "SEASON": "2016-17",
+      "GP": 18,
+      "MIN": 10.8
+    },
+    {
+      "PLAYER_ID": 203121,
+      "PLAYER_NAME": "Darius Miller",
+      "SEASON": "2014-15",
+      "GP": 5,
+      "MIN": 8.7
+    },
+    {
+      "PLAYER_ID": 203121,
+      "PLAYER_NAME": "Darius Miller",
+      "SEASON": "2020-21",
+      "GP": 18,
+      "MIN": 10.9
+    },
+    {
+      "PLAYER_ID": 203123,
+      "PLAYER_NAME": "Kostas Papanikolaou",
+      "SEASON": "2015-16",
+      "GP": 26,
+      "MIN": 11.3
+    },
+    {
+      "PLAYER_ID": 203129,
+      "PLAYER_NAME": "Tornike Shengelia",
+      "SEASON": "2013-14",
+      "GP": 26,
+      "MIN": 6.0
+    },
+    {
+      "PLAYER_ID": 203130,
+      "PLAYER_NAME": "Darius Johnson-Odom",
+      "SEASON": "2012-13",
+      "GP": 4,
+      "MIN": 1.4
+    },
+    {
+      "PLAYER_ID": 203130,
+      "PLAYER_NAME": "Darius Johnson-Odom",
+      "SEASON": "2013-14",
+      "GP": 3,
+      "MIN": 5.1
+    },
+    {
+      "PLAYER_ID": 203138,
+      "PLAYER_NAME": "Hollis Thompson",
+      "SEASON": "2016-17",
+      "GP": 40,
+      "MIN": 18.8
+    },
+    {
+      "PLAYER_ID": 203139,
+      "PLAYER_NAME": "Viacheslav Kravtsov",
+      "SEASON": "2013-14",
+      "GP": 20,
+      "MIN": 3.0
+    },
+    {
+      "PLAYER_ID": 203141,
+      "PLAYER_NAME": "Mirza Teletovic",
+      "SEASON": "2017-18",
+      "GP": 10,
+      "MIN": 15.9
+    },
+    {
+      "PLAYER_ID": 203142,
+      "PLAYER_NAME": "Chris Copeland",
+      "SEASON": "2015-16",
+      "GP": 24,
+      "MIN": 6.5
+    },
+    {
+      "PLAYER_ID": 203146,
+      "PLAYER_NAME": "Maalik Wayns",
+      "SEASON": "2013-14",
+      "GP": 2,
+      "MIN": 4.7
+    },
+    {
+      "PLAYER_ID": 203147,
+      "PLAYER_NAME": "Chris Smith",
+      "SEASON": "2013-14",
+      "GP": 2,
+      "MIN": 1.0
+    },
+    {
+      "PLAYER_ID": 203156,
+      "PLAYER_NAME": "Henry Sims",
+      "SEASON": "2012-13",
+      "GP": 2,
+      "MIN": 2.4
+    },
+    {
+      "PLAYER_ID": 203159,
+      "PLAYER_NAME": "Scott Machado",
+      "SEASON": "2018-19",
+      "GP": 4,
+      "MIN": 4.8
+    },
+    {
+      "PLAYER_ID": 203183,
+      "PLAYER_NAME": "Tony Mitchell",
+      "SEASON": "2013-14",
+      "GP": 3,
+      "MIN": 3.3
+    },
+    {
+      "PLAYER_ID": 203186,
+      "PLAYER_NAME": "Willie Reed",
+      "SEASON": "2017-18",
+      "GP": 42,
+      "MIN": 10.2
+    },
+    {
+      "PLAYER_ID": 203187,
+      "PLAYER_NAME": "Chris Johnson",
+      "SEASON": "2012-13",
+      "GP": 8,
+      "MIN": 12.8
+    },
+    {
+      "PLAYER_ID": 203203,
+      "PLAYER_NAME": "Chris Wright",
+      "SEASON": "2012-13",
+      "GP": 3,
+      "MIN": 1.5
+    },
+    {
+      "PLAYER_ID": 203263,
+      "PLAYER_NAME": "James Nunnally",
+      "SEASON": "2013-14",
+      "GP": 13,
+      "MIN": 12.7
+    },
+    {
+      "PLAYER_ID": 203263,
+      "PLAYER_NAME": "James Nunnally",
+      "SEASON": "2018-19",
+      "GP": 15,
+      "MIN": 6.8
+    },
+    {
+      "PLAYER_ID": 203315,
+      "PLAYER_NAME": "Toure' Murry",
+      "SEASON": "2014-15",
+      "GP": 5,
+      "MIN": 3.6
+    },
+    {
+      "PLAYER_ID": 203318,
+      "PLAYER_NAME": "Glen Rice",
+      "SEASON": "2014-15",
+      "GP": 5,
+      "MIN": 8.5
+    },
+    {
+      "PLAYER_ID": 203457,
+      "PLAYER_NAME": "Nerlens Noel",
+      "SEASON": "2022-23",
+      "GP": 17,
+      "MIN": 11.5
+    },
+    {
+      "PLAYER_ID": 203459,
+      "PLAYER_NAME": "Allen Crabbe",
+      "SEASON": "2019-20",
+      "GP": 37,
+      "MIN": 17.6
+    },
+    {
+      "PLAYER_ID": 203460,
+      "PLAYER_NAME": "Andre Roberson",
+      "SEASON": "2020-21",
+      "GP": 5,
+      "MIN": 12.6
+    },
+    {
+      "PLAYER_ID": 203461,
+      "PLAYER_NAME": "Anthony Bennett",
+      "SEASON": "2015-16",
+      "GP": 19,
+      "MIN": 4.4
+    },
+    {
+      "PLAYER_ID": 203461,
+      "PLAYER_NAME": "Anthony Bennett",
+      "SEASON": "2016-17",
+      "GP": 23,
+      "MIN": 11.5
+    },
+    {
+      "PLAYER_ID": 203463,
+      "PLAYER_NAME": "Ben McLemore",
+      "SEASON": "2018-19",
+      "GP": 19,
+      "MIN": 8.3
+    },
+    {
+      "PLAYER_ID": 203469,
+      "PLAYER_NAME": "Cody Zeller",
+      "SEASON": "2021-22",
+      "GP": 27,
+      "MIN": 13.1
+    },
+    {
+      "PLAYER_ID": 203474,
+      "PLAYER_NAME": "DJ Stephens",
+      "SEASON": "2013-14",
+      "GP": 3,
+      "MIN": 4.9
+    },
+    {
+      "PLAYER_ID": 203474,
+      "PLAYER_NAME": "DJ Stephens",
+      "SEASON": "2018-19",
+      "GP": 1,
+      "MIN": 6.7
+    },
+    {
+      "PLAYER_ID": 203475,
+      "PLAYER_NAME": "Erick Green",
+      "SEASON": "2015-16",
+      "GP": 9,
+      "MIN": 4.7
+    },
+    {
+      "PLAYER_ID": 203477,
+      "PLAYER_NAME": "Isaiah Canaan",
+      "SEASON": "2017-18",
+      "GP": 20,
+      "MIN": 21.1
+    },
+    {
+      "PLAYER_ID": 203477,
+      "PLAYER_NAME": "Isaiah Canaan",
+      "SEASON": "2018-19",
+      "GP": 30,
+      "MIN": 20.9
+    },
+    {
+      "PLAYER_ID": 203481,
+      "PLAYER_NAME": "Jeff Withey",
+      "SEASON": "2017-18",
+      "GP": 10,
+      "MIN": 3.9
+    },
+    {
+      "PLAYER_ID": 203485,
+      "PLAYER_NAME": "Lorenzo Brown",
+      "SEASON": "2013-14",
+      "GP": 26,
+      "MIN": 8.6
+    },
+    {
+      "PLAYER_ID": 203485,
+      "PLAYER_NAME": "Lorenzo Brown",
+      "SEASON": "2018-19",
+      "GP": 26,
+      "MIN": 8.2
+    },
+    {
+      "PLAYER_ID": 203489,
+      "PLAYER_NAME": "Nate Wolters",
+      "SEASON": "2014-15",
+      "GP": 21,
+      "MIN": 11.7
+    },
+    {
+      "PLAYER_ID": 203489,
+      "PLAYER_NAME": "Nate Wolters",
+      "SEASON": "2017-18",
+      "GP": 5,
+      "MIN": 3.8
+    },
+    {
+      "PLAYER_ID": 203490,
+      "PLAYER_NAME": "Otto Porter Jr.",
+      "SEASON": "2023-24",
+      "GP": 15,
+      "MIN": 11.6
+    },
+    {
+      "PLAYER_ID": 203492,
+      "PLAYER_NAME": "Ray McCallum",
+      "SEASON": "2015-16",
+      "GP": 41,
+      "MIN": 11.6
+    },
+    {
+      "PLAYER_ID": 203505,
+      "PLAYER_NAME": "Vander Blue",
+      "SEASON": "2013-14",
+      "GP": 3,
+      "MIN": 4.9
+    },
+    {
+      "PLAYER_ID": 203505,
+      "PLAYER_NAME": "Vander Blue",
+      "SEASON": "2017-18",
+      "GP": 5,
+      "MIN": 9.0
+    },
+    {
+      "PLAYER_ID": 203510,
+      "PLAYER_NAME": "Pierre Jackson",
+      "SEASON": "2016-17",
+      "GP": 9,
+      "MIN": 9.4
+    },
+    {
+      "PLAYER_ID": 203515,
+      "PLAYER_NAME": "Phil Pressey",
+      "SEASON": "2015-16",
+      "GP": 23,
+      "MIN": 12.3
+    },
+    {
+      "PLAYER_ID": 203516,
+      "PLAYER_NAME": "James Ennis III",
+      "SEASON": "2021-22",
+      "GP": 7,
+      "MIN": 7.9
+    },
+    {
+      "PLAYER_ID": 203518,
+      "PLAYER_NAME": "Alex Abrines",
+      "SEASON": "2018-19",
+      "GP": 31,
+      "MIN": 19.0
+    },
+    {
+      "PLAYER_ID": 203524,
+      "PLAYER_NAME": "Solomon Hill",
+      "SEASON": "2021-22",
+      "GP": 13,
+      "MIN": 10.7
+    },
+    {
+      "PLAYER_ID": 203539,
+      "PLAYER_NAME": "Gal Mekel",
+      "SEASON": "2014-15",
+      "GP": 4,
+      "MIN": 10.9
+    },
+    {
+      "PLAYER_ID": 203545,
+      "PLAYER_NAME": "Miroslav Raduljica",
+      "SEASON": "2014-15",
+      "GP": 5,
+      "MIN": 4.6
+    },
+    {
+      "PLAYER_ID": 203548,
+      "PLAYER_NAME": "Elias Harris",
+      "SEASON": "2013-14",
+      "GP": 2,
+      "MIN": 5.7
+    },
+    {
+      "PLAYER_ID": 203552,
+      "PLAYER_NAME": "Seth Curry",
+      "SEASON": "2013-14",
+      "GP": 2,
+      "MIN": 6.5
+    },
+    {
+      "PLAYER_ID": 203552,
+      "PLAYER_NAME": "Seth Curry",
+      "SEASON": "2014-15",
+      "GP": 2,
+      "MIN": 3.9
+    },
+    {
+      "PLAYER_ID": 203561,
+      "PLAYER_NAME": "Brandon Davies",
+      "SEASON": "2014-15",
+      "GP": 27,
+      "MIN": 15.7
+    },
+    {
+      "PLAYER_ID": 203564,
+      "PLAYER_NAME": "Kalin Lucas",
+      "SEASON": "2014-15",
+      "GP": 1,
+      "MIN": 5.5
+    },
+    {
+      "PLAYER_ID": 203565,
+      "PLAYER_NAME": "Patrick Christopher",
+      "SEASON": "2014-15",
+      "GP": 4,
+      "MIN": 7.2
+    },
+    {
+      "PLAYER_ID": 203580,
+      "PLAYER_NAME": "Larry Drew II",
+      "SEASON": "2014-15",
+      "GP": 12,
+      "MIN": 18.3
+    },
+    {
+      "PLAYER_ID": 203590,
+      "PLAYER_NAME": "Trey McKinney-Jones",
+      "SEASON": "2017-18",
+      "GP": 1,
+      "MIN": 1.2
+    },
+    {
+      "PLAYER_ID": 203648,
+      "PLAYER_NAME": "Thanasis Antetokounmpo",
+      "SEASON": "2015-16",
+      "GP": 2,
+      "MIN": 3.1
+    },
+    {
+      "PLAYER_ID": 203658,
+      "PLAYER_NAME": "Norvel Pelle",
+      "SEASON": "2021-22",
+      "GP": 3,
+      "MIN": 6.3
+    },
+    {
+      "PLAYER_ID": 203705,
+      "PLAYER_NAME": "Josh Magette",
+      "SEASON": "2019-20",
+      "GP": 8,
+      "MIN": 4.7
+    },
+    {
+      "PLAYER_ID": 203805,
+      "PLAYER_NAME": "Will Cherry",
+      "SEASON": "2014-15",
+      "GP": 8,
+      "MIN": 8.7
+    },
+    {
+      "PLAYER_ID": 203816,
+      "PLAYER_NAME": "Scotty Hopson",
+      "SEASON": "2017-18",
+      "GP": 1,
+      "MIN": 8.4
+    },
+    {
+      "PLAYER_ID": 203816,
+      "PLAYER_NAME": "Scotty Hopson",
+      "SEASON": "2021-22",
+      "GP": 1,
+      "MIN": 17.7
+    },
+    {
+      "PLAYER_ID": 203893,
+      "PLAYER_NAME": "Russ Smith",
+      "SEASON": "2015-16",
+      "GP": 15,
+      "MIN": 4.4
+    },
+    {
+      "PLAYER_ID": 203895,
+      "PLAYER_NAME": "Jordan McRae",
+      "SEASON": "2016-17",
+      "GP": 37,
+      "MIN": 10.4
+    },
+    {
+      "PLAYER_ID": 203912,
+      "PLAYER_NAME": "C.J. Wilcox",
+      "SEASON": "2016-17",
+      "GP": 22,
+      "MIN": 4.9
+    },
+    {
+      "PLAYER_ID": 203922,
+      "PLAYER_NAME": "Glenn Robinson III",
+      "SEASON": "2020-21",
+      "GP": 23,
+      "MIN": 16.1
+    },
+    {
+      "PLAYER_ID": 203923,
+      "PLAYER_NAME": "James Young",
+      "SEASON": "2017-18",
+      "GP": 6,
+      "MIN": 10.2
+    },
+    {
+      "PLAYER_ID": 203925,
+      "PLAYER_NAME": "Joe Harris",
+      "SEASON": "2015-16",
+      "GP": 5,
+      "MIN": 3.0
+    },
+    {
+      "PLAYER_ID": 203925,
+      "PLAYER_NAME": "Joe Harris",
+      "SEASON": "2023-24",
+      "GP": 16,
+      "MIN": 10.6
+    },
+    {
+      "PLAYER_ID": 203928,
+      "PLAYER_NAME": "Cory Jefferson",
+      "SEASON": "2015-16",
+      "GP": 8,
+      "MIN": 6.3
+    },
+    {
+      "PLAYER_ID": 203930,
+      "PLAYER_NAME": "Sean Kilpatrick",
+      "SEASON": "2014-15",
+      "GP": 4,
+      "MIN": 17.9
+    },
+    {
+      "PLAYER_ID": 203934,
+      "PLAYER_NAME": "Lamar Patterson",
+      "SEASON": "2016-17",
+      "GP": 5,
+      "MIN": 8.1
+    },
+    {
+      "PLAYER_ID": 203940,
+      "PLAYER_NAME": "Adreian Payne",
+      "SEASON": "2017-18",
+      "GP": 5,
+      "MIN": 8.5
+    },
+    {
+      "PLAYER_ID": 203943,
+      "PLAYER_NAME": "Noah Vonleh",
+      "SEASON": "2020-21",
+      "GP": 4,
+      "MIN": 2.7
+    },
+    {
+      "PLAYER_ID": 203943,
+      "PLAYER_NAME": "Noah Vonleh",
+      "SEASON": "2022-23",
+      "GP": 23,
+      "MIN": 7.5
+    },
+    {
+      "PLAYER_ID": 203945,
+      "PLAYER_NAME": "Alex Kirk",
+      "SEASON": "2014-15",
+      "GP": 5,
+      "MIN": 2.8
+    },
+    {
+      "PLAYER_ID": 203948,
+      "PLAYER_NAME": "Johnny O'Bryant III",
+      "SEASON": "2017-18",
+      "GP": 36,
+      "MIN": 10.5
+    },
+    {
+      "PLAYER_ID": 203949,
+      "PLAYER_NAME": "James Michael McAdoo",
+      "SEASON": "2017-18",
+      "GP": 3,
+      "MIN": 6.0
+    },
+    {
+      "PLAYER_ID": 203950,
+      "PLAYER_NAME": "Jarnell Stokes",
+      "SEASON": "2015-16",
+      "GP": 7,
+      "MIN": 2.7
+    },
+    {
+      "PLAYER_ID": 203950,
+      "PLAYER_NAME": "Jarnell Stokes",
+      "SEASON": "2016-17",
+      "GP": 2,
+      "MIN": 3.3
+    },
+    {
+      "PLAYER_ID": 203951,
+      "PLAYER_NAME": "Keith Appling",
+      "SEASON": "2015-16",
+      "GP": 5,
+      "MIN": 5.4
+    },
+    {
+      "PLAYER_ID": 203953,
+      "PLAYER_NAME": "Jabari Parker",
+      "SEASON": "2021-22",
+      "GP": 12,
+      "MIN": 9.4
+    },
+    {
+      "PLAYER_ID": 203958,
+      "PLAYER_NAME": "Andre Dawkins",
+      "SEASON": "2014-15",
+      "GP": 4,
+      "MIN": 5.4
+    },
+    {
+      "PLAYER_ID": 203960,
+      "PLAYER_NAME": "JaKarr Sampson",
+      "SEASON": "2018-19",
+      "GP": 4,
+      "MIN": 31.8
+    },
+    {
+      "PLAYER_ID": 203966,
+      "PLAYER_NAME": "Jamil Wilson",
+      "SEASON": "2017-18",
+      "GP": 15,
+      "MIN": 18.3
+    },
+    {
+      "PLAYER_ID": 203967,
+      "PLAYER_NAME": "Dario Saric",
+      "SEASON": "2025-26",
+      "GP": 5,
+      "MIN": 8.2
+    },
+    {
+      "PLAYER_ID": 203968,
+      "PLAYER_NAME": "Jerrelle Benimon",
+      "SEASON": "2014-15",
+      "GP": 2,
+      "MIN": 1.4
+    },
+    {
+      "PLAYER_ID": 203998,
+      "PLAYER_NAME": "Bruno Caboclo",
+      "SEASON": "2020-21",
+      "GP": 6,
+      "MIN": 6.1
+    },
+    {
+      "PLAYER_ID": 204020,
+      "PLAYER_NAME": "Tyler Johnson",
+      "SEASON": "2021-22",
+      "GP": 6,
+      "MIN": 15.2
+    },
+    {
+      "PLAYER_ID": 204021,
+      "PLAYER_NAME": "Sim Bhullar",
+      "SEASON": "2014-15",
+      "GP": 3,
+      "MIN": 0.9
+    },
+    {
+      "PLAYER_ID": 204025,
+      "PLAYER_NAME": "Tim Frazier",
+      "SEASON": "2019-20",
+      "GP": 27,
+      "MIN": 13.1
+    },
+    {
+      "PLAYER_ID": 204025,
+      "PLAYER_NAME": "Tim Frazier",
+      "SEASON": "2021-22",
+      "GP": 12,
+      "MIN": 17.3
+    },
+    {
+      "PLAYER_ID": 204033,
+      "PLAYER_NAME": "David Wear",
+      "SEASON": "2014-15",
+      "GP": 2,
+      "MIN": 3.5
+    },
+    {
+      "PLAYER_ID": 204038,
+      "PLAYER_NAME": "Langston Galloway",
+      "SEASON": "2021-22",
+      "GP": 7,
+      "MIN": 15.2
+    },
+    {
+      "PLAYER_ID": 204066,
+      "PLAYER_NAME": "John Holland",
+      "SEASON": "2017-18",
+      "GP": 24,
+      "MIN": 7.3
+    },
+    {
+      "PLAYER_ID": 204066,
+      "PLAYER_NAME": "John Holland",
+      "SEASON": "2018-19",
+      "GP": 1,
+      "MIN": 0.7
+    },
+    {
+      "PLAYER_ID": 204067,
+      "PLAYER_NAME": "Jarell Eddie",
+      "SEASON": "2016-17",
+      "GP": 5,
+      "MIN": 12.5
+    },
+    {
+      "PLAYER_ID": 204079,
+      "PLAYER_NAME": "Drew Gordon",
+      "SEASON": "2014-15",
+      "GP": 9,
+      "MIN": 7.9
+    },
+    {
+      "PLAYER_ID": 204179,
+      "PLAYER_NAME": "Omari Johnson",
+      "SEASON": "2017-18",
+      "GP": 4,
+      "MIN": 18.8
+    },
+    {
+      "PLAYER_ID": 204222,
+      "PLAYER_NAME": "Greg Whittington",
+      "SEASON": "2020-21",
+      "GP": 4,
+      "MIN": 3.0
+    },
+    {
+      "PLAYER_ID": 1626143,
+      "PLAYER_NAME": "Jahlil Okafor",
+      "SEASON": "2024-25",
+      "GP": 1,
+      "MIN": 3.4
+    },
+    {
+      "PLAYER_ID": 1626144,
+      "PLAYER_NAME": "Emmanuel Mudiay",
+      "SEASON": "2021-22",
+      "GP": 2,
+      "MIN": 5.5
+    },
+    {
+      "PLAYER_ID": 1626147,
+      "PLAYER_NAME": "Justin Anderson",
+      "SEASON": "2021-22",
+      "GP": 16,
+      "MIN": 19.7
+    },
+    {
+      "PLAYER_ID": 1626148,
+      "PLAYER_NAME": "Anthony Brown",
+      "SEASON": "2016-17",
+      "GP": 11,
+      "MIN": 14.5
+    },
+    {
+      "PLAYER_ID": 1626150,
+      "PLAYER_NAME": "Andrew Harrison",
+      "SEASON": "2018-19",
+      "GP": 17,
+      "MIN": 10.9
+    },
+    {
+      "PLAYER_ID": 1626151,
+      "PLAYER_NAME": "Aaron Harrison",
+      "SEASON": "2016-17",
+      "GP": 5,
+      "MIN": 3.3
+    },
+    {
+      "PLAYER_ID": 1626154,
+      "PLAYER_NAME": "RJ Hunter",
+      "SEASON": "2016-17",
+      "GP": 3,
+      "MIN": 3.1
+    },
+    {
+      "PLAYER_ID": 1626155,
+      "PLAYER_NAME": "Sam Dekker",
+      "SEASON": "2021-22",
+      "GP": 1,
+      "MIN": 0.9
+    },
+    {
+      "PLAYER_ID": 1626161,
+      "PLAYER_NAME": "Willie Cauley-Stein",
+      "SEASON": "2021-22",
+      "GP": 20,
+      "MIN": 9.1
+    },
+    {
+      "PLAYER_ID": 1626163,
+      "PLAYER_NAME": "Frank Kaminsky",
+      "SEASON": "2021-22",
+      "GP": 9,
+      "MIN": 20.1
+    },
+    {
+      "PLAYER_ID": 1626166,
+      "PLAYER_NAME": "Cameron Payne",
+      "SEASON": "2018-19",
+      "GP": 40,
+      "MIN": 17.8
+    },
+    {
+      "PLAYER_ID": 1626166,
+      "PLAYER_NAME": "Cameron Payne",
+      "SEASON": "2025-26",
+      "GP": 22,
+      "MIN": 17.0
+    },
+    {
+      "PLAYER_ID": 1626169,
+      "PLAYER_NAME": "Stanley Johnson",
+      "SEASON": "2022-23",
+      "GP": 30,
+      "MIN": 15.6
+    },
+    {
+      "PLAYER_ID": 1626173,
+      "PLAYER_NAME": "Rashad Vaughn",
+      "SEASON": "2017-18",
+      "GP": 28,
+      "MIN": 7.6
+    },
+    {
+      "PLAYER_ID": 1626184,
+      "PLAYER_NAME": "Chasson Randle",
+      "SEASON": "2019-20",
+      "GP": 3,
+      "MIN": 13.5
+    },
+    {
+      "PLAYER_ID": 1626188,
+      "PLAYER_NAME": "Quinn Cook",
+      "SEASON": "2020-21",
+      "GP": 23,
+      "MIN": 6.8
+    },
+    {
+      "PLAYER_ID": 1626196,
+      "PLAYER_NAME": "Josh Richardson",
+      "SEASON": "2024-25",
+      "GP": 8,
+      "MIN": 18.7
+    },
+    {
+      "PLAYER_ID": 1626205,
+      "PLAYER_NAME": "Vincent Hunter",
+      "SEASON": "2017-18",
+      "GP": 4,
+      "MIN": 1.9
+    },
+    {
+      "PLAYER_ID": 1626208,
+      "PLAYER_NAME": "Keifer Sykes",
+      "SEASON": "2021-22",
+      "GP": 32,
+      "MIN": 17.7
+    },
+    {
+      "PLAYER_ID": 1626214,
+      "PLAYER_NAME": "Bryce Dejean-Jones",
+      "SEASON": "2015-16",
+      "GP": 14,
+      "MIN": 19.9
+    },
+    {
+      "PLAYER_ID": 1626242,
+      "PLAYER_NAME": "Luis Montero",
+      "SEASON": "2017-18",
+      "GP": 2,
+      "MIN": 4.0
+    },
+    {
+      "PLAYER_ID": 1626262,
+      "PLAYER_NAME": "Coty Clarke",
+      "SEASON": "2015-16",
+      "GP": 3,
+      "MIN": 1.9
+    },
+    {
+      "PLAYER_ID": 1626266,
+      "PLAYER_NAME": "JJ O'Brien",
+      "SEASON": "2015-16",
+      "GP": 2,
+      "MIN": 3.1
+    },
+    {
+      "PLAYER_ID": 1626273,
+      "PLAYER_NAME": "Marcelo Huertas",
+      "SEASON": "2016-17",
+      "GP": 23,
+      "MIN": 10.3
+    },
+    {
+      "PLAYER_ID": 1626296,
+      "PLAYER_NAME": "Jordan Sibert",
+      "SEASON": "2018-19",
+      "GP": 1,
+      "MIN": 4.2
+    },
+    {
+      "PLAYER_ID": 1626643,
+      "PLAYER_NAME": "Jacob Pullen",
+      "SEASON": "2017-18",
+      "GP": 3,
+      "MIN": 2.0
+    },
+    {
+      "PLAYER_ID": 1626780,
+      "PLAYER_NAME": "Jonathan Gibson",
+      "SEASON": "2016-17",
+      "GP": 17,
+      "MIN": 13.6
+    },
+    {
+      "PLAYER_ID": 1627215,
+      "PLAYER_NAME": "Walt Lemon Jr.",
+      "SEASON": "2017-18",
+      "GP": 5,
+      "MIN": 7.0
+    },
+    {
+      "PLAYER_ID": 1627293,
+      "PLAYER_NAME": "Alex Stepheson",
+      "SEASON": "2015-16",
+      "GP": 8,
+      "MIN": 9.0
+    },
+    {
+      "PLAYER_ID": 1627733,
+      "PLAYER_NAME": "Dragan Bender",
+      "SEASON": "2019-20",
+      "GP": 16,
+      "MIN": 17.8
+    },
+    {
+      "PLAYER_ID": 1627735,
+      "PLAYER_NAME": "Wade Baldwin IV",
+      "SEASON": "2018-19",
+      "GP": 16,
+      "MIN": 5.9
+    },
+    {
+      "PLAYER_ID": 1627737,
+      "PLAYER_NAME": "Marquese Chriss",
+      "SEASON": "2020-21",
+      "GP": 2,
+      "MIN": 13.4
+    },
+    {
+      "PLAYER_ID": 1627738,
+      "PLAYER_NAME": "Deyonta Davis",
+      "SEASON": "2018-19",
+      "GP": 9,
+      "MIN": 13.2
+    },
+    {
+      "PLAYER_ID": 1627739,
+      "PLAYER_NAME": "Kris Dunn",
+      "SEASON": "2021-22",
+      "GP": 14,
+      "MIN": 24.0
+    },
+    {
+      "PLAYER_ID": 1627740,
+      "PLAYER_NAME": "Henry Ellenson",
+      "SEASON": "2019-20",
+      "GP": 5,
+      "MIN": 3.0
+    },
+    {
+      "PLAYER_ID": 1627740,
+      "PLAYER_NAME": "Henry Ellenson",
+      "SEASON": "2020-21",
+      "GP": 2,
+      "MIN": 19.2
+    },
+    {
+      "PLAYER_ID": 1627743,
+      "PLAYER_NAME": "Demetrius Jackson",
+      "SEASON": "2018-19",
+      "GP": 6,
+      "MIN": 6.6
+    },
+    {
+      "PLAYER_ID": 1627744,
+      "PLAYER_NAME": "Brice Johnson",
+      "SEASON": "2017-18",
+      "GP": 18,
+      "MIN": 5.4
+    },
+    {
+      "PLAYER_ID": 1627746,
+      "PLAYER_NAME": "Skal Labissiere",
+      "SEASON": "2024-25",
+      "GP": 4,
+      "MIN": 3.0
+    },
+    {
+      "PLAYER_ID": 1627746,
+      "PLAYER_NAME": "Skal Labissiere",
+      "SEASON": "2025-26",
+      "GP": 3,
+      "MIN": 12.5
+    },
+    {
+      "PLAYER_ID": 1627748,
+      "PLAYER_NAME": "Thon Maker",
+      "SEASON": "2020-21",
+      "GP": 8,
+      "MIN": 9.6
+    },
+    {
+      "PLAYER_ID": 1627753,
+      "PLAYER_NAME": "Zhou Qi",
+      "SEASON": "2018-19",
+      "GP": 1,
+      "MIN": 1.0
+    },
+    {
+      "PLAYER_ID": 1627755,
+      "PLAYER_NAME": "Tyler Ulis",
+      "SEASON": "2018-19",
+      "GP": 1,
+      "MIN": 0.8
+    },
+    {
+      "PLAYER_ID": 1627756,
+      "PLAYER_NAME": "Denzel Valentine",
+      "SEASON": "2021-22",
+      "GP": 24,
+      "MIN": 9.2
+    },
+    {
+      "PLAYER_ID": 1627758,
+      "PLAYER_NAME": "Ron Baker",
+      "SEASON": "2018-19",
+      "GP": 15,
+      "MIN": 10.1
+    },
+    {
+      "PLAYER_ID": 1627760,
+      "PLAYER_NAME": "Cat Barber",
+      "SEASON": "2021-22",
+      "GP": 3,
+      "MIN": 4.3
+    },
+    {
+      "PLAYER_ID": 1627761,
+      "PLAYER_NAME": "DeAndre' Bembry",
+      "SEASON": "2021-22",
+      "GP": 56,
+      "MIN": 18.3
+    },
+    {
+      "PLAYER_ID": 1627762,
+      "PLAYER_NAME": "Joel Bolomboy",
+      "SEASON": "2017-18",
+      "GP": 6,
+      "MIN": 6.3
+    },
+    {
+      "PLAYER_ID": 1627767,
+      "PLAYER_NAME": "Cheick Diallo",
+      "SEASON": "2021-22",
+      "GP": 3,
+      "MIN": 10.2
+    },
+    {
+      "PLAYER_ID": 1627772,
+      "PLAYER_NAME": "Daniel Hamilton",
+      "SEASON": "2018-19",
+      "GP": 19,
+      "MIN": 10.7
+    },
+    {
+      "PLAYER_ID": 1627775,
+      "PLAYER_NAME": "Patrick McCaw",
+      "SEASON": "2020-21",
+      "GP": 5,
+      "MIN": 6.7
+    },
+    {
+      "PLAYER_ID": 1627780,
+      "PLAYER_NAME": "Gary Payton II",
+      "SEASON": "2018-19",
+      "GP": 3,
+      "MIN": 5.3
+    },
+    {
+      "PLAYER_ID": 1627781,
+      "PLAYER_NAME": "Malachi Richardson",
+      "SEASON": "2018-19",
+      "GP": 22,
+      "MIN": 4.7
+    },
+    {
+      "PLAYER_ID": 1627782,
+      "PLAYER_NAME": "Wayne Selden",
+      "SEASON": "2021-22",
+      "GP": 3,
+      "MIN": 6.4
+    },
+    {
+      "PLAYER_ID": 1627788,
+      "PLAYER_NAME": "Furkan Korkmaz",
+      "SEASON": "2023-24",
+      "GP": 35,
+      "MIN": 8.6
+    },
+    {
+      "PLAYER_ID": 1627791,
+      "PLAYER_NAME": "Ben Bentil",
+      "SEASON": "2016-17",
+      "GP": 3,
+      "MIN": 3.3
+    },
+    {
+      "PLAYER_ID": 1627817,
+      "PLAYER_NAME": "Tim Quarterman",
+      "SEASON": "2017-18",
+      "GP": 3,
+      "MIN": 4.3
+    },
+    {
+      "PLAYER_ID": 1627820,
+      "PLAYER_NAME": "Tyrone Wallace",
+      "SEASON": "2019-20",
+      "GP": 14,
+      "MIN": 11.5
+    },
+    {
+      "PLAYER_ID": 1627820,
+      "PLAYER_NAME": "Tyrone Wallace",
+      "SEASON": "2021-22",
+      "GP": 6,
+      "MIN": 12.5
+    },
+    {
+      "PLAYER_ID": 1627822,
+      "PLAYER_NAME": "Petr Cornelie",
+      "SEASON": "2021-22",
+      "GP": 13,
+      "MIN": 2.9
+    },
+    {
+      "PLAYER_ID": 1627823,
+      "PLAYER_NAME": "Juancho Hernangomez",
+      "SEASON": "2022-23",
+      "GP": 42,
+      "MIN": 14.6
+    },
+    {
+      "PLAYER_ID": 1627846,
+      "PLAYER_NAME": "Abdel Nader",
+      "SEASON": "2021-22",
+      "GP": 14,
+      "MIN": 10.4
+    },
+    {
+      "PLAYER_ID": 1627851,
+      "PLAYER_NAME": "Mindaugas Kuzminskas",
+      "SEASON": "2017-18",
+      "GP": 1,
+      "MIN": 1.9
+    },
+    {
+      "PLAYER_ID": 1627852,
+      "PLAYER_NAME": "Nicolas Brussino",
+      "SEASON": "2017-18",
+      "GP": 4,
+      "MIN": 2.5
+    },
+    {
+      "PLAYER_ID": 1627853,
+      "PLAYER_NAME": "Ryan Arcidiacono",
+      "SEASON": "2022-23",
+      "GP": 20,
+      "MIN": 8.6
+    },
+    {
+      "PLAYER_ID": 1627853,
+      "PLAYER_NAME": "Ryan Arcidiacono",
+      "SEASON": "2023-24",
+      "GP": 20,
+      "MIN": 2.3
+    },
+    {
+      "PLAYER_ID": 1627854,
+      "PLAYER_NAME": "Bryn Forbes",
+      "SEASON": "2022-23",
+      "GP": 25,
+      "MIN": 10.7
+    },
+    {
+      "PLAYER_ID": 1627855,
+      "PLAYER_NAME": "Okaro White",
+      "SEASON": "2018-19",
+      "GP": 3,
+      "MIN": 2.1
+    },
+    {
+      "PLAYER_ID": 1627861,
+      "PLAYER_NAME": "Mike Tobey",
+      "SEASON": "2016-17",
+      "GP": 2,
+      "MIN": 12.6
+    },
+    {
+      "PLAYER_ID": 1627863,
+      "PLAYER_NAME": "Danuel House Jr.",
+      "SEASON": "2016-17",
+      "GP": 1,
+      "MIN": 0.8
+    },
+    {
+      "PLAYER_ID": 1627863,
+      "PLAYER_NAME": "Danuel House Jr.",
+      "SEASON": "2023-24",
+      "GP": 34,
+      "MIN": 15.0
+    },
+    {
+      "PLAYER_ID": 1627866,
+      "PLAYER_NAME": "Jameel Warney",
+      "SEASON": "2017-18",
+      "GP": 3,
+      "MIN": 9.0
+    },
+    {
+      "PLAYER_ID": 1627879,
+      "PLAYER_NAME": "Nicolas Laprovittola",
+      "SEASON": "2016-17",
+      "GP": 18,
+      "MIN": 9.7
+    },
+    {
+      "PLAYER_ID": 1627883,
+      "PLAYER_NAME": "Jalen Jones",
+      "SEASON": "2018-19",
+      "GP": 16,
+      "MIN": 13.4
+    },
+    {
+      "PLAYER_ID": 1627885,
+      "PLAYER_NAME": "Shaquille Harrison",
+      "SEASON": "2021-22",
+      "GP": 2,
+      "MIN": 11.3
+    },
+    {
+      "PLAYER_ID": 1627885,
+      "PLAYER_NAME": "Shaquille Harrison",
+      "SEASON": "2023-24",
+      "GP": 3,
+      "MIN": 2.0
+    },
+    {
+      "PLAYER_ID": 1627982,
+      "PLAYER_NAME": "Josh Gray",
+      "SEASON": "2017-18",
+      "GP": 5,
+      "MIN": 17.3
+    },
+    {
+      "PLAYER_ID": 1628035,
+      "PLAYER_NAME": "Alfonzo McKinnie",
+      "SEASON": "2021-22",
+      "GP": 17,
+      "MIN": 12.1
+    },
+    {
+      "PLAYER_ID": 1628238,
+      "PLAYER_NAME": "Paris Bass",
+      "SEASON": "2021-22",
+      "GP": 2,
+      "MIN": 3.7
+    },
+    {
+      "PLAYER_ID": 1628365,
+      "PLAYER_NAME": "Markelle Fultz",
+      "SEASON": "2025-26",
+      "GP": 5,
+      "MIN": 7.2
+    },
+    {
+      "PLAYER_ID": 1628366,
+      "PLAYER_NAME": "Lonzo Ball",
+      "SEASON": "2025-26",
+      "GP": 35,
+      "MIN": 20.8
+    },
+    {
+      "PLAYER_ID": 1628372,
+      "PLAYER_NAME": "Dennis Smith Jr.",
+      "SEASON": "2021-22",
+      "GP": 37,
+      "MIN": 17.3
+    },
+    {
+      "PLAYER_ID": 1628373,
+      "PLAYER_NAME": "Frank Ntilikina",
+      "SEASON": "2023-24",
+      "GP": 5,
+      "MIN": 8.6
+    },
+    {
+      "PLAYER_ID": 1628382,
+      "PLAYER_NAME": "Justin Jackson",
+      "SEASON": "2021-22",
+      "GP": 7,
+      "MIN": 5.2
+    },
+    {
+      "PLAYER_ID": 1628382,
+      "PLAYER_NAME": "Justin Jackson",
+      "SEASON": "2022-23",
+      "GP": 23,
+      "MIN": 4.7
+    },
+    {
+      "PLAYER_ID": 1628382,
+      "PLAYER_NAME": "Justin Jackson",
+      "SEASON": "2023-24",
+      "GP": 2,
+      "MIN": 0.4
+    },
+    {
+      "PLAYER_ID": 1628383,
+      "PLAYER_NAME": "Justin Patton",
+      "SEASON": "2018-19",
+      "GP": 3,
+      "MIN": 6.9
+    },
+    {
+      "PLAYER_ID": 1628383,
+      "PLAYER_NAME": "Justin Patton",
+      "SEASON": "2020-21",
+      "GP": 13,
+      "MIN": 19.0
+    },
+    {
+      "PLAYER_ID": 1628387,
+      "PLAYER_NAME": "Ike Anigbogu",
+      "SEASON": "2018-19",
+      "GP": 3,
+      "MIN": 2.1
+    },
+    {
+      "PLAYER_ID": 1628390,
+      "PLAYER_NAME": "Terrance Ferguson",
+      "SEASON": "2020-21",
+      "GP": 13,
+      "MIN": 3.8
+    },
+    {
+      "PLAYER_ID": 1628391,
+      "PLAYER_NAME": "D.J. Wilson",
+      "SEASON": "2021-22",
+      "GP": 4,
+      "MIN": 13.5
+    },
+    {
+      "PLAYER_ID": 1628391,
+      "PLAYER_NAME": "D.J. Wilson",
+      "SEASON": "2023-24",
+      "GP": 2,
+      "MIN": 7.7
+    },
+    {
+      "PLAYER_ID": 1628392,
+      "PLAYER_NAME": "Isaiah Hartenstein",
+      "SEASON": "2019-20",
+      "GP": 23,
+      "MIN": 11.6
+    },
+    {
+      "PLAYER_ID": 1628394,
+      "PLAYER_NAME": "An\u017eejs Pase\u010d\u0146iks",
+      "SEASON": "2020-21",
+      "GP": 1,
+      "MIN": 6.3
+    },
+    {
+      "PLAYER_ID": 1628395,
+      "PLAYER_NAME": "Jordan Bell",
+      "SEASON": "2021-22",
+      "GP": 1,
+      "MIN": 2.0
+    },
+    {
+      "PLAYER_ID": 1628396,
+      "PLAYER_NAME": "Tony Bradley",
+      "SEASON": "2022-23",
+      "GP": 12,
+      "MIN": 2.8
+    },
+    {
+      "PLAYER_ID": 1628400,
+      "PLAYER_NAME": "Semi Ojeleye",
+      "SEASON": "2021-22",
+      "GP": 30,
+      "MIN": 13.5
+    },
+    {
+      "PLAYER_ID": 1628402,
+      "PLAYER_NAME": "Frank Jackson",
+      "SEASON": "2022-23",
+      "GP": 1,
+      "MIN": 5.1
+    },
+    {
+      "PLAYER_ID": 1628408,
+      "PLAYER_NAME": "PJ Dozier",
+      "SEASON": "2021-22",
+      "GP": 18,
+      "MIN": 18.9
+    },
+    {
+      "PLAYER_ID": 1628408,
+      "PLAYER_NAME": "PJ Dozier",
+      "SEASON": "2024-25",
+      "GP": 9,
+      "MIN": 3.9
+    },
+    {
+      "PLAYER_ID": 1628411,
+      "PLAYER_NAME": "Wes Iwundu",
+      "SEASON": "2021-22",
+      "GP": 3,
+      "MIN": 27.4
+    },
+    {
+      "PLAYER_ID": 1628412,
+      "PLAYER_NAME": "Frank Mason III",
+      "SEASON": "2020-21",
+      "GP": 4,
+      "MIN": 19.8
+    },
+    {
+      "PLAYER_ID": 1628413,
+      "PLAYER_NAME": "Jonah Bolden",
+      "SEASON": "2019-20",
+      "GP": 7,
+      "MIN": 6.7
+    },
+    {
+      "PLAYER_ID": 1628416,
+      "PLAYER_NAME": "Tyler Dorsey",
+      "SEASON": "2022-23",
+      "GP": 3,
+      "MIN": 2.8
+    },
+    {
+      "PLAYER_ID": 1628419,
+      "PLAYER_NAME": "Cameron Oliver",
+      "SEASON": "2020-21",
+      "GP": 4,
+      "MIN": 21.8
+    },
+    {
+      "PLAYER_ID": 1628419,
+      "PLAYER_NAME": "Cameron Oliver",
+      "SEASON": "2021-22",
+      "GP": 2,
+      "MIN": 21.7
+    },
+    {
+      "PLAYER_ID": 1628420,
+      "PLAYER_NAME": "Monte Morris",
+      "SEASON": "2025-26",
+      "GP": 6,
+      "MIN": 10.8
+    },
+    {
+      "PLAYER_ID": 1628422,
+      "PLAYER_NAME": "Damyean Dotson",
+      "SEASON": "2021-22",
+      "GP": 2,
+      "MIN": 10.3
+    },
+    {
+      "PLAYER_ID": 1628424,
+      "PLAYER_NAME": "Kobi Simmons",
+      "SEASON": "2018-19",
+      "GP": 1,
+      "MIN": 1.8
+    },
+    {
+      "PLAYER_ID": 1628424,
+      "PLAYER_NAME": "Kobi Simmons",
+      "SEASON": "2023-24",
+      "GP": 4,
+      "MIN": 16.9
+    },
+    {
+      "PLAYER_ID": 1628425,
+      "PLAYER_NAME": "Sterling Brown",
+      "SEASON": "2022-23",
+      "GP": 4,
+      "MIN": 6.1
+    },
+    {
+      "PLAYER_ID": 1628432,
+      "PLAYER_NAME": "Davon Reed",
+      "SEASON": "2022-23",
+      "GP": 43,
+      "MIN": 8.0
+    },
+    {
+      "PLAYER_ID": 1628435,
+      "PLAYER_NAME": "Chance Comanche",
+      "SEASON": "2022-23",
+      "GP": 1,
+      "MIN": 20.8
+    },
+    {
+      "PLAYER_ID": 1628443,
+      "PLAYER_NAME": "Kadeem Allen",
+      "SEASON": "2019-20",
+      "GP": 10,
+      "MIN": 11.7
+    },
+    {
+      "PLAYER_ID": 1628449,
+      "PLAYER_NAME": "Chris Boucher",
+      "SEASON": "2017-18",
+      "GP": 1,
+      "MIN": 1.3
+    },
+    {
+      "PLAYER_ID": 1628449,
+      "PLAYER_NAME": "Chris Boucher",
+      "SEASON": "2025-26",
+      "GP": 9,
+      "MIN": 10.5
+    },
+    {
+      "PLAYER_ID": 1628450,
+      "PLAYER_NAME": "Eric Mika",
+      "SEASON": "2019-20",
+      "GP": 1,
+      "MIN": 19.0
+    },
+    {
+      "PLAYER_ID": 1628451,
+      "PLAYER_NAME": "Jacob Wiley",
+      "SEASON": "2017-18",
+      "GP": 5,
+      "MIN": 6.7
+    },
+    {
+      "PLAYER_ID": 1628455,
+      "PLAYER_NAME": "Mike James",
+      "SEASON": "2017-18",
+      "GP": 36,
+      "MIN": 19.1
+    },
+    {
+      "PLAYER_ID": 1628462,
+      "PLAYER_NAME": "Milos Teodosic",
+      "SEASON": "2018-19",
+      "GP": 15,
+      "MIN": 10.0
+    },
+    {
+      "PLAYER_ID": 1628464,
+      "PLAYER_NAME": "Daniel Theis",
+      "SEASON": "2024-25",
+      "GP": 38,
+      "MIN": 16.3
+    },
+    {
+      "PLAYER_ID": 1628475,
+      "PLAYER_NAME": "Matt Williams Jr.",
+      "SEASON": "2017-18",
+      "GP": 3,
+      "MIN": 3.8
+    },
+    {
+      "PLAYER_ID": 1628476,
+      "PLAYER_NAME": "Derrick Walton Jr.",
+      "SEASON": "2019-20",
+      "GP": 26,
+      "MIN": 9.6
+    },
+    {
+      "PLAYER_ID": 1628476,
+      "PLAYER_NAME": "Derrick Walton Jr.",
+      "SEASON": "2021-22",
+      "GP": 3,
+      "MIN": 36.1
+    },
+    {
+      "PLAYER_ID": 1628492,
+      "PLAYER_NAME": "Gian Clavell",
+      "SEASON": "2017-18",
+      "GP": 7,
+      "MIN": 9.1
+    },
+    {
+      "PLAYER_ID": 1628502,
+      "PLAYER_NAME": "Nigel Hayes-Davis",
+      "SEASON": "2025-26",
+      "GP": 27,
+      "MIN": 7.2
+    },
+    {
+      "PLAYER_ID": 1628504,
+      "PLAYER_NAME": "Xavier Rathan-Mayes",
+      "SEASON": "2017-18",
+      "GP": 5,
+      "MIN": 23.6
+    },
+    {
+      "PLAYER_ID": 1628506,
+      "PLAYER_NAME": "London Perrantes",
+      "SEASON": "2017-18",
+      "GP": 14,
+      "MIN": 4.7
+    },
+    {
+      "PLAYER_ID": 1628513,
+      "PLAYER_NAME": "Naz Mitrou-Long",
+      "SEASON": "2017-18",
+      "GP": 1,
+      "MIN": 0.5
+    },
+    {
+      "PLAYER_ID": 1628515,
+      "PLAYER_NAME": "Isaiah Briscoe",
+      "SEASON": "2018-19",
+      "GP": 39,
+      "MIN": 14.3
+    },
+    {
+      "PLAYER_ID": 1628518,
+      "PLAYER_NAME": "Amile Jefferson",
+      "SEASON": "2019-20",
+      "GP": 18,
+      "MIN": 4.1
+    },
+    {
+      "PLAYER_ID": 1628537,
+      "PLAYER_NAME": "Jaylen Morris",
+      "SEASON": "2018-19",
+      "GP": 4,
+      "MIN": 7.1
+    },
+    {
+      "PLAYER_ID": 1628537,
+      "PLAYER_NAME": "Jaylen Morris",
+      "SEASON": "2021-22",
+      "GP": 3,
+      "MIN": 5.3
+    },
+    {
+      "PLAYER_ID": 1628591,
+      "PLAYER_NAME": "Craig Sword",
+      "SEASON": "2021-22",
+      "GP": 3,
+      "MIN": 6.3
+    },
+    {
+      "PLAYER_ID": 1628605,
+      "PLAYER_NAME": "Dusty Hannahs",
+      "SEASON": "2018-19",
+      "GP": 2,
+      "MIN": 13.0
+    },
+    {
+      "PLAYER_ID": 1628605,
+      "PLAYER_NAME": "Dusty Hannahs",
+      "SEASON": "2019-20",
+      "GP": 2,
+      "MIN": 6.7
+    },
+    {
+      "PLAYER_ID": 1628769,
+      "PLAYER_NAME": "Tahjere McCall",
+      "SEASON": "2018-19",
+      "GP": 1,
+      "MIN": 8.0
+    },
+    {
+      "PLAYER_ID": 1628778,
+      "PLAYER_NAME": "Paul Watson",
+      "SEASON": "2021-22",
+      "GP": 9,
+      "MIN": 17.4
+    },
+    {
+      "PLAYER_ID": 1628964,
+      "PLAYER_NAME": "Mo Bamba",
+      "SEASON": "2024-25",
+      "GP": 32,
+      "MIN": 12.9
+    },
+    {
+      "PLAYER_ID": 1628964,
+      "PLAYER_NAME": "Mo Bamba",
+      "SEASON": "2025-26",
+      "GP": 4,
+      "MIN": 11.0
+    },
+    {
+      "PLAYER_ID": 1628968,
+      "PLAYER_NAME": "Brian Bowen II",
+      "SEASON": "2020-21",
+      "GP": 6,
+      "MIN": 2.5
+    },
+    {
+      "PLAYER_ID": 1628977,
+      "PLAYER_NAME": "Hamidou Diallo",
+      "SEASON": "2023-24",
+      "GP": 2,
+      "MIN": 2.4
+    },
+    {
+      "PLAYER_ID": 1628981,
+      "PLAYER_NAME": "Bruno Fernando",
+      "SEASON": "2024-25",
+      "GP": 17,
+      "MIN": 8.6
+    },
+    {
+      "PLAYER_ID": 1628990,
+      "PLAYER_NAME": "Chandler Hutchison",
+      "SEASON": "2021-22",
+      "GP": 6,
+      "MIN": 3.7
+    },
+    {
+      "PLAYER_ID": 1628993,
+      "PLAYER_NAME": "Alize Johnson",
+      "SEASON": "2021-22",
+      "GP": 23,
+      "MIN": 7.3
+    },
+    {
+      "PLAYER_ID": 1628993,
+      "PLAYER_NAME": "Alize Johnson",
+      "SEASON": "2022-23",
+      "GP": 4,
+      "MIN": 7.4
+    },
+    {
+      "PLAYER_ID": 1628994,
+      "PLAYER_NAME": "George King",
+      "SEASON": "2021-22",
+      "GP": 4,
+      "MIN": 4.8
+    },
+    {
+      "PLAYER_ID": 1628995,
+      "PLAYER_NAME": "Kevin Knox II",
+      "SEASON": "2023-24",
+      "GP": 31,
+      "MIN": 18.1
+    },
+    {
+      "PLAYER_ID": 1628998,
+      "PLAYER_NAME": "Cody Martin",
+      "SEASON": "2025-26",
+      "GP": 4,
+      "MIN": 13.8
+    },
+    {
+      "PLAYER_ID": 1629005,
+      "PLAYER_NAME": "Malik Newman",
+      "SEASON": "2019-20",
+      "GP": 1,
+      "MIN": 3.7
+    },
+    {
+      "PLAYER_ID": 1629005,
+      "PLAYER_NAME": "Malik Newman",
+      "SEASON": "2021-22",
+      "GP": 1,
+      "MIN": 7.7
+    },
+    {
+      "PLAYER_ID": 1629007,
+      "PLAYER_NAME": "Jontay Porter",
+      "SEASON": "2023-24",
+      "GP": 26,
+      "MIN": 13.8
+    },
+    {
+      "PLAYER_ID": 1629010,
+      "PLAYER_NAME": "Jerome Robinson",
+      "SEASON": "2020-21",
+      "GP": 17,
+      "MIN": 17.9
+    },
+    {
+      "PLAYER_ID": 1629019,
+      "PLAYER_NAME": "Allonzo Trier",
+      "SEASON": "2019-20",
+      "GP": 24,
+      "MIN": 12.1
+    },
+    {
+      "PLAYER_ID": 1629034,
+      "PLAYER_NAME": "Ray Spalding",
+      "SEASON": "2020-21",
+      "GP": 2,
+      "MIN": 9.4
+    },
+    {
+      "PLAYER_ID": 1629044,
+      "PLAYER_NAME": "Shamorie Ponds",
+      "SEASON": "2019-20",
+      "GP": 4,
+      "MIN": 2.6
+    },
+    {
+      "PLAYER_ID": 1629052,
+      "PLAYER_NAME": "Oshae Brissett",
+      "SEASON": "2024-25",
+      "GP": 6,
+      "MIN": 23.7
+    },
+    {
+      "PLAYER_ID": 1629066,
+      "PLAYER_NAME": "Rodions Kurucs",
+      "SEASON": "2020-21",
+      "GP": 21,
+      "MIN": 5.9
+    },
+    {
+      "PLAYER_ID": 1629093,
+      "PLAYER_NAME": "Tyler Davis",
+      "SEASON": "2018-19",
+      "GP": 1,
+      "MIN": 0.9
+    },
+    {
+      "PLAYER_ID": 1629103,
+      "PLAYER_NAME": "Kelan Martin",
+      "SEASON": "2021-22",
+      "GP": 30,
+      "MIN": 15.0
+    },
+    {
+      "PLAYER_ID": 1629117,
+      "PLAYER_NAME": "Wenyen Gabriel",
+      "SEASON": "2023-24",
+      "GP": 5,
+      "MIN": 16.2
+    },
+    {
+      "PLAYER_ID": 1629121,
+      "PLAYER_NAME": "Jaylen Adams",
+      "SEASON": "2020-21",
+      "GP": 7,
+      "MIN": 2.6
+    },
+    {
+      "PLAYER_ID": 1629122,
+      "PLAYER_NAME": "J.P. Macura",
+      "SEASON": "2019-20",
+      "GP": 1,
+      "MIN": 0.6
+    },
+    {
+      "PLAYER_ID": 1629126,
+      "PLAYER_NAME": "Deonte Burton",
+      "SEASON": "2022-23",
+      "GP": 2,
+      "MIN": 3.2
+    },
+    {
+      "PLAYER_ID": 1629133,
+      "PLAYER_NAME": "Daryl Macon",
+      "SEASON": "2019-20",
+      "GP": 4,
+      "MIN": 3.5
+    },
+    {
+      "PLAYER_ID": 1629147,
+      "PLAYER_NAME": "Joe Chealey",
+      "SEASON": "2019-20",
+      "GP": 4,
+      "MIN": 8.4
+    },
+    {
+      "PLAYER_ID": 1629150,
+      "PLAYER_NAME": "Emanuel Terry",
+      "SEASON": "2018-19",
+      "GP": 3,
+      "MIN": 7.6
+    },
+    {
+      "PLAYER_ID": 1629150,
+      "PLAYER_NAME": "Emanuel Terry",
+      "SEASON": "2021-22",
+      "GP": 3,
+      "MIN": 6.1
+    },
+    {
+      "PLAYER_ID": 1629152,
+      "PLAYER_NAME": "DeVaughn Akoon-Purcell",
+      "SEASON": "2018-19",
+      "GP": 7,
+      "MIN": 3.1
+    },
+    {
+      "PLAYER_ID": 1629155,
+      "PLAYER_NAME": "Zach Lofton",
+      "SEASON": "2018-19",
+      "GP": 1,
+      "MIN": 3.8
+    },
+    {
+      "PLAYER_ID": 1629168,
+      "PLAYER_NAME": "BJ Johnson",
+      "SEASON": "2021-22",
+      "GP": 4,
+      "MIN": 16.1
+    },
+    {
+      "PLAYER_ID": 1629203,
+      "PLAYER_NAME": "Jemerrio Jones",
+      "SEASON": "2021-22",
+      "GP": 2,
+      "MIN": 7.4
+    },
+    {
+      "PLAYER_ID": 1629232,
+      "PLAYER_NAME": "Kaiser Gates",
+      "SEASON": "2023-24",
+      "GP": 1,
+      "MIN": 7.4
+    },
+    {
+      "PLAYER_ID": 1629234,
+      "PLAYER_NAME": "Drew Eubanks",
+      "SEASON": "2021-22",
+      "GP": 71,
+      "MIN": 17.5
+    },
+    {
+      "PLAYER_ID": 1629244,
+      "PLAYER_NAME": "Cam Reynolds",
+      "SEASON": "2020-21",
+      "GP": 5,
+      "MIN": 8.1
+    },
+    {
+      "PLAYER_ID": 1629308,
+      "PLAYER_NAME": "Juan Toscano-Anderson",
+      "SEASON": "2023-24",
+      "GP": 11,
+      "MIN": 4.8
+    },
+    {
+      "PLAYER_ID": 1629309,
+      "PLAYER_NAME": "Trayvon Palmer",
+      "SEASON": "2021-22",
+      "GP": 1,
+      "MIN": 16.8
+    },
+    {
+      "PLAYER_ID": 1629597,
+      "PLAYER_NAME": "Zylan Cheatham",
+      "SEASON": "2021-22",
+      "GP": 1,
+      "MIN": 5.2
+    },
+    {
+      "PLAYER_ID": 1629600,
+      "PLAYER_NAME": "Jarron Cumberland",
+      "SEASON": "2021-22",
+      "GP": 3,
+      "MIN": 4.1
+    },
+    {
+      "PLAYER_ID": 1629602,
+      "PLAYER_NAME": "Javin DeLaurier",
+      "SEASON": "2021-22",
+      "GP": 1,
+      "MIN": 2.8
+    },
+    {
+      "PLAYER_ID": 1629603,
+      "PLAYER_NAME": "Mamadi Diakite",
+      "SEASON": "2021-22",
+      "GP": 13,
+      "MIN": 14.4
+    },
+    {
+      "PLAYER_ID": 1629605,
+      "PLAYER_NAME": "Tacko Fall",
+      "SEASON": "2021-22",
+      "GP": 11,
+      "MIN": 5.3
+    },
+    {
+      "PLAYER_ID": 1629606,
+      "PLAYER_NAME": "Robert Franks",
+      "SEASON": "2020-21",
+      "GP": 7,
+      "MIN": 14.4
+    },
+    {
+      "PLAYER_ID": 1629610,
+      "PLAYER_NAME": "DaQuan Jeffries",
+      "SEASON": "2021-22",
+      "GP": 3,
+      "MIN": 2.9
+    },
+    {
+      "PLAYER_ID": 1629610,
+      "PLAYER_NAME": "DaQuan Jeffries",
+      "SEASON": "2025-26",
+      "GP": 3,
+      "MIN": 20.0
+    },
+    {
+      "PLAYER_ID": 1629617,
+      "PLAYER_NAME": "Reggie Perry",
+      "SEASON": "2021-22",
+      "GP": 10,
+      "MIN": 18.7
+    },
+    {
+      "PLAYER_ID": 1629620,
+      "PLAYER_NAME": "Justin Robinson",
+      "SEASON": "2019-20",
+      "GP": 9,
+      "MIN": 5.4
+    },
+    {
+      "PLAYER_ID": 1629620,
+      "PLAYER_NAME": "Justin Robinson",
+      "SEASON": "2020-21",
+      "GP": 9,
+      "MIN": 9.7
+    },
+    {
+      "PLAYER_ID": 1629620,
+      "PLAYER_NAME": "Justin Robinson",
+      "SEASON": "2021-22",
+      "GP": 25,
+      "MIN": 12.1
+    },
+    {
+      "PLAYER_ID": 1629623,
+      "PLAYER_NAME": "Lindell Wigginton",
+      "SEASON": "2023-24",
+      "GP": 3,
+      "MIN": 2.5
+    },
+    {
+      "PLAYER_ID": 1629629,
+      "PLAYER_NAME": "Cam Reddish",
+      "SEASON": "2024-25",
+      "GP": 33,
+      "MIN": 17.9
+    },
+    {
+      "PLAYER_ID": 1629633,
+      "PLAYER_NAME": "Jarrett Culver",
+      "SEASON": "2022-23",
+      "GP": 10,
+      "MIN": 13.7
+    },
+    {
+      "PLAYER_ID": 1629635,
+      "PLAYER_NAME": "Sekou Doumbouya",
+      "SEASON": "2021-22",
+      "GP": 2,
+      "MIN": 8.2
+    },
+    {
+      "PLAYER_ID": 1629644,
+      "PLAYER_NAME": "KZ Okpala",
+      "SEASON": "2021-22",
+      "GP": 21,
+      "MIN": 11.6
+    },
+    {
+      "PLAYER_ID": 1629644,
+      "PLAYER_NAME": "KZ Okpala",
+      "SEASON": "2022-23",
+      "GP": 35,
+      "MIN": 7.1
+    },
+    {
+      "PLAYER_ID": 1629648,
+      "PLAYER_NAME": "Jordan Bone",
+      "SEASON": "2020-21",
+      "GP": 14,
+      "MIN": 14.0
+    },
+    {
+      "PLAYER_ID": 1629650,
+      "PLAYER_NAME": "Moses Brown",
+      "SEASON": "2022-23",
+      "GP": 36,
+      "MIN": 8.2
+    },
+    {
+      "PLAYER_ID": 1629650,
+      "PLAYER_NAME": "Moses Brown",
+      "SEASON": "2024-25",
+      "GP": 13,
+      "MIN": 9.1
+    },
+    {
+      "PLAYER_ID": 1629653,
+      "PLAYER_NAME": "Devon Dotson",
+      "SEASON": "2021-22",
+      "GP": 11,
+      "MIN": 7.7
+    },
+    {
+      "PLAYER_ID": 1629653,
+      "PLAYER_NAME": "Devon Dotson",
+      "SEASON": "2022-23",
+      "GP": 6,
+      "MIN": 8.9
+    },
+    {
+      "PLAYER_ID": 1629657,
+      "PLAYER_NAME": "Kyle Guy",
+      "SEASON": "2021-22",
+      "GP": 19,
+      "MIN": 9.8
+    },
+    {
+      "PLAYER_ID": 1629658,
+      "PLAYER_NAME": "Jaylen Hoard",
+      "SEASON": "2021-22",
+      "GP": 7,
+      "MIN": 34.2
+    },
+    {
+      "PLAYER_ID": 1629663,
+      "PLAYER_NAME": "Louis King",
+      "SEASON": "2021-22",
+      "GP": 10,
+      "MIN": 10.4
+    },
+    {
+      "PLAYER_ID": 1629665,
+      "PLAYER_NAME": "Jalen Lecque",
+      "SEASON": "2020-21",
+      "GP": 4,
+      "MIN": 3.0
+    },
+    {
+      "PLAYER_ID": 1629667,
+      "PLAYER_NAME": "Jalen McDaniels",
+      "SEASON": "2024-25",
+      "GP": 4,
+      "MIN": 1.8
+    },
+    {
+      "PLAYER_ID": 1629668,
+      "PLAYER_NAME": "Zach Norvell Jr.",
+      "SEASON": "2019-20",
+      "GP": 5,
+      "MIN": 8.2
+    },
+    {
+      "PLAYER_ID": 1629669,
+      "PLAYER_NAME": "Jaylen Nowell",
+      "SEASON": "2023-24",
+      "GP": 13,
+      "MIN": 16.4
+    },
+    {
+      "PLAYER_ID": 1629669,
+      "PLAYER_NAME": "Jaylen Nowell",
+      "SEASON": "2024-25",
+      "GP": 8,
+      "MIN": 21.0
+    },
+    {
+      "PLAYER_ID": 1629671,
+      "PLAYER_NAME": "Miye Oni",
+      "SEASON": "2021-22",
+      "GP": 16,
+      "MIN": 2.8
+    },
+    {
+      "PLAYER_ID": 1629682,
+      "PLAYER_NAME": "Tremont Waters",
+      "SEASON": "2021-22",
+      "GP": 3,
+      "MIN": 16.8
+    },
+    {
+      "PLAYER_ID": 1629686,
+      "PLAYER_NAME": "Deividas Sirvydis",
+      "SEASON": "2021-22",
+      "GP": 3,
+      "MIN": 8.9
+    },
+    {
+      "PLAYER_ID": 1629714,
+      "PLAYER_NAME": "Jarrell Brantley",
+      "SEASON": "2022-23",
+      "GP": 4,
+      "MIN": 9.7
+    },
+    {
+      "PLAYER_ID": 1629716,
+      "PLAYER_NAME": "Marques Bolden",
+      "SEASON": "2019-20",
+      "GP": 1,
+      "MIN": 2.8
+    },
+    {
+      "PLAYER_ID": 1629716,
+      "PLAYER_NAME": "Marques Bolden",
+      "SEASON": "2020-21",
+      "GP": 6,
+      "MIN": 4.8
+    },
+    {
+      "PLAYER_ID": 1629717,
+      "PLAYER_NAME": "Armoni Brooks",
+      "SEASON": "2023-24",
+      "GP": 10,
+      "MIN": 10.4
+    },
+    {
+      "PLAYER_ID": 1629726,
+      "PLAYER_NAME": "Garrison Mathews",
+      "SEASON": "2025-26",
+      "GP": 15,
+      "MIN": 13.1
+    },
+    {
+      "PLAYER_ID": 1629735,
+      "PLAYER_NAME": "Chris Silva",
+      "SEASON": "2020-21",
+      "GP": 15,
+      "MIN": 6.2
+    },
+    {
+      "PLAYER_ID": 1629735,
+      "PLAYER_NAME": "Chris Silva",
+      "SEASON": "2021-22",
+      "GP": 10,
+      "MIN": 9.1
+    },
+    {
+      "PLAYER_ID": 1629735,
+      "PLAYER_NAME": "Chris Silva",
+      "SEASON": "2022-23",
+      "GP": 1,
+      "MIN": 3.0
+    },
+    {
+      "PLAYER_ID": 1629738,
+      "PLAYER_NAME": "Vincent Poirier",
+      "SEASON": "2020-21",
+      "GP": 10,
+      "MIN": 3.9
+    },
+    {
+      "PLAYER_ID": 1629742,
+      "PLAYER_NAME": "Stanton Kidd",
+      "SEASON": "2019-20",
+      "GP": 4,
+      "MIN": 3.8
+    },
+    {
+      "PLAYER_ID": 1629743,
+      "PLAYER_NAME": "Donta Hall",
+      "SEASON": "2020-21",
+      "GP": 13,
+      "MIN": 13.8
+    },
+    {
+      "PLAYER_ID": 1629751,
+      "PLAYER_NAME": "Dakota Mathias",
+      "SEASON": "2020-21",
+      "GP": 8,
+      "MIN": 15.4
+    },
+    {
+      "PLAYER_ID": 1629751,
+      "PLAYER_NAME": "Dakota Mathias",
+      "SEASON": "2021-22",
+      "GP": 6,
+      "MIN": 2.7
+    },
+    {
+      "PLAYER_ID": 1629755,
+      "PLAYER_NAME": "Hassani Gravett",
+      "SEASON": "2021-22",
+      "GP": 8,
+      "MIN": 21.4
+    },
+    {
+      "PLAYER_ID": 1629760,
+      "PLAYER_NAME": "Matt Mooney",
+      "SEASON": "2021-22",
+      "GP": 1,
+      "MIN": 1.9
+    },
+    {
+      "PLAYER_ID": 1629783,
+      "PLAYER_NAME": "Shaq Buchanan",
+      "SEASON": "2021-22",
+      "GP": 2,
+      "MIN": 4.9
+    },
+    {
+      "PLAYER_ID": 1629788,
+      "PLAYER_NAME": "Tyler Hall",
+      "SEASON": "2021-22",
+      "GP": 1,
+      "MIN": 1.9
+    },
+    {
+      "PLAYER_ID": 1629873,
+      "PLAYER_NAME": "Jaysean Paige",
+      "SEASON": "2021-22",
+      "GP": 1,
+      "MIN": 6.6
+    },
+    {
+      "PLAYER_ID": 1629958,
+      "PLAYER_NAME": "Ahmad Caver",
+      "SEASON": "2021-22",
+      "GP": 1,
+      "MIN": 0.8
+    },
+    {
+      "PLAYER_ID": 1629962,
+      "PLAYER_NAME": "Devin Cannady",
+      "SEASON": "2020-21",
+      "GP": 8,
+      "MIN": 9.3
+    },
+    {
+      "PLAYER_ID": 1630164,
+      "PLAYER_NAME": "James Wiseman",
+      "SEASON": "2024-25",
+      "GP": 1,
+      "MIN": 4.6
+    },
+    {
+      "PLAYER_ID": 1630164,
+      "PLAYER_NAME": "James Wiseman",
+      "SEASON": "2025-26",
+      "GP": 4,
+      "MIN": 14.6
+    },
+    {
+      "PLAYER_ID": 1630165,
+      "PLAYER_NAME": "Killian Hayes",
+      "SEASON": "2023-24",
+      "GP": 42,
+      "MIN": 24.0
+    },
+    {
+      "PLAYER_ID": 1630165,
+      "PLAYER_NAME": "Killian Hayes",
+      "SEASON": "2024-25",
+      "GP": 6,
+      "MIN": 27.1
+    },
+    {
+      "PLAYER_ID": 1630175,
+      "PLAYER_NAME": "Cole Anthony",
+      "SEASON": "2025-26",
+      "GP": 35,
+      "MIN": 15.0
+    },
+    {
+      "PLAYER_ID": 1630177,
+      "PLAYER_NAME": "Theo Maledon",
+      "SEASON": "2023-24",
+      "GP": 17,
+      "MIN": 12.5
+    },
+    {
+      "PLAYER_ID": 1630181,
+      "PLAYER_NAME": "R.J. Hampton",
+      "SEASON": "2023-24",
+      "GP": 8,
+      "MIN": 9.5
+    },
+    {
+      "PLAYER_ID": 1630186,
+      "PLAYER_NAME": "Jahmi'us Ramsey",
+      "SEASON": "2021-22",
+      "GP": 19,
+      "MIN": 7.0
+    },
+    {
+      "PLAYER_ID": 1630186,
+      "PLAYER_NAME": "Jahmi'us Ramsey",
+      "SEASON": "2023-24",
+      "GP": 7,
+      "MIN": 17.3
+    },
+    {
+      "PLAYER_ID": 1630187,
+      "PLAYER_NAME": "Daniel Oturu",
+      "SEASON": "2021-22",
+      "GP": 3,
+      "MIN": 9.1
+    },
+    {
+      "PLAYER_ID": 1630195,
+      "PLAYER_NAME": "Leandro Bolmaro",
+      "SEASON": "2022-23",
+      "GP": 14,
+      "MIN": 4.9
+    },
+    {
+      "PLAYER_ID": 1630196,
+      "PLAYER_NAME": "Filip Petrusev",
+      "SEASON": "2023-24",
+      "GP": 3,
+      "MIN": 3.1
+    },
+    {
+      "PLAYER_ID": 1630199,
+      "PLAYER_NAME": "Cassius Stanley",
+      "SEASON": "2021-22",
+      "GP": 9,
+      "MIN": 17.2
+    },
+    {
+      "PLAYER_ID": 1630201,
+      "PLAYER_NAME": "Malachi Flynn",
+      "SEASON": "2024-25",
+      "GP": 4,
+      "MIN": 10.9
+    },
+    {
+      "PLAYER_ID": 1630204,
+      "PLAYER_NAME": "Ashton Hagans",
+      "SEASON": "2020-21",
+      "GP": 2,
+      "MIN": 2.0
+    },
+    {
+      "PLAYER_ID": 1630206,
+      "PLAYER_NAME": "Jay Scrubb",
+      "SEASON": "2022-23",
+      "GP": 2,
+      "MIN": 15.1
+    },
+    {
+      "PLAYER_ID": 1630209,
+      "PLAYER_NAME": "Omer Yurtseven",
+      "SEASON": "2025-26",
+      "GP": 9,
+      "MIN": 11.6
+    },
+    {
+      "PLAYER_ID": 1630211,
+      "PLAYER_NAME": "Karim Mane",
+      "SEASON": "2020-21",
+      "GP": 10,
+      "MIN": 8.8
+    },
+    {
+      "PLAYER_ID": 1630219,
+      "PLAYER_NAME": "Skylar Mays",
+      "SEASON": "2022-23",
+      "GP": 6,
+      "MIN": 31.5
+    },
+    {
+      "PLAYER_ID": 1630222,
+      "PLAYER_NAME": "Mason Jones",
+      "SEASON": "2020-21",
+      "GP": 32,
+      "MIN": 10.5
+    },
+    {
+      "PLAYER_ID": 1630223,
+      "PLAYER_NAME": "Jalen Harris",
+      "SEASON": "2020-21",
+      "GP": 13,
+      "MIN": 13.2
+    },
+    {
+      "PLAYER_ID": 1630227,
+      "PLAYER_NAME": "Daishen Nix",
+      "SEASON": "2024-25",
+      "GP": 3,
+      "MIN": 4.4
+    },
+    {
+      "PLAYER_ID": 1630238,
+      "PLAYER_NAME": "Malik Fitts",
+      "SEASON": "2020-21",
+      "GP": 3,
+      "MIN": 3.6
+    },
+    {
+      "PLAYER_ID": 1630241,
+      "PLAYER_NAME": "Sam Merrill",
+      "SEASON": "2021-22",
+      "GP": 6,
+      "MIN": 9.6
+    },
+    {
+      "PLAYER_ID": 1630243,
+      "PLAYER_NAME": "Trevelin Queen",
+      "SEASON": "2022-23",
+      "GP": 7,
+      "MIN": 10.0
+    },
+    {
+      "PLAYER_ID": 1630257,
+      "PLAYER_NAME": "Jon Teske",
+      "SEASON": "2021-22",
+      "GP": 3,
+      "MIN": 2.6
+    },
+    {
+      "PLAYER_ID": 1630266,
+      "PLAYER_NAME": "Will Magnay",
+      "SEASON": "2020-21",
+      "GP": 1,
+      "MIN": 3.3
+    },
+    {
+      "PLAYER_ID": 1630267,
+      "PLAYER_NAME": "Facundo Campazzo",
+      "SEASON": "2022-23",
+      "GP": 8,
+      "MIN": 6.5
+    },
+    {
+      "PLAYER_ID": 1630273,
+      "PLAYER_NAME": "Freddie Gillespie",
+      "SEASON": "2021-22",
+      "GP": 9,
+      "MIN": 13.2
+    },
+    {
+      "PLAYER_ID": 1630278,
+      "PLAYER_NAME": "Ade Murkey",
+      "SEASON": "2021-22",
+      "GP": 1,
+      "MIN": 1.5
+    },
+    {
+      "PLAYER_ID": 1630283,
+      "PLAYER_NAME": "Kylor Kelley",
+      "SEASON": "2024-25",
+      "GP": 11,
+      "MIN": 11.5
+    },
+    {
+      "PLAYER_ID": 1630285,
+      "PLAYER_NAME": "Zavier Simpson",
+      "SEASON": "2021-22",
+      "GP": 4,
+      "MIN": 43.5
+    },
+    {
+      "PLAYER_ID": 1630285,
+      "PLAYER_NAME": "Zavier Simpson",
+      "SEASON": "2023-24",
+      "GP": 7,
+      "MIN": 23.1
+    },
+    {
+      "PLAYER_ID": 1630286,
+      "PLAYER_NAME": "Trevon Scott",
+      "SEASON": "2021-22",
+      "GP": 2,
+      "MIN": 5.7
+    },
+    {
+      "PLAYER_ID": 1630286,
+      "PLAYER_NAME": "Trevon Scott",
+      "SEASON": "2025-26",
+      "GP": 6,
+      "MIN": 30.4
+    },
+    {
+      "PLAYER_ID": 1630288,
+      "PLAYER_NAME": "Jeff Dowtin Jr.",
+      "SEASON": "2021-22",
+      "GP": 9,
+      "MIN": 12.0
+    },
+    {
+      "PLAYER_ID": 1630296,
+      "PLAYER_NAME": "Braxton Key",
+      "SEASON": "2022-23",
+      "GP": 3,
+      "MIN": 3.0
+    },
+    {
+      "PLAYER_ID": 1630306,
+      "PLAYER_NAME": "Rob Edwards",
+      "SEASON": "2021-22",
+      "GP": 2,
+      "MIN": 5.4
+    },
+    {
+      "PLAYER_ID": 1630346,
+      "PLAYER_NAME": "Matt Ryan",
+      "SEASON": "2024-25",
+      "GP": 19,
+      "MIN": 3.6
+    },
+    {
+      "PLAYER_ID": 1630466,
+      "PLAYER_NAME": "Gabriel Deck",
+      "SEASON": "2021-22",
+      "GP": 7,
+      "MIN": 7.9
+    },
+    {
+      "PLAYER_ID": 1630526,
+      "PLAYER_NAME": "Jeremiah Robinson-Earl",
+      "SEASON": "2025-26",
+      "GP": 22,
+      "MIN": 16.4
+    },
+    {
+      "PLAYER_ID": 1630535,
+      "PLAYER_NAME": "Greg Brown III",
+      "SEASON": "2022-23",
+      "GP": 16,
+      "MIN": 5.8
+    },
+    {
+      "PLAYER_ID": 1630537,
+      "PLAYER_NAME": "Chris Duarte",
+      "SEASON": "2024-25",
+      "GP": 17,
+      "MIN": 4.4
+    },
+    {
+      "PLAYER_ID": 1630542,
+      "PLAYER_NAME": "Marcus Bagley",
+      "SEASON": "2024-25",
+      "GP": 10,
+      "MIN": 25.3
+    },
+    {
+      "PLAYER_ID": 1630547,
+      "PLAYER_NAME": "James Bouknight",
+      "SEASON": "2023-24",
+      "GP": 14,
+      "MIN": 5.8
+    },
+    {
+      "PLAYER_ID": 1630548,
+      "PLAYER_NAME": "Johnny Juzang",
+      "SEASON": "2025-26",
+      "GP": 21,
+      "MIN": 4.2
+    },
+    {
+      "PLAYER_ID": 1630555,
+      "PLAYER_NAME": "Joel Ayayi",
+      "SEASON": "2021-22",
+      "GP": 7,
+      "MIN": 2.9
+    },
+    {
+      "PLAYER_ID": 1630560,
+      "PLAYER_NAME": "Cam Thomas",
+      "SEASON": "2025-26",
+      "GP": 42,
+      "MIN": 21.0
+    },
+    {
+      "PLAYER_ID": 1630562,
+      "PLAYER_NAME": "Matt Hurt",
+      "SEASON": "2023-24",
+      "GP": 8,
+      "MIN": 14.2
+    },
+    {
+      "PLAYER_ID": 1630563,
+      "PLAYER_NAME": "Joshua Primo",
+      "SEASON": "2022-23",
+      "GP": 4,
+      "MIN": 23.3
+    },
+    {
+      "PLAYER_ID": 1630563,
+      "PLAYER_NAME": "Joshua Primo",
+      "SEASON": "2023-24",
+      "GP": 2,
+      "MIN": 5.1
+    },
+    {
+      "PLAYER_ID": 1630565,
+      "PLAYER_NAME": "Aaron Henry",
+      "SEASON": "2021-22",
+      "GP": 6,
+      "MIN": 2.8
+    },
+    {
+      "PLAYER_ID": 1630585,
+      "PLAYER_NAME": "Marcus Garrett",
+      "SEASON": "2021-22",
+      "GP": 12,
+      "MIN": 10.7
+    },
+    {
+      "PLAYER_ID": 1630585,
+      "PLAYER_NAME": "Marcus Garrett",
+      "SEASON": "2024-25",
+      "GP": 4,
+      "MIN": 19.8
+    },
+    {
+      "PLAYER_ID": 1630587,
+      "PLAYER_NAME": "Isaiah Livers",
+      "SEASON": "2023-24",
+      "GP": 23,
+      "MIN": 20.4
+    },
+    {
+      "PLAYER_ID": 1630600,
+      "PLAYER_NAME": "Isaiah Mobley",
+      "SEASON": "2024-25",
+      "GP": 1,
+      "MIN": 17.4
+    },
+    {
+      "PLAYER_ID": 1630605,
+      "PLAYER_NAME": "JaQuori McLaughlin",
+      "SEASON": "2021-22",
+      "GP": 4,
+      "MIN": 2.7
+    },
+    {
+      "PLAYER_ID": 1630606,
+      "PLAYER_NAME": "Javonte Smart",
+      "SEASON": "2023-24",
+      "GP": 1,
+      "MIN": 0.7
+    },
+    {
+      "PLAYER_ID": 1630608,
+      "PLAYER_NAME": "Malcolm Cazalon",
+      "SEASON": "2023-24",
+      "GP": 1,
+      "MIN": 2.6
+    },
+    {
+      "PLAYER_ID": 1630610,
+      "PLAYER_NAME": "DeJon Jarreau",
+      "SEASON": "2021-22",
+      "GP": 1,
+      "MIN": 0.9
+    },
+    {
+      "PLAYER_ID": 1630610,
+      "PLAYER_NAME": "DeJon Jarreau",
+      "SEASON": "2023-24",
+      "GP": 9,
+      "MIN": 16.6
+    },
+    {
+      "PLAYER_ID": 1630610,
+      "PLAYER_NAME": "DeJon Jarreau",
+      "SEASON": "2025-26",
+      "GP": 11,
+      "MIN": 21.0
+    },
+    {
+      "PLAYER_ID": 1630618,
+      "PLAYER_NAME": "D.J. Carton",
+      "SEASON": "2024-25",
+      "GP": 4,
+      "MIN": 8.3
+    },
+    {
+      "PLAYER_ID": 1630622,
+      "PLAYER_NAME": "Jalen Crutcher",
+      "SEASON": "2023-24",
+      "GP": 1,
+      "MIN": 2.7
+    },
+    {
+      "PLAYER_ID": 1630637,
+      "PLAYER_NAME": "Carlik Jones",
+      "SEASON": "2021-22",
+      "GP": 5,
+      "MIN": 4.7
+    },
+    {
+      "PLAYER_ID": 1630640,
+      "PLAYER_NAME": "MJ Walker",
+      "SEASON": "2021-22",
+      "GP": 2,
+      "MIN": 4.2
+    },
+    {
+      "PLAYER_ID": 1630643,
+      "PLAYER_NAME": "Jay Huff",
+      "SEASON": "2021-22",
+      "GP": 4,
+      "MIN": 5.1
+    },
+    {
+      "PLAYER_ID": 1630647,
+      "PLAYER_NAME": "Eugene Omoruyi",
+      "SEASON": "2021-22",
+      "GP": 4,
+      "MIN": 4.5
+    },
+    {
+      "PLAYER_ID": 1630648,
+      "PLAYER_NAME": "Jordan Schakel",
+      "SEASON": "2022-23",
+      "GP": 2,
+      "MIN": 3.1
+    },
+    {
+      "PLAYER_ID": 1630649,
+      "PLAYER_NAME": "Stanley Umude",
+      "SEASON": "2022-23",
+      "GP": 1,
+      "MIN": 2.1
+    },
+    {
+      "PLAYER_ID": 1630649,
+      "PLAYER_NAME": "Stanley Umude",
+      "SEASON": "2025-26",
+      "GP": 2,
+      "MIN": 3.3
+    },
+    {
+      "PLAYER_ID": 1630678,
+      "PLAYER_NAME": "Terry Taylor",
+      "SEASON": "2023-24",
+      "GP": 31,
+      "MIN": 6.1
+    },
+    {
+      "PLAYER_ID": 1630678,
+      "PLAYER_NAME": "Terry Taylor",
+      "SEASON": "2024-25",
+      "GP": 3,
+      "MIN": 2.1
+    },
+    {
+      "PLAYER_ID": 1630686,
+      "PLAYER_NAME": "Georgios Kalaitzakis",
+      "SEASON": "2021-22",
+      "GP": 13,
+      "MIN": 16.4
+    },
+    {
+      "PLAYER_ID": 1630692,
+      "PLAYER_NAME": "Jordan Goodwin",
+      "SEASON": "2021-22",
+      "GP": 2,
+      "MIN": 3.0
+    },
+    {
+      "PLAYER_ID": 1630693,
+      "PLAYER_NAME": "Jaime Echenique",
+      "SEASON": "2021-22",
+      "GP": 1,
+      "MIN": 3.1
+    },
+    {
+      "PLAYER_ID": 1630695,
+      "PLAYER_NAME": "Micah Potter",
+      "SEASON": "2021-22",
+      "GP": 3,
+      "MIN": 10.3
+    },
+    {
+      "PLAYER_ID": 1630696,
+      "PLAYER_NAME": "Dru Smith",
+      "SEASON": "2023-24",
+      "GP": 9,
+      "MIN": 14.5
+    },
+    {
+      "PLAYER_ID": 1630698,
+      "PLAYER_NAME": "Kevin Pangos",
+      "SEASON": "2021-22",
+      "GP": 24,
+      "MIN": 6.9
+    },
+    {
+      "PLAYER_ID": 1630701,
+      "PLAYER_NAME": "Michael Foster Jr.",
+      "SEASON": "2022-23",
+      "GP": 1,
+      "MIN": 1.0
+    },
+    {
+      "PLAYER_ID": 1630758,
+      "PLAYER_NAME": "Aleem Ford",
+      "SEASON": "2021-22",
+      "GP": 5,
+      "MIN": 14.7
+    },
+    {
+      "PLAYER_ID": 1630762,
+      "PLAYER_NAME": "Phillip Wheeler",
+      "SEASON": "2024-25",
+      "GP": 5,
+      "MIN": 8.9
+    },
+    {
+      "PLAYER_ID": 1630787,
+      "PLAYER_NAME": "Cameron McGriff",
+      "SEASON": "2021-22",
+      "GP": 3,
+      "MIN": 15.3
+    },
+    {
+      "PLAYER_ID": 1630792,
+      "PLAYER_NAME": "Malcolm Hill",
+      "SEASON": "2022-23",
+      "GP": 5,
+      "MIN": 1.8
+    },
+    {
+      "PLAYER_ID": 1630846,
+      "PLAYER_NAME": "Olivier Sarr",
+      "SEASON": "2021-22",
+      "GP": 22,
+      "MIN": 19.1
+    },
+    {
+      "PLAYER_ID": 1631093,
+      "PLAYER_NAME": "Jaden Ivey",
+      "SEASON": "2025-26",
+      "GP": 37,
+      "MIN": 18.1
+    },
+    {
+      "PLAYER_ID": 1631098,
+      "PLAYER_NAME": "Johnny Davis",
+      "SEASON": "2024-25",
+      "GP": 34,
+      "MIN": 7.1
+    },
+    {
+      "PLAYER_ID": 1631103,
+      "PLAYER_NAME": "Malaki Branham",
+      "SEASON": "2025-26",
+      "GP": 28,
+      "MIN": 9.8
+    },
+    {
+      "PLAYER_ID": 1631113,
+      "PLAYER_NAME": "Kennedy Chandler",
+      "SEASON": "2022-23",
+      "GP": 36,
+      "MIN": 7.8
+    },
+    {
+      "PLAYER_ID": 1631113,
+      "PLAYER_NAME": "Kennedy Chandler",
+      "SEASON": "2025-26",
+      "GP": 11,
+      "MIN": 32.3
+    },
+    {
+      "PLAYER_ID": 1631115,
+      "PLAYER_NAME": "Orlando Robinson",
+      "SEASON": "2024-25",
+      "GP": 44,
+      "MIN": 17.5
+    },
+    {
+      "PLAYER_ID": 1631115,
+      "PLAYER_NAME": "Orlando Robinson",
+      "SEASON": "2025-26",
+      "GP": 4,
+      "MIN": 6.2
+    },
+    {
+      "PLAYER_ID": 1631123,
+      "PLAYER_NAME": "Jamaree Bouyea",
+      "SEASON": "2022-23",
+      "GP": 5,
+      "MIN": 14.1
+    },
+    {
+      "PLAYER_ID": 1631160,
+      "PLAYER_NAME": "Jordan Hall",
+      "SEASON": "2022-23",
+      "GP": 9,
+      "MIN": 9.2
+    },
+    {
+      "PLAYER_ID": 1631167,
+      "PLAYER_NAME": "Izaiah Brockington",
+      "SEASON": "2023-24",
+      "GP": 1,
+      "MIN": 3.4
+    },
+    {
+      "PLAYER_ID": 1631174,
+      "PLAYER_NAME": "Tyler Burton",
+      "SEASON": "2025-26",
+      "GP": 12,
+      "MIN": 25.6
+    },
+    {
+      "PLAYER_ID": 1631199,
+      "PLAYER_NAME": "Ron Harper Jr.",
+      "SEASON": "2023-24",
+      "GP": 1,
+      "MIN": 3.7
+    },
+    {
+      "PLAYER_ID": 1631205,
+      "PLAYER_NAME": "Buddy Boeheim",
+      "SEASON": "2025-26",
+      "GP": 4,
+      "MIN": 3.8
+    },
+    {
+      "PLAYER_ID": 1631209,
+      "PLAYER_NAME": "Isaiah Wong",
+      "SEASON": "2024-25",
+      "GP": 20,
+      "MIN": 13.3
+    },
+    {
+      "PLAYER_ID": 1631210,
+      "PLAYER_NAME": "Jacob Toppin",
+      "SEASON": "2025-26",
+      "GP": 5,
+      "MIN": 3.4
+    },
+    {
+      "PLAYER_ID": 1631214,
+      "PLAYER_NAME": "Alondes Williams",
+      "SEASON": "2022-23",
+      "GP": 1,
+      "MIN": 5.3
+    },
+    {
+      "PLAYER_ID": 1631214,
+      "PLAYER_NAME": "Alondes Williams",
+      "SEASON": "2024-25",
+      "GP": 1,
+      "MIN": 3.7
+    },
+    {
+      "PLAYER_ID": 1631214,
+      "PLAYER_NAME": "Alondes Williams",
+      "SEASON": "2025-26",
+      "GP": 4,
+      "MIN": 25.2
+    },
+    {
+      "PLAYER_ID": 1631216,
+      "PLAYER_NAME": "Caleb Houstan",
+      "SEASON": "2025-26",
+      "GP": 18,
+      "MIN": 4.2
+    },
+    {
+      "PLAYER_ID": 1631246,
+      "PLAYER_NAME": "Vince Williams Jr.",
+      "SEASON": "2025-26",
+      "GP": 40,
+      "MIN": 20.5
+    },
+    {
+      "PLAYER_ID": 1631247,
+      "PLAYER_NAME": "Luke Travers",
+      "SEASON": "2025-26",
+      "GP": 12,
+      "MIN": 8.6
+    },
+    {
+      "PLAYER_ID": 1631298,
+      "PLAYER_NAME": "Jack White",
+      "SEASON": "2023-24",
+      "GP": 4,
+      "MIN": 15.9
+    },
+    {
+      "PLAYER_ID": 1631301,
+      "PLAYER_NAME": "Jaylen Sims",
+      "SEASON": "2024-25",
+      "GP": 6,
+      "MIN": 18.6
+    },
+    {
+      "PLAYER_ID": 1631303,
+      "PLAYER_NAME": "Justin Minaya",
+      "SEASON": "2022-23",
+      "GP": 4,
+      "MIN": 22.2
+    },
+    {
+      "PLAYER_ID": 1631306,
+      "PLAYER_NAME": "Cole Swider",
+      "SEASON": "2024-25",
+      "GP": 10,
+      "MIN": 17.0
+    },
+    {
+      "PLAYER_ID": 1631320,
+      "PLAYER_NAME": "Chima Moneke",
+      "SEASON": "2022-23",
+      "GP": 2,
+      "MIN": 4.0
+    },
+    {
+      "PLAYER_ID": 1631351,
+      "PLAYER_NAME": "Lucas Williamson",
+      "SEASON": "2025-26",
+      "GP": 7,
+      "MIN": 32.0
+    },
+    {
+      "PLAYER_ID": 1631376,
+      "PLAYER_NAME": "Dmytro Skapintsev",
+      "SEASON": "2023-24",
+      "GP": 2,
+      "MIN": 1.1
+    },
+    {
+      "PLAYER_ID": 1631386,
+      "PLAYER_NAME": "Taze Moore",
+      "SEASON": "2023-24",
+      "GP": 4,
+      "MIN": 10.1
+    },
+    {
+      "PLAYER_ID": 1631386,
+      "PLAYER_NAME": "Taze Moore",
+      "SEASON": "2024-25",
+      "GP": 2,
+      "MIN": 9.9
+    },
+    {
+      "PLAYER_ID": 1631451,
+      "PLAYER_NAME": "Javonte Cooke",
+      "SEASON": "2025-26",
+      "GP": 19,
+      "MIN": 4.9
+    },
+    {
+      "PLAYER_ID": 1641723,
+      "PLAYER_NAME": "Kobe Bufkin",
+      "SEASON": "2025-26",
+      "GP": 16,
+      "MIN": 7.5
+    },
+    {
+      "PLAYER_ID": 1641727,
+      "PLAYER_NAME": "Dariq Whitehead",
+      "SEASON": "2025-26",
+      "GP": 6,
+      "MIN": 30.5
+    },
+    {
+      "PLAYER_ID": 1641732,
+      "PLAYER_NAME": "Colby Jones",
+      "SEASON": "2025-26",
+      "GP": 1,
+      "MIN": 6.8
+    },
+    {
+      "PLAYER_ID": 1641752,
+      "PLAYER_NAME": "Bobi Klintman",
+      "SEASON": "2025-26",
+      "GP": 12,
+      "MIN": 5.9
+    },
+    {
+      "PLAYER_ID": 1641753,
+      "PLAYER_NAME": "Chris Livingston",
+      "SEASON": "2025-26",
+      "GP": 3,
+      "MIN": 5.8
+    },
+    {
+      "PLAYER_ID": 1641761,
+      "PLAYER_NAME": "Grant Nelson",
+      "SEASON": "2025-26",
+      "GP": 4,
+      "MIN": 8.8
+    },
+    {
+      "PLAYER_ID": 1641766,
+      "PLAYER_NAME": "Adama Sanogo",
+      "SEASON": "2024-25",
+      "GP": 4,
+      "MIN": 5.4
+    },
+    {
+      "PLAYER_ID": 1641789,
+      "PLAYER_NAME": "Jazian Gortman",
+      "SEASON": "2024-25",
+      "GP": 16,
+      "MIN": 3.5
+    },
+    {
+      "PLAYER_ID": 1641793,
+      "PLAYER_NAME": "D'Moi Hodge",
+      "SEASON": "2023-24",
+      "GP": 7,
+      "MIN": 5.9
+    },
+    {
+      "PLAYER_ID": 1641806,
+      "PLAYER_NAME": "Markquis Nowell",
+      "SEASON": "2023-24",
+      "GP": 1,
+      "MIN": 3.5
+    },
+    {
+      "PLAYER_ID": 1641809,
+      "PLAYER_NAME": "Drew Peterson",
+      "SEASON": "2025-26",
+      "GP": 6,
+      "MIN": 10.7
+    },
+    {
+      "PLAYER_ID": 1641813,
+      "PLAYER_NAME": "Mark Sears",
+      "SEASON": "2025-26",
+      "GP": 7,
+      "MIN": 3.7
+    },
+    {
+      "PLAYER_ID": 1641816,
+      "PLAYER_NAME": "Hunter Tyson",
+      "SEASON": "2025-26",
+      "GP": 21,
+      "MIN": 7.7
+    },
+    {
+      "PLAYER_ID": 1641851,
+      "PLAYER_NAME": "Timmy Allen",
+      "SEASON": "2023-24",
+      "GP": 5,
+      "MIN": 25.1
+    },
+    {
+      "PLAYER_ID": 1641857,
+      "PLAYER_NAME": "Liam Robbins",
+      "SEASON": "2024-25",
+      "GP": 13,
+      "MIN": 4.4
+    },
+    {
+      "PLAYER_ID": 1641871,
+      "PLAYER_NAME": "Duop Reath",
+      "SEASON": "2025-26",
+      "GP": 32,
+      "MIN": 8.1
+    },
+    {
+      "PLAYER_ID": 1641877,
+      "PLAYER_NAME": "Nathan Mensah",
+      "SEASON": "2023-24",
+      "GP": 25,
+      "MIN": 12.3
+    },
+    {
+      "PLAYER_ID": 1641879,
+      "PLAYER_NAME": "Yuri Collins",
+      "SEASON": "2024-25",
+      "GP": 2,
+      "MIN": 8.2
+    },
+    {
+      "PLAYER_ID": 1641926,
+      "PLAYER_NAME": "Dexter Dennis",
+      "SEASON": "2023-24",
+      "GP": 4,
+      "MIN": 7.5
+    },
+    {
+      "PLAYER_ID": 1641970,
+      "PLAYER_NAME": "Maozinha Pereira",
+      "SEASON": "2023-24",
+      "GP": 7,
+      "MIN": 17.4
+    },
+    {
+      "PLAYER_ID": 1642280,
+      "PLAYER_NAME": "Trentyn Flowers",
+      "SEASON": "2025-26",
+      "GP": 2,
+      "MIN": 2.8
+    },
+    {
+      "PLAYER_ID": 1642282,
+      "PLAYER_NAME": "Hunter Sallis",
+      "SEASON": "2025-26",
+      "GP": 7,
+      "MIN": 3.7
+    },
+    {
+      "PLAYER_ID": 1642368,
+      "PLAYER_NAME": "N'Faly Dante",
+      "SEASON": "2025-26",
+      "GP": 4,
+      "MIN": 3.9
+    },
+    {
+      "PLAYER_ID": 1642380,
+      "PLAYER_NAME": "Adama Bal",
+      "SEASON": "2025-26",
+      "GP": 8,
+      "MIN": 30.2
+    },
+    {
+      "PLAYER_ID": 1642385,
+      "PLAYER_NAME": "Cui Cui",
+      "SEASON": "2024-25",
+      "GP": 5,
+      "MIN": 2.1
+    },
+    {
+      "PLAYER_ID": 1642422,
+      "PLAYER_NAME": "Armel Traore",
+      "SEASON": "2024-25",
+      "GP": 9,
+      "MIN": 7.4
+    },
+    {
+      "PLAYER_ID": 1642439,
+      "PLAYER_NAME": "Quincy Olivari",
+      "SEASON": "2024-25",
+      "GP": 2,
+      "MIN": 5.2
+    },
+    {
+      "PLAYER_ID": 1642468,
+      "PLAYER_NAME": "Darius Brown II",
+      "SEASON": "2025-26",
+      "GP": 1,
+      "MIN": 2.7
+    },
+    {
+      "PLAYER_ID": 1642502,
+      "PLAYER_NAME": "Malevy Leons",
+      "SEASON": "2024-25",
+      "GP": 6,
+      "MIN": 3.5
+    },
+    {
+      "PLAYER_ID": 1642939,
+      "PLAYER_NAME": "Miles Kelly",
+      "SEASON": "2025-26",
+      "GP": 14,
+      "MIN": 9.6
+    },
+    {
+      "PLAYER_ID": 1642955,
+      "PLAYER_NAME": "Kadary Richmond",
+      "SEASON": "2025-26",
+      "GP": 3,
+      "MIN": 22.3
+    },
+    {
+      "PLAYER_ID": 1643133,
+      "PLAYER_NAME": "Lawson Lovering",
+      "SEASON": "2025-26",
+      "GP": 2,
+      "MIN": 24.6
+    },
+    {
+      "PLAYER_ID": 1643141,
+      "PLAYER_NAME": "Jahmyl Telfort",
+      "SEASON": "2025-26",
+      "GP": 8,
+      "MIN": 4.0
+    },
+    {
+      "PLAYER_ID": 1643158,
+      "PLAYER_NAME": "Andersson Garcia",
+      "SEASON": "2025-26",
+      "GP": 5,
+      "MIN": 33.8
+    },
+    {
+      "PLAYER_ID": 1643253,
+      "PLAYER_NAME": "Toby Okani",
+      "SEASON": "2025-26",
+      "GP": 6,
+      "MIN": 36.2
+    }
+  ],
+  "label_variations": 0
+}

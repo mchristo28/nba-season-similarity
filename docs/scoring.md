@@ -1,4 +1,4 @@
-# How comparison scores work (model 3.1)
+# How comparison scores work (model 3.2)
 
 A score describes closeness under the selected comparison mode. It is not a grade,
 probability, impact estimate, or forecast of equal player quality.
@@ -79,7 +79,7 @@ for the evaluated correlation-aware alternative and why it was not deployed.
 This mapping is a transparent design calibration, not an empirically established
 measure of basketball equivalence. Top results are not rescaled to 100. Compare
 scores within one mode and weight setting; changing mode, data, or model version
-changes the reference and/or measurements. The UI identifies model version 3.1.
+changes the reference and/or measurements. The UI identifies model version 3.2.
 
 ## Colors and explanations
 
@@ -133,3 +133,18 @@ across guards, wings, passing bigs, rim-running centers, and defensive facilitat
 It reports results and coverage; plausible names are a review aid, not ground truth
 or a target used to tune weights. Tests separately verify exact units, independence
 from raw minutes, mode behavior, historical boundaries, and missingness invariants.
+
+## Optional position reference (3.2)
+
+All players preserves the 3.1 distances and rankings. Position peers fits the same
+model to rotation-player seasons belonging to a selected roster position group,
+and restricts candidates to that group. A G-F or F-C season belongs to both listed
+groups; the user can select either group or their union. The chosen reference is
+fixed for the entire search and head-to-head explanation, regardless of the
+candidate filters. Scores are not interchangeable across different references.
+
+Positions are joined on player ID and season, using all NBA team rosters requested
+for that season. Unknown positions stay unavailable, not inferred from height or
+current positions. Forward / Wing is deliberately broad: an F listing alone cannot
+distinguish a small forward from a power forward or describe time spent in a role.
+The coverage audit and source dates are in `data/features/player_positions.json`.

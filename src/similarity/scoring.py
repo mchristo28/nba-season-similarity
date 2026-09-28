@@ -7,7 +7,7 @@ Profile distances are a joint weighted RMS of standardized differences.
 
 import numpy as np
 
-MODEL_VERSION = "3.1"
+MODEL_VERSION = "3.2"
 
 
 def difference_band(distance: float) -> str:

@@ -1,0 +1,39 @@
+{
+  "coverage": {
+    "all": 11501,
+    "known": 10507,
+    "rotation": 7103,
+    "rotation_known": 7000
+  },
+  "examples": {
+    "All players": {
+      "reference_count": 4237,
+      "score": 88.26733583354577,
+      "gaps": {
+        "pct_fga_restricted": {
+          "sd_gap": 0.44484959759262344,
+          "band": "close"
+        },
+        "pct_fga_midrange": {
+          "sd_gap": 0.8901853395731453,
+          "band": "noticeable"
+        }
+      }
+    },
+    "Guard": {
+      "reference_count": 2130,
+      "score": 84.25766986267486,
+      "gaps": {
+        "pct_fga_restricted": {
+          "sd_gap": 0.6991620595354486,
+          "band": "noticeable"
+        },
+        "pct_fga_midrange": {
+          "sd_gap": 0.9865436864568757,
+          "band": "noticeable"
+        }
+      }
+    }
+  },
+  "all_player_regression": "All standardized feature matrices unchanged in all three profiles"
+}
