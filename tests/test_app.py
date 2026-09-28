@@ -90,6 +90,7 @@ def test_whole_profile_explanation_and_tracking_shortcut():
     app.radio(key="matching_mode").set_value("Production").run()
     app.radio(key="matching_mode").set_value("Playing style").run()
     assert app.radio(key="matching_detail").value == "Historical (2003+)"
+    app.radio(key="reference_mode").set_value("All players").run()
     app.selectbox(key="player_select").select("Lauri Markkanen").run()
     app.selectbox(key="season_select").select(7).run()
     assert not app.exception
@@ -117,23 +118,27 @@ def test_whole_profile_explanation_and_tracking_shortcut():
 def test_position_peers_and_hybrid_switching():
     app_path = Path(__file__).resolve().parents[1] / "src/app/streamlit_app.py"
     app = AppTest.from_file(str(app_path)).run(timeout=30)
-    assert app.radio(key="reference_mode").value == "All players"
+    assert app.radio(key="reference_mode").value == "Position peers"
     app.selectbox(key="player_select").select("Keyonte George").run()
-    app.radio(key="reference_mode").set_value("Position peers").run(timeout=30)
     assert not app.exception and not app.error
-    assert app.selectbox(key="peer_group").value == "Guard"
+    assert app.multiselect(key="peer_groups").value == ["Guard"]
     assert any("Reference: Guard" in item.value for item in app.caption)
     assert app.selectbox(key="compare_select").value == "Austin Reaves (2025-26) — Score: 84"
     app.selectbox(key="player_select").select("Lauri Markkanen").run()
     assert not app.exception and not app.error
-    assert len(app.selectbox(key="peer_group").options) == 3
-    app.selectbox(key="peer_group").select("Center / Big").run()
+    assert app.multiselect(key="peer_groups").value == ["Forward / Wing", "Center / Big"]
+    app.multiselect(key="peer_groups").set_value(["Center / Big"]).run()
     assert not app.exception and not app.error
     assert any("Reference: Center / Big" in item.value for item in app.caption)
     # A previous hybrid's subgroup must not leak into the next subject's pool.
     app.selectbox(key="player_select").select("Austin Reaves").run()
-    assert app.selectbox(key="peer_group").value == "Guard"
+    assert app.multiselect(key="peer_groups").value == ["Guard"]
     assert not app.exception and not app.error
+    app.multiselect(key="peer_groups").set_value(["Guard", "Forward / Wing"]).run()
+    assert not app.exception and not app.error
+    assert any("Reference: Guard + Forward / Wing" in item.value for item in app.caption)
+    app.multiselect(key="peer_groups").set_value([]).run()
+    assert any("Include at least one" in item.value for item in app.info)
     app.radio(key="reference_mode").set_value("All players").run()
     assert not app.exception and not app.error
 
@@ -142,7 +147,6 @@ def test_unknown_season_position_stays_available_in_all_player_mode():
     app_path = Path(__file__).resolve().parents[1] / "src/app/streamlit_app.py"
     app = AppTest.from_file(str(app_path)).run(timeout=30)
     app.selectbox(key="player_select").select("Lonzo Ball").run()
-    app.radio(key="reference_mode").set_value("Position peers").run()
     assert not app.exception and not app.error
     assert any("no verified roster position" in item.value for item in app.info)
     app.radio(key="reference_mode").set_value("All players").run()

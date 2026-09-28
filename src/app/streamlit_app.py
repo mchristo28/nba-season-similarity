@@ -325,28 +325,33 @@ def main():
 
     reference_mode = st.radio(
         "Comparison pool",
-        ["All players", "Position peers"],
+        ["Position peers", "All players"],
         horizontal=True,
         key="reference_mode",
     )
     peer_groups = ()
     reference_label = "All players"
-    if reference_mode == "Position peers":
-        memberships = position_groups(anchor_row.get("POSITION"))
-        if not memberships:
-            st.info(
-                "This season has no verified roster position. Select All players to compare it."
-            )
-            return
-        options = {" + ".join(POSITION_GROUPS[g] for g in memberships): memberships}
-        if len(memberships) > 1:
-            options.update({POSITION_GROUPS[g]: (g,) for g in memberships})
+    memberships = position_groups(anchor_row.get("POSITION"))
+    if reference_mode == "Position peers" and not memberships:
+        st.info(
+            "This season has no verified roster position. Using All players for this comparison."
+        )
+    elif reference_mode == "Position peers":
         context = (int(player_id), anchor_year)
-        if st.session_state.get("peer_subject") != context:
-            st.session_state["peer_group"] = next(iter(options))
+        if st.session_state.get("peer_subject") != context or "peer_groups" not in st.session_state:
+            st.session_state["peer_groups"] = [POSITION_GROUPS[g] for g in memberships]
             st.session_state["peer_subject"] = context
-        reference_label = st.selectbox("Position group", list(options), key="peer_group")
-        peer_groups = options[reference_label]
+        selected_groups = st.multiselect(
+            "Positions to include",
+            list(POSITION_GROUPS.values()),
+            key="peer_groups",
+            help="Starts with this season's listed positions. Add groups to broaden the comparison. Hybrids belong to each listed group.",
+        )
+        peer_groups = tuple(g for g, label in POSITION_GROUPS.items() if label in selected_groups)
+        if not set(peer_groups).intersection(memberships):
+            st.info("Include at least one of this player's listed position groups to compare.")
+            return
+        reference_label = " + ".join(POSITION_GROUPS[g] for g in peer_groups)
         try:
             matcher = load_matcher(data_version(), profile, peer_groups)
         except ValueError as error:
@@ -355,8 +360,9 @@ def main():
         eligible = career_df[career_df.SEASON.str[:4].astype(int) >= profile_spec["first_year"]]
         known = eligible.get("POSITION", pd.Series(index=eligible.index, dtype=str)).notna()
         st.caption(
-            "Season roster labels; hybrids belong to each listed group. These describe listed "
-            "positions, not time spent playing each role. Unknown positions are excluded. "
+            "Add positions above to broaden the pool. Season roster labels describe listed "
+            "positions, not time spent playing each role. Unknown positions are excluded; "
+            "choose All players to include them. "
             f"Positions available for {known.sum():,} of {len(eligible):,} seasons in this mode."
         )
     st.caption(

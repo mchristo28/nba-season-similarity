@@ -134,9 +134,12 @@ It reports results and coverage; plausible names are a review aid, not ground tr
 or a target used to tune weights. Tests separately verify exact units, independence
 from raw minutes, mode behavior, historical boundaries, and missingness invariants.
 
-## Optional position reference (3.2)
+## Position reference (3.2)
 
-All players preserves the 3.1 distances and rankings. Position peers fits the same
+Position peers is the default; the pool starts with the query’s listed groups.
+Positions to include allows adding other groups. All players preserves the 3.1
+distances and rankings, and is the automatic fallback for an unknown query position.
+Position peers fits the same
 model to rotation-player seasons belonging to a selected roster position group,
 and restricts candidates to that group. A G-F or F-C season belongs to both listed
 groups; the user can select either group or their union. The chosen reference is

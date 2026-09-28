@@ -12,7 +12,9 @@ Cameron Payne, Lonzo Ball, Cole Anthony, Jeremiah Robinson-Earl, Cam Thomas,
 Jaden Ivey, and Vince Williams Jr. These players remain searchable with All players.
 No current-position or height-based fallback is applied to historical seasons.
 
-This incompleteness is why peer mode is optional. Roster snapshots do not constitute
+Position peers is the default, with an All players fallback for unknown subjects.
+Users can add groups to expand the reference or choose All players explicitly.
+Roster snapshots do not constitute
 an exhaustive record of everyone who played during a season, or actual minutes by
 position. F alone does not reliably separate wings from power forwards.
 

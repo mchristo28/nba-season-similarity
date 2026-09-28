@@ -129,7 +129,9 @@ in `src/features/comparison.py`.
 
 ## Position peers
 
-The default All players comparison is unchanged. Position peers restricts candidates
+Position peers is the default, starting with the selected season’s listed groups.
+Add groups with Positions to include to broaden the pool, or choose All players
+for the original unrestricted comparison. Position peers restricts candidates
 and the fixed statistical reference to the selected broad roster group: Guard,
 Forward / Wing, or Center / Big. Scores, per-stat colors, and category contributions
 use that same reference (20+ GP, 15+ MPG, within the profile's supported years).
@@ -140,7 +142,8 @@ labels are combined across team stints, with original labels, teams, and label
 variation retained in `player_positions.parquet`. G-F and F-C retain both memberships;
 hybrids can use either group or their union. These are listed roster positions, not
 measured playing-time roles. Missing labels stay unknown and are excluded only from
-peer mode. `player_positions.json` records per-season coverage and every missing row.
+peer mode. Subjects without a known position automatically use All players with an
+explanation. `player_positions.json` records per-season coverage and every missing row.
 
 To refresh only positions against an existing team-season snapshot:
 
