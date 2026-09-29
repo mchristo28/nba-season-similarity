@@ -121,3 +121,21 @@ shared evidence, weight-rescaling invariance, missing and disabled features, col
 boundaries, translation-invariant measurement gaps, neutral context, career-distance
 consistency for a single period, and app interactions. Existing coverage, units,
 historical-boundary, filter-invariance and persistence tests continue to apply.
+
+
+## Addendum: outlier clipping (evaluated, not deployed)
+
+Several features are right-skewed (free-throw rate, blocks, corner-3 share) with maximum
+standardized values of 6–8 SD. Since squared distance amplifies outliers, clipping
+standardized values at ±3, ±4 and ±5 SD was compared with the deployed model on 300 random
+queries per profile (top-10 overlap with the unclipped ranking):
+
+| Clip | Tracking mean overlap | Production mean overlap |
+| --- | --- | --- |
+| ±3 SD | 0.977 | 0.979 |
+| ±4 SD | 0.996 | 0.998 |
+| ±5 SD | 0.999 | 1.000 |
+
+At ±4 SD only about 0.3% of top-10 lists fall below 0.7 overlap, so rankings are not driven by
+outliers. Clipping would break the exact-unit and additive-explanation guarantees for little
+change in results, so it was not adopted.

@@ -67,19 +67,37 @@ average of category scores. This diagonal metric does not learn nonlinear roles
 or remove every correlation. See the [aggregate-method review](comparison-geometry-review.md)
 for the evaluated correlation-aware alternative and why it was not deployed.
 
-| Joint weighted RMS distance | Score | Interpretation |
+| Joint weighted RMS distance | Score | In standardized units |
 | --- | --- | --- |
 | 0 | 100 | Identical measured profile |
-| 0.25 | 95.8 | Small measured gap |
-| 0.5 | 84.1 | Moderate measured gap |
-| 1 | 50 | Large measured gap |
-| 1.5 | 21.0 | Large difference |
-| 2 | 6.3 | Very large difference |
+| 0.25 | 95.8 | Very small gap |
+| 0.5 | 84.1 | Half a standard deviation across the profile |
+| 1 | 50 | One standard deviation |
+| 1.5 | 21.0 | One and a half |
+| 2 | 6.3 | Two |
+
+**Scores are not percentiles.** Two random rotation-player seasons are typically about
+1.3 SD apart (squared standardized differences average 2 per feature), so a typical
+random pair scores about 30. Measured on random pairs from each pool:
+
+| Pool | Median random pair | 90th percentile | 99th percentile |
+| --- | --- | --- | --- |
+| Tracking, all players | 31 | 61 | 78 |
+| Tracking, guards | 29 | 56 | 74 |
+| Production, all players | 32 | 68 | 86 |
+| Historical style, all players | 32 | 62 | 80 |
+
+A score of 50 is therefore already closer than roughly 95% of random pairs, and the
+top match for a well-defined player commonly scores 80–90. The app labels matches by
+this pool-relative rank, not the raw score: **very close** beats at least 99% of random
+pairs, **close** 95%, **moderate** 80%, otherwise **loose**. The rank is estimated with
+a deterministic sample of 300 random reference seasons under the current weights
+(`WeightedMatcher.pair_percentile`) and is shown as "Closer than X% of random pairs".
 
 This mapping is a transparent design calibration, not an empirically established
 measure of basketball equivalence. Top results are not rescaled to 100. Compare
 scores within one mode and weight setting; changing mode, data, or model version
-changes the reference and/or measurements. The UI identifies model version 3.2.
+changes the reference and/or measurements. The UI identifies model version 3.2. The pool-relative labels changed in the UI only; distances and scores are unchanged.
 
 ## Colors and explanations
 
@@ -117,7 +135,8 @@ historical mode uses its fixed feature set across the full date range. No missin
 measurement is interpreted as zero. Zero counts with a positive denominator are
 valid observations; zero-denominator ratios are unknown.
 
-Different-player matches are the default. Games, MPG, age difference, candidate
+Different-player matches are the default, and only each player's closest season is listed unless
+the user turns that filter off (repeated seasons of one player otherwise crowd the top results). Games, MPG, age difference, candidate
 year range, and shared coverage can be filtered. The ordinary result table shows
 per-game stats for context. The comparison breakdown separately lists the actual
 normalized inputs; the radar remains a descriptive chart with its own scales.

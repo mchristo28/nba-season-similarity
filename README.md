@@ -38,13 +38,13 @@ scales; category bars explain contributions to the total difference, and key
 differences remain visible even for high-scoring matches. Raw context stats are neutral.
 Every ranked candidate must have the same query-observed comparison inputs;
 missing measurements never count as zero. Other seasons by the same player are
-excluded by default. Games, minutes, candidate seasons, age difference, coverage,
+excluded by default, and each player's closest season is listed once. Games, minutes, candidate seasons, age difference, coverage,
 and group weights are configurable. Scores should be compared within one mode.
 
 Scores use `100 × 2^(-distance²)`: 100 is identical on measured features, about 84
 is a half-standard-deviation difference, and 50 is one standard deviation. Scores
-are not percentages of identical play, percentiles, or grades. The closest match
-for a unique player can still have a moderate score. See [scoring details](docs/scoring.md).
+are not percentages of identical play, percentiles, or grades. A typical random pair
+scores about 30, so match labels are pool-relative ("closer than 97% of random pairs"). See [scoring details](docs/scoring.md).
 
 ## Rebuild data
 

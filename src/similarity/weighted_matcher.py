@@ -91,6 +91,8 @@ class WeightedMatcher:
             scaler.fit(reference[columns].to_numpy(dtype=float))
             self._matrices[group] = scaler.transform(df[columns].to_numpy(dtype=float))
             self.scalers[group] = {"scaler": scaler, "columns": columns}
+        self._ref_rows = np.flatnonzero(df.index.isin(reference.index))
+        self._pair_samples = {}
         self._indices = {"year": {}, "age": {}}
         for i, row in df.iterrows():
             pid = int(row.PLAYER_ID)
@@ -151,6 +153,26 @@ class WeightedMatcher:
         coverage /= sum(weights.values())
         overall[~complete] = np.inf
         return overall, group_distances, coverage
+
+    def pair_percentile(self, distance: float, weights=None, *, queries: int = 300) -> float:
+        """Fraction of random reference-season pairs that are farther apart than `distance`.
+
+        Deterministic sample under the given weights; anchors scores in the actual pool.
+        """
+        weights = self._weights(weights)
+        key = tuple(sorted(weights.items()))
+        sample = self._pair_samples.get(key)
+        if sample is None:
+            rows = self._ref_rows
+            rng = np.random.default_rng(0)
+            picks = rng.choice(rows, min(queries, len(rows)), replace=False)
+            parts = []
+            for q in picks:
+                d, _, _ = self._distances(q, rows[rows != q], weights)
+                parts.append(d[np.isfinite(d)])
+            sample = np.sort(np.concatenate(parts)) if parts else np.array([np.inf])
+            self._pair_samples[key] = sample
+        return float(1 - np.searchsorted(sample, distance, side="left") / len(sample))
 
     def explain_season(self, player_id, season_key, other_id, other_key, *, weights=None):
         """Expose the same feature gaps and additive squared-distance terms used to rank.
@@ -226,7 +248,9 @@ class WeightedMatcher:
         season_start: int | None = None,
         season_end: int | None = None,
         max_age_difference: int | None = None,
+        best_per_player: bool = False,
     ):
+        """Rank candidate seasons; `best_per_player` keeps each player's closest season only."""
         index = self._index(compare_by)
         weights = self._weights(weights)
         if player_id not in index or season_key not in index[player_id]:
@@ -275,7 +299,15 @@ class WeightedMatcher:
             )
         distances, groups, coverage = self._distances(query, candidates, weights)
         eligible = np.flatnonzero(mask & np.isfinite(distances) & (coverage >= min_coverage))
-        ranked = eligible[np.argsort(distances[eligible], kind="stable")[:n]]
+        ranked = eligible[np.argsort(distances[eligible], kind="stable")]
+        if best_per_player:
+            seen, kept = set(), []
+            for i in ranked:
+                if entries[i][0] not in seen:
+                    seen.add(entries[i][0])
+                    kept.append(i)
+            ranked = np.array(kept, dtype=int)
+        ranked = ranked[:n]
         return [
             (
                 entries[i][0],

@@ -18,7 +18,7 @@ def load_cached_awards(version=None) -> pd.DataFrame | None:
     return None
 
 
-@st.cache_resource(max_entries=12)
+@st.cache_resource(max_entries=24)
 def load_matcher(version=None, profile=None, peer_groups=()) -> WeightedMatcher | None:
     features_path = project_root / "data/features/player_features.parquet"
     if not features_path.exists():

@@ -24,6 +24,7 @@ from src.app.data_access import (
 )
 from src.app.presentation import (
     _clean,
+    percentile_text,
     player_abbr,
     render_anchor_portrait,
     render_awards,
@@ -116,7 +117,116 @@ def get_awards_pills(player_id: int, season: str, cached_awards: pd.DataFrame | 
 # ---------------------------------------------------------------------------
 
 
+def player_directory(frame: pd.DataFrame) -> pd.DataFrame:
+    """One row per player ID; names shared by different players get a career-span suffix."""
+    grouped = frame.groupby("PLAYER_ID").agg(
+        name=("PLAYER_NAME", "first"),
+        first=("SEASON", "min"),
+        last=("SEASON", "max"),
+    )
+    shared = grouped.name.duplicated(keep=False)
+    grouped["label"] = grouped.name.where(
+        ~shared, grouped.name + " (" + grouped["first"] + " to " + grouped["last"] + ")"
+    )
+    return grouped.sort_values(["name", "first"])
+
+
+def select_pool(matcher, career_df, anchor_row, player_id, anchor_year, profile, profile_spec):
+    """Render the comparison-pool controls. Returns None when the page cannot proceed."""
+    reference_mode = st.radio(
+        "Comparison pool",
+        ["Position peers", "All players"],
+        horizontal=True,
+        key="reference_mode",
+    )
+    peer_groups = ()
+    reference_label = "All players"
+    pool_note = ""
+    memberships = position_groups(anchor_row.get("POSITION"))
+    if reference_mode == "Position peers" and not memberships:
+        st.info(
+            "This season has no verified roster position. Using All players for this comparison."
+        )
+    elif reference_mode == "Position peers":
+        context = (int(player_id), anchor_year)
+        if st.session_state.get("peer_subject") != context or "peer_groups" not in st.session_state:
+            st.session_state["peer_groups"] = [POSITION_GROUPS[g] for g in memberships]
+            st.session_state["peer_subject"] = context
+        selected_groups = st.multiselect(
+            "Positions to include",
+            list(POSITION_GROUPS.values()),
+            key="peer_groups",
+            help="Starts with this season's listed positions. Add groups to broaden the comparison. Hybrids belong to each listed group.",
+        )
+        peer_groups = tuple(g for g, label in POSITION_GROUPS.items() if label in selected_groups)
+        if not set(peer_groups).intersection(memberships):
+            st.info("Include at least one of this player's listed position groups to compare.")
+            return None
+        reference_label = " + ".join(POSITION_GROUPS[g] for g in peer_groups)
+        try:
+            matcher = load_matcher(data_version(), profile, peer_groups)
+        except ValueError as error:
+            st.info(str(error))
+            return None
+        eligible = career_df[career_df.SEASON.str[:4].astype(int) >= profile_spec["first_year"]]
+        known = eligible.get("POSITION", pd.Series(index=eligible.index, dtype=str)).notna()
+        pool_note = (
+            "Add positions above to broaden the pool. Season roster labels describe listed "
+            "positions, not time spent playing each role. Unknown positions are excluded; "
+            "choose All players to include them. "
+            f"Positions are available for {known.sum():,} of {len(eligible):,} seasons in this mode."
+        )
+    return matcher, peer_groups, reference_label, pool_note
+
+
+def search_filters(career_df, profile_spec):
+    """Render the search-filter expander and return its settings."""
+    with st.expander("Search filters"):
+        n_results = st.radio("SHOW", [5, 10, 15, 20], index=1, horizontal=True, key="n_results")
+        exclude_same = st.checkbox(
+            "Exclude other seasons by the same player", value=True, key="exclude_same"
+        )
+        best_per_player = st.checkbox(
+            "Show each player's closest season only", value=True, key="best_per_player"
+        )
+        min_games = st.number_input("Minimum games", min_value=0, value=20, step=5)
+        min_minutes = st.number_input(
+            "Minimum minutes per game", min_value=0.0, value=10.0, step=1.0
+        )
+        min_coverage = st.slider("Minimum shared data coverage", 0, 100, 80, step=5) / 100
+        age_filter = st.selectbox(
+            "Career-stage filter",
+            ["Any age", "Within 2 years of age", "Within 5 years of age"],
+            key="age_filter",
+        )
+        max_age_difference = {
+            "Any age": None,
+            "Within 2 years of age": 2,
+            "Within 5 years of age": 5,
+        }[age_filter]
+        first_year = max(profile_spec["first_year"], int(career_df.SEASON.str[:4].min()))
+        last_year = int(career_df.SEASON.str[:4].max())
+        year_range = st.slider(
+            "Candidate season start years", first_year, last_year, (first_year, last_year)
+        )
+    return {
+        "n": n_results,
+        "exclude_same": exclude_same,
+        "best_per_player": best_per_player,
+        "min_games": min_games,
+        "min_minutes": min_minutes,
+        "min_coverage": min_coverage,
+        "max_age_difference": max_age_difference,
+        "year_range": year_range,
+    }
+
+
 def main():
+    _page()
+    render_colophon()
+
+
+def _page():
     # Inject fonts and CSS
     st.markdown(FONT_LINKS, unsafe_allow_html=True)
     st.markdown(CSS, unsafe_allow_html=True)
@@ -161,7 +271,8 @@ def main():
     )
     total_seasons = len(career_df)
     total_players = career_df["PLAYER_ID"].nunique()
-    player_names = sorted(career_df["PLAYER_NAME"].unique())
+    players = player_directory(career_df)
+    player_ids = list(players.index)
 
     # ---- Session state defaults ----
     # Default weights
@@ -175,7 +286,7 @@ def main():
             st.session_state[f"w_{key}"] = val
 
     # ---- Masthead ----
-    issue_no = str(213).zfill(3)
+    issue_no = str(career_df.SEASON.nunique()).zfill(3)
     render_masthead(
         total_seasons,
         total_players,
@@ -209,27 +320,25 @@ def main():
         selected = st.session_state["player_select"]
         # Season values are list positions, not shared career/year identifiers.
         # A position carried from the previous player can select an unrelated era.
-        st.session_state["season_select"] = int(career_df.PLAYER_NAME.eq(selected).sum()) - 1
+        st.session_state["season_select"] = int(career_df.PLAYER_ID.eq(selected).sum()) - 1
 
     with col_anchor:
+        # Players are keyed by ID: several names belong to two different players.
+        default_id = players.index[players.name.eq("Shai Gilgeous-Alexander")]
+        selected_id = st.selectbox(
+            "PLAYER",
+            options=player_ids,
+            index=player_ids.index(default_id[0]) if len(default_id) else 0,
+            format_func=lambda pid: players.label[pid],
+            key="player_select",
+            on_change=reset_player_season,
+        )
+        selected_player = players.name[selected_id]
         col_portrait, col_meta = st.columns([1, 2])
 
-        with col_portrait:
-            selected_player = st.selectbox(
-                "PLAYER",
-                options=player_names,
-                index=player_names.index("Shai Gilgeous-Alexander")
-                if "Shai Gilgeous-Alexander" in player_names
-                else 0,
-                key="player_select",
-                on_change=reset_player_season,
-            )
-
         # Get player data
-        player_data = career_df[career_df["PLAYER_NAME"] == selected_player].sort_values(
-            "CAREER_YEAR"
-        )
-        player_id = player_data["PLAYER_ID"].iloc[0]
+        player_data = career_df[career_df["PLAYER_ID"] == selected_id].sort_values("CAREER_YEAR")
+        player_id = int(selected_id)
         seasons = player_data[
             ["CAREER_YEAR", "SEASON", "AGE", "PTS", "AST", "REB", "TEAM_ABBREVIATION"]
         ].to_dict("records")
@@ -286,11 +395,8 @@ def main():
             _clean(f"""<div class="editor-note">
             <div class="editor-note-flag">EDITOR'S NOTE</div>
             <p><b>{profile_spec["label"]}</b></p>
-            <p>{profile_spec["description"]}</p>
-            <p>The score compares the whole measured profile. Larger mismatches carry more influence;
-            category breakdowns explain where that difference comes from.</p>
-            <p>Every candidate in this ranking must have the same measurements available as the selected season.
-            Scores use a fixed reference of rotation-player seasons. Adjust the weights to emphasize what matters.</p>
+            <p>One score compares the whole measured profile; the breakdown below shows where
+            the gap comes from. Adjust the weights to emphasize what matters.</p>
             </div>"""),
             unsafe_allow_html=True,
         )
@@ -322,86 +428,38 @@ def main():
 
             st.button("↺ RESET TO DEFAULTS", on_click=reset_weights)
 
-    reference_mode = st.radio(
-        "Comparison pool",
-        ["Position peers", "All players"],
-        horizontal=True,
-        key="reference_mode",
+    pool = select_pool(
+        matcher, career_df, anchor_row, player_id, anchor_year, profile, profile_spec
     )
-    peer_groups = ()
-    reference_label = "All players"
-    memberships = position_groups(anchor_row.get("POSITION"))
-    if reference_mode == "Position peers" and not memberships:
-        st.info(
-            "This season has no verified roster position. Using All players for this comparison."
-        )
-    elif reference_mode == "Position peers":
-        context = (int(player_id), anchor_year)
-        if st.session_state.get("peer_subject") != context or "peer_groups" not in st.session_state:
-            st.session_state["peer_groups"] = [POSITION_GROUPS[g] for g in memberships]
-            st.session_state["peer_subject"] = context
-        selected_groups = st.multiselect(
-            "Positions to include",
-            list(POSITION_GROUPS.values()),
-            key="peer_groups",
-            help="Starts with this season's listed positions. Add groups to broaden the comparison. Hybrids belong to each listed group.",
-        )
-        peer_groups = tuple(g for g, label in POSITION_GROUPS.items() if label in selected_groups)
-        if not set(peer_groups).intersection(memberships):
-            st.info("Include at least one of this player's listed position groups to compare.")
-            return
-        reference_label = " + ".join(POSITION_GROUPS[g] for g in peer_groups)
-        try:
-            matcher = load_matcher(data_version(), profile, peer_groups)
-        except ValueError as error:
-            st.info(str(error))
-            return
-        eligible = career_df[career_df.SEASON.str[:4].astype(int) >= profile_spec["first_year"]]
-        known = eligible.get("POSITION", pd.Series(index=eligible.index, dtype=str)).notna()
-        st.caption(
-            "Add positions above to broaden the pool. Season roster labels describe listed "
-            "positions, not time spent playing each role. Unknown positions are excluded; "
-            "choose All players to include them. "
-            f"Positions available for {known.sum():,} of {len(eligible):,} seasons in this mode."
-        )
+    if pool is None:
+        return
+    matcher, peer_groups, reference_label, pool_note = pool
     st.caption(
         f"Reference: {reference_label} · {matcher.reference_count:,} rotation-player seasons "
-        "(20+ games, 15+ minutes per game). Scores and gap colors use this same reference; "
-        "search filters do not change it. Compare scores within the same mode and pool."
+        "(20+ games, 15+ minutes per game)."
     )
+    with st.expander("How to read these scores"):
+        st.write(
+            "Scores are absolute closeness: 100 = identical measured features; 84 ≈ a combined gap of "
+            "half a standard deviation; 50 ≈ one; 6 ≈ two. But most pairs of seasons are far apart. "
+            "A typical random pair scores about 30, so the match badge says how many random pairs "
+            "in this pool a match beats (very close: top 1%, close: top 5%, moderate: top 20%). "
+            "Scores and gap colors use the reference above; search filters do not change it. "
+            "They describe statistical closeness, not player quality or probabilities. "
+            "Compare scores only within the same mode, pool and weights. "
+            f"Model {MODEL_VERSION}; coverage is shown separately. {pool_note}"
+        )
 
     # Render controls before searching so state and results are consistent.
-    with st.expander("Search filters"):
-        n_results = st.radio("SHOW", [5, 10, 15, 20], index=1, horizontal=True, key="n_results")
-        exclude_same = st.checkbox(
-            "Exclude other seasons by the same player", value=True, key="exclude_same"
-        )
-        min_games = st.number_input("Minimum games", min_value=0, value=20, step=5)
-        min_minutes = st.number_input(
-            "Minimum minutes per game", min_value=0.0, value=10.0, step=1.0
-        )
-        min_coverage = st.slider("Minimum shared data coverage", 0, 100, 80, step=5) / 100
-        age_filter = st.selectbox(
-            "Career-stage filter",
-            ["Any age", "Within 2 years of age", "Within 5 years of age"],
-            key="age_filter",
-        )
-        max_age_difference = {
-            "Any age": None,
-            "Within 2 years of age": 2,
-            "Within 5 years of age": 5,
-        }[age_filter]
-        first_year = max(profile_spec["first_year"], int(career_df.SEASON.str[:4].min()))
-        last_year = int(career_df.SEASON.str[:4].max())
-        year_range = st.slider(
-            "Candidate season start years", first_year, last_year, (first_year, last_year)
-        )
-    st.caption(
-        "Score guide: 100 = identical measured features; 84 ≈ a combined gap of half a standard deviation; "
-        "50 ≈ one; 6 ≈ two. Larger individual gaps have more influence. Scores describe statistical "
-        "closeness, not player quality, percentiles, or probabilities. Compare scores within the selected mode. "
-        f"Model {MODEL_VERSION}; coverage is shown separately."
-    )
+    filters = search_filters(career_df, profile_spec)
+    n_results = filters["n"]
+    exclude_same = filters["exclude_same"]
+    best_per_player = filters["best_per_player"]
+    min_games = filters["min_games"]
+    min_minutes = filters["min_minutes"]
+    min_coverage = filters["min_coverage"]
+    max_age_difference = filters["max_age_difference"]
+    year_range = filters["year_range"]
     if not any(custom_weights.values()):
         st.warning("Enable at least one matching dimension.")
         return
@@ -449,6 +507,7 @@ def main():
             profile=profile,
             peer_groups=peer_groups,
             max_age_difference=max_age_difference,
+            best_per_player=best_per_player,
         )
 
         results_data = []
@@ -492,6 +551,7 @@ def main():
                     if pd.notna(season_row.get("e_usg_pct"))
                     else float("nan"),
                     "score": score,
+                    "percentile": matcher.pair_percentile(dist, custom_weights),
                     "coverage": matcher.season_coverage(
                         player_id, anchor_year, pid, their_year, weights=custom_weights
                     ),
@@ -499,13 +559,12 @@ def main():
                     "career_year": their_year,
                 }
             )
-    except Exception as e:
+    except ValueError as e:
         st.error(f"Error finding similar seasons: {e}")
         results_data = []
 
     if not results_data:
         st.info("No matches meet these filters. Try lowering the coverage or playing-time minimum.")
-        render_colophon()
         return
 
     # ---- Section II: Nearest Neighbors ----
@@ -545,10 +604,6 @@ def main():
         unsafe_allow_html=True,
     )
 
-    if not results_data:
-        render_colophon()
-        return
-
     # ---- Section III: Anatomy of the match ----
     compare_data = results_data[compare_idx]
     compare_row = career_df[
@@ -563,8 +618,8 @@ def main():
         weights=custom_weights,
     )
     compare_score = compare_data["score"]
-    sc_hex = score_color_hex(compare_score)
-    sc_label = score_label(compare_score)
+    sc_hex = score_color_hex(compare_score, compare_data["percentile"])
+    sc_label = score_label(compare_score, compare_data["percentile"])
 
     render_section_head(
         "III",
@@ -608,6 +663,7 @@ def main():
     )
 
     st.caption(
+        f"{percentile_text(compare_data['percentile'])} in the {reference_label} pool. "
         f"Shared data coverage: {compare_data['coverage']:.0%} of weighted requested features. "
         "All ranked candidates share the selected season’s available comparison measurements. "
         "Unavailable measurements are not treated as zero."
@@ -706,12 +762,6 @@ def main():
                 render_stat_breakdown(anchor_row, compare_row, label_a, label_b),
                 unsafe_allow_html=True,
             )
-
-    # Close comparison panel
-    st.markdown("</div>", unsafe_allow_html=True)
-
-    # ---- Colophon ----
-    render_colophon()
 
 
 if __name__ == "__main__":

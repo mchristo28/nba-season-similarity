@@ -5,6 +5,15 @@ from streamlit.testing.v1 import AppTest
 
 from src.app.presentation import render_radar_svg, render_similarity_bars, score_label
 
+FEATURES = Path(__file__).resolve().parents[1] / "data/features/player_features.parquet"
+
+
+def select_player(app, name):
+    """The player selectbox is keyed by ID, since some names belong to two players."""
+    ids = pd.read_parquet(FEATURES, columns=["PLAYER_ID", "PLAYER_NAME"])
+    pid = int(ids.loc[ids.PLAYER_NAME == name, "PLAYER_ID"].iloc[0])
+    return app.selectbox(key="player_select").select(pid).run()
+
 
 def comparison_selector(app):
     return next(box for box in app.selectbox if box.label == "SELECT COMPARISON")
@@ -33,7 +42,7 @@ def test_full_app_controls():
     app.checkbox(key="exclude_same").check().run()
     app.radio(key="n_results").set_value(5).run()
     assert not app.exception
-    app.selectbox(key="player_select").select("LeBron James").run()
+    select_player(app, "LeBron James").run()
     assert not app.exception
     assert (
         app.selectbox(key="season_select").value
@@ -69,7 +78,7 @@ def test_comparison_modes_and_historical_boundary():
     app.radio(key="matching_detail").set_value("Tracking (2013+)").run(timeout=30)
     assert not app.exception
     assert app.slider(key="w_drives").value == 1
-    app.selectbox(key="player_select").select("LeBron James").run()
+    select_player(app, "LeBron James").run()
     app.selectbox(key="season_select").select(0).run()
     assert not app.exception
     assert any("Tracking comparisons start" in item.value for item in app.info)
@@ -95,7 +104,7 @@ def test_whole_profile_explanation_and_tracking_shortcut():
     app.radio(key="matching_mode").set_value("Playing style").run()
     assert app.radio(key="matching_detail").value == "Historical (2003+)"
     app.radio(key="reference_mode").set_value("All players").run()
-    app.selectbox(key="player_select").select("Lauri Markkanen").run()
+    select_player(app, "Lauri Markkanen").run()
     app.selectbox(key="season_select").select(7).run()
     assert not app.exception
     gg = next(
@@ -107,7 +116,8 @@ def test_whole_profile_explanation_and_tracking_shortcut():
     text = "\n".join(item.value for item in app.markdown)
     assert "WHAT DRIVES THE DIFFERENCE" in text and "KEY DIFFERENCES" in text
     assert "Noticeable difference" in text and "Large difference" in text
-    assert "VERY CLOSE" not in text and "SIMILARITY BY CATEGORY" not in text
+    assert "SIMILARITY BY CATEGORY" not in text and "MATCH —" in text
+    assert "random pairs" in text
     app.slider(key="w_physical").set_value(0).run()
     assert not app.exception
     assert any("Not scored" in item.value for item in app.markdown)
@@ -121,19 +131,19 @@ def test_position_peers_and_hybrid_switching():
     app_path = Path(__file__).resolve().parents[1] / "src/app/streamlit_app.py"
     app = AppTest.from_file(str(app_path)).run(timeout=30)
     assert app.radio(key="reference_mode").value == "Position peers"
-    app.selectbox(key="player_select").select("Keyonte George").run()
+    select_player(app, "Keyonte George").run()
     assert not app.exception and not app.error
     assert app.multiselect(key="peer_groups").value == ["Guard"]
     assert any("Reference: Guard" in item.value for item in app.caption)
     assert comparison_selector(app).value == "Austin Reaves (2025-26) — Score: 84"
-    app.selectbox(key="player_select").select("Lauri Markkanen").run()
+    select_player(app, "Lauri Markkanen").run()
     assert not app.exception and not app.error
     assert app.multiselect(key="peer_groups").value == ["Forward / Wing", "Center / Big"]
     app.multiselect(key="peer_groups").set_value(["Center / Big"]).run()
     assert not app.exception and not app.error
     assert any("Reference: Center / Big" in item.value for item in app.caption)
     # A previous hybrid's subgroup must not leak into the next subject's pool.
-    app.selectbox(key="player_select").select("Austin Reaves").run()
+    select_player(app, "Austin Reaves").run()
     assert app.multiselect(key="peer_groups").value == ["Guard"]
     assert not app.exception and not app.error
     app.multiselect(key="peer_groups").set_value(["Guard", "Forward / Wing"]).run()
@@ -148,9 +158,27 @@ def test_position_peers_and_hybrid_switching():
 def test_unknown_season_position_stays_available_in_all_player_mode():
     app_path = Path(__file__).resolve().parents[1] / "src/app/streamlit_app.py"
     app = AppTest.from_file(str(app_path)).run(timeout=30)
-    app.selectbox(key="player_select").select("Lonzo Ball").run()
+    select_player(app, "Lonzo Ball").run()
     assert not app.exception and not app.error
     assert any("no verified roster position" in item.value for item in app.info)
     app.radio(key="reference_mode").set_value("All players").run()
     assert not app.exception and not app.error
     assert comparison_selector(app).options
+
+
+def test_players_sharing_a_name_are_separate_and_searchable():
+    app_path = Path(__file__).resolve().parents[1] / "src/app/streamlit_app.py"
+    app = AppTest.from_file(str(app_path)).run(timeout=30)
+    ids = pd.read_parquet(FEATURES, columns=["PLAYER_ID", "PLAYER_NAME"])
+    both = sorted(ids.loc[ids.PLAYER_NAME == "Mike James", "PLAYER_ID"].unique())
+    assert len(both) == 2
+    labels = [o for o in app.selectbox(key="player_select").options if o.startswith("Mike James")]
+    assert len(labels) == 2 and all("to" in label for label in labels)
+    for pid in both:
+        app.selectbox(key="player_select").select(int(pid)).run()
+        assert not app.exception and not app.error
+
+
+def test_dark_theme_is_configured():
+    config = Path(__file__).resolve().parents[1] / ".streamlit/config.toml"
+    assert 'base = "dark"' in config.read_text()

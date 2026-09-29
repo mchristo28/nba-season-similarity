@@ -21,6 +21,24 @@ def difference_band(distance: float) -> str:
     return "large"
 
 
+# Closeness bands are anchored to the reference pool: the share of all random pairs of
+# rotation-player seasons that are farther apart than this match.
+BANDS = (
+    (0.99, "very_close", "VERY CLOSE MATCH"),
+    (0.95, "close", "CLOSE MATCH"),
+    (0.80, "moderate", "MODERATE MATCH"),
+    (0.0, "loose", "LOOSE MATCH"),
+)
+
+
+def closeness_band(percentile: float) -> tuple[str, str]:
+    """Return (key, label) for the fraction of random pairs this match beats."""
+    for floor, key, label in BANDS:
+        if percentile >= floor:
+            return key, label
+    return BANDS[-1][1:]
+
+
 def similarity_score(distance: float) -> float:
     if np.isnan(distance) or distance < 0:
         raise ValueError("Distance must be nonnegative")

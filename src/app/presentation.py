@@ -11,7 +11,7 @@ import streamlit as st
 
 from src.app.comparison_display import BANDS, LABELS, TWO_DECIMAL_FEATURES
 from src.features.registry import DIMENSIONS, STAT_CATEGORIES
-from src.similarity.scoring import difference_band, similarity_score
+from src.similarity.scoring import closeness_band, difference_band, similarity_score
 
 TEAM_COLORS = {
     "ATL": "#E03A3E",
@@ -68,7 +68,25 @@ def player_abbr(name: str) -> str:
     return (parts[0][0] + parts[1][0] + parts[2][0]).upper()
 
 
-def score_color_hex(s: float) -> str:
+BAND_COLORS = {
+    "very_close": "#2a9d5c",
+    "close": "#2a9d5c",
+    "moderate": "#c9a227",
+    "loose": "#c44536",
+}
+
+
+def percentile_text(percentile: float) -> str:
+    """Plain-language rank of a match among all random pairs in the reference pool."""
+    share = percentile * 100
+    if share >= 99.5:
+        return "Closer than over 99% of random pairs"
+    return f"Closer than {share:.0f}% of random pairs"
+
+
+def score_color_hex(s: float, percentile: float | None = None) -> str:
+    if percentile is not None:
+        return BAND_COLORS[closeness_band(percentile)[0]]
     if s > similarity_score(0.5):
         return "#2a9d5c"
     if s > similarity_score(1.0):
@@ -81,9 +99,11 @@ def _clean(html: str) -> str:
     return re.sub(r"\n[ \t]{4,}", "\n", html)
 
 
-def score_label(s: float) -> str:
+def score_label(s: float, percentile: float | None = None) -> str:
     if s >= 100 - 1e-10:
         return "IDENTICAL MEASURED PROFILE"
+    if percentile is not None:
+        return closeness_band(percentile)[1]
     if s > similarity_score(0.5):
         return "SMALL MEASURED GAP"
     if s > similarity_score(1.0):
@@ -273,7 +293,7 @@ def render_results_table_html(results_data: list[dict], selected_idx: int) -> st
         rank_color = "color: var(--accent);" if i == selected_idx else "color: var(--ink-60);"
         team_color = TEAM_COLORS.get(r["team"], "#f0ead6")
         score = r["score"]
-        sc = score_color_hex(score)
+        sc = score_color_hex(score, r.get("percentile"))
         bar_w = max(0, min(100, score))
         btn_label = "▸ VIEWING" if i == selected_idx else "—"
         btn_bg = (
