@@ -33,7 +33,7 @@ def test_missing_radar_is_not_zero():
 
 def test_full_app_controls():
     app_path = Path(__file__).resolve().parents[1] / "src/app/streamlit_app.py"
-    app = AppTest.from_file(str(app_path)).run(timeout=30)
+    app = AppTest.from_file(str(app_path), default_timeout=30).run(timeout=30)
     assert not app.exception
     app.slider(key="w_usage").set_value(3).run()
     app.button[0].click().run()
@@ -68,7 +68,7 @@ def test_award_tokens():
 
 def test_comparison_modes_and_historical_boundary():
     app_path = Path(__file__).resolve().parents[1] / "src/app/streamlit_app.py"
-    app = AppTest.from_file(str(app_path)).run(timeout=30)
+    app = AppTest.from_file(str(app_path), default_timeout=30).run(timeout=30)
     assert app.radio(key="matching_detail").value == "Tracking (2013+)"
     assert app.checkbox(key="exclude_same").value
     app.radio(key="matching_mode").set_value("Production").run(timeout=30)
@@ -98,7 +98,7 @@ def test_relative_efficiency_is_displayed_in_percentage_points():
 
 def test_whole_profile_explanation_and_tracking_shortcut():
     app_path = Path(__file__).resolve().parents[1] / "src/app/streamlit_app.py"
-    app = AppTest.from_file(str(app_path)).run(timeout=30)
+    app = AppTest.from_file(str(app_path), default_timeout=30).run(timeout=30)
     app.radio(key="matching_detail").set_value("Historical (2003+)").run()
     app.radio(key="matching_mode").set_value("Production").run()
     app.radio(key="matching_mode").set_value("Playing style").run()
@@ -129,7 +129,7 @@ def test_whole_profile_explanation_and_tracking_shortcut():
 
 def test_position_peers_and_hybrid_switching():
     app_path = Path(__file__).resolve().parents[1] / "src/app/streamlit_app.py"
-    app = AppTest.from_file(str(app_path)).run(timeout=30)
+    app = AppTest.from_file(str(app_path), default_timeout=30).run(timeout=30)
     assert app.radio(key="reference_mode").value == "Position peers"
     select_player(app, "Keyonte George").run()
     assert not app.exception and not app.error
@@ -157,7 +157,7 @@ def test_position_peers_and_hybrid_switching():
 
 def test_unknown_season_position_stays_available_in_all_player_mode():
     app_path = Path(__file__).resolve().parents[1] / "src/app/streamlit_app.py"
-    app = AppTest.from_file(str(app_path)).run(timeout=30)
+    app = AppTest.from_file(str(app_path), default_timeout=30).run(timeout=30)
     select_player(app, "Lonzo Ball").run()
     assert not app.exception and not app.error
     assert any("no verified roster position" in item.value for item in app.info)
@@ -168,7 +168,7 @@ def test_unknown_season_position_stays_available_in_all_player_mode():
 
 def test_players_sharing_a_name_are_separate_and_searchable():
     app_path = Path(__file__).resolve().parents[1] / "src/app/streamlit_app.py"
-    app = AppTest.from_file(str(app_path)).run(timeout=30)
+    app = AppTest.from_file(str(app_path), default_timeout=30).run(timeout=30)
     ids = pd.read_parquet(FEATURES, columns=["PLAYER_ID", "PLAYER_NAME"])
     both = sorted(ids.loc[ids.PLAYER_NAME == "Mike James", "PLAYER_ID"].unique())
     assert len(both) == 2
